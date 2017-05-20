@@ -1,0 +1,266 @@
+<html>
+<head>
+	<title><?php echo $this->title;?></title>
+    <base href="<?php echo APP_ROOT;?>/">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="<?php echo $this->keywords ?>">
+    <meta name="author" content="<?php echo $this->autor ?>">
+	<!--<link href="content/site/css/style.css" rel="stylesheet" />-->
+	<link href="content/site/css/master.css" rel="stylesheet" />
+    <link href="content/site/css/site.css" rel="stylesheet" />
+	<link href="content/site/css/newlogin.css" rel="stylesheet">
+    <script src="content/site/js/site.js"></script>
+	<!-- Custom Fonts -->
+	<link href="content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<header class="header" id="top">
+    <div class="text-vertical-center">
+        <h1>Pet Fácil</h1>
+        <h3>Encontre aqui a felicidade para seu lar</h3>
+        <!--<a href="#start" class="btn btn-dark btn-lg">Começar</a>-->
+        <a href="login" class="btn btn-dark btn-lg">Voltar</a>
+        <br>
+        <!--<a href="#about" class="btn btn-dark btn-lg">Começar</a>-->
+    </div>
+</header>
+
+<section id="start">
+        <?php $this->Render(); ?>  <!-- RENDERIZAÇÃO DA PÁGINA-->
+</section>
+
+
+
+<!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+                <div class="col-10 text-center">
+                    <h4><strong>Pet Fácil</strong>
+                    </h4>
+                    <p>Rua Manaira, 00 - Jardim Mutinga
+                        <br>Barueri, São Paulo</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-phone fa-fw"></i> (11) 90000-0000</li>
+                        <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">name@example.com</a>
+                        </li>
+                    </ul>
+                    <br>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="https://www.facebook.com/adtfacil" target="_blank" title="Visite nosso facebook"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+                        </li>
+                    </ul>
+                    <hr class="small">
+                <p class="text-muted">Copyright &copy; Pet Fácil <?php echo date("Y"); ?></p>
+                </div>
+        </div>
+        <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+    </footer>
+
+<!-- END Footer -->
+
+
+</body>
+</html>
+
+<!-- jQuery -->
+    <script src="content/js/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="content/js/jquerytransateValidatorsToBR.js"></script>
+    <script src="content/js/global.js"></script>
+    <script src="content/js/jquery.mask.js"></script>
+
+    <script>
+    // Scrolls to the selected menu item on the page
+    $(function() {
+        $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    //#to-top button appears after scrolling
+    var fixed = false;
+    $(document).scroll(function() {
+        if ($(this).scrollTop() > 250) {
+            if (!fixed) {
+                fixed = true;
+                // $('#to-top').css({position:'fixed', display:'block'});
+                $('#to-top').show("slow", function() {
+                    $('#to-top').css({
+                        position: 'fixed',
+                        display: 'block'
+                    });
+                });
+            }
+        } else {
+            if (fixed) {
+                fixed = false;
+                $('#to-top').hide("slow", function() {
+                    $('#to-top').css({
+                        display: 'none'
+                    });
+                });
+            }
+        }
+    });
+    </script>
+
+
+
+
+                            <!--JQUERY/JAVASCRIPT PAGE NEWLOGIN-->
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+                var formulario =  $("#frmCadastro");
+                
+
+                $("#frmCadastro").validate({
+                        errorClass: 'text-errors',
+                        rules: {
+                                PessoaCpfCnpj: {
+                                    digits: true
+                                },
+                                field: {
+                                    required: true
+                                    // minlength: 3
+                                },
+                                repassword: {
+                                    equalTo: "#password"
+                                }
+                        },
+                        submitHandler: function (form) {
+                            var login = document.getElementById("txtlogin").innerText;
+                            // var cpfcnpj = $('#CPF').val();
+                            
+                            if(login.length > 0) {
+                                $("#user").focus();
+                                return;
+                            }
+
+                            
+                            // if(cpfcnpj.length > 11 && cpfcnpj.length < 14){
+                            //     document.getElementById("txtCPF").innerHTML = "Forneça entre 11 (CPF) e 14 (CNPJ) caracteres.";
+                            //     $('#CPF').focus();
+                            //     return;            
+                            // }
+
+                            postForm(formulario,'txtHint', 'result', 'login');
+                            clearInputs();
+                        }   
+                });
+
+                    function clearInputs(){
+                        $("#CPF").val('');
+                        $("#CNPJ").val('');
+                        $("#Rg").val('');
+                        $("#Nome").val('');
+                        $("#Apelido").val('');
+                        $("#Email").val('');
+                        $("#user").val('');
+                        $("#password").val('');
+                        $("#repassword").val('');
+                        $("#Telefone").val('');
+                    }
+        });
+    </script>
+
+ <script type="text/javascript">
+    $(document).ready(function(){
+
+        $('#result').hide();
+
+        $("#Apelido").attr("placeholder", "Caso não tenha, utilize seu 1º nome.");         
+        $("#linkfisica").addClass("active");
+        
+        $("#linkfisica").click(function(){
+
+            $("#txtcpfcnpj").val('');
+
+            swapText("label", "CPF");
+            swapText("nome", "Nome");
+            swapText("number", "RG");
+            swapText("apelido", "Apelido");
+            $("#txtcpfcnpj").attr("placeholder", "000.000.000-00");
+            $("#Apelido").attr("placeholder", "Caso não tenha, utilize seu 1º nome.");         
+            $("#linkfisica").addClass("active");
+            $("#linkjuridica").removeClass("active");
+
+            document.getElementById("txtCPF").innerHTML = "";
+            
+        });
+        
+        $("#linkjuridica").click(function(){
+            swapText("label", "CNPJ");
+            swapText("nome", "Razão Social");
+            swapText("number", "Inscrição Estadual");
+            swapText("apelido", "Nome Fantasia");
+
+            $("#txtcpfcnpj").val('');
+
+            $("#txtcpfcnpj").attr("placeholder", "00.000.000/0000-00");
+            $("#Apelido").attr("placeholder", "");         
+            $("#linkjuridica").addClass("active");
+            $("#linkfisica").removeClass("active");
+
+             document.getElementById("txtCPF").innerHTML = "";
+        });
+
+
+    });
+   </script>
+
+                                    <!--FIM JQUERY/JAVASCRIPT PAGE NEWLOGIN-->
+
+
+                                    <!--INICIO PERDI MINHA SENHA-->
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        var formulario =  $("#frmRecuperar");
+
+
+        $("#frmRecuperar").validate({
+                errorClass: 'text-errors',
+                rules: {
+                        field: {
+                            required: true
+                            // minlength: 3
+                        }
+                },
+                submitHandler: function (form) {
+
+                    postForm(formulario,'retorno', 'result', 'login');
+                    clearInputs();
+                }   
+        });
+
+        function clearInputs(){
+            $("#user").val('');
+        }
+    });
+</script>                 
+                         <!--FIM PERDI MINHA SENHA-->
+
+
+                                    

@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: url(../../images/pet.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 85%;
+    /*background: #463df1;*/
+    height: 100%;
+    padding: 0 auto;
+}
+
+.form-image {
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+.form-login {
+    float: left;
+    height: 50%;
+    width: 25%;
+    margin-left: 5%;
+    margin-top: 15%;
+}
+
+.header-text {
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 3.5em;
+}
+
+.input-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.h3 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 5%;
+}
+
+.btn {
+    margin-top: 5%;
+    /*background-color: #298BBC;*/
+    background-color: #f6f6f9;
+    color: #000;
+    display: block;
+    padding: 6px 12px;
+    /*tamanho */
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.42857143;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.btn:focus,
+.btn:hover {
+    background: #298BBC;
+    color: #FFF;
+}
+
+.a {
+    /*color: #298BBC;*/
+    color: #298BBC;
+    text-decoration: none;
+    margin-top: 2%;
+    display: block;
+}
+
+.a:hover {
+    /*color: #368FFF;*/
+    color: black;
+}
+
+.row {
+    display: inline-block;
+}
+
+.clear {
+    clear: both;
+}
+
+
+.text-red {
+    color:red;
+}
+.error-login {
+    width: 30%;
+    margin-left: 5%;
+    color: #9F6000;
+    background-color: #FEEFB3;
+    font-size: 1.5em;
+}
+
+
+/*seletores para desktops*/
+
+@media screen and (max-width: 1920px) {}
+
+
+/*seletores para tablets*/
+
+@media screen and (max-width: 768px) {
+    .content {
+        margin: 0 auto;
+        max-width: 100%;
+        /*background: #463df1;*/
+        height: 100%;
+        padding: 0 auto;
+    }
+    .form-image {
+        width: 100%;
+        height: 50%;
+        margin-top: 0%;
+        border-radius: 0%;
+    }
+    .form-login {
+        margin-left: 25%;
+        margin-right: 25%;
+        margin-top: 2%;
+        height: 40%;
+        width: 50%;
+    }
+}
+
+
+/*seletores para celurares*/
+@media screen and (max-width: 780px) {
+    .form-login {
+        margin-top: 50%; 
+    }
+    .form-login div {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 520px) {
+    .form-image {
+        border-radius: 0%;
+    }
+    .form-login {
+        margin-left: 0%;
+        margin-right: 0%;
+        margin-top: 50%;
+        height: 40%;
+        width: 100%;
+    }
+    .form-login div {
+        width: 100%;
+    }
+}

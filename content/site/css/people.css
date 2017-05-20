@@ -1,0 +1,87 @@
+/* Style the tab */
+
+
+.rectangle {
+    max-width: 60%;
+    margin: 0 auto;
+}
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #53a3e8;
+}
+
+
+/* Style the buttons inside the tab */
+
+div.tab a {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 8px 12px;
+    transition: 0.3s;
+    font-size: 1.2em;
+    text-decoration: none;
+    color: white;
+    margin-left: 2.7777778%;
+}
+
+div.tab a:first-child {
+    margin-left: 0%;
+}
+
+
+/* Change background color of buttons on hover */
+
+div.tab a:hover {
+    background-color: #337ab7;
+}
+
+
+/* Create an active/current tablink class */
+
+div.tab a.active {
+    background-color: #337ab7;
+}
+
+
+/* Style the tab content */
+
+.tabcontent {
+    display: block;
+    border-top: none;
+    width: 100%;
+    font-size: 1.1em;
+}
+
+.vertical {
+    margin-top: 2.8%;
+}
+
+
+
+@media screen and (max-width: 780px) {
+    .rectangle {
+        max-width: 100%;
+    }
+    div.tab a {
+        margin-left: 2%;
+    }
+    div.tab a:first-child {
+        margin-left: 0%;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    div.tab a {
+        clear: both;
+    }
+    div.tab a {
+        text-align: center;
+    }
+    div.tab a {
+        margin-left: 0%;
+    }
+}

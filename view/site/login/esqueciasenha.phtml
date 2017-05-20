@@ -1,0 +1,21 @@
+<section class="container">
+    <header class="header-page">
+        <h1 class="text-center">Recupere sua senha</h1>
+    </header>
+    <section>
+        <form method="POST" action="login/forgotpassword" id="frmRecuperar" class="form-center">
+                <div class="col-5">
+                    <label for="user">Informe seu login</label>
+                    <input type="text" name="UsuarioLogin" id="user" class="form-control" value="" autocomplete=off required>
+                    <span id="txtforgot" class="text-warning"></span>
+                </div>
+                <div>
+                    <button type="submit" name="button" class="btn btn-dark">Recuperar</button>
+                </div>
+        </form>
+    </section>
+
+    <article id="result">
+        <span id="retorno"></span>
+    </article>
+</section>

@@ -1,0 +1,52 @@
+    <div class="col-40 col-sm-1 col-fl" style="margin-bottom:1%;;">
+                <strong>Lista de Telefones</strong>
+                <select class="form-control block" id="telefones" onchange="ChangeTelefone(this.value)">
+                    <option value="0">Selecione o Telefone</option>
+                    <?php if (count($view_telefones) > 0) { ?>
+                        <?php foreach ($view_telefones as $telefone) { ?>
+                                <option value=<?php echo $telefone['Id']; ?> <?php echo ($telefone['Id'] == $view_telefone['Id'] ? 'selected' : ''); ?> ><?php echo '('.$telefone['DDD'].') '.$telefone['Numero'];?></option><?php } } ?>
+                </select>
+            </div>
+<form method="POST" id="telefone" class="col-10 inline-table" action="pessoa/telefone">
+    <input type="hidden" name="" id="botao" value="">    
+    <input type="hidden" name="TelefoneId" id="Id" value=<?php echo $view_telefone['Id'];?>>
+    <div class="col-40 col-sm-1 col-fl clear" id="divedit" style="margin-bottom:1%;">
+        <div>
+            <strong>DDDs</strong>
+            <select class="form-control block" id="ddds" name="TelefoneDddId" onchange="" required>
+                <option value="">Selecione o DDD</option><?php if(count($view_ddd) > 0) { ?><?php foreach($view_ddd as $ddd) { ?>
+                        <option value=<?php echo $ddd['Id']; ?> <?php echo ($ddd['Id'] == $view_telefone['DddId'] ? 'selected' : ''); ?>><?php echo $ddd['Nome'];?></option><?php }} ?>
+                    </select>
+                </div>
+                <div>
+                    <strong>Tipo de telefone</strong>
+                    <select class="form-control block" id="tipotelefones" name="TelefoneTipoTelefoneId" onchange="" required>
+                        <option value="">Selecione o tipo</option><?php if (count($view_tipotelefone) > 0) { ?><?php foreach ($view_tipotelefone as $tipotelefone) { ?>
+                        <option value=<?php echo $tipotelefone['Id']; ?> <?php echo ($tipotelefone['Id'] == $view_telefone['TipoTelefoneId'] ? 'selected' : ''); ?>> <?php echo $tipotelefone['Nome'];?></option><?php } } ?>
+                    </select>
+                </div>
+                <div>
+                    <strong>Telefone</strong>
+                    <input type="text" id="txtpeoplenome" name="TelefoneNumero" value="<?php echo $view_telefone['Numero'];?>" class="form-control" required autocomplete=off>
+                </div>
+      </div>
+            <div>
+                <div class="col-40 col-fl clear">
+                    <div class="col-fl col-3">
+                        <button type="button" onclick="canceledititempeople('telefone', 'divedit')" id="cancel" class="btn btn-dark">Cancelar</button>
+                        <!--<button type="button" onclick="edititempeople('telefone', 'divedit')" id="edit" class="btn btn-dark">Editar</button>-->
+                    </div>
+                    <div class="col-fl">
+                        <input type="button" onclick="SubmitPartialForm($('#telefone'), 'retornoTelefone')" id="save" name="salvar" value="Salvar" class="btn btn-dark">
+                    </div>
+                </div>
+
+                <div class="col-fl">
+                    <button type="button" onclick="savepeople('telefone', 'divedit')" id="new" class="btn btn-dark">Novo</button>
+                </div>
+            </div>
+
+            <div class="clear">
+                <span id="warning" class="text-warning"></span>
+            </div>
+        </form>

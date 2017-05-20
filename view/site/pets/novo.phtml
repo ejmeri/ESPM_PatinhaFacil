@@ -1,0 +1,83 @@
+<div class="container" style="margin-bottom:5%;" ng-app="">
+    <header class="header-page text-center">
+        <h1 class="">Doar um animal</h1>
+        <h5>Forneça as informações do pet à ser doado</h5>
+    </header>
+
+    <form method="POST" enctype="multipart/form-data" id="frmNovoPet" action="pets/novo" class="form-insert">
+        <div class="item-left clear">
+            <label for="especie" id="">Espécie</label>
+            <select class="form-control" name="especie" onchange="showRaca(this.value);" required>
+                <option value="">Selecione a Espécie</option><?php if($view_especie > 0) { ?><?php foreach ($view_especie as $li => $a) { ?>
+                <option value=<?php echo $a['Id']; ?>> <?php echo $a['Nome']; ?></option><?php } } ?>
+            </select>
+        </div>
+        <div class="item-right" id="raca">
+            <label for="raca" id="">Raça</label>
+            <select class="form-control" name="AnimalRacaId" required>
+                <option value="">Selecione a Raça</option>
+            </select>
+        </div>
+        <div class="item-left">
+            <label for="Nome" id="">Nome</label>
+            <input type="text" ng-model="name" name="AnimalNome" id="nome" class="form-control" value="" maxlength=45 autocomplete=off placeholder="Caso não tenha, escreva: Sem Nome" required>
+        </div>
+        <div class="item-right">
+            <label for="pelagem" id="">Pelagem</label>
+            <select class="form-control" name="AnimalPelagemId" required>
+                <option value="">Selecione a Pelagem</option><?php if($view_pelagem > 0) { ?><?php foreach ($view_pelagem as $li => $a) { ?>
+                <option value=<?php echo $a['Id']; ?>> <?php echo $a['Nome']; ?></option><?php } } ?>
+            </select>
+        </div>
+        <div class="item-left clear">
+            <label for="genero" id="teste">Genêro</label>
+            <select class="form-control" name="AnimalGeneroId" required>
+                <option value="">Selecione o Genêro</option><?php if($view_genero > 0) { ?><?php foreach ($view_genero as $li => $a) { ?>
+                <option value=<?php echo $a['Id']; ?>> <?php echo $a['Nome']; ?></option><?php } } ?>
+            </select>
+        </div>
+        <div class="item-right">
+            <label for="porte" id="">Porte</label>
+            <select class="form-control" name="AnimalPorteId" required>
+                <option value="">Selecione o Porte</option><?php if($view_porte > 0) { ?><?php foreach ($view_porte as $li => $a) { ?>
+                <option value=<?php echo $a['Id']; ?>> <?php echo $a['Nome']; ?></option><?php } } ?>
+            </select>
+        </div>
+        <div class="item-left clear">
+            <label for="peso" id="">Peso</label>
+            <input type="number" class="form-control" name="AnimalPeso" id="peso" required>
+        </div>
+            
+        <div class="clear mg">
+            <label for="descricao" id="">Descreva um pouco sobre {{name}}</label> <br>
+            <textarea id="descricao" maxlength=500 name="AnimalDescricao" placeholder="" class="textarea" onkeyup="countChar(this, 'labelcount')" required></textarea>
+            <strong>Você ainda tem </strong><strong id="labelcount" class="text-warning">500</strong> <strong>caracteres para escrever.</strong>
+        </div>
+
+        <div class="clear">
+            <!--<strong class="text-warning">Dica: </strong> <span>segure a tecla control (Ctrl) para selecionar múltiplas imagens.</span><br>            -->
+            <strong>
+                    <i class="fa fa-image fa-5x" style="color: #57a3e8;"></i> Clique aqui para escolher as fotos para o {{name}}
+            </strong>
+            <input type="file" name="image" id="file6" class="realupload form-control" accept="image/png, image/jpeg" required />
+        </div>
+        <div class="clear">
+            <input type="submit" id="savepet" name="botao" value="Salvar" value="Salvar" class="btn btn-black">                
+        </div>
+    </form>
+
+     <div id="result" class="form-insert clear">
+        <span id="txtretorno">
+            
+        </span>
+    </div>
+
+    <br>
+    <br>
+    <div class="form-insert objcenter">
+        <h3>Pré-visualização</h3>
+        <div class="image-holder mg" id="image-holder"></div>  
+    </div>
+
+   
+</div>

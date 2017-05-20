@@ -1,0 +1,25 @@
+<div class="container">
+   
+   <div class="form-login">
+        <header>
+            <h3 class="h3 text-center">Pet Fácil</h3>
+        </header> 
+   
+        <form method="POST" id="frmLogin" action="login">
+            <div>
+                <label for="login">Login</label>
+                <input type="text" required placeholder="Login" minLength=3 maxLength=30 name="UsuarioLogin" class="input-control"> 
+            </div>
+            <div>
+                <label for="password">Senha</label> 
+                <input type="password" required placeholder="Senha" name="UsuarioSenha" class="input-control">
+                <div id="result" class="text-warning">
+                    <p id="retorno"></p>
+                </div>
+            </div>
+            <button type="submit" name="button" class="btn">Entrar</button>
+            <a href="login/novo" class="a">Cadastre-se agora</a>
+            <a href="login/esqueciasenha" class="a">Esqueceu a senha ?</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<?php if (count($view_pets) > 0) { ?>
+            <?php foreach ($view_pets as $li => $a){ ?>
+            <form method="post" action="">
+            <input type="hidden" name="AnimalId" value=<?php echo $a['id'];?>>
+                <div class="grid-pet">
+                    <div class="img-pet">
+                        <?php  echo '<img src="uploads/'.$a['imagem'].'" alt="Animal">'; ?>                                
+                    </div>
+                    <div class="information-pet">
+                        <div class="row">
+                            <strong>Nome: </strong> <span><?php echo $a['nome']; ?></span>                                
+                        </div>
+                        <div class="row">
+                            <strong>Raça: </strong> <span><?php echo $a['raca']; ?></span>                                
+                        </div>
+                        <div class="row">
+                            <strong>Peso: </strong> <span><?php echo $a['peso'].'Kgs'; ?></span>                                
+                        </div>
+                    </div>
+                    <div class="adopt-pet">
+                        <div class="information">
+                            <!--<input type="submit" formaction="pets/petdetails" name="adotar" class="btn fa fa-5x" title="Adote!" value ="&#xf004;">                          -->
+                            <!--<input type="button" name="information" value="Mais informações" class="btn button">                                  -->
+                            <a href="pets/detalhes/<?php echo $a['id'];?>" title="Ver informações!"><i class="fa fa-edit fa-5x" aria-hidden="true"></i></a>
+                        </div>
+                        <!--<div class="interest">
+                            <a href="#" title="Demonstrar interesse!"><i class="fa fa-envelope-o fa-5x" aria-hidden="true"></i></a>                                
+                        </div>-->
+                    </div>
+                </div>                
+            </form>
+    <?php 
+            }
+    }
+    else { ?>
+        <h3 class="text-center" style="font-size: 3em;">Sem resultados</h3>
+    <?php }
+    
+    ?>

@@ -1,0 +1,45 @@
+<div class="col-40 col-sm-1 col-fl" style="margin-bottom:1%;">
+                <strong>Lista de E-mails</strong>
+                <select class="form-control block" id="emails" onchange="ChangeEmail(this.value)">
+                    <option value="0">Selecione o E-mail</option>
+                    <?php if (count($view_emails) > 0) { ?>
+                        <?php foreach ($view_emails as $email) { ?>
+                            <option value=<?php echo $email['Id']; ?> <?php echo ($email['Id'] == $view_email['Id'] ? 'selected' : ''); ?> > <?php echo $email['Nome'];?></option><?php } } ?>
+                        </select>
+                    <!--<span id="warning" class="text-warning"></span>-->
+                </div>
+
+                <form method="POST" id="email" class="col-10 inline-table" action="pessoa/email">
+                    <input type="hidden" name="EmailId" id="Id" value=<?php echo $view_email['Id'];?>>
+                    <input type="hidden" name="teste" id="botao" value="">
+                    <div class="col-40 col-sm-1 col-fl clear" id="divedit" style="margin-bottom:2%;">
+                        <div>
+                            <strong>Tipo de E-mail</strong>
+                            <select class="form-control block" id="tipoemails" name="EmailTipoEmailId" onchange="" required>
+                                <option value="">Selecione o tipo</option>
+                                <?php if (count($view_tipoemail) > 0) { ?>
+                                    <?php foreach ($view_tipoemail as $tipoemail) { ?>
+                                <option value=<?php echo $tipoemail['Id']; ?> <?php echo ($tipoemail['Id'] == $view_email['TipoEmailId'] ? 'selected' : ''); ?>> <?php echo $tipoemail['Nome'];?></option><?php } } ?>
+                            </select>
+                        </div>
+                        <div>
+                            <strong>E-mail</strong>
+                            <input type="text" id="txtpeoplenome" name="EmailNome" value="<?php echo $view_email['Nome']; ?>" class="form-control" required autocomplete=off>
+                        </div>
+                    </div>
+                    <div style="margin-top:1%;">
+                        <div class="col-40 col-fl clear">
+                            <div class="col-fl col-3">
+                                <button type="button" onclick="canceledititempeople('email', 'divedit')" id="cancel" class="btn btn-dark">Cancelar</button>
+                                <!--<button type="button" onclick="edititempeople('telefone', 'divedit')" id="edit" class="btn btn-dark">Editar</button>-->
+                            </div>
+                            <div class="col-fl">
+                                <input type="button" onclick="SubmitPartialForm($('#email'), 'retornoEmail')" id="save" name="save" value="Salvar" class="btn btn-dark">
+                            </div>
+                        </div>
+                        <div class="col-fl">
+                            <button type="button" onclick="savepeople('email', 'divedit')" id="new" class="btn btn-dark">Novo</button>
+                        </div>
+                    </div>
+                </form>
+            </div>

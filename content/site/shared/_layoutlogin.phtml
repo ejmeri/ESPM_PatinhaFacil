@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title><?php echo $this->title; ?></title>
+        <base href="<?php echo APP_ROOT;?>/">
+        <meta name="author" content="<?php echo $this->autor ?>">
+        <meta name="keywords" content="<?php echo $this->keywords ?>">
+        <meta charset="utf-8">
+        <link href="content/site/css/login.css" rel="stylesheet" media="all">
+        <link href="content/site/css/master.css" rel="stylesheet" media="all">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    </head>
+    <body>
+        <?php $this->Render();?>
+    </body>
+</html>
+
+
+    <!-- jQuery -->
+    <script src="content/js/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="content/js/jquerytransateValidatorsToBR.js"></script>
+    <script src="content/js/global.js"></script>
+    <script src="content/js/jquery.mask.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="content/js/bootstrap.min.js"></script>
+
+   <script type="text/javascript">
+     $(document).ready(function(){
+
+            $("#result").hide();
+
+            var formulario = $("#frmLogin");
+
+            $("#frmLogin").validate({
+                errorClass: 'text-errors',
+                rules: {
+                    fields: {
+                        required: true
+                    }
+                },
+                    submitHandler: function (form) {
+                        postFormLogin(formulario, 'retorno', 'result', 'home');
+                    }
+            });
+     });
+   </script>

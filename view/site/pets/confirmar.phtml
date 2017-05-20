@@ -1,0 +1,60 @@
+<div class="container">
+	
+        <header class="header-page">
+		    <h1 class="text-center">Confirmação de adoção.</h1>            
+        </header>
+		
+			<div class="animal">
+                <div id="photo-confirm"><img src="uploads/<?php echo $view_pet['Imagem']; ?>" class="foto" alt="Foto do animal"></div>
+			</div>
+			<div class="info-confirmpet">
+                <div class="info-pet">
+                    <strong>Nome</strong><br>
+                    <span><?php echo $view_pet['Nome']; ?></span>
+                </div>
+                <div class="info-pet">
+                    <strong>Idade</strong><br>
+                    <span><?php echo $view_pet['DtNascimento']; ?></span>
+                </div>
+                <div class="info-pet">
+                    <strong>Pelagem</strong><br>
+                    <span><?php echo $view_pet['Pelagem']; ?></span>
+                </div>
+			</div>
+
+            <header class="header-page clear">
+                <h1 class="text-center">Informações do atual responsável pelo PET</h1>
+            </header>
+			<div class="info-people clear">
+				<strong>Nome</strong>
+				<p><?php echo $view_pessoa['Nome']; ?><p>
+            </div>
+			<div class="info-people">
+                <strong>Telefones</strong> <br>
+                <?php if (count($view_telefones) > 0) { ?>
+                            <?php foreach ($view_telefones as $telefone) { ?>
+                                <i class="fa fa-phone" aria-hidden="true"></i><span><?php echo ' ('.$telefone['DDD'].') '.$telefone['Numero'];?> </span><br>
+                <?php } } ?>
+                <!--<p>(00) 0000-0000</p>-->
+            </div>
+            <div class="info-people">
+                <strong>E-mails</strong> <br>
+                <?php if (count($view_emails) > 0) { ?>
+                            <?php foreach ($view_emails as $email) { ?>
+                               <i class="fa fa-envelope-o fa-fw"></i><a  href="<?php echo ' mailto:'.$email['Nome'];?>"><?php echo $email['Nome'];?></a><br>
+                <?php } } ?>
+                <!--<p>(00) 0000-0000</p>-->
+            </div>
+            <div class="info-people">
+                <strong>Endereço</strong>
+                <p>R. Alagoinhas, 1286 - Jardim Mutinga, Barueri - SP, 06463-240, Brazil </p>
+            </div>
+            <div class="info-people">
+                <strong class="text-warning">Em caso de confirmação</strong>
+                <p>Será enviado um e-mail para o responsável com suas Informações e caso o pet ainda esteja disponível, vocês entrarão em contato.</p>
+            </div>
+			<div id="botaoconfirmar">
+                <input type="submit" name="button" value="Confirmar adoção" class="btn btn-blue btn-font">
+			</div>
+			
+	</div>

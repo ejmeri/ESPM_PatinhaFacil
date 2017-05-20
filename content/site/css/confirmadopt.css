@@ -1,0 +1,61 @@
+.info-confirmpet,
+.animal {
+    float: left;
+}
+
+
+.animal {
+    width: 50%;
+    height: 50%;
+}
+
+.animal img {
+    width: 90%;
+    border: lightgray 1px solid;
+    padding: 5px;
+    display: inline-block;
+}
+
+
+.foto {
+    padding: 2%;
+    height: 300px;
+    border-radius: 10px;
+}
+
+.info-people {
+    margin-bottom: 2%;
+    font-size: 1.3em;
+}
+
+#botaoconfirmar {
+    margin-bottom: 5%;
+}
+
+/*seletores para desktops*/
+
+@media screen and (max-width: 1920px) {}
+
+
+/*seletores para tablets*/
+
+@media screen and (max-width: 800px) {
+    .animal {
+        width: 70%;
+    }
+    .info-confirmpet {
+        float: right;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .animal {
+        width: 100%;
+    }
+    .animal img {
+        height: 180px;
+    }
+    .info-confirmpet {
+        float: left;
+    }
+}

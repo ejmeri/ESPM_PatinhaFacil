@@ -1,0 +1,83 @@
+<?php
+
+    // echo print_r($view_list);
+
+?>
+<section>
+    <div class="container" id="frame">
+        <section class="login-cabecalho">
+        <h2 class="text-center">Forneça suas informações</h2>
+        </section>
+        <article class="option-people margem-cellphone">
+            <h3 class="align-cellphone">Tipo de pessoa</h3>
+            <div class="item-left margem-cellphone">
+                <a href="javascrip:;" id="linkfisica" class="btn btn-dark">Fisíca</a>  
+            </div>
+            <div class="item-right margem-cellphone">
+                <a href="javascrip:;" id="linkjuridica" class="btn btn-dark">Jurídica</a>                        
+            </div>
+        </article>
+        <div class="form">      
+            <form id="frmCadastro" method="POST" action="login/novo" class="form-insert">
+                <div class="acess clear">
+                    <h3>Informações Gerais</h3>
+                </div>
+                    <div class="item-left">
+                        <label for="CPF" id="label">CPF</label>
+                        <input type="text" id="txtcpfcnpj" name="PessoaCpfCnpj" class="form-control"  value="" minlength=11 maxlength=14 autocomplete=off placeholder="000.000.000-00" required onkeyup="ValidateCPFCNPJ(this.value)">
+                        <!--<input type="text" id="CNPJ" name="Cnpj" class="form-control cnpj" value="" autocomplete=off placeholder="00.000.000/0000-00" required onkeyup="ValidateCPFCNPJ(this.value)">-->
+                        <span id="txtCPF" class="text-warning"></span>                                                        
+                    </div>
+                <div class="item-right">
+                    <label for="RG" id="number">RG</label>
+                    <input type="text" name="PessoaRg" id="Rg" class="form-control" value="" required autocomplete=off>
+                </div> 
+                <div class="item-left clear">
+                    <label for="Nome" id="nome">Nome</label>
+                    <input type="text" name="PessoaNome" id="Nome" class="form-control" value="" required maxlength=80 autocomplete=off>
+                </div>
+                <div class="item-right">
+                    <label for="Apelido" id="apelido">Apelido</label>
+                    <input type="text" name="PessoaApelido" id="Apelido" class="form-control" value="" required autocomplete=off>
+                </div>
+                <div class="item-left clear">
+                    <label for="Email">E-mail</label>
+                    <input type="email" name="EmailNome" id="Email" class="form-control" value="" autocomplete=off required placeholder="example@example.com">
+                </div>
+                <div class="item-right bottom">
+                    <label for="tipoEmail">Tipo do E-mail</label>
+                    <select class="form-control" name="EmailTipoEmailId" required>
+                     <option value="">Selecione o E-mail</option>
+                        <?php if (count($view_list) > 0) { ?>
+                            <?php foreach ($view_list as $tipoemail) { ?>
+                                <option value=<?php echo $tipoemail['Id']; ?>> <?php echo $tipoemail['Nome'];?></option><?php } } ?>
+                    </select>
+                </div>
+
+                <div class="acess clear">
+                    <h3>Informações de acesso</h3>
+                </div>
+                    <div class="item-left clear">
+                        <label for="user">Login</label>
+                        <input type="text" name="UsuarioLogin" id="user" class="form-control" value="" minLength=3 maxLength=30 autocomplete=off required onkeyup="showLogin(this.value)">
+                        <span id="txtlogin" class="text-warning"></span>
+                    </div>
+                    <div class="item-left clear">
+                        <label for="password">Senha</label>
+                        <input type="password" name="UsuarioSenha" id="password" class="form-control" minlength=6 value="" required>
+                    </div>
+                    <div class="item-right">
+                        <label for="repassword">Confirmar Senha</label>
+                        <input type="password" id="repassword" name="repassword" class="form-control" value="" required>
+                    </div>
+                <div class="item-left margem clear">
+                    <button type="submit" id="Create" name="button" class="btn btn-dark">Cadastrar</button>
+                </div>
+                <input type="hidden" name="Id" value="0">
+            </form>
+        </div>
+        <div id="result" class="form-insert">
+            <span id="txtHint"></span>
+        </div>
+    </div>                                      
+</section>         

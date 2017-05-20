@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><?php echo $this->title; ?></title>
+    <base href="<?php echo APP_ROOT;?>/">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link href="content/site/css/style.css" rel="stylesheet" />
+	<link href="content/site/css/master.css" rel="stylesheet" />
+	<link href="content/site/css/petdetail.css" rel="stylesheet" />
+	<link href="content/site/css/pets.css" rel="stylesheet">
+	<link href="content/site/css/newlogin.css" rel="stylesheet">
+	
+	<!-- Custom Fonts -->
+	<link href="content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<?php include('htmls/nav.html'); ?>
+
+
+<header class="header" id="top">
+    <div class="text-vertical-center">
+        <h1>Pet Fácil</h1>
+        <h3>Encontre aqui a felicidade para seu lar</h3>
+        <a href="#start" class="btn btn-dark btn-lg">Começar</a>
+        <br>
+        <!--<a href="#about" class="btn btn-dark btn-lg">Começar</a>-->
+    </div>
+</header>
+
+<section id="start">
+        <?php $this->Render(); ?>  <!-- RENDERIZAÇÃO DA PÁGINA-->
+</section>
+
+
+
+<!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+                <div class="col-10 text-center">
+                    <h4><strong>Adote Fácil</strong>
+                    </h4>
+                    <p>Rua Manaira, 00 - Jardim Mutinga
+                        <br>Barueri, São Paulo</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-phone fa-fw"></i> (11) 90000-0000</li>
+                        <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">name@example.com</a>
+                        </li>
+                    </ul>
+                    <br>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="https://www.facebook.com/adtfacil" target="_blank" title="Visite nosso facebook"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+                        </li>
+                    </ul>
+                    <hr class="small">
+                <p class="text-muted">Copyright &copy; Adote Fácil <?php echo date("Y"); ?></p>
+                </div>
+        </div>
+        <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+    </footer>
+
+<!-- END Footer -->
+
+
+</body>
+</html>
+
+
+
+
+
+    <!-- jQuery -->
+    <script src="content/js/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="Content/js/jquerytransateValidatorsToBR.js"></script>
+    <script src="Content/js/global.js"></script>
+    <script src="Content/js/jquery.mask.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="content/js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script>
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    // Scrolls to the selected menu item on the page
+    $(function() {
+        $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    //#to-top button appears after scrolling
+    var fixed = false;
+    $(document).scroll(function() {
+        if ($(this).scrollTop() > 250) {
+            if (!fixed) {
+                fixed = true;
+                // $('#to-top').css({position:'fixed', display:'block'});
+                $('#to-top').show("slow", function() {
+                    $('#to-top').css({
+                        position: 'fixed',
+                        display: 'block'
+                    });
+                });
+            }
+        } else {
+            if (fixed) {
+                fixed = false;
+                $('#to-top').hide("slow", function() {
+                    $('#to-top').css({
+                        display: 'none'
+                    });
+                });
+            }
+        }
+    });
+    // Disable Google Maps scrolling
+    // See http://stackoverflow.com/a/25904582/1607849
+    // Disable scroll zooming and bind back the click event
+    var onMapMouseleaveHandler = function(event) {
+        var that = $(this);
+        that.on('click', onMapClickHandler);
+        that.off('mouseleave', onMapMouseleaveHandler);
+        that.find('iframe').css("pointer-events", "none");
+    }
+    var onMapClickHandler = function(event) {
+            var that = $(this);
+            // Disable the click handler until the user leaves the map area
+            that.off('click', onMapClickHandler);
+            // Enable scrolling zoom
+            that.find('iframe').css("pointer-events", "auto");
+            // Handle the mouse leave event
+            that.on('mouseleave', onMapMouseleaveHandler);
+        }
+        // Enable map zooming with mouse scroll when the user clicks the map
+    $('.map').on('click', onMapClickHandler);
+    </script>
+
+ 
+
+                                <!--JQUERY/JAVASCRIPT PAGE PETS-->     
+        <script>
+        $(document).ready(function(){
+
+            var espid = $('#especie').val();
+
+            showPet(espid);
+            
+            $("#items-filter").hide();
+
+            $("#filters").click(function(){
+                if($("#items-filter").is(':visible')) {
+                        $("#items-filter").hide();
+                }
+                else {
+                    $("#items-filter").show();
+                }   
+            });
+        });
+
+
+            function showPet(esp) {
+                    postPartialView('Controller/PetsPartial/ListaPet.php','especie=' + esp, 'ListPet'); 
+                }
+
+            function showRaca(especie) {
+                    postPartialView('Controller/PetsPartial/ListaRaca.php','especie=' + especie, 'raca');        
+            }
+            
+        </script>
+                            <!-- FIM JQUERY/JAVASCRIPT PAGE PETS-->     
+
+
+
+                            <!--JQUERY/JAVASCRIPT PAGE NEWLOGIN-->
+
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+                var formulario =  $("#frmCadastro");
+
+                $("#frmCadastro").validate({
+                        errorClass: 'text-errors',
+                        rules: {
+                                field: {
+                                    required: true
+                                    // minlength: 3
+                                },
+                                Cpf: {
+                                    minlength: 11
+                                },
+                                Cnpj: { 
+                                    minlength: 14
+                                },
+                                Telefone: {
+                                    digits: true
+                                },
+                                password: {
+                                    minlength: 6
+                                },
+                                repassword: {
+                                    equalTo: "#password"
+                                }
+                        },
+                        submitHandler: function (form) {
+
+                        var login = document.getElementById("txtlogin").innerText;
+                        
+                        if(login.length > 0) {
+                            $("#user").focus();
+                            return;
+                        }
+                        postForm(formulario,'txtHint', 'result');
+                        clearInputs();
+                        }   
+                });
+
+                    function clearInputs(){
+                        $("#CPF").val('');
+                        $("#CNPJ").val('');
+                        $("#Rg").val('');
+                        $("#Nome").val('');
+                        $("#Apelido").val('');
+                        $("#Email").val('');
+                        $("#user").val('');
+                        $("#password").val('');
+                        $("#repassword").val('');
+                        $("#Telefone").val('');
+                    }
+        });
+    </script>
+
+ <script type="text/javascript">
+    $(document).ready(function(){
+
+        $('#result').hide();
+
+        $("#Apelido").attr("placeholder", "Se não tiver apelido, utilize seu 1º nome.");         
+        $("#linkfisica").addClass("active");
+        $("#CNPJ").hide();
+        
+        $("#linkfisica").click(function(){
+            swapText("label", "CPF");
+            swapText("nome", "Nome");
+            swapText("number", "RG");
+            swapText("apelido", "Apelido");
+            
+            $("#CNPJ").hide();
+            $("#CNPJ").val('');
+            $("#CPF").show();
+            $("#Apelido").attr("placeholder", "Se não tiver apelido, utilize seu 1º nome.");         
+            $("#linkfisica").addClass("active");
+            $("#linkjuridica").removeClass("active");
+
+            document.getElementById("txtCPF").innerHTML = "";
+        });
+        
+        $("#linkjuridica").click(function(){
+            swapText("label", "CNPJ");
+            swapText("nome", "Razão Social");
+            swapText("number", "Inscrição Estadual");
+            swapText("apelido", "Nome Fantasia");
+
+            $("#CNPJ").show();
+            $("#CPF").hide();
+            $("#CPF").val('');
+
+            $("#Apelido").attr("placeholder", "");         
+            $("#linkjuridica").addClass("active");
+            $("#linkfisica").removeClass("active");
+
+             document.getElementById("txtCPF").innerHTML = "";
+        });
+
+
+    });
+   </script>
+
+<script type="text/javascript">
+        
+        function showHint(str) {
+            if (str.length == 0) {
+                document.getElementById("txtlogin").innerHTML = "";
+                return;
+            } else {
+                postPartialView('Controller/Login/validarlogin.php','q=' + str, 'txtlogin');
+            }
+
+        }
+
+         function ValidateCPFCNPJ(str) {
+
+            str =  str.replace('.','');
+            str =  str.replace('.','');
+            str =  str.replace('-','');
+            str =  str.replace('/','');
+
+            if (str.length == 0) {
+                document.getElementById("txtCPF").innerHTML = "";
+                return;
+            } else if(str.length >= 11) {
+                 postPartialView('Controller/Login/ValidarCPFCNPJ.php','cpfcnpj=' + str, 'txtCPF');
+            }
+
+        }
+
+</script>
+
+                                    <!--FIM-->

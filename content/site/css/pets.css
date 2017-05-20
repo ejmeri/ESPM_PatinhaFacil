@@ -1,0 +1,217 @@
+body {
+    background: #fdfdfd;
+}
+
+
+/*  HEADER PET SEARCH */
+
+.header-search {
+    width: 100%;
+    height: 10%;
+}
+
+/* end HEADER PET SEARCH */
+
+.form-search {
+    width: 100%;
+}
+
+.form-result {
+    width: 100%;
+    margin-top: 1%;
+}
+
+.result-search {
+    width: 100%;
+}
+
+.grid-pet {
+    display: inline-table;
+    width: 23%;
+    border: 1px lightgray solid;
+    margin-right: 1%;
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
+
+.grid-pet:hover {
+    border-color: #5072f9;
+}
+
+.filter,
+.grid-pet,
+.information,
+.interest {
+    float: left;
+}
+
+.img-pet {
+    height: 43.333%;
+    width: 90%;
+    padding: 10px;
+}
+
+.img-pet img {
+    width: 100%;
+    height: 200px;
+    /*border-radius: 10%;*/
+}
+
+.information-pet {
+    height: 33.333%;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.adopt-pet {
+    width: 100%;
+    height: 23.333%;
+    padding: 0;
+}
+
+.information {
+    border-right: lightgray 1px solid;
+}
+
+.information,
+.interest {
+    border-top: lightgray 1px solid;
+    height: 100%;
+    width: 49.8%;
+    text-align: center;
+}
+
+.information i,
+.interest i {
+    color: lightgray;
+    margin-top: 8%;
+}
+
+.information input,
+.interest input {
+    background: white;
+    color: lightgray;
+    margin-top: 8%;
+}
+
+.information i:hover {
+    color: #F00;
+}
+
+.interest i:hover {
+    color: #5072f9;
+}
+
+.information input:hover {
+    color: #F00;
+}
+
+
+.header-grid-filter {
+    max-width: 95%;
+    margin: 0 auto;
+}
+
+.header-grid-filter a {
+    font-size: 1.5em;
+    color: #000;
+    font-weight: bold;
+}
+
+.header-grid-filter hr {
+    margin: 0;
+    margin-bottom: 2%;
+}
+
+.grid-filter {
+    width: 100%;
+    display: inline-block;
+    background-color: #71afff;
+    color: #000;
+    font-weight: bold;
+}
+
+.items-filter {
+    width: 95%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.filter {
+    width: 20%;
+}
+
+.filter select:hover {
+    cursor: pointer;
+}
+
+
+/*seletores para desktops*/
+
+@media screen and (max-width: 1920px) {
+    .filter select {
+        width: 85%;
+    }
+}
+
+
+/*seletores para tablets*/
+
+@media screen and (max-width: 768px) {
+    .filter {
+        width: 50%;
+    }
+    .botao {
+        float: left;
+        width: 85%;
+    }
+    .grid-pet {
+        width: 48%;
+    }
+}
+
+
+/*seletores para celurares*/
+
+@media screen and (max-width: 520px) {
+    .filter {
+        width: 100%;
+        margin: 0;
+    }
+    .filter select {
+        width: 100%;
+    }
+    .information {
+        border-right: lightgray 1px solid;
+    }
+    .information,
+    .interest {
+        border-top: lightgray 1px solid;
+        height: 100%;
+        width: 49.8%;
+        text-align: center;
+    }
+    .grid-filter {
+        margin-bottom: 2%;
+    }
+
+    .grid-pet {
+        width: 100%;
+    }
+    
+    .botao {
+        width: 100%;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+    .botao input {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 284px) {
+    .information {
+        border-right: 0;
+    }
+}

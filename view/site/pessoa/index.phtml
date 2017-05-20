@@ -1,0 +1,234 @@
+<?php /*echo print_r($view_user);*/ ?>
+
+<div class="container" style="margin-bottom:5%;">
+    <header class="header-page">
+        <h1 class="text-center">Minhas Informações</h1>
+    </header>
+
+    <div class="rectangle">
+
+        <div class="tab" id="tabpessoa">
+            <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'pessoa')">Gerais</a>
+            <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'acesso')">Acesso</a>
+            <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'tabemail')">E-mails</a>
+            <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'tabtelefone')">Telefones</a>
+            <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'endereco')">Endereços</a>
+            <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'tabpet')">Meus animais</a>       
+        </div>
+
+        <div id="retornoPessoa" class="inline-table">
+            <form method="POST" id="pessoa" class="tabcontent inline-table" action="pessoa/general">
+                <input type="hidden" name="PessoaId" value="<?php echo $view_dados['Id']; ?>">
+                <div class="col-8 inline-table padding col-fl">
+                    <div class="item-left">
+                        <strong>Nome/Razão Social</strong>
+                        <input type="text" id="txtpeoplenome" name="PessoaNome" value="<?php echo $view_dados['Nome']; ?>" class="form-control" required readonly>
+                    </div>
+                    <div class="item-right">
+                        <strong>CPF/CNPJ</strong>
+                        <input type="text" id="txtpeoplecpf" name="PessoaCpfCnpj" value="<?php echo $view_dados['CpfCnpj']; ?>" class="form-control" autocomplete=off placeholder="000.000.000-00" required readonly onkeyup="ValidateCPFCNPJ(this.value)">
+                        <span id="txtCPF" class="text-warning"></span>
+                    </div>
+                    <div class="item-left clear">
+                        <strong>Apelido/Nome Fantasia</strong>
+                        <input type="text" id="txtpeopleapelido" name="PessoaApelido" value="<?php echo $view_dados['Apelido']; ?>" placeholder="" class="form-control" required readonly>
+                    </div>
+                    <div class="item-right">
+                        <strong>RG/Inscrição Estadual</strong>
+                        <input type="text" id="txtpeoplerg" name="PessoaRg" value="<?php echo $view_dados['Rg']; ?>" class="form-control" required readonly>
+                    </div>
+                </div>
+
+                <div class="col-5">
+                    <button type="button" onclick="canceleditpeople('pessoa')" id="cancel" class="btn btn-dark">Cancelar</button>
+                    <button type="button" onclick="editpeople('pessoa')" id="edit" class="btn btn-dark">Editar</button>
+                    <input type="button" onclick="SubmitPartialForm($('#pessoa'), 'retornoPessoa')" id="save" name="save" value="Salvar" class="btn btn-dark">                    
+                </div>
+            </form>
+        </div>
+    <!--
+        <div class="tab clear" id="tabaccess">
+        </div>-->
+
+        <div id="retornoAcesso">
+            <form method="POST" id="acesso" class="tabcontent inline-table" action="pessoa/access">
+                <input type="hidden" name="UsuarioId" value="<?php echo $view_user['Id']; ?>">
+                <div class="col-8 inline-table padding col-fl">
+                    <div class="item-left">
+                        <strong>Login</strong>
+                        <input type="text" id="txtpeoplenome" name="UsuarioLogin" value="<?php echo $view_user['Login']; ?>" class="form-control" required readonly>
+                    </div>
+                    <div class="item-right">
+                        <strong>Senha</strong>
+                        <!--<input type="password" id="txtpeoplerg" name="UsuarioSenha" value="<?php echo $view_user['Senha']; ?>" class="form-control" required readonly>-->
+                        <div style="margin-top: 3%;">
+                            <strong class="clear"> ******** </strong>                        
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-5">
+                    <button type="button" onclick="canceleditpeople('acesso')" id="cancel" class="btn btn-dark">Cancelar</button>
+                    <button type="button" onclick="editpeople('acesso')" id="edit" class="btn btn-dark">Editar</button>
+                    <input type="button" onclick="SubmitPartialForm($('#acesso'), 'retornoAcesso')" id="save" name="save" value="Salvar" class="btn btn-dark">                    
+                </div>
+            </form>
+        </div>
+
+        <!--<div class="tab clear" id="taboptionemail">
+        </div>-->
+
+        <div class="tabcontent col-10 inline-table padding col-fl" id="tabemail">
+            <div id="retornoEmail" class="clear">
+                <div class="col-40 col-sm-1 col-fl" style="margin-bottom:1%;">
+                    <strong>Lista de E-mails</strong>
+                    <select class="form-control block" id="emails" onchange="ChangeEmail(this.value)">
+                        <option value="0">Selecione o E-mail</option>
+                        <?php if (count($view_emails) > 0) { ?>
+                            <?php foreach ($view_emails as $email) { ?>
+                                <option value=<?php echo $email['Id']; ?>> <?php echo $email['Nome'];?></option><?php } } ?>
+                            </select>
+                        <!--<span id="warning" class="text-warning"></span>-->
+                    </div>
+
+                    <form method="POST" id="email" class="col-10 inline-table" action="pessoa/email">
+                        <input type="hidden" name="EmailId" id="Id" value="">
+                        <input type="hidden" name="teste" id="botao" value="">
+                        <div class="col-40 col-sm-1 col-fl clear" id="divedit" style="margin-bottom:2%;">
+                            <div>
+                                <strong>Tipo de E-mail</strong>
+                                <select class="form-control block" id="tipoemails" name="EmailTipoEmailId" onchange="" required>
+                                    <option value="">Selecione o tipo</option>
+                                    <?php if (count($view_tipoemail) > 0) { ?>
+                                        <?php foreach ($view_tipoemail as $tipoemail) { ?>
+                                    <option value=<?php echo $tipoemail['Id']; ?>> <?php echo $tipoemail['Nome'];?></option><?php } } ?>
+                                </select>
+                            </div>
+                            <div>
+                                <strong>E-mail</strong>
+                                <input type="text" id="txtpeoplenome" name="EmailNome" value="" class="form-control" required autocomplete=off>
+                            </div>
+                        </div>
+                        <div style="margin-top:1%;">
+                            <div class="col-40 col-fl clear">
+                                <div class="col-fl col-3">
+                                    <button type="button" onclick="canceledititempeople('email', 'divedit')" id="cancel" class="btn btn-dark">Cancelar</button>
+                                    <!--<button type="button" onclick="edititempeople('telefone', 'divedit')" id="edit" class="btn btn-dark">Editar</button>-->
+                                </div>
+                                <div class="col-fl">
+                                    <input type="button" onclick="SubmitPartialForm($('#email'), 'retornoEmail')" id="save" name="save" value="Salvar" class="btn btn-dark">
+                                </div>
+                            </div>
+                            <div class="col-fl">
+                                <button type="button" onclick="savepeople('email', 'divedit')" id="new" class="btn btn-dark">Novo</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+        </div>
+
+        <!--<div class="tab clear" id="tabtel">
+        </div>-->
+        <div class="tabcontent col-10 inline-table padding col-fl" id="tabtelefone">
+            <div id="retornoTelefone" class="clear">
+                <div class="col-40 col-sm-1 col-fl" style="margin-bottom:1%;">
+                    <strong>Lista de Telefones</strong>
+                    <select class="form-control block" id="telefones" onchange="ChangeTelefone(this.value)">
+                        <option value="0">Selecione o Telefone</option><?php if (count($view_telefones) > 0) { ?><?php foreach ($view_telefones as $telefone) { ?>
+                                <option value=<?php echo $telefone['Id']; ?>><?php echo '('.$telefone['DDD'].') '.$telefone['Numero'];?></option><?php } } ?>
+                            </select>                      
+                            <!--<span id="warning" class="text-warning"></span>-->
+                        </div>
+
+                        <form method="POST" id="telefone" class="col-10 inline-table" action="pessoa/telefone">
+                            <input type="hidden" name="TelefoneId" id="Id" value="">
+                            <input type="hidden" name="teste" id="botao" value="">
+                            <div class="col-40 col-sm-1 col-fl clear" id="divedit" style="margin-bottom:2%;">
+                                <div>
+                                    <strong>DDDs</strong>
+                                    <select class="form-control block" id="ddds" name="TelefoneDddId" onchange="" required>
+                                        <option value="">Selecione o DDD</option><?php if(count($view_ddd) > 0) { ?><?php foreach($view_ddd as $ddd) { ?>
+                                <option value=<?php echo $ddd['Id']; ?>><?php echo $ddd['Nome'];?></option><?php }} ?>
+                            </select>
+                        </div>
+                        <div>
+                            <strong>Tipo de telefone</strong>
+                            <select class="form-control block" id="tipotelefones" name="TelefoneTipoTelefoneId" onchange="" required>
+                                <option value="">Selecione o tipo</option><?php if (count($view_tipotelefone) > 0) { ?><?php foreach ($view_tipotelefone as $tipotelefone) { ?>
+                                    <option value=<?php echo $tipotelefone['Id']; ?>> <?php echo $tipotelefone['Nome'];?></option><?php } } ?>
+                                </select>
+                            </div>
+                            <div>
+                                <strong>Telefone</strong>
+                                <input type="text" id="txtpeoplenome" name="TelefoneNumero" value="" class="form-control" required autocomplete=off minlength=8 maxlength=9>
+                            </div>
+                        </div>
+                        <div style="margin-top:1%;">
+                            <div class="col-40 col-fl clear">
+                                <div class="col-fl col-3">
+                                    <button type="button" onclick="canceledititempeople('telefone', 'divedit')" id="cancel" class="btn btn-dark">Cancelar</button>
+                                    <!--<button type="button" onclick="edititempeople('telefone', 'divedit')" id="edit" class="btn btn-dark">Editar</button>-->
+                                </div>
+                                <div class="col-fl">
+                                    <input type="button" onclick="SubmitPartialForm($('#telefone'), 'retornoTelefone')" id="save" name="save" value="Salvar" class="btn btn-dark">
+                                </div>
+                            </div>
+                            <div class="col-fl">
+                                <button type="button" onclick="savepeople('telefone', 'divedit')" id="new" class="btn btn-dark">Novo</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        
+    <!--    
+        <div class="tab clear" id="tabend">
+        </div>-->
+
+        <div id="retornoEndereco">
+            <form method="POST" id="endereco" class="tabcontent inline-table" action="pessoa" style="padding-bottom: 25px;"></form>
+        </div>
+
+         <div class="tabcontent col-10 inline-table col-fl padding" id="tabpet">
+                    <?php if (count($view_pets) > 0) { ?>
+                        <?php foreach ($view_pets as $li => $a){ ?>
+                        <input type="hidden" name="AnimalId" value=<?php echo $a['id'];?>>
+                            <div class="grid-peoplepet">
+                                <div class="img-pet">
+                                    <?php  echo '<img src="uploads/'.$a['imagem'].'" alt="Animal">'; ?>                                
+                                </div>
+                                <div class="information-pet">
+                                    <div class="row">
+                                        <strong>Nome: </strong> <span><?php echo $a['nome']; ?></span>                                
+                                    </div>
+                                    <div class="row">
+                                        <strong>Raça: </strong> <span><?php echo $a['raca']; ?></span>                                
+                                    </div>
+                                    <div class="row">
+                                        <strong>Peso: </strong> <span><?php echo $a['peso'].'Kgs'; ?></span>                                
+                                    </div>
+                                </div>
+                                <div class="adopt-pet">
+                                    <div class="information">
+                                        <!--<input type="submit" formaction="pets/petdetails" name="adotar" class="btn fa fa-5x" title="Adote!" value ="&#xf004;">                          -->
+                                        <!--<input type="button" name="information" value="Mais informações" class="btn button">                                  -->
+                                        <a href="pets/detalhes/<?php echo $a['id'];?>" title="Ver informações!"><i class="fa fa-edit fa-5x" aria-hidden="true"></i></a>
+                                    </div>
+                                    <!--<div class="interest">
+                                        <a href="#" title="Demonstrar interesse!"><i class="fa fa-envelope-o fa-5x" aria-hidden="true"></i></a>                                
+                                    </div>-->
+                                </div>
+                            </div>
+                <?php 
+                        }
+                }
+            else { ?>
+                <h3 class="text-center" style="font-size: 3em;">Nenhum pet</h3>
+            <?php } ?>
+         </div>
+        <!--<div id="retorno" class="clear">
+            <span id="result">Teste de retorno</span>
+        </div>-->
+
+    </div>
+</div>

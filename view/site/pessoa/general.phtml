@@ -1,0 +1,30 @@
+<form method="POST" id="pessoa" class="tabcontent inline-table" action="pessoa/general">
+    <input type="hidden" name="PessoaId" value="<?php echo $view_dados['Id']; ?>">
+    <div class="col-8 inline-table padding col-fl">
+        <div class="item-left">
+            <strong>Nome/Razão Social</strong>
+            <input type="text" id="txtpeoplenome" name="PessoaNome" value="<?php echo $view_dados['Nome']; ?>"  class="form-control" required readonly>
+        </div>
+        <div class="item-right">
+            <strong>CPF/CNPJ</strong>
+            <input type="text" id="txtpeoplecpf" name="PessoaCpfCnpj" value="<?php echo $view_dados['CpfCnpj']; ?>"  class="form-control" autocomplete=off placeholder="000.000.000-00" required readonly onkeyup="ValidateCPFCNPJ(this.value)">
+            <span id="txtCPF" class="text-warning"></span>                                                        
+        </div>
+        <div class="item-left">
+            <strong>Apelido/Nome Fantasia</strong>
+            <input type="text" id="txtpeopleapelido" name="PessoaApelido" value="<?php echo $view_dados['Apelido']; ?>" placeholder=""  class="form-control" required readonly>
+        </div>
+        <div class="item-right">    
+            <strong>RG/Inscrição Estadual</strong>
+            <input type="text" id="txtpeoplerg" name="PessoaRg" value="<?php echo $view_dados['Rg']; ?>"  class="form-control" required readonly>
+        </div>
+    </div>
+
+    <div class="col-5">
+        <div class="col-fl" style="width: 40%; margin-left:5%;">
+                <button type="button" onclick="canceleditpeople('pessoa')" id="cancel" class="btn btn-dark">Cancelar</button>
+                <button type="button" onclick="editpeople('pessoa')" id="edit" class="btn btn-dark">Editar</button>                        
+                <input type="button"  onclick="SubmitPartialForm($('#pessoa'), 'retornoPessoa')"   id="save" name="save" value="Salvar" class="btn btn-dark">                
+        </div>
+    </div> 
+</form>

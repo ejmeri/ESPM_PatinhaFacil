@@ -1,0 +1,403 @@
+/*STYLE CSS*/
+
+.banner {
+    display: table;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url(images/humanpet.jpg) no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+
+.input-search {
+    width: 70%;
+    height: 100%;
+    padding: 20px;
+    font-size: 3.5em;
+}
+
+.img-animals { 
+    width: 95%;
+    height: 250px;
+}
+
+.img-animals:hover {
+    opacity: 0.8;
+}
+
+
+/*FIM STYLE CSS*/
+
+/*PETS CSS*/
+
+body {
+    background: #fdfdfd;
+}
+
+
+/*  HEADER PET SEARCH */
+
+.header-search {
+    width: 100%;
+    height: 10%;
+}
+
+/* end HEADER PET SEARCH */
+
+.form-search {
+    width: 100%;
+}
+
+.form-result {
+    width: 100%;
+    margin-top: 1%;
+}
+
+.result-search {
+    width: 100%;
+}
+
+.grid-pet {
+    display: inline-table;
+    width: 23%;
+    border: 1px lightgray solid;
+    margin-right: 1%;
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
+
+.grid-pet:hover, .grid-peoplepet:hover {
+    border-color: #5072f9;
+}
+
+.grid-peoplepet {
+    display: inline-table;
+    width: 48.8%;
+    border: 1.5px lightgray solid;
+    margin-right: 1%;
+    margin-bottom: 3%;
+}
+
+.grid-peoplepet,
+.filter,
+.grid-pet,
+.information,
+.interest {
+    float: left;
+}
+
+.img-pet {
+    height: 43.333%;
+    width: 90%;
+    padding: 10px;
+}
+
+.img-pet img {
+    width: 100%;
+    height: 200px;
+    /*border-radius: 10%;*/
+}
+
+.information-pet {
+    height: 33.333%;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.adopt-pet {
+    width: 100%;
+    height: 23.333%;
+    padding: 0;
+}
+
+/*.information {
+    border-right: lightgray 1px solid;
+}*/
+
+.information,
+.interest {
+    border-top: lightgray 1px solid;
+    height: 100%;
+    /*width: 49.8%;*/
+    width: 100%;
+    text-align: center;
+}
+
+.information i,
+.interest i {
+    color: lightgray;
+    margin-top: 8%;
+}
+
+.information input,
+.interest input {
+    background: white;
+    color: lightgray;
+    margin-top: 8%;
+}
+
+.information i:hover {
+    color: #F00;
+}
+
+.interest i:hover {
+    color: #5072f9;
+}
+
+.information input:hover {
+    color: #F00;
+}
+
+
+.header-grid-filter {
+    max-width: 95%;
+    margin: 0 auto;
+}
+
+.header-grid-filter a {
+    font-size: 1.5em;
+    color: #fff;
+    font-weight: bold;
+}
+
+.header-grid-filter hr {
+    margin: 0;
+    margin-bottom: 2%;
+}
+
+.grid-filter {
+    width: 100%;
+    display: inline-table;
+    background-color: #53a3e8;
+    color: #fff;
+    font-weight: bold;
+}
+
+.items-filter {
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 8%;
+}
+
+.filter {
+    width: 20%;
+}
+
+.filter select:hover {
+    cursor: pointer;
+}
+
+
+/*seletores para desktops*/
+
+@media screen and (max-width: 1920px) {
+    .filter select {
+        width: 85%;
+    }
+}
+
+
+/*seletores para tablets*/
+
+@media screen and (max-width: 768px) {
+    .filter {
+        width: 50%;
+    }
+    .botao {
+        float: left;
+        width: 85%;
+    }
+    .grid-pet {
+        width: 48%;
+    }
+    .grid-peoplepet {
+        width: 48%;
+    }
+
+}
+
+
+/*seletores para celurares*/
+
+@media screen and (max-width: 520px) {
+    .filter {
+        width: 100%;
+        margin: 0;
+    }
+    .filter select {
+        width: 100%;
+    }
+    .information {
+        border-right: lightgray 1px solid;
+    }
+    .information,
+    .interest {
+        border-top: lightgray 1px solid;
+        height: 100%;
+        /*width: 49.8%;*/
+        width: 100%;
+        text-align: center;
+    }
+    .grid-filter {
+        margin-bottom: 2%;
+    }
+
+    .grid-pet {
+        width: 100%;
+    }
+    .grid-peoplepet {
+        width: 100%;
+    }
+    
+    .botao {
+        width: 100%;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+    .botao input {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 284px) {
+    .information {
+        border-right: 0;
+    }
+}
+
+/*FIM PETS CSS*/
+
+/*PETDETAIL CSS*/
+
+.photos {
+    padding: 12px;
+}
+
+.photos img {
+    height: 400px;
+}
+.photo-pet {
+    width: 50%;
+    float: left;
+    border: lightgray 1px solid;
+    padding: 5px;
+}
+
+.btn-font:hover {
+    color:#F00;
+}
+
+.img-selected {
+    width: 100%;
+}
+
+.other-photos {
+    width: 45%;
+    height: 50%;
+    float: right;
+}
+
+.other-photos img {
+    float: left;
+    width: 45%;
+    height: 180px;
+    margin-left: 1%;
+    margin-bottom: 1.8%;
+    border: lightgray 1px solid;
+    padding: 5px;
+}
+
+.informations-pet {
+    display: inline-table;
+    width: 100%;
+    clear: both;
+    padding-bottom: 10px;
+}
+
+.info-pet {
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: 1.3em;
+}
+
+.correcao-image {
+    margin: 0;
+}
+
+
+.btn-font {
+    font-size: 1.3em;
+}
+
+
+.w3-display-container:hover .w3-display-hover{display:block}.w3-display-container:hover span.w3-display-hover{display:inline-block}.w3-display-hover{display:none}
+.w3-content{max-width:980px;margin:auto}.w3-rest{overflow:hidden}
+
+.buttons {
+    padding-top: 10px;
+    max-width: 20%;
+    margin:0 auto;
+}
+/*seletores para desktops*/
+
+@media screen and (max-width: 1920px) {}
+
+
+/*seletores para tablets*/
+
+@media screen and (max-width: 800px) {
+    .photo-pet {
+        width: 100%;
+        margin-bottom: 3%;
+    }
+    .other-photos {
+        margin-top: 2%;
+        clear: both;
+        width: 100%;
+        float: left;
+    }
+    .other-photos img {
+        width: 47%;
+        height: 90px;
+        margin-left: 0;
+    }
+    .correcao-image img {
+        margin-right: 2.1%;
+    }
+    .botao {
+        float: left;
+        width: 85%;
+    }
+    .buttons { 
+        max-width: 50%;
+    }
+}
+
+
+/*seletores para celurares*/
+
+@media screen and (max-width: 520px) {
+    .other-photos {
+        width: 100%;
+    }
+    .other-photos img {
+        width: 100%;
+        height: 180px;
+    }
+    .photo-pet {
+        width: 100%;
+    }
+    .photos img {
+        height: 180px;
+    }
+    .buttons { 
+        max-width: 100%;
+    }
+}
+
+/*FIM PETDETAIL CSS*/
+
