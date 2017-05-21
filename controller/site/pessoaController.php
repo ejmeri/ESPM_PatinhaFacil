@@ -17,10 +17,9 @@ use model\animal\AnimalModel;
 
 class pessoaController extends Controller {
     public function index(){
-
         new Session();
-        $this->title = 'Meu Perfil';
 
+        $this->title = 'Meu Perfil';
         $this->Load();
         $this->View();
     }

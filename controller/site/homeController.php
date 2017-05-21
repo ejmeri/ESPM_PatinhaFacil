@@ -13,9 +13,6 @@ class homeController extends Controller {
         $this->layout = '_layouthome';
     }
     public function index(){
-
-         new Session();
-        // $logado = $_SESSION['login'];
         $this->title = 'Home';
         $this->view();
     }

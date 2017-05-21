@@ -69,7 +69,7 @@ class System extends Router {
      */
 
     private function setUrl() {
-        $this->url = isset($_GET['url']) ? $_GET['url'] : 'home/index';
+        $this->url = isset($_GET['url']) ? $_GET['url'] : 'dash/index';
     }
 
     /*

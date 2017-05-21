@@ -16,7 +16,7 @@
             <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'tabpet')">Meus animais</a>       
         </div>
 
-        <div id="retornoPessoa" class="inline-table">
+        <div id="retornoPessoa">
             <form method="POST" id="pessoa" class="tabcontent inline-table" action="pessoa/general">
                 <input type="hidden" name="PessoaId" value="<?php echo $view_dados['Id']; ?>">
                 <div class="col-8 inline-table padding col-fl">
@@ -223,7 +223,7 @@
                         }
                 }
             else { ?>
-                <h3 class="text-center" style="font-size: 3em;">Nenhum pet</h3>
+                <h3 class="text-center" style="font-size: 1.5em; color:red;">Você ainda não adotou ou doou algum pet <i class="fa fa-frown-o"></i></h3>
             <?php } ?>
          </div>
         <!--<div id="retorno" class="clear">
