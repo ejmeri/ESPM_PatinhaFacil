@@ -6,7 +6,7 @@ class Config {
 
     const server = 'localhost';
     const user = 'root';
-    const pass = 'elmeri';
+    const pass = '';
     const dbname = 'dbpet';
 
     /**/
