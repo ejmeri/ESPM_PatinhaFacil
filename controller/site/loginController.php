@@ -88,7 +88,7 @@ use api\apiUsuario;
             if(!isset($_POST['button'])) $this->View();
             else
             {
-                $api = new UsuarioModel();
+                $api = new apiUsuario();
                 $this->PartialResultView($api->SendEmail(new Usuario('POST', 'Usuario')));
             }
         }

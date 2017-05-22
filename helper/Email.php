@@ -10,7 +10,7 @@
 
             $headers = 'From:'.$from;
             
-            return mail($to, $subject, $message, $headers);
+            return mail('elmerisilva@hotmail.com',' $subject', '$message');
         }
     }
 ?>

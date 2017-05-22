@@ -3,14 +3,11 @@
 namespace object;
 use lib\Object;
 
-class Usuario extends Object
+class Usuario extends EntityBase
 {
-    public $Id = 0;
     public $Login;
     public $Senha;
     public $PessoaId;
-    public $DtInclusao;
-    public $DtAtualizacao;
 }
 
 ?>

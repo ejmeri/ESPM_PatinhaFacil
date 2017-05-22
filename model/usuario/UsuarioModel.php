@@ -18,6 +18,10 @@ Class UsuarioModel extends Model {
     {
         return $this->First($this->db->Select("SELECT Id, Login, Senha from usuario where pessoaid = '{$obj->PessoaId}'"));
     }
+    public function GetByLogin(Usuario $obj)
+    {
+        return $this->First($this->db->Select("SELECT Id, Login, PessoaId from usuario where login = '{$obj->Login}'"));
+    }
     public function GetList(Usuario $obj) 
     {
         return $this->db->Select("select login from usuario where login like '{$obj->Login}%'");
@@ -30,19 +34,5 @@ Class UsuarioModel extends Model {
     {
         // fechar a sessão aqui
         unset($_SESSION['PessoaId']);
-    }
-    public function SendEmail(Usuario $obj)
-    {
-        $Email = new Email();
-        $Usuario =  $this->db->First($this->Select("select * from usuario where login = '{$obj->Login}'"));
-
-        $senha = "2626+65265+";
-
-        $retorno = $Email->Send('elmerisilva@hotmail.com', 'Nova senha - Pet fácil', 'Olá, '.$Usuario['Login'].', aqui está sua nova senha: '.$senha);
-
-
-        if($retorno) echo $Usuario['Login'].', sim';
-        else echo $Usuario['Login'].',fail <br>'. json_encode($Usuario);
-
     }
 }

@@ -3,6 +3,7 @@
 namespace api;
 
 use object\Usuario;
+use helper\Email;
 use helper\Database;
 use model\usuario\UsuarioModel;
 
@@ -33,6 +34,29 @@ Class apiUsuario extends Database
         }
         else echo "Login e/ou senha incorretos.";
         
+    }
+    public function SendEmail(Usuario $obj)
+    {
+        $Email = new Email();
+        $UsuarioModel = new UsuarioModel();
+        $retornoUsuario = $UsuarioModel->GetByLogin($obj);
+
+
+        $senha = "2626+65265+";
+
+        $retorno = $Email->Send('elmerisilva@hotmail.com', 'Nova senha - Pet fácil', 'Olá, '.$retornoUsuario['Login'].', aqui está sua nova senha: '.$senha);
+
+        echo print_r($retorno).'<br>';
+
+        if($retorno == 1){
+            echo $retornoUsuario['Login'].', sim';
+        }
+        else
+        {
+            echo $retornoUsuario['Login'].',fail <br>'.print_r($retorno).'<br>'. json_encode($retornoUsuario);
+        }
+
+
     }
 }
 
