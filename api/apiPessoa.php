@@ -3,6 +3,7 @@
 namespace api;
 
 use helper\Session;
+use helper\CpfCnpj;
 use lib\Controller;
 use object\Telefone;
 use object\Pessoa;
