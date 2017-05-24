@@ -62,7 +62,7 @@
     display: none;
 }
 
-.active {
+.selected {
     background: #F00;
 }
 

@@ -18,6 +18,10 @@ class EmailModel extends Model {
     {
         return $this->db->Select("SELECT a.Id, a.Nome, b.Nome 'Tipo', TipoEmailId FROM email a join tipoemail b on a.tipoemailid = b.id WHERE pessoaid = '{$obj->PessoaId}'");
     }
+    public function GetFirstbyPessoaId(Email $obj)
+    {
+        return $this->db->First($this->db->Select("SELECT a.Id, a.Nome, b.Nome 'Tipo', TipoEmailId FROM email a join tipoemail b on a.tipoemailid = b.id WHERE pessoaid = '{$obj->PessoaId}'"));
+    }
     public function GetbyId(Email $obj)
     {
         return $this->db->First($this->db->Select("SELECT a.Id, a.Nome, b.Nome 'Tipo', TipoEmailId FROM email a join tipoemail b on a.tipoemailid = b.id WHERE a.id = '{$obj->Id}'"));

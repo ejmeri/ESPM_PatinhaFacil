@@ -3,9 +3,11 @@
 namespace api;
 
 use object\Usuario;
+use object\Autenticacao;
 use helper\Email;
 use helper\Database;
 use model\usuario\UsuarioModel;
+use api\apiAutenticacao;
 
 Class apiUsuario extends Database
 {
@@ -21,16 +23,21 @@ Class apiUsuario extends Database
     public function Enter(Usuario $obj)
     {
         $UsuarioModel = new UsuarioModel();
-
         $retorno = $UsuarioModel->Enter($obj);
 
         // if(!isset($retorno)) echo "Login não encontrado.";
 
         if($retorno['Senha'] == $obj->Senha) 
         {   
-            //abrir sessão      
-            $_SESSION['PessoaId'] = $retorno['PessoaId'];
-            echo 'OK';
+             $apiAutenticacao = new apiAutenticacao();
+             $Autenticacao = new Autenticacao();
+             $Autenticacao->PessoaId = $retorno['PessoaId'];
+            //abrir sessão
+            if(!$apiAutenticacao->ValidarComLogin($Autenticacao)) echo "O seu acesso não foi autenticado!";
+            else {
+                $_SESSION['PessoaId'] = $retorno['PessoaId'];
+                echo 'OK';
+            }
         }
         else echo "Login e/ou senha incorretos.";
         

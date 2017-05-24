@@ -1,6 +1,6 @@
 <?php
 
-namespace helper;
+namespace helper\sendmail;
 /**
  * PHPMailer - PHP email creation and transport class.
  * PHP Version 5

@@ -24,47 +24,48 @@
 </head>
 <body>
 
+
 <!-- Navigation -->
-<a id="menu-toggle" href="#" class="btn btn-gray btn-lg toggle"><i class="fa fa-bars"></i></a>
-<nav id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-        <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-        <li class="sidebar-brand">
-            <a href="home" onclick=$("#menu-close").click();>Pet Fácil</a>
-        </li>
-        <!--<li>
-            <a href="home" onclick=$("#menu-close").click();>Home</a>
-        </li>-->
-        <li>
-            <a href="pets" onclick=$("#menu-close").click();>Adotar um pet</a>
-        </li>
-         <li>
-            <a href="pets/novo" onclick=$("#menu-close").click();>Doar um pet</a>
-        </li>
-        <li>
-            <a href="#services" onclick=$("#menu-close").click();>Nossas opcões</a>
-        </li>
-        <li>
-            <a href="home#portfolio" onclick=$("#menu-close").click();>Pets disponíveis</a>
-        </li>
-        <li>
-            <a href="#footer" onclick=$("#menu-close").click();>Sobre nós</a>
-        </li>
-        <li>
-            <a href="pessoa" onclick=$("#menu-close").click();>Meu Perfil</a>
-        </li>
-        <li>
-            <a href="login/Close" onclick=$("#menu-close").click();>Sair</a>
-        </li>
-        <!--<li>
-            <a>
-                <form action="login/Close" method="POST">
-                    <button type="submit" name="teste" alt="Sair"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></button>
-                </form>
-            </a>
-        </li>-->
-    </ul>
-</nav>
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="home">Pet.fácil</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="pets" class="page-scroll">Adotar um pet</a>
+                </li>
+                <li>
+                    <a href="pets/novo" class="page-scroll">Doar um pet</a>
+                </li>
+                <li>
+                    <a href="#services" class="page-scroll">Nossas opcões</a>
+                </li>
+                <li>
+                    <a href="#portfolio" class="page-scroll">Pets disponíveis</a>
+                </li>
+                <li>
+                    <a href="#footer" class="page-scroll">Sobre nós</a>
+                </li>
+                <li>
+                    <a href="pessoa" class="page-scroll">Meu Perfil</a>
+                </li>
+                <li>
+                    <a href="login/Close" class="page-scroll">Sair</a>
+                </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
 
 <!-- END NAVIGATION -->
 

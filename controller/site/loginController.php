@@ -7,11 +7,13 @@ use lib\Controller;
 use object\Usuario;
 use object\Pessoa;
 use object\Email;
+use object\Autenticacao;
 use model\usuario\UsuarioModel;
 use model\pessoa\PessoaModel;
 use model\email\EmailModel;
 use api\apiPessoa;
 use api\apiUsuario;
+use api\apiAutenticacao;
 
     Class loginController Extends Controller 
     {
@@ -50,11 +52,12 @@ use api\apiUsuario;
             if(!isset($_POST['button'])) $this->view();
             else
             {
-                
+                $apiAutenticacao = new apiAutenticacao();
                 $PessoaModel = new PessoaModel();
                 $EmailModel = new EmailModel();
                 $UsuarioModel = new UsuarioModel();
 
+                $Autenticacao = new Autenticacao();
                 $Pessoa = new Pessoa('POST', 'Pessoa');                
                 $Usuario = new Usuario('POST', 'Usuario');
                 $Email = new Email('POST', 'Email');
@@ -64,14 +67,16 @@ use api\apiUsuario;
 
                 $Usuario->PessoaId = $Pessoa->Id;
                 $Email->PessoaId = $Pessoa->Id;
-
+                $Autenticacao->PessoaId = $Pessoa->Id;
+                
                 $retornoEmail = $EmailModel->Save($Email);
                 $retornoUsuario = $UsuarioModel->Save($Usuario);
+                $apiAutenticacao->Autenticacao($Autenticacao);
                 
                 
                 if($retorno['sucess'] && $retornoEmail['sucess'] && $retornoUsuario['sucess']) {
                     $this->PartialResultView('<h2>Parabéns '.$Pessoa->Nome.', você foi cadastrado em nosso sistema!</h2>
-                        <p>Faça seu login <a href="login"> <b>Aqui</b> </a>!</p>');
+                        <p>Enviamos um e-mail para você confirmar a sua conta, após confirmação o seu acesso estará liberado. <br>Faça seu login <a href="login"> <b>Aqui</b> </a>!</p>');
                 }
                 else {
                      $this->PartialResultView($retorno['feedback']." <br> ".$retornoEmail['feedback']." <br>".$retornoUsuario['feedback']);
@@ -109,5 +114,32 @@ use api\apiUsuario;
             $api = new apiPessoa();
             
             if(strlen($Pessoa->CpfCnpj) >= 11) $this->PartialResultView($api->ValidateCpfCnpj($Pessoa));
+        }
+        public function autenticacao()
+        {   
+            $this->title = "Autenticação de acesso";
+            $this->layout = "_layoutlogoff";
+
+            $apiAutenticacao = new apiAutenticacao();
+            $Autenticacao = new Autenticacao();
+            $Autenticacao->Nome = $this->getParams(0);
+
+            if($apiAutenticacao->Validar($Autenticacao))
+            {
+                $this->dados = array(
+                    'auth' => 'Autenticado'
+                );
+            }
+            else
+            {   
+                $apiAutenticacao->Autenticar($Autenticacao);
+                 $this->dados = array(
+                    'auth'
+                    );
+            }
+
+
+            $this->View();
+
         }
     }

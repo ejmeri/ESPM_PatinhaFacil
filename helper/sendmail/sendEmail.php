@@ -1,9 +1,9 @@
 <?php
 
-namespace helper;
+namespace helper\sendmail;
 
 
-    Class Email
+    Class sendEmail
     {
         public function Send($to, $subject, $message)
         {
@@ -22,7 +22,7 @@ namespace helper;
             //configuração do usuário do gmail
             $mail->SMTPAuth = true; 
             $mail->Username = 'elmerisilva@gmail.com'; // usuario gmail.   
-            $mail->Password = '**********'; // senha do email.
+            $mail->Password = 'tricolor1'; // senha do email.
 
             $mail->SingleTo = true; 
 
@@ -30,10 +30,10 @@ namespace helper;
             $mail->From = "elmerisilva@gmail.com"; 
             $mail->FromName = "Elmeri Moreno."; 
 
-            $mail->addAddress("leticiapasklan@gmail.com"); // email do destinatario.
+            $mail->addAddress($to); // email do destinatario.
 
-            $mail->Subject = "Puta detected."; 
-            $mail->Body = "Esse e-mail só chega para as putas.";
+            $mail->Subject = $subject; 
+            $mail->Body = $message;
 
             if(!$mail->Send())
             echo "Erro ao enviar Email:" . $mail->ErrorInfo;

@@ -1,6 +1,6 @@
 <?php
 
-namespace helper;
+namespace helper\sendmail;
 
 /**
  * PHPMailer RFC821 SMTP email transport class.

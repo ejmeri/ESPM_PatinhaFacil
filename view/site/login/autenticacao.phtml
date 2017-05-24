@@ -1,0 +1,17 @@
+<?php error_reporting(!E_NOTICE); ?>
+
+<div class="container-in">
+    <header class="header-page">
+        <h1 class="text-center">Autenticação de acesso</h1>
+    </header>
+      <?php if (count($view_auth) > 0) { ?>      
+                <h2> Não encontramos nada sobre sua requisição!</h2>
+                <h4> Qualquer dúvida entre em contato conosco </h4>
+            <?php 
+            }
+            else 
+            { ?>
+                <h2> O seu acesso foi autenticado, faça seu login <a href="login">aqui</a> </h2>
+            <?php 
+            } ?>
+</div>
