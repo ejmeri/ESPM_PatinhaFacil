@@ -29,14 +29,15 @@ Class apiUsuario extends Database
 
         if($retorno['Senha'] == $obj->Senha) 
         {   
-             $apiAutenticacao = new apiAutenticacao();
-             $Autenticacao = new Autenticacao();
-             $Autenticacao->PessoaId = $retorno['PessoaId'];
-            //abrir sessão
-            if(($apiAutenticacao->ValidarComLogin($Autenticacao) == false)) echo "O seu acesso não foi autenticado!";
+            $apiAutenticacao = new apiAutenticacao();
+            $Autenticacao = new Autenticacao();
+            $Autenticacao->PessoaId = $retorno['PessoaId'];
+            
+            if(($apiAutenticacao->ValidarByPessoaId($Autenticacao) == false)) echo "O seu acesso não foi autenticado!";
 
             else
             {
+                //abrir sessão                
                 $_SESSION['PessoaId'] = $retorno['PessoaId'];
                 echo 'OK';
             }

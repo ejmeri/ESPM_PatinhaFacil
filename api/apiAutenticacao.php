@@ -55,14 +55,20 @@ use model\email\EmailModel;
 
             if($obj['Autenticado'] == 1) return true;
         }
-        public function ValidarComLogin(Autenticacao $obj)
+        public function ValidarByPessoaId(Autenticacao $obj)
         {
             $AutenticacaoModel = new AutenticacaoModel();
 
             $obj = $AutenticacaoModel->GetByPessoaId($obj);
 
-            if($obj['Autenticado'] == 1) return true;
-            else return false;
+            if($obj['Autenticado'] == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            } 
         }
         public function Autenticar(Autenticacao $obj)
         {
@@ -70,7 +76,7 @@ use model\email\EmailModel;
 
             $array = $AutenticacaoModel->GetByNome($obj);
             
-            $obj->Autenticado = true;
+            $obj->Autenticado = 1;
             $obj->Id = $array['Id'];
             $obj->Nome = $array['Nome'];
             $obj->PessoaId = $array['PessoaId'];

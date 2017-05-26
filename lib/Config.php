@@ -4,10 +4,10 @@ namespace lib;
  
 class Config {
 
-    const server = 'localhost';
-    const user = 'root';
-    const pass = '';
-    const dbname = 'dbpet';
+    const server = 'petfacil.net.br';
+    const user = 'petfa349_site';
+    const pass = '[gOFdl+(BF[(';
+    const dbname = 'petfa349_dbpet';
 
     /**/
 
