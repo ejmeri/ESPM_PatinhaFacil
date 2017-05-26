@@ -8,27 +8,27 @@ namespace helper\sendmail;
         public function Send($to, $subject, $message)
         {
            
-            $mail = new PHPMailer(); // instancia a classe PHPMailer
+            $mail = new PhpMailer(); // instancia a classe PHPMailer
 
             $mail->IsSMTP();
 
             //configuração do gmail
             $mail->Port = '465'; //porta usada pelo gmail.
-            $mail->Host = 'smtp.gmail.com'; 
+            $mail->Host = 'br184.hostgator.com.br'; 
             $mail->IsHTML(true); 
             $mail->Mailer = 'smtp'; 
             $mail->SMTPSecure = 'ssl';
 
             //configuração do usuário do gmail
             $mail->SMTPAuth = true; 
-            $mail->Username = 'elmerisilva@gmail.com'; // usuario gmail.   
-            $mail->Password = 'tricolor1'; // senha do email.
+            $mail->Username = 'autenticacao@petfacil.net.br'; // usuario gmail.   
+            $mail->Password = 'p3t.f4c1l'; // senha do email.
 
             $mail->SingleTo = true; 
 
             // configuração do email a ver enviado.
-            $mail->From = "elmerisilva@gmail.com"; 
-            $mail->FromName = "Elmeri Moreno."; 
+            $mail->From = "autenticacao@petfacil.net.br"; 
+            $mail->FromName = "Autenticação PET.FÁCIL"; 
 
             $mail->addAddress($to); // email do destinatario.
 

@@ -2,6 +2,8 @@
 
 namespace api;
 
+
+use helper\sendmail\HtmlEmail;
 use object\Email;
 use object\Autenticacao;
 use object\Login;
@@ -15,6 +17,7 @@ use model\email\EmailModel;
     {
         public function Autenticacao(Autenticacao $obj)
         {
+            $html = new HtmlEmail();
             $SendEmail = new sendEMail();
 
             $AutenticacaoModel = new AutenticacaoModel();
@@ -38,9 +41,9 @@ use model\email\EmailModel;
             
             // print_r($Email);
 
-            $message = 'Olá, aqui está o link para voce autenticar a sua conta: <a href="https://localhost:8080/ESPMProducao/login/autenticacao/'.$hash.'">clique aqui</a>';
+            $message = $html->GetHtmlAuth($Email['Nome'], $obj->Nome);
 
-            $SendEmail->Send($Email['Nome'], 'Autenticacao de conta', $message);
+            $SendEmail->Send($Email['Nome'], 'Autenticação da sua conta', $message);
 
 
         }
@@ -59,6 +62,7 @@ use model\email\EmailModel;
             $obj = $AutenticacaoModel->GetByPessoaId($obj);
 
             if($obj['Autenticado'] == 1) return true;
+            else return false;
         }
         public function Autenticar(Autenticacao $obj)
         {

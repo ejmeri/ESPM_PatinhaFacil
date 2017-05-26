@@ -33,8 +33,10 @@ Class apiUsuario extends Database
              $Autenticacao = new Autenticacao();
              $Autenticacao->PessoaId = $retorno['PessoaId'];
             //abrir sessão
-            if(!$apiAutenticacao->ValidarComLogin($Autenticacao)) echo "O seu acesso não foi autenticado!";
-            else {
+            if(($apiAutenticacao->ValidarComLogin($Autenticacao) == false)) echo "O seu acesso não foi autenticado!";
+
+            else
+            {
                 $_SESSION['PessoaId'] = $retorno['PessoaId'];
                 echo 'OK';
             }

@@ -10,4 +10,9 @@ class dashController extends Controller {
         $this->layout = '_layoutdash';
         $this->View();
     }
+    public function email($value='')
+    {
+        $this->layout = '_email';
+        $this->View();
+    }
 }

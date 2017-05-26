@@ -72,7 +72,7 @@ class PhpMailer
      * The From email address for the message.
      * @var string
      */
-    public $From = 'elmerisilva@hotmail.com';
+    public $From = 'teste@teste.com';
 
     /**
      * The From name of the message.

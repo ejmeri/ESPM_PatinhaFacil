@@ -134,7 +134,7 @@ use api\apiAutenticacao;
             {   
                 $apiAutenticacao->Autenticar($Autenticacao);
                  $this->dados = array(
-                    'auth'
+                    'auth' => 'Novo'
                     );
             }
 
