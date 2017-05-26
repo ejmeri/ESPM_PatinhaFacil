@@ -7497,6 +7497,10 @@ a:hover {
 }
 
 
+.image-banner img {
+  width: 10%;
+  margin: 0 auto;
+}
 
 .portfolio-box {
     position: relative;

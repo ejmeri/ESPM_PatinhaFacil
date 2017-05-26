@@ -55,6 +55,7 @@ a {
     /*color: #F05F40*/
 }
 
+
 /*a:focus,
 a:hover {
     color: #eb3812
@@ -106,7 +107,7 @@ aside {
 
 .navbar-default .navbar-header .navbar-brand:focus,
 .navbar-default .navbar-header .navbar-brand:hover {
-    color: blue;
+    color: #53a3e8;
 }
 
 .navbar-default .navbar-header .navbar-toggle {
@@ -121,8 +122,24 @@ aside {
     text-transform: uppercase;
     font-weight: 700;
     font-size: 13px;
-    color: #222
+    color: #fff;
 }
+
+
+@media screen and (max-width: 520px) {
+    .navbar-default .nav>li>a,
+    .navbar-default .nav>li>a:focus {
+        color: #000;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .navbar-default .nav>li>a,
+    .navbar-default .nav>li>a:focus {
+        color: #000;
+    }
+}
+
 
 .navbar-default .nav>li>a:focus:hover,
 .navbar-default .nav>li>a:hover {
@@ -131,7 +148,7 @@ aside {
 
 .navbar-default .nav>li.active>a,
 .navbar-default .nav>li.active>a:focus {
-    color: #53a3e8!important;
+    color: #53a3e8 !important;
     background-color: transparent
 }
 
@@ -146,7 +163,7 @@ aside {
         border-color: rgba(255, 255, 255, .3)
     }
     .navbar-default .navbar-header .navbar-brand {
-        color: #000;
+        color: #fff;
     }
     .navbar-default .navbar-header .navbar-brand:focus,
     .navbar-default .navbar-header .navbar-default .nav>li>a,
@@ -155,7 +172,7 @@ aside {
     }
     .navbar-default .nav>li>a:focus:hover,
     .navbar-default .nav>li>a:hover {
-        color: #fff
+        color: #53a3e8;
     }
     .navbar-default.affix {
         background-color: #fff;
@@ -186,7 +203,7 @@ header {
     background-size: cover;
     -o-background-size: cover;
     background-position: center;
-    background: url(../images/media.jpg) no-repeat fixed;
+    background: url(../images/optimized-imgbanner2.png) no-repeat center center fixed;
     color: #fff
 }
 
