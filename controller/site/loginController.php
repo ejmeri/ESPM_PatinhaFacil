@@ -3,6 +3,7 @@
 namespace controller\site;
 
 use helper\Session;
+use helper\GerarHash;
 use lib\Controller;
 use object\Usuario;
 use object\Pessoa;
@@ -52,6 +53,7 @@ use api\apiAutenticacao;
             if(!isset($_POST['button'])) $this->view();
             else
             {
+                $Hash = new GerarHash();
                 $apiAutenticacao = new apiAutenticacao();
                 $PessoaModel = new PessoaModel();
                 $EmailModel = new EmailModel();
@@ -70,6 +72,7 @@ use api\apiAutenticacao;
                 $Autenticacao->PessoaId = $Pessoa->Id;
                 
                 $retornoEmail = $EmailModel->Save($Email);
+                $Usuario->Senha = $Hash->Hash($Usuario->Senha);
                 $retornoUsuario = $UsuarioModel->Save($Usuario);
                 $apiAutenticacao->Autenticacao($Autenticacao);
                 

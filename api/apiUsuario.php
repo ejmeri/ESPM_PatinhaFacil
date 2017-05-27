@@ -6,6 +6,7 @@ use object\Usuario;
 use object\Autenticacao;
 use helper\Email;
 use helper\Database;
+use helper\GerarHash;
 use model\usuario\UsuarioModel;
 use api\apiAutenticacao;
 
@@ -21,13 +22,14 @@ Class apiUsuario extends Database
 
     }
     public function Enter(Usuario $obj)
-    {
+    {   
+        $Hash = new GerarHash();
         $UsuarioModel = new UsuarioModel();
         $retorno = $UsuarioModel->Enter($obj);
 
         // if(!isset($retorno)) echo "Login não encontrado.";
-
-        if($retorno['Senha'] == $obj->Senha) 
+        $decrypt = $Hash->Unhash($retorno['Senha']);
+        if($decrypt == $obj->Senha) 
         {   
             $apiAutenticacao = new apiAutenticacao();
             $Autenticacao = new Autenticacao();

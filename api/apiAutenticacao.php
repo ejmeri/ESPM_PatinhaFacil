@@ -27,12 +27,13 @@ use model\email\EmailModel;
             $GerarHash = new GerarHash();
 
             while (true) {
-                $hash = $GerarHash->Hash();
+                $hash = $GerarHash->HashAuth();
                 $obj->Nome = $hash;
                 
                 if(empty($AutenticacaoModel->GetByNome($obj))) break;
             }
             
+            $obj->Autenticado = 0;
             $retorno = $AutenticacaoModel->Save($obj);
 
             $Email->PessoaId = $obj->PessoaId;
