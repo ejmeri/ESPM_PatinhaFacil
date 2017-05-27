@@ -15,7 +15,7 @@ class HtmlEmail {
     <base href="http://www.petfacil.net.br/">
     <link href="content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="content/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="content/css/email/email.css?v=1.3" rel="stylesheet">
+    <link href="content/css/email/email.css?v=1.4" rel="stylesheet">
 
 </head>
 
