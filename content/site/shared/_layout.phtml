@@ -8,14 +8,14 @@
     <meta name="keywords" content="<?php echo $this->keywords ?>">
     <meta name="author" content="<?php echo $this->autor ?>">
 	<!--<link href="content/site/css/style.css" rel="stylesheet" />-->
-	<link href="content/site/css/master.css?v=1" rel="stylesheet" />
-    <link href="content/site/css/site.css?v=1" rel="stylesheet" />
+	<link href="content/site/css/master.css?v=0.0" rel="stylesheet" />
+    <link href="content/site/css/site.css?v=0.0" rel="stylesheet" />
 	<!--<link href="content/site/css/petdetail.css" rel="stylesheet" />
 	<link href="content/site/css/pets.css" rel="stylesheet">-->
-    <link href="content/site/css/confirmadopt.css?v=1" rel="stylesheet">
-	<link href="content/site/css/newlogin.css?v=1" rel="stylesheet">
-    <link href="content/site/css/people.css?v=1" rel="stylesheet">
-    <link href="content/upload/css/component.css?v=1" rel="stylesheet">
+    <link href="content/site/css/confirmadopt.css?v=0.0" rel="stylesheet">
+	<link href="content/site/css/newlogin.css?v=0.0" rel="stylesheet">
+    <link href="content/site/css/people.css?v=0.0" rel="stylesheet">
+    <link href="content/upload/css/component.css?v=0.0" rel="stylesheet">
     <script src="content/site/js/site.js"></script>
 
 	<link href="content/font-awesome/css/font-awesome.min.css?v=1" rel="stylesheet" type="text/css"/>
@@ -72,7 +72,11 @@
 
 <header class="header" id="top">
     <div class="text-vertical-center">
-        <a href="home" class="link-black"><h1>PET.FÁCIL</h1></a>
+        <a href="home" class="link-black">
+            <div class="image-banner">
+                <img src="content/images/ejmeri-1.png"  style="margin: 0 auto;"class="img-responsive" alt="">
+            </div>
+        </a>
         <h3>Encontre aqui a felicidade para seu lar</h3>
         <a href="#start" class="btn btn-blue btn-lg">Começar</a>
         <br>
@@ -333,7 +337,7 @@
                 });
 
                     function clearInputs(){
-                        $("#CPF").val('');
+                        $("#txtcpfcnpj").val('');
                         $("#CNPJ").val('');
                         $("#Rg").val('');
                         $("#Nome").val('');
@@ -353,7 +357,7 @@
         $('#result').hide();
 
         $("#Apelido").attr("placeholder", "Caso não tenha, utilize seu 1º nome.");         
-        $("#linkfisica").addClass("active");
+        $("#linkfisica").addClass("selected");
         
         $("#linkfisica").click(function(){
 
@@ -365,8 +369,8 @@
             swapText("apelido", "Apelido");
             $("#txtcpfcnpj").attr("placeholder", "000.000.000-00");
             $("#Apelido").attr("placeholder", "Caso não tenha, utilize seu 1º nome.");         
-            $("#linkfisica").addClass("active");
-            $("#linkjuridica").removeClass("active");
+            $("#linkfisica").addClass("selected");
+            $("#linkjuridica").removeClass("selected");
 
             document.getElementById("txtCPF").innerHTML = "";
             
@@ -382,8 +386,8 @@
 
             $("#txtcpfcnpj").attr("placeholder", "00.000.000/0000-00");
             $("#Apelido").attr("placeholder", "");         
-            $("#linkjuridica").addClass("active");
-            $("#linkfisica").removeClass("active");
+            $("#linkjuridica").addClass("selected");
+            $("#linkfisica").removeClass("selected");
 
              document.getElementById("txtCPF").innerHTML = "";
         });

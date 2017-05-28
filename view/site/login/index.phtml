@@ -1,25 +1,28 @@
-<div class="container">
+<div class="container-in">
    
    <div class="form-login">
         <header>
-            <h2 class="h3 text-center">PET.FÁCIL</h2>
+         <div class="image-banner">
+                <img src="content/images/ejmeri-1.png"  style="width: 50%; margin: 0 auto;"class="img-responsive" alt="">
+         </div>
+            <h3 class="text-center" style="color: #fff;">PET.FÁCIL</h3>
         </header> 
    
         <form method="POST" id="frmLogin" action="login">
             <div>
-                <label for="login">Login</label>
+                <!--<label for="login">Login</label>-->
                 <input type="text" required placeholder="Login" minLength=3 maxLength=30 name="UsuarioLogin" class="input-control"> 
             </div>
             <div>
-                <label for="password">Senha</label> 
+                <label for="nothing"></label> 
                 <input type="password" required placeholder="Senha" name="UsuarioSenha" class="input-control">
                 <div id="result" class="text-warning">
                     <p id="retorno"></p>
                 </div>
             </div>
             <button type="submit" name="button" class="btn btn-blue">Entrar</button>
-            <a href="login/novo" class="a">Cadastre-se agora</a>
-            <a href="login/esqueciasenha" class="a">Esqueceu a senha ?</a>
+            <a href="login/novo" class="link-w">Cadastre-se agora</a>
+            <a href="login/esqueciasenha" class="link-w">Esqueceu a senha ?</a>
         </form>
     </div>
 </div>

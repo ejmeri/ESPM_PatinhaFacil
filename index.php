@@ -1,6 +1,7 @@
 <?php
 
 
+
 // echo $_SERVER['HTTP_HOST'];
 session_start();
 
@@ -15,7 +16,7 @@ date_default_timezone_set('America/Sao_Paulo');
 //     }
 // }
 
-define('APP_ROOT', 'http://' . $_SERVER['HTTP_HOST'] . '/ESPMProducao');
+define('APP_ROOT', 'http://' . $_SERVER['HTTP_HOST'] . '');
 
 require_once 'helper/autoloader.php';
 

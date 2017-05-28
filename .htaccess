@@ -408,8 +408,9 @@ FileETag None
 # https://www.example.com when your cert only allows https://secure.example.com
 
 # <IfModule mod_rewrite.c>
-#   RewriteCond %{SERVER_PORT} !^443
-#   RewriteRule ^ https://example-domain-please-change-me.com%{REQUEST_URI} [R=301,L]
+#    RewriteEngine On
+#    RewriteCond %{HTTPS} off
+#    RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 # </IfModule>
 
 
@@ -546,4 +547,11 @@ AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
 # Increase cookie security
 <IfModule mod_php5.c>
   php_value session.cookie_httponly true
+</IfModule>
+
+
+# Habilitar o PHP 5.5 no hostgator
+AddHandler application/x-httpd-php55 .php
+<IfModule mod_suphp.c>
+suPHP_ConfigPath /opt/php55/lib
 </IfModule>

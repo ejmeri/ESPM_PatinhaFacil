@@ -4,7 +4,7 @@
 
 body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: url(../../images/pet.jpg) no-repeat center center fixed;
+    background: url(../../images/imgteste.jpeg) no-repeat center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -30,7 +30,7 @@ body {
     height: 50%;
     width: 25%;
     margin-left: 5%;
-    margin-top: 15%;
+    margin-top: 10%;
 }
 
 .header-text {
@@ -87,17 +87,17 @@ body {
     color: #FFF;
 }
 
-.a {
+.link-w {
     /*color: #298BBC;*/
-    color: #298BBC;
+    color: white;
     text-decoration: none;
     margin-top: 2%;
     display: block;
 }
 
-.a:hover {
+.link-w:hover {
     /*color: #368FFF;*/
-    color: black;
+    color: #53a3e8;
 }
 
 .row {
@@ -108,10 +108,10 @@ body {
     clear: both;
 }
 
-
 .text-red {
-    color:red;
+    color: red;
 }
+
 .error-login {
     width: 30%;
     margin-left: 5%;
@@ -153,14 +153,16 @@ body {
 
 
 /*seletores para celurares*/
+
 @media screen and (max-width: 780px) {
     .form-login {
-        margin-top: 50%; 
+        margin-top: 50%;
     }
     .form-login div {
         width: 100%;
     }
 }
+
 @media screen and (max-width: 520px) {
     .form-image {
         border-radius: 0%;
@@ -168,8 +170,24 @@ body {
     .form-login {
         margin-left: 0%;
         margin-right: 0%;
-        margin-top: 50%;
-        height: 40%;
+        margin-top: 10%;
+        height: auto;
+        width: 100%;
+    }
+    .form-login div {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .form-image {
+        border-radius: 0%;
+    }
+    .form-login {
+        margin-left: 0%;
+        margin-right: 0%;
+        margin-top: 10%;
+        height: auto;
         width: 100%;
     }
     .form-login div {
