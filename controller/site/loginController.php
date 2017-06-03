@@ -23,12 +23,54 @@ use api\apiAutenticacao;
             $this->layout = "_layoutlogin";
             $this->title = "Login";
 
+            $EmailModel = new EmailModel();
 
-            if(!isset($_POST['button'])) $this->View();
-            else 
-            { 
+            $this->dados = array(
+                'list' => $EmailModel->GetTipo()
+            );
+
+            if(isset($_POST['enter']))
+            {
                 $apiUsuario = new apiUsuario();
                 $this->PartialResultView($apiUsuario->Enter(new Usuario('POST', 'Usuario')));
+            }
+            else if(isset($_POST['button']))
+            {
+                 $Hash = new GerarHash();
+                $apiAutenticacao = new apiAutenticacao();
+                $PessoaModel = new PessoaModel();
+                $EmailModel = new EmailModel();
+                $UsuarioModel = new UsuarioModel();
+
+                $Autenticacao = new Autenticacao();
+                $Pessoa = new Pessoa('POST', 'Pessoa');                
+                $Usuario = new Usuario('POST', 'Usuario');
+                $Email = new Email('POST', 'Email');
+        
+                $retorno = $PessoaModel->Save($Pessoa);
+                $Pessoa->Id = $retorno['Identity'];
+
+                $Usuario->PessoaId = $Pessoa->Id;
+                $Email->PessoaId = $Pessoa->Id;
+                $Autenticacao->PessoaId = $Pessoa->Id;
+                
+                $retornoEmail = $EmailModel->Save($Email);
+                $Usuario->Senha = $Hash->Hash($Usuario->Senha);
+                $retornoUsuario = $UsuarioModel->Save($Usuario);
+                $apiAutenticacao->Autenticacao($Autenticacao);
+                
+                
+                if($retorno['sucess'] && $retornoEmail['sucess'] && $retornoUsuario['sucess']) {
+                    $this->PartialResultView('<h2>Parabéns '.$Pessoa->Nome.', você foi cadastrado em nosso sistema!</h2>
+                        <p>Enviamos um e-mail para você confirmar a sua conta, após confirmação o seu acesso estará liberado. <br>Faça seu login <a href="login"> <b>Aqui</b> </a>!</p>');
+                }
+                else {
+                     $this->PartialResultView($retorno['feedback']." <br> ".$retornoEmail['feedback']." <br>".$retornoUsuario['feedback']);
+                }
+            }
+            else 
+            { 
+               $this->View();
             }
 
         }

@@ -1,28 +1,99 @@
 <div class="container-in">
    
-   <div class="form-login">
+   <!--<div class="form-login">
         <header>
          <div class="image-banner">
                 <img src="content/images/ejmeri-1.png"  style="width: 50%; margin: 0 auto;"class="img-responsive" alt="">
          </div>
             <h3 class="text-center" style="color: #fff;">PET.FÁCIL</h3>
-        </header> 
+        </header> -->
    
-        <form method="POST" id="frmLogin" action="login">
-            <div>
-                <!--<label for="login">Login</label>-->
-                <input type="text" required placeholder="Login" minLength=3 maxLength=30 name="UsuarioLogin" class="input-control"> 
+ <section>
+    <div class="container-in" id="frame">
+       
+<div class="form">
+    <div class="form-insert">
+        
+        <article class="option-people margem-cellphone">
+            <section class="login-cabecalho">
+                <h2 class="text-center">Ainda não tem uma conta? Comece agora</h2>
+            </section>
+            <section class="login-cabecalho">
+                <h2 class="text-center">Forneça suas informações</h2>
+            </section>
+            <h3 class="align-cellphone">Tipo de pessoa</h3>
+            <div class="item-left margem-cellphone">
+                <a href="javascrip:;" id="linkfisica" class="btn btn-dark">Fisíca</a>  
             </div>
-            <div>
-                <label for="nothing"></label> 
-                <input type="password" required placeholder="Senha" name="UsuarioSenha" class="input-control">
-                <div id="result" class="text-warning">
-                    <p id="retorno"></p>
+            <div class="item-right margem-cellphone">
+                <a href="javascrip:;" id="linkjuridica" class="btn btn-dark">Jurídica</a>                        
+            </div>
+        </article>
+    </div>
+             
+            <form id="frmCadastro" method="POST" action="login/novo" class="form-insert">
+                <div class="acess clear">
+                    <h3>Informações Gerais</h3>
                 </div>
-            </div>
-            <button type="submit" name="button" class="btn btn-blue">Entrar</button>
-            <a href="login/novo" class="link-w">Cadastre-se agora</a>
-            <a href="login/esqueciasenha" class="link-w">Esqueceu a senha ?</a>
-        </form>
+                    <div class="item-left">
+                        <label for="CPF" id="label"></label>
+                        <input type="text" id="txtcpfcnpj" name="PessoaCpfCnpj" class="form-control"  value="" minlength=11 maxlength=14 autocomplete=off placeholder="CPF" required onkeyup="ValidateCPFCNPJ(this.value)">
+                        <!--<input type="text" id="CNPJ" name="Cnpj" class="form-control cnpj" value="" autocomplete=off placeholder="00.000.000/0000-00" required onkeyup="ValidateCPFCNPJ(this.value)">-->
+                        <span id="txtCPF" class="text-warning"></span>                                                        
+                    </div>
+                <div class="item-right">
+                    <label for="RG" id="number"></label>
+                    <input type="text" name="PessoaRg" id="Rg" class="form-control" value="" placeholder="RG" required autocomplete=off>
+                </div> 
+                <div class="item-left clear">
+                    <label for="Nome" id="nome"></label>
+                    <input type="text" name="PessoaNome" id="Nome" class="form-control" value="" placeholder="Nome" required maxlength=80 autocomplete=off>
+                </div>
+                <div class="item-right">
+                    <label for="Apelido" id="apelido"></label>
+                    <input type="text" name="PessoaApelido" id="Apelido" class="form-control" value="" placeholder="Apelido" required autocomplete=off>
+                </div>
+                <div class="item-left clear">
+                    <label for="Email"></label>
+                    <input type="email" name="EmailNome" id="Email" class="form-control" value=""placeholder="E-mail" autocomplete=off required placeholder="example@example.com">
+                </div>
+                <div class="item-right bottom">
+                    <label for="tipoEmail"></label>
+                    <select class="form-control" name="EmailTipoEmailId" required>
+                     <option value="">Selecione o Tipo de E-mail</option>
+                        <?php if (count($view_list) > 0) { ?>
+                            <?php foreach ($view_list as $tipoemail) { ?>
+                                <option value=<?php echo $tipoemail['Id']; ?>> <?php echo $tipoemail['Nome'];?></option><?php } } ?>
+                    </select>
+                </div>
+
+                <div class="acess clear">
+                    <h3>Informações de acesso</h3>
+                </div>
+                    <div class="item-left clear">
+                        <label for="user"></label>
+                        <input type="text" name="UsuarioLogin" id="user" class="form-control" value="" placeholder="Login" minLength=3 maxLength=30 autocomplete=off required onkeyup="showLogin(this.value)">
+                        <span id="txtlogin" class="text-warning"></span>
+                    </div>
+                    <div class="item-left clear">
+                        <label for="password"></label>
+                        <input type="password" name="UsuarioSenha" id="password" class="form-control" placeholder="Senha" minlength=6 value="" required>
+                    </div>
+                    <div class="item-right">
+                        <label for="repassword"></label>
+                        <input type="password" id="repassword" name="repassword" class="form-control" value="" placeholder="Confirmar Senha" required>
+                    </div>
+                <div class="item-left margem clear">
+                    <button type="submit" id="Create" name="button" class="btn btn-blue">Cadastrar</button>
+                </div>
+                <input type="hidden" name="Id" value="0">
+            </form>
+        </div>
+        <div id="result" class="form-insert">
+            <span id="txtHint"></span>
+        </div>
+    </div>                                      
+</section>      
     </div>
 </div>
+

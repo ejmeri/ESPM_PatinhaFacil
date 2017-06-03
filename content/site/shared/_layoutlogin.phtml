@@ -1,21 +1,69 @@
 <html>
     <head>
         <link rel="shortcut icon" href="content/images/ejmeri-1.ico" type="image/x-icon" />
-        <title><?php echo $this->title; ?></title>
+        <title><?php echo $this->title;?></title>
         <base href="<?php echo APP_ROOT;?>/">
         <meta name="author" content="<?php echo $this->autor ?>">
         <meta name="keywords" content="<?php echo $this->keywords ?>">
         <meta charset="utf-8">
-        <link href="content/site/css/login.css?v=0.5" rel="stylesheet" media="all">
-        <link href="content/site/css/master.css" rel="stylesheet" media="all">
+         <!-- Bootstrap Core CSS -->
+        <link href="content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="content/site/css/login.css?0.0" rel="stylesheet" media="all">
+        <link href="content/site/css/master.css?0.0" rel="stylesheet" media="all">
         <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+
+        <script src="content/site/js/site.js"></script>
     </head>
     <body>
-        <?php $this->Render();?>
+        <div class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-target="#navbar-collapse" data-toggle="collapse" type="button">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="<?php echo APP_ROOT ?>">pet.fácil</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+            <div class="navbar-right col-lg-10">
+                <form id="frmLogin" action="login" class="navbar-form row" method="POST">
+                    <div class="col-lg-3 col-lg-offset-5">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <i class="fa fa-user"></i>
+                            </span>
+                            <input class="form-control" name="UsuarioLogin" minLength=3 maxLength=30 placeholder="Login" type="text" required>                                                    
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <i class="fa fa-key"></i>
+                            </span>
+                            <input class="form-control" name="UsuarioSenha" placeholder="Senha" type="password" required>
+                        </div>
+                        <div id="result" class="text-primary">
+                            <span id="retorno"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-1">
+                        <button  type="submit" class="btn btn-blue" id="enter" name="enter">Entrar</button>
+                        <!--<input type="submit" formaction="login" name="adotar" class="btn fa fa-5x" title="Adote!" value ="&#xf004;">                          -->
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+
+        
+        <?php $this->Render(); ?> <!-- RENDERIZAÇÃO DA PÁGINA -->
     </body>
 </html>
-
-
     <!-- jQuery -->
     <script src="content/js/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
@@ -27,23 +75,125 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="content/js/bootstrap.min.js"></script>
 
+
+
    <script type="text/javascript">
+   
      $(document).ready(function(){
-
             $("#result").hide();
-
             var formulario = $("#frmLogin");
 
-            $("#frmLogin").validate({
-                errorClass: 'text-errors',
-                rules: {
-                    fields: {
-                        required: true
-                    }
-                },
-                    submitHandler: function (form) {
-                        postFormLogin(formulario, 'retorno', 'result', 'home');
-                    }
-            });
+                $("#frmLogin").validate({
+                    errorClass: 'text-errors',
+                    rules: {
+                        fields: {
+                            required: true
+                        }
+                    },
+                        submitHandler: function (form) {
+                            postFormLogin(formulario, 'retorno', 'result', 'home');
+                        }
+                });
      });
    </script>
+
+
+
+
+                            <!--JQUERY/JAVASCRIPT PAGE NEWLOGIN-->
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+                var formulario =  $("#frmCadastro");
+                
+
+                $("#frmCadastro").validate({
+                        errorClass: 'text-errors',
+                        rules: {
+                                PessoaCpfCnpj: {
+                                    digits: true
+                                },
+                                field: {
+                                    required: true
+                                    // minlength: 3
+                                },
+                                repassword: {
+                                    equalTo: "#password"
+                                }
+                        },
+                        submitHandler: function (form) {
+                            var login = document.getElementById("txtlogin").innerText;
+                            // var cpfcnpj = $('#CPF').val();
+                            
+                            if(login.length > 0) {
+                                $("#user").focus();
+                                return;
+                            }
+
+                            postForm(formulario,'txtHint', 'result', 'login');
+                            clearInputs();
+                        }   
+                });
+
+                    function clearInputs(){
+                        $("#txtcpfcnpj").val('');
+                        $("#Rg").val('');
+                        $("#Nome").val('');
+                        $("#Apelido").val('');
+                        $("#Email").val('');
+                        $("#user").val('');
+                        $("#password").val('');
+                        $("#repassword").val('');
+                        $("#Telefone").val('');
+                    }
+
+
+
+        $('#result').hide();
+
+        $("#linkfisica").addClass("selected");
+        
+            $("#linkfisica").click(function(){
+
+                $("#txtcpfcnpj").val('');
+
+                $("#Apelido").attr("placeholder", "Nome");
+                $("#Nome").attr("placeholder", "Apeelido");
+                $("#Rg").attr("placeholder", "RG");
+                $("#txtcpfcnpj").attr("placeholder", "CPF");
+
+                $("#linkfisica").addClass("selected");
+                $("#linkjuridica").removeClass("selected");
+
+                document.getElementById("txtCPF").innerHTML = "";
+                
+            });
+        
+            $("#linkjuridica").click(function(){
+                $("#txtcpfcnpj").val('');
+
+                // $("#txtcpfcnpj").attr("placeholder", "00.000.000/0000-00");
+                $("#Apelido").attr("placeholder", "Nome Fantasia");
+                $("#Nome").attr("placeholder", "Razão Social");
+                $("#txtcpfcnpj").attr("placeholder", "CNPJ");
+                $("#Rg").attr("placeholder", "Inscrição Estadual");
+
+                $("#linkjuridica").addClass("selected");
+                $("#linkfisica").removeClass("selected");
+
+                document.getElementById("txtCPF").innerHTML = "";
+            });
+        });
+    </script>
+
+ <script type="text/javascript">
+    $(document).ready(function(){
+
+       
+
+
+    });
+   </script>
+
+                                    <!--FIM JQUERY/JAVASCRIPT PAGE NEWLOGIN-->
