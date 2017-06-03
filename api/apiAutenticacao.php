@@ -42,8 +42,18 @@ use model\email\EmailModel;
             
             // print_r($Email);
 
-            $message = $html->GetHtmlAuth($Email['Nome'], $obj->Nome);
+            // $message = $html->GetHtmlAuth($Email['Nome'], $obj->Nome);
+            //Add the message header
+            $message = file_get_contents('content/site/shared/emails/header-email.html');
+            $message .= file_get_contents('content/site/shared/emails/_bem-vindo.html');
+            $message .= file_get_contents('content/site/shared/emails/footer-email.html');
 
+            $replacements = array(
+                '({name})' => $Email['Nome'],
+                '({hash})' => $obj->Nome
+            );
+            $message = preg_replace( array_keys( $replacements ), array_values( $replacements ), $message );
+            
             $SendEmail->Send($Email['Nome'], 'Autenticação da sua conta', $message);
 
 

@@ -18,6 +18,7 @@ namespace helper\sendmail;
             $mail->IsHTML(true); 
             $mail->Mailer = 'smtp'; 
             $mail->SMTPSecure = 'ssl';
+            $mail->CharSet="UTF-8";
 
             //configuração do usuário do gmail
             $mail->SMTPAuth = true; 
