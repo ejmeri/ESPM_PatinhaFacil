@@ -208,8 +208,8 @@ body::-webkit-scrollbar {
 }
 
 .portfolio-box img {
-    width: 175px;
-    height: 110px;
+    width: 100%;
+    height: 16%;
 }
 
 .login-box {
@@ -240,7 +240,7 @@ body::-webkit-scrollbar {
     }
     .option-people {
         margin: 0 auto;
-        /*width: 85%;*/
+        width: 100%;
     }
     .item-left {
         width: 48%;
@@ -254,7 +254,6 @@ body::-webkit-scrollbar {
     #portfolio {
         margin-bottom: 5%;
     }
-
     .no-pad {
         padding: 0px;
     }
@@ -298,14 +297,12 @@ body::-webkit-scrollbar {
 /*seletores para celurares*/
 
 @media screen and (max-width: 520px) {
-    .item-left {
+    .item-left,
+    .item-right {
         width: 100%;
     }
     .margem-cellphone {
         margin-bottom: 2%;
-    }
-    .item-right {
-        width: 100%;
     }
     .form-insert,
     .option-people {
@@ -323,5 +320,4 @@ body::-webkit-scrollbar {
     .login-box {
         max-width: 90%;
     }
-
 }
