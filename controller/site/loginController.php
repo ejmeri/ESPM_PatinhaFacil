@@ -21,7 +21,7 @@ use api\apiAutenticacao;
         public function index()
         {    
             $this->layout = "_layoutlogin";
-            $this->title = "Login";
+            $this->title .= "Login";
 
             $EmailModel = new EmailModel();
 
@@ -133,7 +133,7 @@ use api\apiAutenticacao;
         public function esqueciasenha()
         {
             $this->title = "Esqueci a senha";
-            $this->layout = "_layoutlogoff";
+            $this->layout = "_layoutlogin";
 
             if(!isset($_POST['button'])) $this->View();
             else

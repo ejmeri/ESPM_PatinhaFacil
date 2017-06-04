@@ -11,7 +11,7 @@ class Controller extends System {
     private $path;
     private $pathRender;
     //View web
-    protected $title = null;
+    protected $title = 'PET.FÁCIL - ';
     protected $description = null;
     protected $keywords = 'Adotar, animação de estimação, doação, gatos, animais abandonados, animais, abandonados';
     protected $image;

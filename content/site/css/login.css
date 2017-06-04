@@ -1,38 +1,26 @@
 body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: url(../../images/imgteste.jpeg) no-repeat center;
+    /*background: url(http://www.petfacil.net.br/content/images/imgteste.jpeg) no-repeat center;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
-
-.container {
-    margin: 0 auto;
-    max-width: 85%;
-    /*background: #463df1;*/
-    height: 100%;
-    padding: 0 auto;
+    background: #eaeaea;
 }
 
 .form-image {
-    width: 50%;
-    height: 100%;
+    width: 45%;
+    height: auto;
     float: left;
 }
 
 .form-login {
-    float: left;
     height: 50%;
-    width: 25%;
+    width: 100%;
     margin-left: 5%;
     margin-top: 10%;
+    float: right;
 }
-
-
-/*input::placeholder {
-  color: red;
-}*/
 
 .header-text {
     text-align: center;
@@ -65,29 +53,38 @@ body {
     margin-bottom: 5%;
 }
 
-.btn:focus,
-.btn:hover {
-    background: #298BBC;
-    color: #FFF;
-}
-
 .link-w {
-    /*color: #298BBC;*/
-    color: white;
-    text-decoration: none;
-    margin-top: 2%;
-    display: block;
+    color: #298BBC;
 }
 
 .link-w:hover {
-    /*color: #368FFF;*/
-    color: #53a3e8;
+    color: black;
 }
 
-
-/*.row {
-    display: inline-block;
-}*/
+@media (max-width:520px) {
+    .link-w {
+        /*color: #298BBC;*/
+        color: #298BBC;
+        text-decoration: none;
+        margin-top: 2%;
+        display: block;
+    }
+    .form-image {
+        width: 95%;
+    }
+    .link-w:hover {
+        /*color: #368FFF;*/
+        color: black;
+    }
+    .btn-light {
+        background: #298BBC;
+        color: white;
+    }
+    .btn-light:hover {
+        background: black;
+        color: white;
+    }
+}
 
 .clear {
     clear: both;
@@ -105,87 +102,28 @@ body {
     font-size: 1.5em;
 }
 
-
-/*seletores para desktops*/
-
-
-/*@media screen and (max-width: 1920px) {}
-
-
-/*seletores para tablets*/
-
-
-/*
-@media screen and (max-width: 768px) {
-    .content {
-        margin: 0 auto;
-        max-width: 100%;
-        /*background: #463df1;
-        height: 100%;
-        padding: 0 auto;
+@media (min-width:768px) {
+    .navbar-default {
+        background-color: #fff;
+        border-color: rgba(255, 255, 255, .3)
     }
-    .form-image {
-        width: 100%;
-        height: 50%;
-        margin-top: 0%;
-        border-radius: 0%;
+    .navbar-brand {
+        color: #fff;
+        margin-top: 5%
     }
-    .form-login {
-        margin-left: 25%;
-        margin-right: 25%;
-        margin-top: 2%;
-        height: 40%;
-        width: 50%;
+    .container-right {
+        margin-left: 50%;
+        margin-right: 0
+    }
+    .btn-light:hover {
+        background: black;
+        color: white;
     }
 }
 
-
-/*seletores para celurares*/
-
-
-/*
-@media screen and (max-width: 780px) {
-    .form-login {
-        margin-top: 50%;
-    }
-    .form-login div {
-        width: 100%;
-    }
+.form-control {
+    font-size: 12px;
 }
-
-@media screen and (max-width: 520px) {
-    .form-image {
-        border-radius: 0%;
-    }
-    .form-login {
-        margin-left: 0%;
-        margin-right: 0%;
-        margin-top: 10%;
-        height: auto;
-        width: 100%;
-    }
-    .form-login div {
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 520px) {
-    .form-image {
-        border-radius: 0%;
-    }
-    .form-login {
-        margin-left: 0%;
-        margin-right: 0%;
-        margin-top: 10%;
-        height: auto;
-        width: 100%;
-    }
-    .form-login div {
-        width: 100%;
-    }
-}
-
- /* teste */
 
 .option-people {
     margin: 0 auto;
@@ -194,7 +132,7 @@ body {
 }
 
 .form-insert {
-    max-width: 60%;
+    max-width: 100%;
 }
 
 .item-left {
@@ -257,6 +195,25 @@ body {
     padding: 2px 0px;
 }
 
+.no-padding {
+    padding: 0;
+}
+
+
+.text-bold {
+    font-weight: bold;
+}
+
+.portfolio-box img {
+    width: 175px;
+    height: 110px;
+}
+
+/*#portfolio {
+    padding: 2px;
+    border: 2px solid black;
+}*/
+
 @media screen and (max-width: 1920px) {}
 
 
@@ -264,12 +221,16 @@ body {
 
 @media screen and (max-width: 768px) {
     .form-insert {
-        max-width: 85%;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    .form-image {
+        max-width: 100%;
         margin: 0 auto;
     }
     .option-people {
         margin: 0 auto;
-        width: 85%;
+        /*width: 85%;*/
     }
     .item-left {
         width: 48%;
@@ -279,6 +240,9 @@ body {
     }
     .col-5 {
         width: 85%;
+    }
+    #portfolio {
+        margin-bottom: 5%;
     }
 }
 
@@ -300,9 +264,12 @@ body {
         max-width: 100%;
         margin: 0 auto;
     }
-
+    .container-right,
     .container-in {
         max-width: 95%;
         margin: 0 auto;
+    }
+    #portfolio {
+        display: none;
     }
 }
