@@ -8,6 +8,10 @@ body {
     background: #eaeaea;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .form-image {
     width: 45%;
     height: auto;
@@ -199,7 +203,6 @@ body {
     padding: 0;
 }
 
-
 .text-bold {
     font-weight: bold;
 }
@@ -209,12 +212,53 @@ body {
     height: 110px;
 }
 
-/*#portfolio {
-    padding: 2px;
-    border: 2px solid black;
-}*/
+.login-box {
+    display: table;
+    margin: 0 auto;
+    margin-top: 8%;
+    margin-bottom: 25%;
+    max-width: 60%;
+    border: 2px solid lightgray;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    background: #fff
+}
 
-@media screen and (max-width: 1920px) {}
+.no-pad-left {
+    padding-left: 0px;
+}
+
+@media screen and (max-width: 1920px) {
+    .form-insert {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    .form-image {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    .option-people {
+        margin: 0 auto;
+        /*width: 85%;*/
+    }
+    .item-left {
+        width: 48%;
+    }
+    .item-right {
+        width: 45%;
+    }
+    .col-5 {
+        width: 85%;
+    }
+    #portfolio {
+        margin-bottom: 5%;
+    }
+
+    .no-pad {
+        padding: 0px;
+    }
+}
 
 
 /*seletores para tablets*/
@@ -244,6 +288,10 @@ body {
     #portfolio {
         margin-bottom: 5%;
     }
+    .no-pad-cel {
+        padding: 0px;
+        padding-top: 5px;
+    }
 }
 
 
@@ -272,4 +320,8 @@ body {
     #portfolio {
         display: none;
     }
+    .login-box {
+        max-width: 90%;
+    }
+
 }

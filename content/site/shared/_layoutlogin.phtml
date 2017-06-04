@@ -10,7 +10,7 @@
         <link href="content/bootstrap/css/bootstrap.min.css?v" rel="stylesheet">
         <link href="content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="content/site/css/master.css?0" rel="stylesheet" media="all">
-        <link href="content/site/css/login.css?new0" rel="stylesheet" media="all">
+        <link href="content/site/css/login.css?v" rel="stylesheet" media="all">
         <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
         <script src="content/site/js/site.js"></script>
         <link href="content/magnific-popup/magnific-popup.css?v" rel="stylesheet">
@@ -52,7 +52,9 @@
                         <div id="result" class="text-warning">
                             <span id="retorno"></span>
                         </div>
-                         <a href="login/esqueciasenha" class="link-w">Esqueceu sua senha ?</a>                         
+                        <div class="col-lg-12 row">
+                            <a href="login/esqueciasenha" class="link-w">Esqueceu sua senha ?</a>                         
+                        </div>
                     </div>
                     <div class="col-lg-1">
                         <button  type="submit" class="btn btn-blue" id="enter" name="enter">Entrar  <i class="fa fa-unlock-alt"></i></button>
@@ -66,9 +68,9 @@
         </div>
     </div>
     </div>
-        <?php $this->Render(); ?> <!-- RENDERIZAÇÃO DA PÁGINA -->
-
-
+   <section>
+        <?php $this->Render(); ?> <!-- RENDERIZAÇÃO DA PÁGINA -->       
+   </section>    
 
         <!-- Footer -->
     <footer id="footer">
@@ -246,3 +248,34 @@
    </script>
 
                                     <!--FIM JQUERY/JAVASCRIPT PAGE NEWLOGIN-->
+
+
+                                    <!--INICIO PERDI MINHA SENHA-->
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        var formulario =  $("#frmRecuperar");
+
+
+        $("#frmRecuperar").validate({
+                errorClass: 'text-errors',
+                rules: {
+                        field: {
+                            required: true
+                            // minlength: 3
+                        }
+                },
+                submitHandler: function (form) {
+
+                    postForm(formulario,'retornosenha', 'resultsenha', 'login');
+                    clearInputs();
+                }   
+        });
+
+        function clearInputs(){
+            $("#user").val('');
+        }
+    });
+</script>                 
+                         <!--FIM PERDI MINHA SENHA-->

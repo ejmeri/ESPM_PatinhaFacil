@@ -1,19 +1,31 @@
-<div class="container-in">
-    <header class="header-page">
-        <h1 class="text-center">Recupere sua senha</h1>
-    </header>
-        <form method="POST" action="login/esqueciasenha" id="frmRecuperar" class="form-center">
-                <div class="col-5 mg">
-                    <label for="user">Informe seu login</label>
-                    <input type="text" name="UsuarioLogin" id="user" class="form-control" value="" autocomplete=off required>
-                    <span id="txtforgot" class="text-warning"></span>
-                </div>
-                <div class="col-lg-2 mg">
-                    <button type="submit" name="button" class="btn btn-black">Recuperar</button>
-                </div>
+<section class="container-in">
+    <div class="login-box">        
+        <header class="header-page">
+            <strong><span class="text-left">Esqueci minha senha</span></strong>
+            <hr>
+        </header>
+        <article>
+            <span>Caso tenha perdido ou não se lembre de sua senha, informe seu nome de usuário e clique no botão.</span>
+            <br>
+            <strong class="text-warning">Atenção: </strong>  <span>Enviaremos um e-mail para você seguir com a alteração de sua senha.</span>       
+        </article>
+        <br>
+        <form method="POST" action="login/esqueciasenha" id="frmRecuperar">
+            <div class="col-lg-5 no-pad-left">
+                <input type="text" name="UsuarioLogin" id="user" class="form-control" value="" placeholder="Nome de usuário" autocomplete=off required>
+                <span id="txtforgot" class="text-warning"></span>
+            </div>
+            <div class="col-lg-2 no-pad-cel no-pad">
+                <button type="submit" name="button" class="btn btn-black">Recuperar</button>
+            </div>
         </form>
-
-    <div id="result" class="form-center mg clear">
-        <span id="retorno"></span>
+        <div class="col-lg-12 no-padding">
+            <a href="login">Voltar à tela de login</a>                        
+        </div>
+        <div id="resultsenha" class="col-lg-12 no-padding">
+            <span id="retornosenha"></span>
+         </div>
     </div>
-</div>
+
+    
+</section>
