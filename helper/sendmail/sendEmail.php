@@ -29,15 +29,15 @@ namespace helper\sendmail;
 
             // configuração do email a ver enviado.
             $mail->From = "autenticacao@petfacil.net.br"; 
-            $mail->FromName = "Autenticação PET.FÁCIL"; 
+            $mail->FromName = "Equipe PET.FÁCIL"; 
 
             $mail->addAddress($to); // email do destinatario.
 
             $mail->Subject = $subject; 
             $mail->Body = $message;
 
-            if(!$mail->Send())
-            echo "Erro ao enviar Email:" . $mail->ErrorInfo;
-                }
-            }
+            if(!$mail->Send()) echo "Erro ao enviar Email:" . $mail->ErrorInfo;
+            else return "ok";
+        }
+    }
 ?>

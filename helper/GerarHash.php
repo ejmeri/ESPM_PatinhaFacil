@@ -27,5 +27,9 @@
             
             return openssl_decrypt($valor, $hashtype,'[gOFdl+(BF[(');
         }
+        public function RandomNumbers()
+        {
+            return rand(1000,999999);
+        }
     }
 ?>

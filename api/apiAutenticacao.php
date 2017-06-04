@@ -56,7 +56,6 @@ use model\email\EmailModel;
             
             $SendEmail->Send($Email['Nome'], 'Autenticação da sua conta', $message);
 
-
         }
         public function Validar(Autenticacao $obj)
         {

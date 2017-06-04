@@ -3,11 +3,14 @@
 namespace api;
 
 use object\Usuario;
+use object\Email;
 use object\Autenticacao;
-use helper\Email;
+use helper\sendmail\sendEmail;
+use helper\sendmail\HtmlEmail;
 use helper\Database;
 use helper\GerarHash;
 use model\usuario\UsuarioModel;
+use model\email\EmailModel;
 use api\apiAutenticacao;
 
 Class apiUsuario extends Database
@@ -50,22 +53,49 @@ Class apiUsuario extends Database
     public function SendEmail(Usuario $obj)
     {
         $Email = new Email();
+
+        $html = new HtmlEmail();
+        $SendEmail = new sendEMail();
+
+        $Hash = new GerarHash();
+        $EmailModel = new EmailModel();
         $UsuarioModel = new UsuarioModel();
+        $NewPassword = $Hash->RandomNumbers();
+        $PassHashed = $Hash->Hash($NewPassword);
+
+      
         $retornoUsuario = $UsuarioModel->GetByLogin($obj);
+        $obj->Senha = $PassHashed;
+        $obj->PessoaId = $retornoUsuario['PessoaId'];
+        $obj->Id = $retornoUsuario['Id'];
 
+        
+        $UsuarioModel->Save($obj);
 
-        $senha = "2626+65265+";
+        $Email->PessoaId = $retornoUsuario['PessoaId'];
+        
+        $retornoEmail = $EmailModel->GetFirstbyPessoaId($Email);
 
-        $retorno = $Email->Send('elmerisilva@hotmail.com', 'Nova senha - Pet fácil', 'Olá, '.$retornoUsuario['Login'].', aqui está sua nova senha: '.$senha);
+        $message = file_get_contents('content/site/shared/emails/header-email.html');
+        $message .= file_get_contents('content/site/shared/emails/_recuperarsenha.html');
+        $message .= file_get_contents('content/site/shared/emails/footer-email.html');
 
-        echo print_r($retorno).'<br>';
+        $replacements = array(
+            '({name})' => $retornoUsuario['Login'],
+            '({senha})' => $NewPassword
+        );
 
-        if($retorno == 1){
-            echo $retornoUsuario['Login'].', sim';
+        $message = preg_replace( array_keys( $replacements ), array_values( $replacements ), $message );
+        
+        $retorno = $SendEmail->Send($retornoEmail['Nome'], 'Recuperação de senha', $message);
+
+        if($retorno == 'ok')
+        {
+            echo 'Sua senha foi recuperada, enviamos para o seu e-mail: '.$retornoEmail['Nome'].'.';
         }
         else
         {
-            echo $retornoUsuario['Login'].',fail <br>'.print_r($retorno).'<br>'. json_encode($retornoUsuario);
+            echo 'Ocorreu um erro: '.$retorno;
         }
 
 
