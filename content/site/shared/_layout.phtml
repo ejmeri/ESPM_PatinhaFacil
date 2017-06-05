@@ -8,17 +8,17 @@
     <meta name="keywords" content="<?php echo $this->keywords ?>">
     <meta name="author" content="<?php echo $this->autor ?>">
 	<!--<link href="content/site/css/style.css" rel="stylesheet" />-->
-	<link href="content/site/css/master.css?v=0.0" rel="stylesheet" />
-    <link href="content/site/css/site.css?v=0.0" rel="stylesheet" />
+	<link href="content/site/css/master.css?elmeri" rel="stylesheet" />
+    <link href="content/site/css/site.css?elmeri" rel="stylesheet" />
 	<!--<link href="content/site/css/petdetail.css" rel="stylesheet" />
 	<link href="content/site/css/pets.css" rel="stylesheet">-->
-    <link href="content/site/css/confirmadopt.css?v=0.0" rel="stylesheet">
-	<link href="content/site/css/newlogin.css?v=0.0" rel="stylesheet">
-    <link href="content/site/css/people.css?v=0.0" rel="stylesheet">
-    <link href="content/upload/css/component.css?v=0.0" rel="stylesheet">
+    <link href="content/site/css/confirmadopt.css?elmeri" rel="stylesheet">
+	<link href="content/site/css/newlogin.css?elmeri" rel="stylesheet">
+    <link href="content/site/css/people.css?elmeri" rel="stylesheet">
+    <link href="content/upload/css/component.css?elmeri" rel="stylesheet">
     <script src="content/site/js/site.js"></script>
 
-	<link href="content/font-awesome/css/font-awesome.min.css?v=1" rel="stylesheet" type="text/css"/>
+	<link href="content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 </head>
@@ -78,7 +78,7 @@
             </div>
         </a>
         <h3>Encontre aqui a felicidade para seu lar</h3>
-        <a href="#start" class="btn btn-blue btn-lg">Começar</a>
+        <a href="#start" class="btn btn-black btn-lg">Começar</a>
         <br>
         <!--<a href="#about" class="btn btn-dark btn-lg">Começar</a>-->
     </div>
@@ -138,6 +138,14 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="content/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="content/scrollreveal/scrollreveal.min.js"></script>
+    <script src="content/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="content/js/creative.min.js?elmeri"></script>
 
     <!-- Custom Theme JavaScript -->
     <script>
@@ -287,11 +295,7 @@
                 $('#image-holder').empty();
             }
     });
-    
 
-
-                
-        
 </script>
 
                             <!--JQUERY/JAVASCRIPT PAGE NEWLOGIN-->
@@ -323,13 +327,6 @@
                                 $("#user").focus();
                                 return;
                             }
-
-                            
-                            // if(cpfcnpj.length > 11 && cpfcnpj.length < 14){
-                            //     document.getElementById("txtCPF").innerHTML = "Forneça entre 11 (CPF) e 14 (CNPJ) caracteres.";
-                            //     $('#CPF').focus();
-                            //     return;            
-                            // }
 
                             postForm(formulario,'txtHint', 'result', 'login');
                             clearInputs();
@@ -408,7 +405,7 @@
     $(document).ready(function(){
         openInfo('event', 'pessoa');
         startperfil('pessoa');
-        startperfil('acesso');
+        startperfil('acesso', 'divedit');
         startperfil('email', 'divedit');
         startperfil('endereco', 'divedit');
         startperfil('telefone', 'divedit');    
@@ -416,5 +413,3 @@
 </script>
 
                <!--FIM PEOPLE-->
-
-                                    

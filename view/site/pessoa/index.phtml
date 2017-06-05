@@ -8,12 +8,24 @@
     <div class="rectangle">
 
         <div class="tab" id="tabpessoa">
-            <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'pessoa')">Gerais</a>
-            <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'acesso')">Acesso</a>
-            <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'tabemail')">E-mails</a>
-            <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'tabtelefone')">Telefones</a>
-            <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'endereco')">Endereços</a>
-            <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'tabpet')">Meus animais</a>       
+            <div class="tablinks">
+                <a href="javascript:;" onclick="openInfo(event, 'pessoa')">Gerais</a>                
+            </div>
+            <div class="tablinks">
+                <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'acesso')">Acesso</a>                
+            </div>
+            <div class="tablinks">
+                <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'tabemail')">E-mails</a>   
+            </div>
+            <div class="tablinks">
+                <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'tabtelefone')">Telefones</a>    
+            </div>
+            <div class="tablinks">
+                <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'endereco')">Endereços</a>                
+            </div>
+            <div class="tablinks">
+                <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'tabpet')">Meus animais</a>                       
+            </div>
         </div>
 
         <div id="retornoPessoa">
@@ -46,37 +58,46 @@
                 </div>
             </form>
         </div>
-    <!--
-        <div class="tab clear" id="tabaccess">
-        </div>-->
 
         <div id="retornoAcesso">
-            <form method="POST" id="acesso" class="tabcontent inline-table" action="pessoa/access">
+            <form method="POST" id="acesso" class="tabcontent inline-table" action="pessoa/acesso">
                 <input type="hidden" name="UsuarioId" value="<?php echo $view_user['Id']; ?>">
                 <div class="col-8 inline-table padding col-fl">
                     <div class="item-left">
                         <strong>Login</strong>
-                        <input type="text" id="txtpeoplenome" name="UsuarioLogin" value="<?php echo $view_user['Login']; ?>" class="form-control" required readonly>
+                        <input type="text" id="fieldlogin" name="UsuarioLogin" value="<?php echo $view_user['Login']; ?>" class="form-control" required readonly>
                     </div>
                     <div class="item-right">
                         <strong>Senha</strong>
-                        <!--<input type="password" id="txtpeoplerg" name="UsuarioSenha" value="<?php echo $view_user['Senha']; ?>" class="form-control" required readonly>-->
                         <div style="margin-top: 3%;">
-                            <strong class="clear"> ******** </strong>                        
+                            <strong class="clear">***********</strong>                        
                         </div>
                     </div>
                 </div>
-
+                <div class="col-40 col-sm-1 col-fl clear" id="divedit" style="margin-bottom:2%;">
+                    <div>
+                        <strong>Senha antiga</strong>
+                        <input type="password" id="" name="SenhaAntiga" onkeyup="ValidatePass(this.value)" value="" class="form-control" required autocomplete=off>
+                        <span class="text-warning" id="oldpass"></span>
+                    </div>
+                    <div>
+                        <strong>Nova Senha</strong>
+                        <input type="password" id="password" name="UsuarioSenha"  onkeyup="validatepassword(repassword)" minlength=6 value="" class="form-control" required autocomplete=off>
+                    </div>
+                      <div>
+                        <strong>Confirme a senha</strong>
+                        <input type="password" id="repassword" onkeyup="validatepassword(this.value)" name="ConfirmarSenha" value="" class="form-control" required autocomplete=off>
+                        <span class="text-warning" id="passretorno"></span>
+                    </div>
+                </div>
                 <div class="col-5">
-                    <button type="button" onclick="canceleditpeople('acesso')" id="cancel" class="btn btn-dark">Cancelar</button>
-                    <button type="button" onclick="editpeople('acesso')" id="edit" class="btn btn-dark">Editar</button>
-                    <input type="button" onclick="SubmitPartialForm($('#acesso'), 'retornoAcesso')" id="save" name="save" value="Salvar" class="btn btn-dark">                    
+                    <button type="button" onclick="canceledititempeople('acesso', 'divedit')" id="cancel" class="btn btn-black">Cancelar</button>
+                    <button type="button" onclick="savepeople('acesso', 'divedit')" id="new" class="btn btn-black">Editar</button>
+                    <input type="button" onclick="SubmitPartialFormAcesso($('#acesso'), 'retornoAcesso')" id="save" name="save" value="Salvar" class="btn btn-blue">                    
                 </div>
             </form>
         </div>
 
-        <!--<div class="tab clear" id="taboptionemail">
-        </div>-->
 
         <div class="tabcontent col-10 inline-table padding col-fl" id="tabemail">
             <div id="retornoEmail" class="clear">

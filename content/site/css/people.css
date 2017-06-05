@@ -1,13 +1,17 @@
 /* Style the tab */
 
-
 .rectangle {
     max-width: 60%;
     margin: 0 auto;
 }
+
 div.tab {
     overflow: hidden;
     border: 1px solid #ccc;
+    background-color: #53a3e8;
+}
+
+div.tablinks a {
     background-color: #53a3e8;
 }
 
@@ -26,6 +30,7 @@ div.tab a {
     text-decoration: none;
     color: white;
     margin-left: 2.7777778%;
+    text-align: left;
 }
 
 div.tab a:first-child {
@@ -60,28 +65,36 @@ div.tab a.active {
     margin-top: 2.8%;
 }
 
-
+@media screen and (max-width: 1920px) {
+    .rectangle {
+        max-width: 70%;
+    }
+    div.tablinks {
+        padding: 0px 0px 0px 16.6666667%;
+    }
+}
 
 @media screen and (max-width: 780px) {
     .rectangle {
         max-width: 100%;
     }
-    div.tab a {
-        margin-left: 2%;
+    div.tablinks {
+        padding: 0px 0px 0px 10%;
     }
-    div.tab a:first-child {
-        margin-left: 0%;
-    }
+
 }
 
 @media screen and (max-width: 520px) {
+    div.tablinks {
+        padding: 0px;
+    }
     div.tab a {
         clear: both;
-    }
-    div.tab a {
         text-align: center;
-    }
-    div.tab a {
         margin-left: 0%;
+    }
+    div.tablinks a {
+        width: 100%;
+        background-color: #53a3e8;
     }
 }

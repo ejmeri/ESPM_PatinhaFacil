@@ -1,0 +1,36 @@
+<form method="POST" id="acesso" class="tabcontent inline-table" action="pessoa/acesso">
+    <input type="hidden" name="UsuarioId" value="<?php echo $view_user['Id']; ?>">
+    <div class="col-8 inline-table padding col-fl">
+        <div class="item-left">
+            <strong>Login</strong>
+            <input type="text" id="fieldlogin" name="UsuarioLogin" value="<?php echo $view_user['Login']; ?>" class="form-control" required readonly>
+        </div>
+        <div class="item-right">
+            <strong>Senha</strong>
+            <div style="margin-top: 3%;">
+                <strong class="clear">***********</strong>                        
+            </div>
+        </div>
+    </div>
+    <div class="col-40 col-sm-1 col-fl clear" id="divedit" style="margin-bottom:2%;">
+        <div>
+            <strong>Senha antiga</strong>
+            <input type="password" id="" name="SenhaAntiga" onkeyup="ValidatePass(this.value)" value="" class="form-control" required autocomplete=off>
+            <span class="text-warning" id="oldpass"></span>
+        </div>
+        <div>
+            <strong>Nova Senha</strong>
+            <input type="password" id="password" name="UsuarioSenha"  onkeyup="validatepassword(repassword)" minlength=6 value="" class="form-control" required autocomplete=off>
+        </div>
+            <div>
+            <strong>Confirme a senha</strong>
+            <input type="password" id="repassword" onkeyup="validatepassword(this.value)" name="ConfirmarSenha" value="" class="form-control" required autocomplete=off>
+            <span class="text-warning" id="passretorno"></span>
+        </div>
+    </div>
+    <div class="col-5">
+        <button type="button" onclick="canceledititempeople('acesso', 'divedit')" id="cancel" class="btn btn-black">Cancelar</button>
+        <button type="button" onclick="savepeople('acesso', 'divedit')" id="new" class="btn btn-black">Editar</button>
+        <input type="button" onclick="SubmitPartialFormAcesso($('#acesso'), 'retornoAcesso')" id="save" name="save" value="Salvar" class="btn btn-blue">                    
+    </div>
+</form>

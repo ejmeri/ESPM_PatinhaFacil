@@ -50,6 +50,22 @@ Class apiUsuario extends Database
         else echo "Login e/ou senha incorretos.";
         
     }
+    public function EditAcesso()
+    {
+        $UsuarioModel = new UsuarioModel();
+        $Usuario = new Usuario('POST', 'Usuario');
+        
+        $Hash = new GerarHash();
+        $PassHashed = $Hash->Hash($Usuario->Senha);
+        $Usuario->Senha = $PassHashed;
+
+
+        $Usuario->PessoaId = $_SESSION['PessoaId'];
+        $retorno = $UsuarioModel->Save($Usuario);
+
+        // echo print_r($Usuario);
+
+    }
     public function SendEmail(Usuario $obj)
     {
         $Email = new Email();
@@ -97,8 +113,18 @@ Class apiUsuario extends Database
         {
             echo 'Ocorreu um erro: '.$retorno;
         }
+    }
+    public function ValidarSenha(Usuario $obj)
+    {
+       $Hash = new GerarHash();
+       $PassHashed = $Hash->Hash($obj->Senha);
+       $PessoaId = $_SESSION['PessoaId'];
 
+       $query = $this->Select("select login from usuario where senha = '{$PassHashed}' and pessoaid = '{$PessoaId}'");
 
+       $array = (array) $query;
+
+       if(count($array) == 0) echo "Senha incorreta.";
     }
 }
 

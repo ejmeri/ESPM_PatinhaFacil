@@ -160,6 +160,15 @@ use api\apiAutenticacao;
             
             if(strlen($Pessoa->CpfCnpj) >= 11) $this->PartialResultView($api->ValidateCpfCnpj($Pessoa));
         }
+        public function ValidarPassword()
+        {
+            $Usuario = new Usuario();
+            $Usuario->Senha = $this->getParams(0);
+
+            $api = new apiUsuario();
+            
+            if(strlen($Usuario->Senha) >= 1) $this->PartialResultView($api->ValidarSenha($Usuario));
+        }
         public function autenticacao()
         {   
             $this->title = "Autenticação de acesso";

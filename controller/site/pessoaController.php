@@ -8,6 +8,7 @@ use object\Telefone;
 use object\Pessoa;
 use object\Email;
 use object\Usuario;
+use api\apiUsuario;
 use model\usuario\UsuarioModel;
 use model\pessoa\PessoaModel;
 use model\email\EmailModel;
@@ -67,6 +68,15 @@ class pessoaController extends Controller {
     public function endereco($value='')
     {
         # code...
+    }
+    public function acesso($value='')
+    {
+        $apiUsuario = new apiUsuario();
+
+        $apiUsuario->EditAcesso();
+        
+        $this->Load();
+        $this->PartialView();
     }
     public function telefone($value='')
     {

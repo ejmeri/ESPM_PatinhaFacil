@@ -19,13 +19,12 @@ function openInfo(evt, tabName) {
 
 // PERFIL
 function startperfil(formulario, divedit = 0) {
-    // openInfo('event', 'pessoa');
-    // showlabels(formulario);
-    // $('#' + formulario).find('#edit').show();
     $('#' + formulario).find('#save').hide();
     $('#' + formulario).find('#cancel').hide();
     $('#' + formulario).find('#' + divedit).hide();
-    $('#' + formulario).validate({ errorClass: 'text-errors' });
+    $('#' + formulario).validate({
+        errorClass: 'text-errors'
+    });
 }
 
 function showlabels(form) {
@@ -39,17 +38,6 @@ function showtexts(form) {
 }
 
 function editpeople(formulario) {
-    // var id = $(formulario).find('#Id').val();
-
-    // if (id == 0) {
-    //     $(formulario).find('#warning').text('Selecione uma opção.');
-    //     return false;
-    // }
-    // else {
-    //     $(formulario).find('#warning').text('');
-    // }
-
-    // showtexts(formulario);
     $('#' + formulario).find('input').attr('readonly', false);
     $('#' + formulario).find('#edit').hide();
     $('#' + formulario).find('#cancel').show();
@@ -58,19 +46,18 @@ function editpeople(formulario) {
 
 function edititempeople(formulario, divedit = 0) {
 
-     var id = $('#' + formulario).find('#Id').val();
+    var id = $('#' + formulario).find('#Id').val();
 
     if (id == 0) {
         $('#' + formulario).find('#warning').text('Selecione uma opção para editar.');
         return false;
-    }
-    else {
+    } else {
         $('#' + formulario).find('#warning').text('');
     }
 
     // showtexts(formulario);
     $('#' + formulario).find('input').attr('readonly', false);
-    $('#' + formulario).find('#' + divedit).show();    
+    $('#' + formulario).find('#' + divedit).show();
     $('#' + formulario).find('#edit').hide();
     $('#' + formulario).find('#cancel').show();
     $('#' + formulario).find('#save').show();
@@ -78,7 +65,7 @@ function edititempeople(formulario, divedit = 0) {
 
 function canceleditpeople(formulario) {
     // showlabels(formulario);
-    $('#' + formulario).find('input').attr('readonly', true);    
+    $('#' + formulario).find('input').attr('readonly', true);
     $('#' + formulario).find('#edit').show();
     $('#' + formulario).find('#cancel').hide();
     $('#' + formulario).find('#save').hide();
@@ -88,7 +75,7 @@ function canceledititempeople(formulario, divedit = 0) {
     // showlabels(formulario);
     $('#' + formulario).find('input').attr('readonly', true);
     $('#' + formulario).find('select').val('0').change();
-    $('#' + formulario).find('#' + divedit).hide();  
+    $('#' + formulario).find('#' + divedit).hide();
     $('#' + formulario).find('#edit').show();
     $('#' + formulario).find('#cancel').hide();
     $('#' + formulario).find('#save').hide();
@@ -103,6 +90,7 @@ function savepeople(formulario, divedit = 0) {
     $('#' + formulario).find('#save').show();
     $('#' + formulario).find('#txtpeoplenome').val('');
     $('#' + formulario).find('#Id').val('');
+    $('#' + formulario).find('#fieldlogin').attr('readonly', true);
 }
 
 // FIM PERFIL
@@ -134,13 +122,54 @@ function SubmitPartialForm(form, elementId) {
 
     // form.validate({errorClass: 'text-errors'});
 
-     if(!form.valid()) 
+    if (!form.valid())
         return false;
 
-        form.find('#botao').attr('name', 'save');
-        form.find('#botao').val('Salvar');
+    form.find('#botao').attr('name', 'save');
+    form.find('#botao').val('Salvar');
 
-        postForm(form, elementId, '', '');        
+    postForm(form, elementId, '', '');
+}
+
+function SubmitPartialFormAcesso(form, elementId) {
+
+    var pass = document.getElementById('password').value;
+    var repass = document.getElementById('repassword').value;
+    var oldpass = document.getElementById('oldpass').innerText;
+
+    if (oldpass.length != 0)
+        return false;
+
+    if (pass != repass)
+        return false;
+
+    if (!form.valid())
+        return false;
+
+    form.find('#botao').attr('name', 'save');
+    form.find('#botao').val('Salvar');
+
+    postForm(form, elementId, '', '');
+}
+
+function ValidatePass(str) {
+
+    if (str.length == 0) {
+        document.getElementById("oldpass").innerHTML = "";
+        return;
+    } else if (str.length >= 1) {
+        postPartialView('login/ValidarPassword/' + str, 'oldpass');
+    }
+
+}
+
+function validatepassword(field) {
+    var pass = document.getElementById('password').value;
+
+    if (pass != field)
+        document.getElementById('passretorno').innerHTML = "Senhas não coincidem.";
+    else
+        document.getElementById('passretorno').innerHTML = "";
 }
 
 // FIM INSERIR PESSOA
@@ -148,13 +177,13 @@ function SubmitPartialForm(form, elementId) {
 // PERFIL 
 
 function ChangeEmail(id) {
-    if(id != 0) postPartialView('pessoa/email/' + id, 'retornoEmail');
-    else canceledititempeople('email', 'divedit');    
+    if (id != 0) postPartialView('pessoa/email/' + id, 'retornoEmail');
+    else canceledititempeople('email', 'divedit');
 }
 
 function ChangeTelefone(id) {
-    if(id != 0) postPartialView('pessoa/telefone/' + id, 'retornoTelefone');
-    else  canceledititempeople('telefone', 'divedit');
+    if (id != 0) postPartialView('pessoa/telefone/' + id, 'retornoTelefone');
+    else canceledititempeople('telefone', 'divedit');
 }
 
 // FIM
@@ -163,7 +192,7 @@ function ChangeTelefone(id) {
 // VALIDAR LOGIN EXISTENTE
 
 
- function showLogin(str) {
+function showLogin(str) {
     if (str.length == 0) {
         document.getElementById("txtlogin").innerHTML = "";
         return;
@@ -180,17 +209,19 @@ function ChangeTelefone(id) {
 // cadastra pet
 
 
- function CadastrarPet(form) {
+function CadastrarPet(form) {
 
-    form.validate({errorClass: 'text-errors'});
-    
-    if(!form.valid()) 
+    form.validate({
+        errorClass: 'text-errors'
+    });
+
+    if (!form.valid())
         return false;
 
-                
-        postForm(form,'txtretorno', 'result','login');
-        $("#descricao").val('');
-        $("#nome").val('');
+
+    postForm(form, 'txtretorno', 'result', 'login');
+    $("#descricao").val('');
+    $("#nome").val('');
 }
 
 // fim cadastra pet
@@ -199,13 +230,13 @@ function ChangeTelefone(id) {
 // contar len text area
 
 
-function countChar(val, label){
-     var len = val.value.length;
-     if (len >= 501) {
-              val.value = val.value.substring(0, 500);
-     } else {
-              $('#' + label).text(500 - len);
-     }
+function countChar(val, label) {
+    var len = val.value.length;
+    if (len >= 501) {
+        val.value = val.value.substring(0, 500);
+    } else {
+        $('#' + label).text(500 - len);
+    }
 };
 
 // fim contar
