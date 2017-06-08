@@ -50,6 +50,11 @@ Class apiUsuario extends Database
         else echo "Login e/ou senha incorretos.";
         
     }
+    public function Close()
+    {
+        // fechar a sessão aqui
+        unset($_SESSION['PessoaId']);
+    }
     public function EditAcesso()
     {
         $UsuarioModel = new UsuarioModel();

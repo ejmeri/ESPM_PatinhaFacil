@@ -30,9 +30,4 @@ Class UsuarioModel extends Model {
     {   
         return $this->db->First($this->db->Select("SELECT Id, Login, Senha, PessoaId FROM usuario WHERE login = '{$obj->Login}'"));
     }
-    public function Close()
-    {
-        // fechar a sessão aqui
-        unset($_SESSION['PessoaId']);
-    }
 }

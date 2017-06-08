@@ -76,7 +76,7 @@ use api\apiAutenticacao;
         }
         public function Close() 
         {
-            $api = new UsuarioModel();
+            $api = new apiUsuario();
             $api->Close();
             header('location:' . APP_ROOT . '/login');
         }

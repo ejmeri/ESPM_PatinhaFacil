@@ -4,6 +4,10 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .navbar-default,
 a {
     -webkit-transition: all .35s;
@@ -88,9 +92,13 @@ aside {
     padding: 0
 }
 
+.navbar-default .navbar-nav>li>a {
+    color: #000;
+}
+
 .navbar-default {
     background-color: #fff;
-    border-color: rgba(34, 34, 34, .05);
+    border-color: rgba(34, 34, 34, 0.5);
     transition: all .35s
 }
 
@@ -122,9 +130,8 @@ aside {
     text-transform: uppercase;
     font-weight: 700;
     font-size: 13px;
-    color: #fff;
+    /*color: #fff;*/
 }
-
 
 @media screen and (max-width: 520px) {
     .navbar-default .nav>li>a,
@@ -139,7 +146,6 @@ aside {
         color: #000;
     }
 }
-
 
 .navbar-default .nav>li>a:focus:hover,
 .navbar-default .nav>li>a:hover {
@@ -159,16 +165,16 @@ aside {
 
 @media (min-width:768px) {
     .navbar-default {
-        background-color: transparent;
+        background-color: rgba(255, 255, 255, 1);
         border-color: rgba(255, 255, 255, .3)
     }
     .navbar-default .navbar-header .navbar-brand {
-        color: #fff;
+        color: black;
     }
     .navbar-default .navbar-header .navbar-brand:focus,
     .navbar-default .navbar-header .navbar-default .nav>li>a,
     .navbar-default .nav>li>a:focus {
-        color: rgba(255, 255, 255, .7)
+        color: #53a3e8
     }
     .navbar-default .nav>li>a:focus:hover,
     .navbar-default .nav>li>a:hover {
