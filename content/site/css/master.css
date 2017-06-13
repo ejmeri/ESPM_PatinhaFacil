@@ -3493,7 +3493,13 @@ input[type="button"].btn-block {
   opacity: 1;
 }
 .collapse {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .collapse {
   display: none;
+}
 }
 .collapse.in {
   display: block;
@@ -3544,9 +3550,9 @@ tbody.collapse.in {
   display: none;
   float: left;
   min-width: 160px;
-  padding: 5px 0;
+  padding: 2px 0;
   margin: 2px 0 0;
-  font-size: 14px;
+  font-size: 16px;
   text-align: left;
   list-style: none;
   background-color: #fff;
@@ -3567,21 +3573,23 @@ tbody.collapse.in {
   margin: 9px 0;
   overflow: hidden;
   background-color: #e5e5e5;
+  /*border: 1px solid black;*/
 }
 .dropdown-menu > li > a {
   display: block;
-  padding: 3px 20px;
+  padding: 1px 20px;
   clear: both;
-  font-weight: normal;
+  font-weight: 350;
   line-height: 1.42857143;
-  color: #333;
+  color: #000;
   white-space: nowrap;
 }
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
-  color: #262626;
+  color: blue;
   text-decoration: none;
-  background-color: #f5f5f5;
+  /*background-color: #f5f5f5;*/
+  font-weight: 700
 }
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,
@@ -4545,7 +4553,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > .disabled > a,
 .navbar-default .navbar-nav > .disabled > a:hover,
 .navbar-default .navbar-nav > .disabled > a:focus {
-  color: #ccc;
+  color:blue;
   background-color: transparent;
 }
 .navbar-default .navbar-toggle {
@@ -4586,7 +4594,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,
   .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus {
-    color: #ccc;
+    color:blue;
     background-color: transparent;
   }
 }
@@ -4618,7 +4626,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
-  color: #fff;
+  color:blue;
   background-color: transparent;
 }
 .navbar-inverse .navbar-text {
@@ -4629,13 +4637,13 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #fff;
+  color: blue;
   background-color: transparent;
 }
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
-  color: #fff;
+  color: blue;
   background-color: #080808;
 }
 .navbar-inverse .navbar-nav > .disabled > a,
@@ -7388,7 +7396,14 @@ a:hover {
     text-transform: uppercase
 }
 
-.navbar-default .nav>li>a,
+.navbar-default .nav>li>a {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 13px;
+    color: #222
+}
+
+.navbar-default .nav>li>a:hover,
 .navbar-default .nav>li>a:focus {
     text-transform: uppercase;
     font-weight: 700;
@@ -7403,7 +7418,7 @@ a:hover {
 
 .navbar-default .nav>li.active>a,
 .navbar-default .nav>li.active>a:focus {
-    color: #53a3e8!important;
+    color: #53a3e8 !important;
     background-color: transparent
 }
 
@@ -7412,9 +7427,18 @@ a:hover {
     background-color: transparent
 }
 
-@media (min-width:768px) {
+@media (min-width:769px) {
+    .navbar-default .navbar-nav > li.dropdown:hover > a, 
+    .navbar-default .navbar-nav > li.dropdown:hover > a:hover,
+    .navbar-default .navbar-nav > li.dropdown:hover > a:focus {
+        background-color: rgb(245, 245, 245);
+        color: blue;
+    }
+    li.dropdown:hover > .dropdown-menu {
+        display: block;
+    }
     .navbar-default {
-        background-color: transparent;
+        background-color: #fff;
         border-color: rgba(255, 255, 255, .3)
     }
     .navbar-default .navbar-header .navbar-brand {
@@ -7427,7 +7451,7 @@ a:hover {
     }
     .navbar-default .nav>li>a:focus:hover,
     .navbar-default .nav>li>a:hover {
-        color: #fff
+        color: blue
     }
     .navbar-default.affix {
         background-color: #fff;

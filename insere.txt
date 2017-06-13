@@ -1,0 +1,76 @@
+
+insert into tipoemail(id, nome, dtinclusao, dtatualizacao)
+values ('0','Próprio',curdate(), curdate());
+
+insert into tipoemail(id, nome, dtinclusao, dtatualizacao)
+values ('0','Comercial',curdate(), curdate());
+
+
+insert into tipotelefone(id, nome, dtinclusao, dtatualizacao)
+values ('0','Próprio',curdate(), curdate());
+
+insert into tipotelefone(id, nome, dtinclusao, dtatualizacao)
+values ('0','Comercial',curdate(), curdate());
+
+
+insert into tipoendereco(id, nome, dtinclusao, dtatualizacao)
+values ('0','Próprio',curdate(), curdate());
+
+insert into tipoendereco(id, nome, dtinclusao, dtatualizacao)
+values ('0','Comercial',curdate(), curdate());
+
+insert into genero(id, nome, dtinclusao, dtatualizacao)
+values ('0','Macho',curdate(), curdate());
+
+insert into genero(id, nome, dtinclusao, dtatualizacao)
+values ('0','Femêa',curdate(), curdate());
+
+insert into porte(id, nome, dtinclusao, dtatualizacao)
+values ('0','Pequeno',curdate(), curdate());
+
+insert into porte(id, nome, dtinclusao, dtatualizacao)
+values ('0','Médio',curdate(), curdate());
+
+insert into porte(id, nome, dtinclusao, dtatualizacao)
+values ('0','Grande',curdate(), curdate());
+
+insert into pelagem(id, nome, dtinclusao, dtatualizacao)
+values ('0','Clara',curdate(), curdate());
+
+insert into pelagem(id, nome, dtinclusao, dtatualizacao)
+values ('0','Mista',curdate(), curdate());
+
+insert into pelagem(id, nome, dtinclusao, dtatualizacao)
+values ('0','Escura',curdate(), curdate());
+
+
+select * from pelagem;
+
+
+insert into ddd(nome,numero, dtinclusao, dtatualizacao)
+values('SP',11, curdate(), curdate());
+
+insert into ddd(nome,numero, dtinclusao, dtatualizacao)
+values('RJ',21, curdate(), curdate());
+insert into especie values('0','Cão', curdate(), curdate());
+
+insert into especie values('0','Gato', curdate(), curdate());
+
+select * from telefone;
+
+insert into tipopessoa(Id, Nome, DtInclusao, DtAtualizacao)
+values('0', 'Doador', curdate(), curdate());
+insert into tipopessoa(Id, Nome, DtInclusao, DtAtualizacao)
+values('0', 'Adotador', curdate(), curdate());
+
+insert into raca(id, nome, dtinclusao, dtatualizacao, especieid)
+values('0', 'Sem raça definida', curdate(), curdate(), 4);
+insert into raca(id, nome, dtinclusao, dtatualizacao, especieid)
+values('0', 'Persa', curdate(), curdate(), 4);
+
+
+
+insert into raca(id, nome, dtinclusao, dtatualizacao, especieid)
+values('0', 'Sem raça definida', curdate(), curdate(), 3);
+insert into raca(id, nome, dtinclusao, dtatualizacao, especieid)
+values('0', 'Pitbull', curdate(), curdate(), 3);
