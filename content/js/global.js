@@ -6,12 +6,19 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('.time').mask('00:00:00');
     $('.date_time').mask('00/00/0000');
-    $('.cep').mask('00000-000');
     $('.phone').mask('0000-0000');
     $('.phone_with_ddd').mask('(00) 0000-0000');
     $('.phone_us').mask('(000) 000-0000');
     $('.mixed').mask('AAA 000-S0S');
 
+
+        
+    $(".cep").focusin(function () {
+        $('.cep').mask('00000-000');
+    });
+    $(".cep").focusout(function () {
+        $('.cep').unmask();
+    });
 
     $(".cellphone").focusin(function () {
         $('.cellphone').mask('00000-0000');

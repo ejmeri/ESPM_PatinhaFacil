@@ -29,9 +29,9 @@ body {
   margin: 0;
 }
 
-body::-webkit-scrollbar {
+/*body::-webkit-scrollbar {
     display: none;
-}
+}*/
 
 article,
 aside,
@@ -2462,7 +2462,7 @@ table th[class*="col-"] {
   min-height: .01%;
   overflow-x: auto;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .table-responsive {
     width: 100%;
     margin-bottom: 15px;
@@ -4357,7 +4357,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   padding-bottom: 10px;
   line-height: 20px;
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .navbar-nav .open .dropdown-menu {
     position: static;
     float: none;
@@ -4454,7 +4454,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     top: 0;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .navbar-form .form-group {
     margin-bottom: 5px;
   }
@@ -4576,7 +4576,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #555;
   background-color: #e7e7e7;
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     color: #777;
   }
@@ -4672,7 +4672,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #fff;
   background-color: #080808;
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
     border-color: #080808;
   }
@@ -6596,7 +6596,7 @@ button.close {
 .visible-lg-inline-block {
   display: none !important;
 }
-@media (max-width: 767px) {
+@media (8px) {
   .visible-xs {
     display: block !important;
   }
@@ -6611,17 +6611,17 @@ button.close {
     display: table-cell !important;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .visible-xs-block {
     display: block !important;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .visible-xs-inline {
     display: inline !important;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .visible-xs-inline-block {
     display: inline-block !important;
   }
@@ -6716,7 +6716,7 @@ button.close {
     display: inline-block !important;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .hidden-xs {
     display: none !important;
   }
@@ -6818,6 +6818,7 @@ body {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
+    padding: 10    
 }
 
 .text-vertical-center h1 {
@@ -7013,7 +7014,7 @@ hr.small {
     display: table;
     position: relative;
     width: 100%;
-    height: 50%;
+    /*height: 50%;*/
     background: url(../../images/landscape.jpg) no-repeat top fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -7525,11 +7526,25 @@ a:hover {
     }
 }
 
+.image-banner {
+  margin-top: 50px;
+}
 
 .image-banner img {
-  width: 10%;
+  width: 18%;
   margin: 0 auto;
+  background: #e3e3e3;
+  border-radius: 20px;
+  padding: 10px
 }
+
+@media (max-width: 520px) {
+  .image-banner img {
+    width: 50%;
+  }
+
+}
+
 
 .portfolio-box {
     position: relative;

@@ -1,5 +1,86 @@
-<div id="retornoEndereco">  
-    <form method="POST" id="endereco" class="tabcontent inline-table" action="pessoa/endereco" style="padding-bottom: 25px;">
-        
-    </form>
-</div>
+<div class="col-lg-4">
+                    <strong>Lista de Endereços</strong>
+                    <select class="form-control block" id="telefones" onchange="ChangeEndereco(this.value)">
+                        <option value="0">Selecione o endereço</option><?php if (count($view_enderecos) > 0) { ?><?php foreach ($view_enderecos as $endereco) { ?>
+                        <option value=<?php echo $endereco['Id']; ?> <?php echo ($endereco['Id'] == $view_endereco['Id'] ? 'selected' : ''); ?>><?php echo $endereco['Nome'] ?></option><?php } } ?>
+                    </select>                      
+                </div>
+
+                <form method="POST" id="endereco" class="col-10 inline-table" action="pessoa/endereco">
+                    <input type="hidden" name="EnderecoId" id="Id" value="<?php echo $view_endereco['Id']; ?>">
+                    <input type="hidden" name="teste" id="botao" value="">
+                    <div id="divedit">
+                        <div class="clear col-lg-5">
+                            <strong>Dê um apelido ao seu endereço</strong>
+                            <input type="text" id="txtpeoplenome" name="EnderecoNome" value="<?php echo $view_endereco['Nome']; ?>" class="form-control" required autocomplete=off maxlength=45 placeholder="Exemplo: Casa da vovó">
+                        </div>
+                        <div class="clear">
+                            <strong>CEP</strong>                            
+                        </div>
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <input type="text" id="EnderecoCep" name="CEP" value="<?php echo $view_endereco['CEP']; ?>" class="form-control cep" required autocomplete=off maxnlength=8>
+                            </div>
+                            <div class="form-group">
+                                <a href="javascript:BuscarCep();" id="buscarcep" class="btn btn-black" title="Buscar CEP">Pesquisar <i class="fa fa-search fa-1x"></i></a>                                                                   
+                            </div>
+                            <div>
+                                <span id="infocep" style="color:red;"></span>
+                            </div>
+                        </div>
+                        <div class="clear col-lg-9">
+                            <strong>Logradouro</strong>
+                            <input type="text" readonly id="EnderecoLogradouro" name="logradouro" value="<?php echo $view_endereco['Logradouro']; ?>" class="form-control" required autocomplete=off maxlength=45>
+                        </div>
+                        <div class="clear col-lg-9">
+                            <strong>Bairro</strong>
+                            <input type="text" id="EnderecoBairro" name="bairro" readonly value="<?php echo $view_endereco['Bairro']; ?>" class="form-control" required autocomplete=off maxlength=45>
+                        </div>
+                        <div class="clear col-lg-4">
+                            <div class="col-lg-10">
+                                <strong>Cidade</strong>
+                                <input type="text" readonly id="EnderecoCidade" name="cidade" value="<?php echo $view_endereco['Cidade']; ?>" class="form-control" required autocomplete=off maxlength=45>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="col-lg-10">
+                                <strong>Estado</strong>
+                                <input type="text" readonly id="EnderecoEstado" name="uf" value="<?php echo $view_endereco['UF']; ?>" class="form-control" required autocomplete=off maxlength=2>
+                            </div>
+                        </div>
+                        <div class="clear col-lg-4">
+                            <div class="col-lg-10">
+                                <strong>Número</strong>
+                                <input type="number" id="txtpeoplenome" name="EnderecoNumero" value="<?php echo $view_endereco['Numero']; ?>" class="form-control" required autocomplete=off>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="col-lg-10">
+                                <strong>Complemento</strong>
+                                <input type="text" id="txtpeoplenome" name="EnderecoComplemento" value="<?php echo $view_endereco['Complemento']; ?>" class="form-control" autocomplete=off maxlength=45>
+                            </div>
+                        </div>
+                        <div class="clear col-lg-9">
+                            <strong>Ponto de referência</strong>
+                            <input type="text" name="EnderecoPontoReferencia" value="<?php echo $view_endereco['PontoReferencia']; ?>" class="form-control" autocomplete=off maxlength=45>
+                        </div>
+                        <div class="clear col-lg-4">
+                            <strong>Tipo de endereço</strong>
+                            <select class="form-control" id="enderecos" name="EnderecoTipoEnderecoId" required>
+                                <option value="">Selecione o tipo</option><?php if (count($view_tipoendereco) > 0) { ?><?php foreach ($view_tipoendereco as $tipoendereco) { ?>
+                                <option value=<?php echo $tipoendereco['Id']; ?> <?php echo ($tipoendereco['Id'] == $view_endereco['TipoEnderecoId'] ? 'selected' : ''); ?>><?php echo $tipoendereco['Nome'] ?></option><?php } } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="clear col-lg-10" style="padding-top:10px">
+                        <div class="col-lg-2">
+                            <button type="button" onclick="saveend('endereco', 'divedit')" id="new" class="btn btn-black">Novo</button>
+                        </div>
+                        <div class="col-lg-2">
+                            <button type="button" onclick="canceleditend('endereco', 'divedit')" id="cancel" class="btn btn-black">Cancelar</button>
+                        </div>
+                        <div class="col-lg-2">
+                            <input type="button" onclick="SubmitPartialForm($('#endereco'), 'retornoEndereco')" id="save" name="save" value="Salvar" class="btn btn-blue">
+                        </div>
+                    </div>
+                </form>

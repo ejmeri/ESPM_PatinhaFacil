@@ -3,16 +3,25 @@
 namespace model\telefone;
 
 use object\Telefone;
+use object\Endereco;
 use lib\Model;
 
-class TelefoneModel extends Model 
+class TelefoneModel extends Model
 {
     public function Save(Telefone $obj)
     {
-        if (empty($obj->Id)){
-            return $this->db->Insert($obj,'telefone');
+        if (empty($obj->Id)) {
+            return $this->db->Insert($obj, 'telefone');
         } else {
-            return $this->db->Update($obj,array('Id'=>$obj->Id),'telefone');
+            return $this->db->Update($obj, array('Id'=>$obj->Id), 'telefone');
+        }
+    }
+    public function SaveEndereco(Endereco $obj)
+    {
+        if (empty($obj->Id)) {
+            return $this->db->Insert($obj, 'endereco');
+        } else {
+            return $this->db->Update($obj, array('Id'=>$obj->Id), 'endereco');
         }
     }
     public function GetbyPessoaId(Telefone $obj)
@@ -30,5 +39,17 @@ class TelefoneModel extends Model
     public function GetDdd()
     {
         return $this->db->Select("SELECT Id, Nome, Numero FROM ddd order by nome");
+    }
+    public function GetTipoEndereco()
+    {
+        return $this->db->Select('SELECT Id, Nome from tipoendereco order by nome');
+    }
+    public function GetEnderecoByPessoaId(Endereco $obj)
+    {
+        return $this->db->Select("SELECT Id, Nome from endereco where pessoaid = '{$obj->PessoaId}'");
+    }
+    public function GetEnderecoById(Endereco $obj)
+    {
+       return $this->db->First($this->db->Select("SELECT * from endereco where id = '{$obj->Id}'"));
     }
 }

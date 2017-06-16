@@ -6,6 +6,7 @@ use helper\Session;
 use helper\CpfCnpj;
 use lib\Controller;
 use object\Telefone;
+use object\Endereco;
 use object\Pessoa;
 use object\Email;
 use object\Usuario;
@@ -26,6 +27,11 @@ Class apiPessoa
         else if (!$validar->isCPF($obj->CpfCnpj) && (strlen($obj->CpfCnpj) == 14)){
             echo "CNPJ inválido.";  
         }
+    }
+    public function SaveEndereco(Endereco $obj)
+    {
+        $TelefoneModel = new TelefoneModel();
+        $TelefoneModel->SaveEndereco($obj);
     }
     public function LoadInfo()
     {

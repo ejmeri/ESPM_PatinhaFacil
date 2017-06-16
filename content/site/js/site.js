@@ -1,3 +1,30 @@
+function BuscarCep() {
+    var cep = endereco.EnderecoCep.value;
+
+    if (cep == '') {
+        document.getElementById('infocep').innerHTML = 'Informe um CEP';
+    } else if (cep.length < 8) {
+        document.getElementById('infocep').innerHTML = 'O campo CEP deve conter 8 números.';
+    } else {
+        document.getElementById('infocep').innerHTML = '';
+        $.get('https://viacep.com.br/ws/' + cep + '/json/', function (data) {
+            
+             var endCliente = JSON.parse(JSON.stringify(data));
+
+            if(endCliente.erro == true) document.getElementById('infocep').innerHTML = 'CEP não encontrado.';
+            else {
+                var endCliente = JSON.parse(JSON.stringify(data));
+                
+                document.getElementById('EnderecoLogradouro').value = endCliente.logradouro;
+                document.getElementById('EnderecoBairro').value = endCliente.bairro;
+                document.getElementById('EnderecoCidade').value = endCliente.localidade;
+                document.getElementById('EnderecoEstado').value = endCliente.uf;
+            }
+        });
+    }
+}
+
+
 // open tabs 
 
 function openInfo(evt, tabName) {
@@ -37,6 +64,7 @@ function showtexts(form) {
     $(form).find("input").show();
 }
 
+
 function editpeople(formulario) {
     $('#' + formulario).find('input').attr('readonly', false);
     $('#' + formulario).find('#edit').hide();
@@ -62,6 +90,33 @@ function edititempeople(formulario, divedit = 0) {
     $('#' + formulario).find('#cancel').show();
     $('#' + formulario).find('#save').show();
 }
+
+function editEndereco(formulario, divedit = 0) {
+
+    var id = $('#' + formulario).find('#Id').val();
+
+    if (id == 0) {
+        $('#' + formulario).find('#warning').text('Selecione uma opção para editar.');
+        return false;
+    } else {
+        $('#' + formulario).find('#warning').text('');
+    }
+
+    // showtexts(formulario);
+
+    $('#' + formulario).find('#' + divedit).show();
+    $('#' + formulario).find('#edit').hide();
+    $('#' + formulario).find('#cancel').show();
+    $('#' + formulario).find('#save').show();
+}
+
+function canceleditend(formulario) {
+    $('#' + formulario).find('#edit').show();
+    $('#' + formulario).find('#cancel').hide();
+    $('#' + formulario).find('#save').hide();
+    $('#' + formulario).find('#divedit').hide();
+}
+
 
 function canceleditpeople(formulario) {
     // showlabels(formulario);
@@ -93,6 +148,18 @@ function savepeople(formulario, divedit = 0) {
     $('#' + formulario).find('#fieldlogin').attr('readonly', true);
 }
 
+function saveend(formulario, divedit = 0) {
+    // showtexts(formulario);
+    $('#' + formulario).find('input').attr('value', '');
+    $('#' + formulario).find('#save').attr('value', 'Salvar');
+    $('#' + formulario).find('#' + divedit).show();
+    $('#' + formulario).find('#edit').hide();
+    $('#' + formulario).find('#cancel').show();
+    $('#' + formulario).find('#save').show();
+    $('#' + formulario).find('#txtpeoplenome').val('');
+    $('#' + formulario).find('#Id').val('');
+}
+
 // FIM PERFIL
 
 // cpfcnpj EVENTO
@@ -118,9 +185,6 @@ function ValidateCPFCNPJ(str) {
 
 
 function SubmitPartialForm(form, elementId) {
-
-
-    // form.validate({errorClass: 'text-errors'});
 
     if (!form.valid())
         return false;
@@ -184,6 +248,11 @@ function ChangeEmail(id) {
 function ChangeTelefone(id) {
     if (id != 0) postPartialView('pessoa/telefone/' + id, 'retornoTelefone');
     else canceledititempeople('telefone', 'divedit');
+}
+
+function ChangeEndereco(id) {
+    if (id != 0) postPartialView('pessoa/endereco/' + id, 'retornoEndereco');
+    else canceleditend('endereco', 'divedit');
 }
 
 // FIM
