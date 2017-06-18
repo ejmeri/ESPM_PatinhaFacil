@@ -2,6 +2,7 @@
 
 namespace model\animal;
 
+use object\FilterPet;
 use object\Animal;
 use object\AnimalImagem;
 use object\Pessoa;
@@ -33,15 +34,15 @@ Class AnimalModel extends Model {
         a.racaid = b.id join genero c on
         a.generoid = c.id join porte d on
         a.porteid = d.id join animalimagem e on
-        a.id = e.animalid order by rand() and a.dtinclusao asc limit 15");
+        a.id = e.animalid order by rand() and a.dtinclusao asc limit 10");
     }
     public function GetByPessoaId(Pessoa $obj){
-         return $this->db->Select("SELECT a.id, a.nome, b.nome 'raca', peso, e.nome 'imagem' FROM animal a join raca b on
-        a.racaid = b.id join genero c on
-        a.generoid = c.id join porte d on
-        a.porteid = d.id join animalimagem e on
-        a.id = e.animalid join pessoaanimal f on
-        a.id = f.animalid where f.pessoaid = '{$obj->Id}'");
+         return $this->db->Select("SELECT a.id, a.nome, f.nome 'raca', peso, e.nome 'imagem', d.jsonendereco from animal a join pessoaanimal b on
+                a.id = b.animalid join pessoa c on
+                b.pessoaid = c.id join endereco d on
+                c.id = d.pessoaid join animalimagem e on
+                a.id = e.animalid join raca f on
+                a.racaid = f.id where a.racaid = '{$obj->Raca}' and a.generoid = '{$obj->Genero}' and a.pelagemid = '{$obj->Pelagem}' and a.porteid = '{$obj->Porte}' and d.jsonendereco like '%{$obj->Localizacao}%'");
     }
     public function Save(Animal $obj){
         if (empty($obj->Id)){
@@ -73,5 +74,14 @@ Class AnimalModel extends Model {
         } else {
             return $this->db->Update($obj,array('Id'=>$obj->Id),'animalimagem');
         }
+    }
+    public function ListaPet(FilterPet $obj)
+    {
+        return $this->db->Select("SELECT a.id, a.nome, f.nome 'raca', peso, e.nome 'imagem', d.jsonendereco from animal a join pessoaanimal b on
+                a.id = b.animalid join pessoa c on
+                b.pessoaid = c.id join endereco d on
+                c.id = d.pessoaid join animalimagem e on
+                a.id = e.animalid join raca f on
+                a.racaid = f.id where a.racaid = '{$obj->Raca}' and a.generoid = '{$obj->Genero}' and a.pelagemid = '{$obj->Pelagem}' and a.porteid = '{$obj->Porte}' and d.jsonendereco like '%{$obj->Localizacao}%'");  
     }
 }

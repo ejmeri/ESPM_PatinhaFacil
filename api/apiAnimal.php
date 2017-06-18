@@ -2,6 +2,7 @@
 
 namespace api;
 
+use object\FilterPet;
 use object\TipoPessoa;
 use object\PessoaAnimal;
 use object\Pessoa;
@@ -50,6 +51,16 @@ class apiAnimal
         }
         else echo $retornoPessoaAnimalModel['feedback'];
         
+    }
+    public function ListaPet(FilterPet $FilterPet)
+    {
+        $AnimalModel = new AnimalModel();
+        return $AnimalModel->ListaPet($FilterPet);
+    }
+    public function GetTenRandom($random = 10)
+    {
+        $AnimalModel = new AnimalModel();
+        return $AnimalModel->GetTenRandom();
     }
     
 }

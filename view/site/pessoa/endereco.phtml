@@ -1,15 +1,15 @@
-<div class="col-lg-4">
+<!--<div class="col-lg-4">
                     <strong>Lista de Endereços</strong>
                     <select class="form-control block" id="telefones" onchange="ChangeEndereco(this.value)">
                         <option value="0">Selecione o endereço</option><?php if (count($view_enderecos) > 0) { ?><?php foreach ($view_enderecos as $endereco) { ?>
                         <option value=<?php echo $endereco['Id']; ?> <?php echo ($endereco['Id'] == $view_endereco['Id'] ? 'selected' : ''); ?>><?php echo $endereco['Nome'] ?></option><?php } } ?>
                     </select>                      
-                </div>
+                </div>-->
 
                 <form method="POST" id="endereco" class="col-10 inline-table" action="pessoa/endereco">
                     <input type="hidden" name="EnderecoId" id="Id" value="<?php echo $view_endereco['Id']; ?>">
                     <input type="hidden" name="teste" id="botao" value="">
-                    <div id="divedit">
+                    <div id="diveditar">
                         <div class="clear col-lg-5">
                             <strong>Dê um apelido ao seu endereço</strong>
                             <input type="text" id="txtpeoplenome" name="EnderecoNome" value="<?php echo $view_endereco['Nome']; ?>" class="form-control" required autocomplete=off maxlength=45 placeholder="Exemplo: Casa da vovó">
@@ -73,14 +73,15 @@
                         </div>
                     </div>
                     <div class="clear col-lg-10" style="padding-top:10px">
-                        <div class="col-lg-2">
+                        <!--<div class="col-lg-2">
                             <button type="button" onclick="saveend('endereco', 'divedit')" id="new" class="btn btn-black">Novo</button>
                         </div>
                         <div class="col-lg-2">
                             <button type="button" onclick="canceleditend('endereco', 'divedit')" id="cancel" class="btn btn-black">Cancelar</button>
-                        </div>
+                        </div>-->
                         <div class="col-lg-2">
-                            <input type="button" onclick="SubmitPartialForm($('#endereco'), 'retornoEndereco')" id="save" name="save" value="Salvar" class="btn btn-blue">
+                            <!--<input type="button" onclick="SubmitPartialForm($('#endereco'), 'retornoEndereco', 'MensagemEndereco')" id="save" name="save" value="Salvar" class="btn btn-blue">-->
+                            <button type="button" onclick="SubmitPartialForm($('#endereco'), 'retornoEndereco')" id="saveend" name="save" class="btn btn-blue" data-toggle="modal" data-target="#myModal">Salvar</button>
                         </div>
                     </div>
                 </form>

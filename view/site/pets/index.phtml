@@ -7,13 +7,13 @@
     <div class="grid-filter">    
         <div class="header-grid-filter">
             <a href="javascript:;" class="header-grid-text" id="filters">Filtros <i class="fa fa-angle-down fa-1x" aria-hidden="true"></i></a>
-            <hr>
+            <hr style="border: 1px solid #53a3e8">
         </div>
         <div class="items-filter" id="items-filter">
-            <form method="POST" name="SearchPet" class="form-search">   
+            <form method="POST" id="SearchPet" class="form-search"  action="pets/ListaPet">   
                 <div class="filter col-sm-1">
                     <label for="especie">Espécie</label>
-                    <select class="form-control block" id="especie" onchange="showPet(this.value); showRaca(this.value);"> 
+                    <select class="form-control block" id="especie" name="FilterPetEspecie" onchange="showRaca(this.value);"> 
                         <option value="0">Selecione a espécie</option>      
                         <?php if($view_especie > 0) { ?>
                                 <?php foreach ($view_especie as $li => $a) { ?>
@@ -25,13 +25,13 @@
                 </div>
                 <div class="filter" id="raca">
                 <label for="raca">Raça</label>
-                    <select class="form-control block" id="raca">
+                    <select class="form-control block" id="raca" name="FilterPetRaca">
                         <option value="0">Selecione uma espécie</option>
                     </select>
                 </div>
                 <div class="filter">
                     <label for="genero">Gênero</label>
-                    <select class="form-control block" id="genero">
+                    <select class="form-control block" id="genero" name="FilterPetGenero">
                         <option value="0">Selecione o gênero</option>      
                         <?php if($view_genero > 0) { ?>
                                 <?php foreach ($view_genero as $li => $a) { ?>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="filter">
                     <label for="cor">Pelagem</label>
-                    <select class="form-control block" id="pelagem">
+                    <select class="form-control block" id="pelagem" name="FilterPetPelagem">
                         <option value="0">Selecione a pelagem</option>     
                         <?php if($view_pelagem > 0) { ?>
                                 <?php foreach ($view_pelagem as $li => $a) { ?>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="filter">
                     <label for="porte">Porte</label>
-                    <select class="form-control block" id="porte">
+                    <select class="form-control block" id="porte" name="FilterPetPorte">
                         <option value="0">Selecione a o porte</option>      
                         <?php if($view_porte > 0) { ?>
                                 <?php foreach ($view_porte as $li => $a) { ?>
@@ -64,6 +64,25 @@
                             }
                         } ?> 
                     </select>
+                </div>
+                <div class="clear filter">
+                    <label for="porte">Localização</label>
+                    <select class="form-control" id="estado" name="FilterPetLocalizacao">
+                        <option value="0">Selecione o estado</option>      
+                        <?php if($view_porte > 0) { ?>
+                                <?php foreach ($view_estados as $li => $a) { ?>
+                                <option value=<?php echo $a['Sigla']; ?>> <?php echo $a['Nome']; ?></option>
+                        <?php 
+                            }
+                        } ?> 
+                    </select>
+                </div>
+                <div class="col-lg-3" style="padding: 5px 0px">
+                    <label for=""></label> <br>
+                    <button type="button" onclick="SubmitPartialForm($('#SearchPet'), 'ListPet')" class="btn btn-black"> <i class="fa fa-search"></i> PESQUISAR </button>                    
+                </div>
+                <div class="col-lg-12">
+                    <hr style="border: 1px solid #53a3e8">
                 </div>
             </form>
         </div>

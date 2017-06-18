@@ -16,6 +16,7 @@ use object\Pessoa;
 use object\Telefone;
 use object\Especie;
 use object\Email;
+use object\FilterPet;
 use helper\Session;
 use api\apiAnimal;
 use api\apiPessoa;
@@ -26,17 +27,19 @@ class petsController extends Controller {
 
         new Session();
 
-        $this->title = "Pets";
+        $this->title .= "Pets";
 
         
         $model = new EspecieModel();
         $modelAnimal = new AnimalModel();
+        $modelTelefone = new TelefoneModel();
 
         $this->dados = array(
             'especie' =>$modelAnimal->getEspecie(),
             'porte' =>$modelAnimal->getPorte(),
             'genero' =>$modelAnimal->getGenero(),
             'pelagem' =>$modelAnimal->getPelagem(),
+            'estados' => $modelTelefone->GetUF(),
             'random' =>$modelAnimal->GetTenRandom()
         );
 
@@ -46,7 +49,7 @@ class petsController extends Controller {
     {
         new Session();
 
-        $this->title = "Doar um Pet";
+        $this->title .= "Doar um Pet";
 
         if(!isset($_POST['botao']))
         {
@@ -74,7 +77,7 @@ class petsController extends Controller {
     {
         new Session();
         
-        $this->title = "Detalhes do Pet";
+        $this->title .= "Detalhes do Pet";
         $Animal = new Animal();
         $Animal->Id = $this->getParams(0);
 
@@ -91,7 +94,7 @@ class petsController extends Controller {
         new Session();
         error_reporting(!E_NOTICE);
 
-        $this->title = "Confirmar adoção";
+        $this->title .= "Confirmar adoção";
 
         if(!$_POST['button'])
         {
@@ -125,17 +128,25 @@ class petsController extends Controller {
         } 
     }
     public function ListaPet() 
-    {
-         $Animal = new Animal();
-         $Animal->EspecieId = $this->getParams(0);
+    {   
+        $apiAnimal = new apiAnimal();
+        $FilterPet = new FilterPet('POST', 'FilterPet');
 
-         $model = new AnimalModel();
+        $random = $apiAnimal->GetTenRandom();
+        $lista = $apiAnimal->ListaPet($FilterPet);
 
-         $this->dados = array(
-            'list' => $model->getlist($Animal),
-            'random' =>$model->GetTenRandom()
-         );
-         $this->PartialView();
+        // echo '<br>';
+        // print_r($random);
+        // echo '<br>';
+        // print_r($lista);
+        // echo '<br>';
+
+        $this->dados = array(
+            'list' => $lista,
+            'random' => $random
+        );
+        
+        $this->PartialView();
     }
     public function ListaRaca()
     {

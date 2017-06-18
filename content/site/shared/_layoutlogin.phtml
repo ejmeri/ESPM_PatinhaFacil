@@ -9,10 +9,10 @@
          <!-- Bootstrap Core CSS -->
         <link href="content/bootstrap/css/bootstrap.min.css?v" rel="stylesheet">
         <link href="content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="content/site/css/master.css?elmeri" rel="stylesheet" media="all">
+        <link href="content/site/css/master.css?<?php echo NEW_FILE;?>" rel="stylesheet" media="all">
         <link href="content/site/css/login.css?elmeri" rel="stylesheet" media="all">
         <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-        <script src="content/site/js/site.js"></script>
+        <script src="content/site/js/site.js?<?php echo NEW_FILE;?>"></script>
         <link href="content/magnific-popup/magnific-popup.css?elmeri" rel="stylesheet">
 
     </head>
@@ -39,7 +39,7 @@
                             <span class="input-group-addon">
                             <i class="fa fa-user-circle-o"></i>
                             </span>
-                            <input class="form-control" name="UsuarioLogin" minLength=3 maxLength=30 placeholder="Login" type="text" required>                                                    
+                            <input class="form-control" id="txtlogin" name="UsuarioLogin" minLength=3 maxLength=30 placeholder="Login" type="text" required>                                                    
                         </div>
                     </div>                                      
                     <div class="col-lg-3">
@@ -47,7 +47,7 @@
                             <span class="input-group-addon">
                             <i class="fa fa-key"></i>
                             </span>
-                            <input class="form-control" name="UsuarioSenha" placeholder="Senha" type="password" required>
+                            <input class="form-control" id="txtsenha" name="UsuarioSenha" placeholder="Senha" type="password" required>
                         </div>
                         <div id="result" class="text-warning">
                             <span id="retorno"></span>

@@ -52,4 +52,12 @@ class TelefoneModel extends Model
     {
        return $this->db->First($this->db->Select("SELECT * from endereco where id = '{$obj->Id}'"));
     }
+    public function GetEnderecoFullByPessoaId(Endereco $obj)
+    {
+       return $this->db->First($this->db->Select("SELECT * from endereco where PessoaId = '{$obj->PessoaId}'"));
+    }
+    public function GetUF()
+    {
+        return $this->db->Select('SELECT Nome, Sigla from estado order by nome');
+    }
 }

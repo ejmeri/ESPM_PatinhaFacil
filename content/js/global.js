@@ -110,6 +110,8 @@ function postFormLogin(form, elementId, elementResultId, redirect) {
             if (retorno == 'OK') {
                 location.href = redirect
             } else {
+                $('#txtsenha').val('');
+                $('#txtlogin').focus();                
                 $('#' + elementId).html(retorno);
                 $('#' + elementResultId).show();
             }

@@ -83,10 +83,6 @@ class pessoaController extends Controller
         $Endereco->Id = $this->getParams(0);
         $Endereco->PessoaId = $Pessoa->Id;
 
-        
-        $endereco = $modelTelefone->GetEnderecoById($Endereco);
-
-
         if ($_POST['save']) {
             $apiPessoa = new apiPessoa();           
             $NewEndereco = new Endereco('POST', 'Endereco');
@@ -103,20 +99,19 @@ class pessoaController extends Controller
             $NewEndereco->PessoaId = $Pessoa->Id;
             $retorno = $apiPessoa->SaveEndereco($NewEndereco);
         }
-        else {
-            
-            $deserialize = json_decode($json = $endereco['JsonEndereco']);
 
-            $endereco['Logradouro'] = $deserialize->logradouro;
-            $endereco['Bairro'] = $deserialize->bairro;
-            $endereco['Cidade'] = $deserialize->cidade;
-            $endereco['UF'] = $deserialize->uf;
-            $endereco['CEP'] = $deserialize->cep;
-        }        
+
+        $endereco = $modelTelefone->GetEnderecoFullByPessoaId($Endereco);
+        $deserialize = json_decode($json = $endereco['JsonEndereco']);
+
+        $endereco['Logradouro'] = $deserialize->logradouro;
+        $endereco['Bairro'] = $deserialize->bairro;
+        $endereco['Cidade'] = $deserialize->cidade;
+        $endereco['UF'] = $deserialize->uf;
+        $endereco['CEP'] = $deserialize->cep;
         
         $this->dados = array(
                 'tipoendereco' => $modelTelefone->GetTipoEndereco(),
-                'enderecos' => $modelTelefone->GetEnderecoByPessoaId($Endereco),
                 'endereco' => $endereco
         );
         
@@ -184,6 +179,15 @@ class pessoaController extends Controller
         $modelTelefone = new TelefoneModel();
         $modelAnimal = new AnimalModel();
         
+        $endereco = $modelTelefone->GetEnderecoFullByPessoaId($Endereco);
+        $deserialize = json_decode($json = $endereco['JsonEndereco']);
+
+        $endereco['Logradouro'] = $deserialize->logradouro;
+        $endereco['Bairro'] = $deserialize->bairro;
+        $endereco['Cidade'] = $deserialize->cidade;
+        $endereco['UF'] = $deserialize->uf;
+        $endereco['CEP'] = $deserialize->cep;
+
         $this->dados = array(
             'dados' => $model->GetbyId($Pessoa),
             'user' => $UsuarioModel->GetByPessoaId($Usuario),
@@ -195,6 +199,7 @@ class pessoaController extends Controller
             'ddd' => $modelTelefone->GetDdd(),
             'tipoendereco' => $modelTelefone->GetTipoEndereco(),
             'enderecos' => $modelTelefone->GetEnderecoByPessoaId($Endereco),
+            'endereco' => $endereco,
             'pets' => $modelAnimal->GetByPessoaId($Pessoa)
         );
     }

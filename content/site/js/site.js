@@ -8,13 +8,13 @@ function BuscarCep() {
     } else {
         document.getElementById('infocep').innerHTML = '';
         $.get('https://viacep.com.br/ws/' + cep + '/json/', function (data) {
-            
-             var endCliente = JSON.parse(JSON.stringify(data));
 
-            if(endCliente.erro == true) document.getElementById('infocep').innerHTML = 'CEP não encontrado.';
+            var endCliente = JSON.parse(JSON.stringify(data));
+
+            if (endCliente.erro == true) document.getElementById('infocep').innerHTML = 'CEP não encontrado.';
             else {
                 var endCliente = JSON.parse(JSON.stringify(data));
-                
+
                 document.getElementById('EnderecoLogradouro').value = endCliente.logradouro;
                 document.getElementById('EnderecoBairro').value = endCliente.bairro;
                 document.getElementById('EnderecoCidade').value = endCliente.localidade;
@@ -195,7 +195,7 @@ function SubmitPartialForm(form, elementId) {
     postForm(form, elementId, '', '');
 }
 
-function SubmitPartialFormAcesso(form, elementId) {
+function SubmitPartialFormAcesso(form, elementId, elementResultId = 0) {
 
     var pass = document.getElementById('password').value;
     var repass = document.getElementById('repassword').value;
@@ -213,7 +213,7 @@ function SubmitPartialFormAcesso(form, elementId) {
     form.find('#botao').attr('name', 'save');
     form.find('#botao').val('Salvar');
 
-    postForm(form, elementId, '', '');
+    postForm(form, elementId, elementResultId, '');
 }
 
 function ValidatePass(str) {
@@ -309,3 +309,11 @@ function countChar(val, label) {
 };
 
 // fim contar
+
+// lista pet
+
+function showPet() {
+    postPartialView('pets/ListaPet', 'ListPet');
+}
+
+// lista pet fim
