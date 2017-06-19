@@ -13,7 +13,7 @@
             <form method="POST" id="SearchPet" class="form-search"  action="pets/ListaPet">   
                 <div class="filter col-sm-1">
                     <label for="especie">Espécie</label>
-                    <select class="form-control block" id="especie" name="FilterPetEspecie" onchange="showRaca(this.value);"> 
+                    <select class="form-control block" id="especie" name="FilterPetEspecie" onchange="showFilterRaca(this.value);"> 
                         <option value="0">Selecione a espécie</option>      
                         <?php if($view_especie > 0) { ?>
                                 <?php foreach ($view_especie as $li => $a) { ?>

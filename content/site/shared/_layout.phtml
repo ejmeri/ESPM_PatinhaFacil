@@ -8,11 +8,11 @@
     <meta name="keywords" content="<?php echo $this->keywords ?>">
     <meta name="author" content="<?php echo $this->autor ?>">
 	<!--<link href="content/site/css/style.css" rel="stylesheet" />-->
-	<link href="content/site/css/master.css?<?php echo NEW_FILE;?>" rel="stylesheet" />
-    <link href="content/site/css/site.css?<?php echo NEW_FILE;?>" rel="stylesheet" />
+	<link href="content/site/css/master.css?nfile" rel="stylesheet" />
+    <link href="content/site/css/site.css?nfile" rel="stylesheet" />
 	<!--<link href="content/site/css/petdetail.css" rel="stylesheet" />
 	<link href="content/site/css/pets.css" rel="stylesheet">-->
-    <link href="content/site/css/confirmadopt.css?elmeri" rel="stylesheet">
+    <link href="content/site/css/confirmadopt.css?nfile" rel="stylesheet">
 	<link href="content/site/css/newlogin.css?elmeri" rel="stylesheet">
     <link href="content/site/css/people.css?elmeri" rel="stylesheet">
     <link href="content/upload/css/component.css?elmeri" rel="stylesheet">
@@ -292,6 +292,9 @@
         function showRaca(especie) {
                 postPartialView('pets/ListaRaca/' + especie, 'raca');        
         }
+        function showFilterRaca(especie) {
+                postPartialView('pets/FilterListaRaca/' + especie, 'raca');        
+        }
             
     </script>
                             <!-- FIM JQUERY/JAVASCRIPT PAGE PETS-->     
@@ -310,6 +313,7 @@
                 $("#descricao").val('');
                 $("#nome").val('');
                 $("#peso").val('');
+                $("#dtnascimento").val('');
                 $('#image-holder').empty();
             }
     });

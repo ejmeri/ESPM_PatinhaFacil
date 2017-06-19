@@ -1,4 +1,4 @@
-<?php /*echo print_r($view_user);*/ ?>
+<?php //print_r($view_pets); ?>
 
 <div class="container-in" style="margin-bottom:5%;">
     <header class="header-page">
@@ -283,9 +283,9 @@
                         </div>
                     </div>
                 </form>
-        </div>     
-
-        <div class="tabcontent col-10 inline-table col-fl padding" id="tabpet">
+            </div>
+        </div>
+        <div class="tabcontent col-10 inline-table col-fl extreme-padding" id="tabpet">
                 <?php if (count($view_pets) > 0) { ?>
                     <?php foreach ($view_pets as $li => $a){ ?>
                     <input type="hidden" name="AnimalId" value=<?php echo $a['id'];?>>
@@ -308,7 +308,7 @@
                                 <div class="information">
                                     <!--<input type="submit" formaction="pets/petdetails" name="adotar" class="btn fa fa-5x" title="Adote!" value ="&#xf004;">                          -->
                                     <!--<input type="button" name="information" value="Mais informações" class="btn button">                                  -->
-                                    <a href="pets/detalhes/<?php echo $a['id'];?>" title="Ver informações!"><i class="fa fa-edit fa-5x" aria-hidden="true"></i></a>
+                                    <a href="pets/editar/<?php echo $a['id'];?>" title="Ver informações!"><i class="fa fa-edit fa-5x" aria-hidden="true"></i></a>
                                 </div>
                                 <!--<div class="interest">
                                     <a href="#" title="Demonstrar interesse!"><i class="fa fa-envelope-o fa-5x" aria-hidden="true"></i></a>                                
@@ -319,7 +319,7 @@
                         }
                  }
             else { ?>
-                <h3 class="text-center" style="font-size: 1.5em; color:red;">Você ainda não adotou ou doou algum pet <i class="fa fa-frown-o"></i></h3>
+                <h3 class="text-center" style="font-size: 1.5em">Você ainda não adotou ou doou algum pet <i class="fa fa-frown-o"></i></h3>
             <?php 
             } ?>
         </div>
@@ -343,5 +343,4 @@
             </div>
         </div>
     </div>
-</div>
 </div>

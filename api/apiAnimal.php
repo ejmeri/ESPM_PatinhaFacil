@@ -33,9 +33,16 @@ class apiAnimal
         $PessoaAnimal->TipoPessoaId = $TipoPessoa['Id'];
         $PessoaAnimal->AnimalId = $retornoAnimal['Identity'];
         $PessoaAnimal->PessoaId = $Pessoa->Id;
+       
 
-        $retornoPessoaAnimalModel = $PessoaAnimalModel->Save($PessoaAnimal);
+        if(isset($obj->Id)){
+            $pessoalanimal = $AnimalModel->GetPessoaAnimalByAnimalId($obj);
+            $animalimagem = $AnimalModel->GetImagemByAnimalId($obj);
+            $PessoaAnimal->Id = $pessoalanimal['Id'];
+            $AnimalImagem->Id = $animalimagem['Id'];
+        }
 
+        $retornoPessoaAnimalModel = $PessoaAnimalModel->Save($PessoaAnimal);        
         $image = $Upload->SaveFile($_FILES['image']);
 
         $AnimalImagem->AnimalId = $retornoAnimal['Identity'];
@@ -46,11 +53,18 @@ class apiAnimal
 
         if($retornoPessoaAnimalModel['sucess']) 
         {
-            echo  '<h2>Parabéns o '.$obj->Nome.', foi cadastrado com sucesso!</h2>';
+            echo print_r($retornoPessoaAnimalModel);
+            echo '<br>';
+            echo print_r($PessoaAnimal);
+            echo '<br>';
+            echo  '<h2>Obrigado por estar ajudando mais um animalzinho</h2>';
             echo  '<p>Veja os detalhes <a href="pets/detalhes/'.$PessoaAnimal->AnimalId.'"> <b class="link-blue">Aqui</b> </a>!</p>';
         }
-        else echo $retornoPessoaAnimalModel['feedback'];
-        
+        else {
+            echo $retornoPessoaAnimalModel['feedback'];
+            echo '<br>';
+            
+        }
     }
     public function ListaPet(FilterPet $FilterPet)
     {

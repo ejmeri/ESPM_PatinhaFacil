@@ -1,76 +1,79 @@
 
-<?php /*echo print_r($view_dados);*/ ?>
+<?php //echo print_r($view_endereco); ?>
 
-<section>
-    <div class="container-in">
-        <header class="header-page">
-            <h1 class="text-center">Olá! Meu nome é <?php echo $view_dados['Nome'] ? $view_dados['Nome'] : "Sem nome"; ?>, veja mais sobbre mim</h1>
-        </header>
-        <article>
-            <div class="photos">
-                   <?php  echo '<img class="photo-pet" src="uploads/'.$view_dados['Imagem'].'" alt="Animal">'; ?>          
+
+<div class="container-in">
+    <header class="header-page">
+        <h1 class="text-center">Olá! Meu nome é <?php echo $view_dados['Nome'] ? $view_dados['Nome'] : "Sem nome"; ?>, veja mais sobre mim</h1>
+    </header>
+    <article>
+        <div class="photos">
+                <?php  echo '<img class="photo-pet" src="uploads/'.$view_dados['Imagem'].'" alt="Animal">'; ?>          
+        </div>
+        <div class="item-right">
+            <div class="info-pet">
+                <strong>Pelagem</strong><br>
+                <span><?php echo $view_dados['Pelagem']; ?></span>
             </div>
-            <div class="item-right">
-                <div class="info-pet">
-                    <strong>Pelagem</strong><br>
-                    <span><?php echo $view_dados['Pelagem']; ?></span>
-                </div>
-                <div class="info-pet">
-                    <strong>Raça</strong> <br>
-                    <span><?php echo $view_dados['Raca']; ?></span>
-                </div>
-                <div class="info-pet">
-                    <strong>Peso</strong><br>
-                    <span><?php echo $view_dados['Peso'].' kgs'; ?></span>
-                </div>
-                <div class="info-pet">
-                    <strong>Porte</strong><br>
-                    <span><?php echo $view_dados['Porte']; ?></span>
-                </div>
-                <div class="info-pet">
-                    <strong>Idade</strong> <br>
-                    <span><?php echo $view_dados['DtNascimento']; ?></span>
-                </div>
+            <div class="info-pet">
+                <strong>Raça</strong> <br>
+                <span><?php echo $view_dados['Raca']; ?></span>
             </div>
-            <!--<div class="photos">
-                <div class="w3-content w3-display-container">
-                        <img class="none photo-pet" src="content/images/humanpet.jpg" style="width:100%">
-                        <img class="none photo-pet" src="content/images/landscape.jpg" style="width:100%">
-                        <img class="none photo-pet" src="content/images/humanpet.jpg" style="width:100%">
-                        <img class="none photo-pet" src="content/images/pet.jpg" style="width:100%">
-                </div>-->
-            
-                <!--<div class="buttons clear">
-                    <button style="float:left;" class="btn btn-dark" onclick="plusDivs(-1)">&#10094; Anterior</button>
-                    <button style="float:right;" class="btn btn-dark" onclick="plusDivs(1)">Próxima &#10095;</button>
-                </div>-->
-            <!--</div>-->
-<!--
-            <div style="padding-top: 45px;">
-               <form method="post" action="pets/confirmar" class="clear">
-                    <input type="hidden" name="Id" value=<?php echo $view_dados['Id']; ?>>                                                                           
-                    <button type="submit" name="button" class="btn btn-dark btn-font" title="Adote!">Quero adotar <i class="fa fa-heart"></i> </button> 
-                </form>
+            <div class="info-pet">
+                <strong>Peso</strong><br>
+                <span><?php echo $view_dados['Peso'].' kgs'; ?></span>
+            </div>
+            <div class="info-pet">
+                <strong>Porte</strong><br>
+                <span><?php echo $view_dados['Porte']; ?></span>
+            </div>
+            <div class="info-pet">
+                <strong>Idade</strong> <br>
+                <span><?php echo $view_dados['DtNascimento']; ?></span>
+            </div>
+        </div>
+        <!--<div class="photos">
+            <div class="w3-content w3-display-container">
+                    <img class="none photo-pet" src="content/images/humanpet.jpg" style="width:100%">
+                    <img class="none photo-pet" src="content/images/landscape.jpg" style="width:100%">
+                    <img class="none photo-pet" src="content/images/humanpet.jpg" style="width:100%">
+                    <img class="none photo-pet" src="content/images/pet.jpg" style="width:100%">
             </div>-->
-            <!--<section class="none" id="retorno">
-                <h3>Para continuar efetue seu login</h3>
-                <strong><a href="login" target="_blank">Clique aqui!</a></strong>
-            </section>-->
-            <section id="infopet" class="informations-pet">
-                <header class="header-page">
-                    <h3 class="text-center">Minha história e onde estou</h3> 
-                </header>
-                <div class="info-pet">
-                    <strong>Uma breve descrição/história</strong>
-                    <p><?php echo $view_dados['Descricao']; ?></p>
-                </div>
-                  <div class="clear">
-                    <a href="pets/confirmar/<?php echo $view_dados['Id']; ?>" class="btn btn-black btn-font" title="Adote!">Quero adotar <i class="fa fa-heart"></i> </a> 
-                </div>
-            </section>                      
-        </article>
-    </div>
-</section>
+        
+            <!--<div class="buttons clear">
+                <button style="float:left;" class="btn btn-dark" onclick="plusDivs(-1)">&#10094; Anterior</button>
+                <button style="float:right;" class="btn btn-dark" onclick="plusDivs(1)">Próxima &#10095;</button>
+            </div>-->
+        <!--</div>-->
+<!--
+        <div style="padding-top: 45px;">
+            <form method="post" action="pets/confirmar" class="clear">
+                <input type="hidden" name="Id" value=<?php echo $view_dados['Id']; ?>>                                                                           
+                <button type="submit" name="button" class="btn btn-dark btn-font" title="Adote!">Quero adotar <i class="fa fa-heart"></i> </button> 
+            </form>
+        </div>-->
+        <!--<section class="none" id="retorno">
+            <h3>Para continuar efetue seu login</h3>
+            <strong><a href="login" target="_blank">Clique aqui!</a></strong>
+        </section>-->
+        <section id="infopet" class="informations-pet">
+            <header class="header-page">
+                <h3 class="text-center">Minha história e onde estou</h3> 
+            </header>
+            <div class="info-pet">
+                <strong><i class="fa fa-book" aria-hidden="true"></i> Uma breve descrição/história</strong>
+                <p><?php echo $view_dados['Descricao']; ?></p>
+            </div>
+            <div class="info-pet">
+                <strong><i class="fa fa-map-marker" aria-hidden="true"></i> Localização</strong>
+                <p><?php echo $view_endereco['Logradouro'].', '.$view_endereco['Numero'].' - '.$view_endereco['Bairro'].', '.$view_endereco['Cidade'].' - '.$view_endereco['UF'].' - '.$view_endereco['CEP']; ?></p>
+            </div>
+                <div class="clear">
+                <a href="pets/confirmar/<?php echo $view_dados['Id']; ?>" class="btn btn-black btn-font" title="Adote!">Quero adotar <i class="fa fa-heart"></i> </a> 
+            </div>
+        </section>                      
+    </article>
+</div>
 
                                 <!--CARROUSEL PET DETAILS -->                                    
 <!--<script>

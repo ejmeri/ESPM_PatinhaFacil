@@ -62,6 +62,7 @@ Class apiPessoa
             'ddd' => $modelTelefone->GetDdd()
         );
     }
+    
 }
 
 ?>

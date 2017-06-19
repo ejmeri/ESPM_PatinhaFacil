@@ -17,6 +17,7 @@ use object\Telefone;
 use object\Especie;
 use object\Email;
 use object\FilterPet;
+use object\PessoaAnimal;
 use helper\Session;
 use api\apiAnimal;
 use api\apiPessoa;
@@ -73,18 +74,75 @@ class petsController extends Controller {
             $this->PartialResultView($ApiAnimal->Save(new Animal('POST', 'Animal'),$Pessoa));
         }
     }
+    public function editar()
+    {
+        new Session();
+
+        $this->title .= "Editar";
+
+        if(!isset($_POST['botao']))
+        {
+            
+            $Animal = new Animal();
+            $Animal->Id = $this->getParams(0);
+
+            $AnimalModel = new AnimalModel();
+
+            $PessoaAnimal = $AnimalModel->GetPessoaAnimalByAnimalId($Animal);
+
+            if($PessoaAnimal['PessoaId'] != $_SESSION['PessoaId']){
+                header("Location: ". APP_ROOT. "/home");
+            }  
+
+            $this->dados = array(
+                'especie'=> $AnimalModel->getEspecie(),
+                'porte'=> $AnimalModel->getPorte(),
+                'genero' =>$AnimalModel->getGenero(),
+                'pelagem' =>$AnimalModel->getPelagem(),
+                'imagem' => $AnimalModel->GetImagemByAnimalId($Animal),
+                'animal' => $AnimalModel ->GetAnimalById($Animal)
+            );
+
+            $this->View();
+        }
+        else 
+        {
+            $ApiAnimal = new apiAnimal();
+            $Pessoa = new Pessoa();
+            $Pessoa->Id = $_SESSION['PessoaId'];
+
+            $this->PartialResultView($ApiAnimal->Save(new Animal('POST', 'Animal'),$Pessoa));
+        }
+    }
     public function detalhes()
     {
         new Session();
         
         $this->title .= "Detalhes do Pet";
         $Animal = new Animal();
+        $PessoaAnimal = new PessoaAnimal();
+
         $Animal->Id = $this->getParams(0);
 
         $model = new AnimalModel();
+        $PessoaModel = new PessoaModel();
+
+        $pessoaanimal = $model->GetPessoaAnimalByAnimalId($Animal);
+        $PessoaAnimal->PessoaId = $pessoaanimal['PessoaId'];
+
+        $endereco = $PessoaModel->GetEnderecoByPessoaId($PessoaAnimal);
+
+        $deserialize = json_decode($json = $endereco['JsonEndereco']);
+
+        $endereco['Logradouro'] = $deserialize->logradouro;
+        $endereco['Bairro'] = $deserialize->bairro;
+        $endereco['Cidade'] = $deserialize->cidade;
+        $endereco['UF'] = $deserialize->uf;
+        $endereco['CEP'] = $deserialize->cep;
 
         $this->dados = array(
-            'dados' => $model->GetbyId($Animal)
+            'dados' => $model->GetbyId($Animal),
+            'endereco' => $endereco
         );
 
         $this->View();   
@@ -149,6 +207,20 @@ class petsController extends Controller {
         $this->PartialView();
     }
     public function ListaRaca()
+    {
+
+        $Raca = new Raca();
+        $Raca->EspecieId = $this->getParams(0);
+
+        $model = new RacaModel();
+        
+        $this->dados = array(
+            'list' => $model->getlist($Raca)
+        );
+        
+        $this->PartialView();
+    }
+    public function FilterListaRaca()
     {
 
         $Raca = new Raca();

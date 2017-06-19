@@ -2,13 +2,13 @@
 
 namespace controller\site;
 
-use helper\Session;
-use lib\Controller;
 use object\Telefone;
 use object\Pessoa;
 use object\Email;
 use object\Usuario;
 use object\Endereco;
+use helper\Session;
+use lib\Controller;
 use api\apiUsuario;
 use api\apiPessoa;
 use model\usuario\UsuarioModel;
@@ -39,7 +39,7 @@ class pessoaController extends Controller
     }
     public function email($value = '')
     {
-        error_reporting(!E_NOTICE);
+        // error_reporting(!E_NOTICE);
         
         new Session();
         
@@ -69,7 +69,7 @@ class pessoaController extends Controller
     }
     public function endereco()
     {
-        error_reporting(!E_NOTICE);
+        // error_reporting(!E_NOTICE);
         
         new Session();
         
@@ -129,7 +129,7 @@ class pessoaController extends Controller
     public function telefone($value = '')
     {
         new Session();
-        error_reporting(!E_NOTICE);
+        // error_reporting(!E_NOTICE);
         $Pessoa = new Pessoa();
 
         $Pessoa->Id = $_SESSION['PessoaId'];

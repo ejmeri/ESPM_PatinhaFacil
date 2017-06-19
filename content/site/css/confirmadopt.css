@@ -10,7 +10,7 @@
 }
 
 .animal img {
-    width: 90%;
+    width: 100%;
     border: lightgray 1px solid;
     padding: 5px;
     display: inline-block;
@@ -51,6 +51,7 @@
 @media screen and (max-width: 520px) {
     .animal {
         width: 100%;
+        height: auto;
     }
     .animal img {
         height: 180px;

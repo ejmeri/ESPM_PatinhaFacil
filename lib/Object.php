@@ -10,10 +10,10 @@ namespace lib;
                 
                 $postclass = substr($ind,0, $tamanho); //get name class of post index
 
-                if(strcasecmp($postclass, $class) == 0) { 
-                    $ind = substr($ind, $tamanho);
-                    $this->$ind = trim($val);
-                }
+                    if(strcasecmp($postclass, $class) == 0) { 
+                        $ind = substr($ind, $tamanho);
+                        $this->$ind = trim($val);
+                    }
                 }
         }
     }

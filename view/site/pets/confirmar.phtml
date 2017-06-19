@@ -29,23 +29,29 @@
 				<strong>Nome</strong>
 				<p><?php echo $view_pessoa['Nome']; ?><p>
             </div>
-			<div class="info-people">
-                <strong>Telefones</strong> <br>
-                <?php if (count($view_telefones) > 0) { ?>
-                            <?php foreach ($view_telefones as $telefone) { ?>
-                                <i class="fa fa-phone" aria-hidden="true"></i><span><?php echo ' ('.$telefone['DDD'].') '.$telefone['Numero'];?> </span><br>
-                <?php } } ?>
-                <!--<p>(00) 0000-0000</p>-->
-            </div>
             <div class="info-people">
-                <strong>E-mails</strong> <br>
-                <?php if (count($view_emails) > 0) { ?>
-                            <?php foreach ($view_emails as $email) { ?>
-                               <i class="fa fa-envelope-o fa-fw"></i><a  href="<?php echo ' mailto:'.$email['Nome'];?>"><?php echo $email['Nome'];?></a><br>
-                <?php } } ?>
-                <!--<p>(00) 0000-0000</p>-->
+                <div class="col-lg-4">
+                    <strong>Formas de contato</strong>
+                    <hr>                  
+                </div>
+                <div class="col-lg-2 clear">
+                    <strong>Telefones</strong> <br>
+                    <?php if (count($view_telefones) > 0) { ?>
+                                <?php foreach ($view_telefones as $telefone) { ?>
+                                    <i class="fa fa-phone" aria-hidden="true"></i><span><?php echo ' ('.$telefone['DDD'].') '.$telefone['Numero'];?> </span><br>
+                    <?php } } ?>
+                    <!--<p>(00) 0000-0000</p>-->
+                </div>
+                <div class="col-lg-6">
+                    <strong>E-mails</strong> <br>
+                    <?php if (count($view_emails) > 0) { ?>
+                                <?php foreach ($view_emails as $email) { ?>
+                                <i class="fa fa-envelope-o fa-fw"></i><a  href="<?php echo ' mailto:'.$email['Nome'];?>"><?php echo $email['Nome'];?></a><br>
+                    <?php } } ?>
+                    <!--<p>(00) 0000-0000</p>-->
+                </div>
             </div>
-            <div class="info-people">
+            <div class="info-people clear">
                 <strong>Endereço</strong>
                 <p>R. Alagoinhas, 1286 - Jardim Mutinga, Barueri - SP, 06463-240, Brazil </p>
             </div>

@@ -1,10 +1,13 @@
+<?php echo print_r($view_animal); ?>
+
 <div class="container-in" style="margin-bottom:5%;" ng-app="">
     <header class="header-page text-center">
         <h1 class="">Doar um animal</h1>
         <h4>Forneça as informações do pet</h4>
     </header>
 
-    <form method="POST" enctype="multipart/form-data" id="frmNovoPet" action="pets/novo" class="form-insert">
+    <form method="POST" enctype="multipart/form-data" id="frmNovoPet" action="pets/editar" class="form-insert">
+        <input type="hidden" name="AnimalId" value="<?php echo $view_animal['Id']; ?>">
         <div class="item-left clear">
             <label for="especie" id="">Espécie</label>
             <select class="form-control" name="especie" onchange="showRaca(this.value);" required>
@@ -20,52 +23,53 @@
         </div>
         <div class="item-left">
             <label for="Nome" id="">Nome</label>
-            <input type="text" ng-model="name" name="AnimalNome" id="nome" class="form-control" value="" maxlength=45 autocomplete=off placeholder="Caso não tenha, escreva: Sem Nome" required>
+            <input type="text" name="AnimalNome" id="nome" class="form-control"  value="<?php echo $view_animal['Nome']; ?>" maxlength=45 autocomplete=off placeholder="Caso não tenha, escreva: Sem Nome" required>
         </div>
         <div class="item-right">
             <label for="pelagem" id="">Pelagem</label>
             <select class="form-control" name="AnimalPelagemId" required>
                 <option value="">Selecione a Pelagem</option><?php if($view_pelagem > 0) { ?><?php foreach ($view_pelagem as $li => $a) { ?>
-                <option value=<?php echo $a['Id']; ?>> <?php echo $a['Nome']; ?></option><?php } } ?>
+                <option value=<?php echo $a['Id']; ?> <?php echo ($a['Id'] == $view_animal['PelagemId'] ? 'selected' : ''); ?>> <?php echo $a['Nome']; ?></option><?php } } ?>
             </select>
         </div>
         <div class="item-left clear">
             <label for="genero" id="teste">Genêro</label>
             <select class="form-control" name="AnimalGeneroId" required>
                 <option value="">Selecione o Genêro</option><?php if($view_genero > 0) { ?><?php foreach ($view_genero as $li => $a) { ?>
-                <option value=<?php echo $a['Id']; ?>> <?php echo $a['Nome']; ?></option><?php } } ?>
+                <option value=<?php echo $a['Id']; ?> <?php echo ($a['Id'] == $view_animal['GeneroId'] ? 'selected' : ''); ?>> <?php echo $a['Nome']; ?></option><?php } } ?>
             </select>
         </div>
         <div class="item-right">
             <label for="porte" id="">Porte</label>
             <select class="form-control" name="AnimalPorteId" required>
                 <option value="">Selecione o Porte</option><?php if($view_porte > 0) { ?><?php foreach ($view_porte as $li => $a) { ?>
-                <option value=<?php echo $a['Id']; ?>> <?php echo $a['Nome']; ?></option><?php } } ?>
+                <option value=<?php echo $a['Id']; ?> <?php echo ($a['Id'] == $view_animal['PorteId'] ? 'selected' : ''); ?>> <?php echo $a['Nome']; ?></option><?php } } ?>
             </select>
         </div>
         <div class="item-left clear">
             <label for="peso" id="">Peso</label>
-            <input type="number" class="form-control" name="AnimalPeso" id="peso" required>
+            <input type="number" class="form-control" name="AnimalPeso" id="peso" value="<?php echo $view_animal['Peso']; ?>" required>
         </div>
         <div class="item-right">
             <label for="dtnascimento" id="">Idade</label>
-            <input type="text" class="form-control" name="AnimalDtNascimento" id="dtnascimento" placeholder="Ex: Por volta de 1 ano">
+            <input type="text" class="form-control" name="AnimalDtNascimento" id="dtnascimento"  value="<?php echo $view_animal['DtNascimento']; ?>" placeholder="Ex: Por volta de 1 ano">
         </div>
         <div class="clear mg">
-            <label for="descricao" id="">Descreva um pouco sobre {{name}}</label> <br>
-            <textarea id="descricao" maxlength=500 name="AnimalDescricao" placeholder="" class="textarea" onkeyup="countChar(this, 'labelcount')" required></textarea>
+            <label for="descricao" id="">Descreva um pouco sobre <?php echo $view_animal['Nome']; ?></label> <br>
+            <textarea id="descricao" maxlength=500 name="AnimalDescricao" placeholder="" class="textarea" onkeyup="countChar(this, 'labelcount')" required><?php echo $view_animal['Descricao']; ?></textarea>
             <strong>Você ainda tem </strong><strong id="labelcount" class="text-warning">500</strong> <strong>caracteres para escrever.</strong>
         </div>
 
         <div class="clear">
             <!--<strong class="text-warning">Dica: </strong> <span>segure a tecla control (Ctrl) para selecionar múltiplas imagens.</span><br>            -->
             <strong>
-                    <i class="fa fa-image fa-5x" style="color: #57a3e8;"></i> Clique aqui para escolher as fotos para o {{name}}
+                <i class="fa fa-image fa-5x" style="color: #57a3e8;"></i> Clique aqui para escolher as fotos para <?php echo $view_animal['Nome']; ?>
             </strong>
-            <input type="file" name="image" id="file6" class="realupload form-control" accept="image/png, image/jpeg" required />
+            <input type="file" name="image" id="file6" value="<?php echo $view_imagem['Nome']; ?>" class="realupload form-control" accept="image/png, image/jpeg" required />
+            <?php echo APP_ROOT.'//uploads/'.$view_imagem['Nome']; ?>
         </div>
         <div class="clear">
-            <input type="submit" id="savepet" name="botao" value="Salvar" value="Salvar" class="btn btn-black">                
+            <input type="submit" id="savepet" name="botao" value="Salvar" class="btn btn-black">                
         </div>
     </form>
 
@@ -79,7 +83,9 @@
     <br>
     <div class="form-insert objcenter">
         <h3>Pré-visualização</h3>
-        <div class="image-holder mg" id="image-holder"></div>  
+        <div class="image-holder mg" id="image-holder">
+            <?php  echo '<img src="uploads/'.$view_imagem['Nome'].'" alt="Animal">'; ?>   
+        </div>  
     </div>
 
    

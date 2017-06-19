@@ -65,7 +65,7 @@ class Database extends Config {
         } catch (\PDOException $ex){
             die ($ex->getMessage() . " " . $sql);
         }
-        return array('sucess'=>true, 'feedback'=>'sucess');
+        return array('sucess'=>true, 'feedback'=>'sucess','Identity'=>$obj->Id);
     }
     public function Detele($condition, $table){
         try {

@@ -66,7 +66,7 @@ body {
     width: 23%;
     border: 1px lightgray solid;
     margin-right: 1%;
-    margin-top: 5%;
+    margin-top: 2%;
     margin-bottom: 3%;
 }
 
@@ -93,7 +93,7 @@ body {
 
 .img-pet {
     height: 43.333%;
-    width: 90%;
+    /*width: 90%;*/
     padding: 10px;
 }
 
@@ -324,9 +324,9 @@ body {
 }
 
 .info-pet {
-    max-width: 95%;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 10px;
+    padding: 12px;
     font-size: 1.3em;
 }
 
