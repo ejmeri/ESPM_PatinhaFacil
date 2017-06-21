@@ -38,7 +38,7 @@
                     <strong>Telefones</strong> <br>
                     <?php if (count($view_telefones) > 0) { ?>
                                 <?php foreach ($view_telefones as $telefone) { ?>
-                                    <i class="fa fa-phone" aria-hidden="true"></i><span><?php echo ' ('.$telefone['DDD'].') '.$telefone['Numero'];?> </span><br>
+                                    <i <?php echo (strlen($telefone['Numero']) == 9 ? 'class="fa fa-whatsapp" aria-hidden="true"' : 'class="fa fa-phone" aria-hidden="true"'); ?>></i><span><?php echo ' ('.$telefone['DDD'].') '.$telefone['Numero'];?></span><br>
                     <?php } } ?>
                     <!--<p>(00) 0000-0000</p>-->
                 </div>
@@ -50,10 +50,13 @@
                     <?php } } ?>
                     <!--<p>(00) 0000-0000</p>-->
                 </div>
+                <div class="clear col-lg-4">
+                    <hr>
+                </div>
             </div>
             <div class="info-people clear">
-                <strong>Endereço</strong>
-                <p>R. Alagoinhas, 1286 - Jardim Mutinga, Barueri - SP, 06463-240, Brazil </p>
+                <strong><i class="fa fa-map-marker" aria-hidden="true"></i> Localização</strong>
+                <p><?php echo $view_endereco['Logradouro'].', '.$view_endereco['Numero'].' - '.$view_endereco['Bairro'].', '.$view_endereco['Cidade'].' - '.$view_endereco['UF'].' - '.$view_endereco['CEP']; ?></p>
             </div>
             <div class="info-people">
                 <strong class="text-warning">Em caso de confirmação</strong>

@@ -8,25 +8,93 @@
     <meta name="keywords" content="<?php echo $this->keywords ?>">
     <meta name="author" content="<?php echo $this->autor ?>">
 	<!--<link href="content/site/css/style.css" rel="stylesheet" />-->
-	<link href="content/site/css/master.css?elmeri" rel="stylesheet" />
-    <link href="content/site/css/site.css" rel="stylesheet" />
-	<link href="content/site/css/newlogin.css" rel="stylesheet">
-    <script src="content/site/js/site.js"></script>
-	<!-- Custom Fonts -->
-	<link href="content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="content/site/css/master.css?nfile" rel="stylesheet" />
+    <link href="content/site/css/site.css?nfile" rel="stylesheet" />
+	<!--<link href="content/site/css/petdetail.css" rel="stylesheet" />
+	<link href="content/site/css/pets.css" rel="stylesheet">-->
+    <link href="content/site/css/confirmadopt.css?nfile" rel="stylesheet">
+	<link href="content/site/css/newlogin.css?elmeri" rel="stylesheet">
+    <link href="content/site/css/people.css?elmeri" rel="stylesheet">
+    <link href="content/upload/css/component.css?elmeri" rel="stylesheet">
+    <script src="content/site/js/site.js?<?php echo NEW_FILE;?>"></script>
+
+	<link href="content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 </head>
 <body>
 
+<!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="home">Pet.fácil</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-default" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="pets" class="page-scroll">Adotar um pet</a>
+                </li>
+                <li>
+                    <a href="pets/novo" class="page-scroll">Doar um pet</a>
+                </li>
+                <li>
+                    <a href="#services" class="page-scroll">Nossas opcões</a>
+                </li>
+                <li>
+                    <a href="home#portfolio" class="page-scroll">Pets disponíveis</a>
+                </li>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Parceiros <i class="fa fa-hand-o-down" aria-hidden="true"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Não temos</a></li>
+                        </ul>
+                </li>
+                <li>
+                    <a href="#footer" class="page-scroll">Sobre nós</a>
+                </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="pessoa" class="page-scroll">Minha conta <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a href="login/Close" class="page-scroll">Sair <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                    </li>
+                    <!--<li class="dropdown">
+                        <a href="#" class="dropdowntoggle" data-toggle="dropdown">Minha conta <i class="fa fa-hand-o-down" aria-hidden="true"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="pessoa" class="page-scroll">Meu Perfil</a></li>
+                            <li class="divider"></li>
+                            <li><a href="login/Close" class="page-scroll">Sair</a></li>                  
+                        </ul>
+                    </li>-->
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+<!-- END NAVIGATION -->
+
 <header class="header" id="top">
     <div class="text-vertical-center">
-        <div class="image-banner">
-            <img src="content/images/ejmeri-1.png"  style="width: 10%; margin: 0 auto;"class="img-responsive" alt="">
-        </div>
-        <h3>PET.FÁCIL</h3>
+        <a href="home" class="link-black">
+            <div class="banner">
+                <div class="image-banner">
+                    <img src="content/images/ejmeri-1.png"  style="margin: 0 auto;"class="img-responsive" alt="">                    
+                </div>
+            </div>
+        </a>
         <h3>Encontre aqui a felicidade para seu lar</h3>
-        <!--<a href="#start" class="btn btn-dark btn-lg">Começar</a>-->
-        <a href="login" class="btn btn-dark btn-lg">Voltar</a>
+        <a href="#start" class="btn btn-black btn-lg">Começar</a>
         <br>
         <!--<a href="#about" class="btn btn-dark btn-lg">Começar</a>-->
     </div>
@@ -74,12 +142,24 @@
 </html>
 
 <!-- jQuery -->
-    <script src="content/js/jquery.js"></script>
+    <script src="content/js/jquery.js?<?php echo NEW_FILE;?>"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
     <script src="content/js/jquerytransateValidatorsToBR.js"></script>
-    <script src="content/js/global.js"></script>
-    <script src="content/js/jquery.mask.js"></script>
+    <script src="content/js/global.js?<?php echo NEW_FILE;?>"></script>
+    <script src="content/js/jquery.mask.js?<?php echo NEW_FILE;?>"></script>
+    
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="content/js/bootstrap.min.js?<?php echo NEW_FILE;?>"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="content/scrollreveal/scrollreveal.min.js"></script>
+    <script src="content/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Theme JavaScript -->
+    <!--<script src="content/js/creative.min.js?elmeri"></script>-->
 
     <script>
     // Scrolls to the selected menu item on the page
@@ -123,145 +203,40 @@
         }
     });
     </script>
-
-
-
-
-                            <!--JQUERY/JAVASCRIPT PAGE NEWLOGIN-->
-
-    <script type="text/javascript">
+                      
+    
+                                <!--JQUERY/JAVASCRIPT PAGE PETS-->     
+    <script>
         $(document).ready(function(){
 
-                var formulario =  $("#frmCadastro");
-                
+            var espid = $('#especie').val();
 
-                $("#frmCadastro").validate({
-                        errorClass: 'text-errors',
-                        rules: {
-                                PessoaCpfCnpj: {
-                                    digits: true
-                                },
-                                field: {
-                                    required: true
-                                    // minlength: 3
-                                },
-                                repassword: {
-                                    equalTo: "#password"
-                                }
-                        },
-                        submitHandler: function (form) {
-                            var login = document.getElementById("txtlogin").innerText;
-                            // var cpfcnpj = $('#CPF').val();
-                            
-                            if(login.length > 0) {
-                                $("#user").focus();
-                                return;
-                            }
-
-                            
-                            // if(cpfcnpj.length > 11 && cpfcnpj.length < 14){
-                            //     document.getElementById("txtCPF").innerHTML = "Forneça entre 11 (CPF) e 14 (CNPJ) caracteres.";
-                            //     $('#CPF').focus();
-                            //     return;            
-                            // }
-
-                            postForm(formulario,'txtHint', 'result', 'login');
-                            clearInputs();
-                        }   
-                });
-
-                    function clearInputs(){
-                        $("#txtcpfcnpj").val('');
-                        $("#CNPJ").val('');
-                        $("#Rg").val('');
-                        $("#Nome").val('');
-                        $("#Apelido").val('');
-                        $("#Email").val('');
-                        $("#user").val('');
-                        $("#password").val('');
-                        $("#repassword").val('');
-                        $("#Telefone").val('');
-                    }
-        });
-    </script>
-
- <script type="text/javascript">
-    $(document).ready(function(){
-
-        $('#result').hide();
-
-        $("#Apelido").attr("placeholder", "Caso não tenha, utilize seu 1º nome.");         
-        $("#linkfisica").addClass("selected");
-        
-        $("#linkfisica").click(function(){
-
-            $("#txtcpfcnpj").val('');
-
-            swapText("label", "CPF");
-            swapText("nome", "Nome");
-            swapText("number", "RG");
-            swapText("apelido", "Apelido");
-            $("#txtcpfcnpj").attr("placeholder", "000.000.000-00");
-            $("#Apelido").attr("placeholder", "Caso não tenha, utilize seu 1º nome.");         
-            $("#linkfisica").addClass("selected");
-            $("#linkjuridica").removeClass("selected");
-
-            document.getElementById("txtCPF").innerHTML = "";
+            showPet(espid);
             
-        });
-        
-        $("#linkjuridica").click(function(){
-            swapText("label", "CNPJ");
-            swapText("nome", "Razão Social");
-            swapText("number", "Inscrição Estadual");
-            swapText("apelido", "Nome Fantasia");
+            // $("#items-filter").hide();
 
-            $("#txtcpfcnpj").val('');
-
-            $("#txtcpfcnpj").attr("placeholder", "00.000.000/0000-00");
-            $("#Apelido").attr("placeholder", "");         
-            $("#linkjuridica").addClass("selected");
-            $("#linkfisica").removeClass("selected");
-
-             document.getElementById("txtCPF").innerHTML = "";
-        });
-
-
-    });
-   </script>
-
-                                    <!--FIM JQUERY/JAVASCRIPT PAGE NEWLOGIN-->
-
-
-                                    <!--INICIO PERDI MINHA SENHA-->
-
-<script type="text/javascript">
-    $(document).ready(function(){
-
-        var formulario =  $("#frmRecuperar");
-
-
-        $("#frmRecuperar").validate({
-                errorClass: 'text-errors',
-                rules: {
-                        field: {
-                            required: true
-                            // minlength: 3
-                        }
-                },
-                submitHandler: function (form) {
-
-                    postForm(formulario,'retorno', 'result', 'login');
-                    clearInputs();
+            $("#filters").click(function(){
+                if($("#items-filter").is(':visible')) {
+                        $("#items-filter").hide();
+                }
+                else {
+                    $("#items-filter").show();
                 }   
+            });
         });
 
-        function clearInputs(){
-            $("#user").val('');
+
+        function showPet(esp) {
+                postPartialView('pets/ListaPet/' + esp, 'ListPet'); 
+            }
+
+        function showRaca(especie) {
+                postPartialView('pets/ListaRaca/' + especie, 'raca');        
         }
-    });
-</script>                 
-                         <!--FIM PERDI MINHA SENHA-->
+        function showFilterRaca(especie) {
+                postPartialView('pets/FilterListaRaca/' + especie, 'raca');        
+        }
+            
+    </script>
+                            <!-- FIM JQUERY/JAVASCRIPT PAGE PETS-->     
 
-
-                                    

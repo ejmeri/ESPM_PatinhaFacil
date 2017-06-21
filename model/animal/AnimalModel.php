@@ -102,6 +102,6 @@ Class AnimalModel extends Model {
                 b.pessoaid = c.id join endereco d on
                 c.id = d.pessoaid join animalimagem e on
                 a.id = e.animalid join raca f on
-                a.racaid = f.id where a.racaid = '{$obj->Raca}' and a.generoid = '{$obj->Genero}' and a.pelagemid = '{$obj->Pelagem}' and a.porteid = '{$obj->Porte}' and d.jsonendereco like '%{$uf}%'");  
+                a.racaid = f.id where (a.racaid = '{$obj->Raca}' or a.generoid = '{$obj->Genero}' or a.pelagemid = '{$obj->Pelagem}' or a.porteid = '{$obj->Porte}') and d.jsonendereco like '%{$uf}%'");  
     }
 }

@@ -160,11 +160,12 @@ class petsController extends Controller {
             $Animal = new Animal();
             $Telefone = new Telefone();
             $Email = new Email();
+            $PessoaAnimal = new PessoaAnimal();
 
             $Animal->Id = $this->getParams(0);
 
             $animalModel = new AnimalModel();
-            $pessoaModel = new PessoaModel();
+            $PessoaModel = new PessoaModel();
             $telefoneModel = new TelefoneModel();
             $emailModel = new EmailModel();
 
@@ -173,12 +174,24 @@ class petsController extends Controller {
             $Telefone->PessoaId = $pets['PessoaId'];
             $Email->PessoaId = $pets['PessoaId'];
             $Pessoa->Id = $pets['PessoaId'];
+            $PessoaAnimal->PessoaId = $Pessoa->Id;
+            
+            $endereco = $PessoaModel->GetEnderecoByPessoaId($PessoaAnimal);
+
+            $deserialize = json_decode($json = $endereco['JsonEndereco']);
+
+            $endereco['Logradouro'] = $deserialize->logradouro;
+            $endereco['Bairro'] = $deserialize->bairro;
+            $endereco['Cidade'] = $deserialize->cidade;
+            $endereco['UF'] = $deserialize->uf;
+            $endereco['CEP'] = $deserialize->cep;
 
             $this->dados = array(
                 'pet' => $pets,
-                'pessoa' => $pessoaModel->GetById($Pessoa),
+                'pessoa' => $PessoaModel->GetById($Pessoa),
                 'telefones' => $telefoneModel->GetbyPessoaId($Telefone),
-                'emails' => $emailModel->GetByPessoaId($Email)
+                'emails' => $emailModel->GetByPessoaId($Email),
+                'endereco' => $endereco
             );
 
 
