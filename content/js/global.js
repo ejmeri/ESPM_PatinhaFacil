@@ -79,6 +79,7 @@ function postPartialView(url, elementId) {
 };
 
 function postForm(form, elementId, elementResultId, redirect = '0') {
+    // alert('elmeri');
     $.ajax({
         type: "POST",
         url: form.attr("action"),

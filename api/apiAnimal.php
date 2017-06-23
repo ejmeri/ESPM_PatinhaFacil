@@ -76,7 +76,17 @@ class apiAnimal
         $AnimalModel = new AnimalModel();
         return $AnimalModel->GetTenRandom();
     }
-    
+    public function ConfirmarAdocao(Animal $Obj)
+    {
+        if(!(isset($_SESSION['PessoaId']))) 
+        {
+            echo '<h3> Cadastre-se ou efetue seu login <a href="login/index/pets/4">Aqui </a>';
+        }
+        else
+        {
+            echo 'logado';
+        }
+    }
 }
 
 ?>

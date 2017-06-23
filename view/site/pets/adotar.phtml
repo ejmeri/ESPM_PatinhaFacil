@@ -1,11 +1,24 @@
 <div class="container-in">
-	
+
+    <form method="POST" action="pets/adotar/<?php echo $view_pet['Id']; ?>" id="ConfirmarAdocao">
+        <input type="hidden" name="AnimalId" value="<?php echo $view_pet['Id']; ?>">
         <header class="header-page">
-		    <h1 class="text-center">Confirmação de adoção.</h1>            
+		    <h1 class="text-center">Confirme sua adoção</h1>            
         </header>
-		
-			<div class="animal">
-                <div id="photo-confirm"><img src="uploads/<?php echo $view_pet['Imagem']; ?>" class="foto" alt="Foto do animal"></div>
+			<div class="col-lg-10 animal" id="portfolio">
+                <div class="no-gutter popup-gallery">
+                    <a href="uploads/<?php echo $view_pet['Imagem']; ?>" class="portfolio-box">
+                        <div id="photo-confirm"><img src="uploads/<?php echo $view_pet['Imagem']; ?>" class="foto" alt="Foto do animal"></div>
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Clique para ampliar
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <span>Clique na imagem para ampliar</sxpan>                    
+                </div>
 			</div>
 			<div class="info-confirmpet">
                 <div class="info-pet">
@@ -29,6 +42,7 @@
 				<strong>Nome</strong>
 				<p><?php echo $view_pessoa['Nome']; ?><p>
             </div>
+            <hr>
             <div class="info-people">
                 <div class="col-lg-4">
                     <strong>Formas de contato</strong>
@@ -43,7 +57,7 @@
                     <!--<p>(00) 0000-0000</p>-->
                 </div>
                 <div class="col-lg-6">
-                    <strong>E-mails</strong> <br>
+                    <strong>E-mail</strong> <br>
                     <?php if (count($view_emails) > 0) { ?>
                                 <?php foreach ($view_emails as $email) { ?>
                                 <i class="fa fa-envelope-o fa-fw"></i><a  href="<?php echo ' mailto:'.$email['Nome'];?>"><?php echo $email['Nome'];?></a><br>
@@ -63,7 +77,13 @@
                 <p>Será enviado um e-mail para o responsável com suas Informações e caso o pet ainda esteja disponível, vocês entrarão em contato.</p>
             </div>
 			<div id="botaoconfirmar">
-                <input type="submit" name="button" value="Confirmar adoção" class="btn btn-blue btn-font">
+                <input type="submit" name="save" id="botao" value="Confirmar adoção" class="btn btn-black btn-lg">
 			</div>
-			
-	</div>
+    </form>
+    <div id="result" class="mg clear">
+        <span id="txtretorno">
+            
+        </span>
+    </div>
+
+</div>

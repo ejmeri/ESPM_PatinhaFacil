@@ -8,15 +8,16 @@
     <meta name="keywords" content="<?php echo $this->keywords ?>">
     <meta name="author" content="<?php echo $this->autor ?>">
 	<!--<link href="content/site/css/style.css" rel="stylesheet" />-->
-	<link href="content/site/css/master.css?nfile" rel="stylesheet" />
-    <link href="content/site/css/site.css?nfile" rel="stylesheet" />
+	<link href="content/site/css/master.css?<?php echo NEW_FILE;?>" rel="stylesheet" />
+    <link href="content/site/css/site.css?<?php echo NEW_FILE;?>" rel="stylesheet" />
 	<!--<link href="content/site/css/petdetail.css" rel="stylesheet" />
 	<link href="content/site/css/pets.css" rel="stylesheet">-->
-    <link href="content/site/css/confirmadopt.css?nfile" rel="stylesheet">
-	<link href="content/site/css/newlogin.css?elmeri" rel="stylesheet">
-    <link href="content/site/css/people.css?elmeri" rel="stylesheet">
-    <link href="content/upload/css/component.css?elmeri" rel="stylesheet">
+    <link href="content/site/css/confirmadopt.css?<?php echo NEW_FILE;?>" rel="stylesheet">
+	<link href="content/site/css/newlogin.css?<?php echo NEW_FILE;?>" rel="stylesheet">
+    <link href="content/site/css/people.css?<?php echo NEW_FILE;?>" rel="stylesheet">
+    <link href="content/upload/css/component.css?<?php echo NEW_FILE;?>" rel="stylesheet">
     <script src="content/site/js/site.js?<?php echo NEW_FILE;?>"></script>
+    <link href="content/magnific-popup/magnific-popup.css?<?php echo NEW_FILE;?>" rel="stylesheet">
 
 	<link href="content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
@@ -42,9 +43,6 @@
                     <a href="pets" class="page-scroll">Adotar um pet</a>
                 </li>
                 <li>
-                    <a href="pets/novo" class="page-scroll">Doar um pet</a>
-                </li>
-                <li>
                     <a href="#services" class="page-scroll">Nossas opcões</a>
                 </li>
                 <li>
@@ -62,19 +60,11 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="pessoa" class="page-scroll">Minha conta <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+                        <a href="login" class="page-scroll">Efetuar login <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
                     </li>
                     <li>
-                        <a href="login/Close" class="page-scroll">Sair <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                        <a href="login" class="page-scroll">Quero doar um pet <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
                     </li>
-                    <!--<li class="dropdown">
-                        <a href="#" class="dropdowntoggle" data-toggle="dropdown">Minha conta <i class="fa fa-hand-o-down" aria-hidden="true"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="pessoa" class="page-scroll">Meu Perfil</a></li>
-                            <li class="divider"></li>
-                            <li><a href="login/Close" class="page-scroll">Sair</a></li>                  
-                        </ul>
-                    </li>-->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -146,20 +136,20 @@
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
     <script src="content/js/jquerytransateValidatorsToBR.js"></script>
-    <script src="content/js/global.js?<?php echo NEW_FILE;?>"></script>
+    <script src="content/js/global.js?elmei"></script>
     <script src="content/js/jquery.mask.js?<?php echo NEW_FILE;?>"></script>
     
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="content/js/bootstrap.min.js?<?php echo NEW_FILE;?>"></script>
-
+    <script src="content/js/bootstrap.min.js"></script>
+    
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="content/scrollreveal/scrollreveal.min.js"></script>
     <script src="content/magnific-popup/jquery.magnific-popup.min.js"></script>
 
     <!-- Theme JavaScript -->
-    <!--<script src="content/js/creative.min.js?elmeri"></script>-->
+    <script src="content/js/creative.min.js?elmeri"></script>
 
     <script>
     // Scrolls to the selected menu item on the page
@@ -238,5 +228,20 @@
         }
             
     </script>
-                            <!-- FIM JQUERY/JAVASCRIPT PAGE PETS-->     
+                            <!-- FIM JQUERY/JAVASCRIPT PAGE PETS-->   
 
+
+<script type="text/javascript">
+     
+     var formulario =  $("#ConfirmarAdocao");
+
+     $('#ConfirmarAdocao').validate({
+         errorClass: 'text-errors',
+            
+            submitHandler: function (form) 
+            {
+                ConfirmaAdocao('ConfirmarAdocao');
+            }
+    });
+
+</script>

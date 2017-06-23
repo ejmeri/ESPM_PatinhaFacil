@@ -26,8 +26,9 @@ class petsController extends Controller {
     public function index()
     {
 
-        new Session();
-
+        // new Session();
+        if(!isset($_SESSION['PessoaId'])) $this->layout = '_layoutlogoff';
+        else $this->layout = '_layout';
         $this->title .= "Pets";
 
         
@@ -116,7 +117,7 @@ class petsController extends Controller {
     }
     public function detalhes()
     {
-        new Session();
+        // new Session();
         
         $this->title .= "Detalhes do Pet";
         $Animal = new Animal();
@@ -147,14 +148,17 @@ class petsController extends Controller {
 
         $this->View();   
     }
-    public function confirmar($AnimalId ='')
+    public function adotar($AnimalId ='')
     {
-        new Session();
-        error_reporting(!E_NOTICE);
+        // new Session();
+        // error_reporting(!E_NOTICE);
 
-        $this->title .= "Confirmar adoção";
+        if(!isset($_SESSION['PessoaId'])) $this->layout = '_layoutlogoff';
+        else $this->layout = '_layout';
+        
+        $this->title .= "Adotar";
 
-        if(!$_POST['button'])
+        if(!isset($_POST['save']))
         {
             $Pessoa = new Pessoa();
             $Animal = new Animal();
@@ -175,7 +179,7 @@ class petsController extends Controller {
             $Email->PessoaId = $pets['PessoaId'];
             $Pessoa->Id = $pets['PessoaId'];
             $PessoaAnimal->PessoaId = $Pessoa->Id;
-            
+
             $endereco = $PessoaModel->GetEnderecoByPessoaId($PessoaAnimal);
 
             $deserialize = json_decode($json = $endereco['JsonEndereco']);
@@ -194,9 +198,14 @@ class petsController extends Controller {
                 'endereco' => $endereco
             );
 
-
             $this->View();
-        } 
+        }
+        else 
+        {
+            $ApiAnimal = new apiAnimal();
+
+            $this->PartialResultView($ApiAnimal->ConfirmarAdocao(new Animal('POST', 'Animal')));
+        }
     }
     public function ListaPet() 
     {   

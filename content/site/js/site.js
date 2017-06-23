@@ -293,6 +293,11 @@ function CadastrarPet(form) {
     $("#nome").val('');
 }
 
+function ConfirmaAdocao(form) {
+    var formulario = $('#' + form);
+
+    postForm(formulario, 'txtretorno', 'result', 'login');
+}
 // fim cadastra pet
 
 

@@ -6,7 +6,7 @@
 
 .animal {
     width: 50%;
-    height: 50%;
+    /*height: 50%;*/
 }
 
 .animal img {
@@ -41,10 +41,11 @@
 
 @media screen and (max-width: 800px) {
     .animal {
-        width: 70%;
+        width: 100%;
     }
     .info-confirmpet {
-        float: right;
+        padding: 10px 0;
+        float: left;
     }
 }
 

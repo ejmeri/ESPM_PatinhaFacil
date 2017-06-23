@@ -23,6 +23,10 @@ use api\apiAutenticacao;
             $this->layout = "_layoutlogin";
             $this->title .= "Login";
 
+            $teste =  $this->getParams(0);
+
+            // print_r($teste);
+
             $EmailModel = new EmailModel();
 
             $this->dados = array(
@@ -36,7 +40,7 @@ use api\apiAutenticacao;
             }
             else if(isset($_POST['button']))
             {
-                 $Hash = new GerarHash();
+                $Hash = new GerarHash();
                 $apiAutenticacao = new apiAutenticacao();
                 $PessoaModel = new PessoaModel();
                 $EmailModel = new EmailModel();
@@ -80,7 +84,6 @@ use api\apiAutenticacao;
             $api->Close();
             header('location:' . APP_ROOT . '/login');
         }
-
         public function novo()
         {
             $this->title = "Novo Cadastro";
@@ -129,7 +132,6 @@ use api\apiAutenticacao;
 
             }
         }
-
         public function esqueciasenha()
         {
             $this->title = "Esqueci a senha";
@@ -142,7 +144,6 @@ use api\apiAutenticacao;
                 $this->PartialResultView($api->SendEmail(new Usuario('POST', 'Usuario')));
             }
         }
-
         public function Validar()
         {
             $Usuario = new Usuario();
