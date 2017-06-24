@@ -154,7 +154,7 @@ class System extends Router {
     private function validateController() {
         if (!(class_exists($this->runcontroller))) {
             header("HTTP/1.0 404 Not Found");
-            define('ERROR', 'A página '.$this->controller.' foi localizada');
+            define('ERROR', 'A página '.$this->controller.' não foi localizada');
             include("content/{$this->area}/shared/errorpage.phtml");
             exit();
         }
@@ -197,7 +197,7 @@ class System extends Router {
     private function validateAction() {
         if (!(method_exists($this->runcontroller, $this->action))) {
             header("HTTP/1.0 404 Not Found");
-            define('ERROR', 'A página '.$this->action.' foi localizada');
+            define('ERROR', 'A página '.$this->action.' não foi localizada');
             include("content/{$this->area}/shared/errorpage.phtml");
             exit();
         }

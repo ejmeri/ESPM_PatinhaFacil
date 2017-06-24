@@ -21,15 +21,17 @@ Class apiUsuario extends Database
 
        $array = (array) $query;
 
-       if(count($array) > 0) echo "Login indisponível";
+       if(count($array) > 0) echo 'E-mail indisponível. <a href="login/esqueciasenha">Recupar senha</a>';
 
     }
-    public function Enter(Usuario $obj)
+    public function Enter(Usuario $obj, $controller = '', $method = '', $Id = '')
     {   
         $Hash = new GerarHash();
         $UsuarioModel = new UsuarioModel();
         $retorno = $UsuarioModel->Enter($obj);
 
+
+        
         // if(!isset($retorno)) echo "Login não encontrado.";
         $decrypt = $Hash->Unhash($retorno['Senha']);
         if($decrypt == $obj->Senha) 
@@ -38,16 +40,51 @@ Class apiUsuario extends Database
             $Autenticacao = new Autenticacao();
             $Autenticacao->PessoaId = $retorno['PessoaId'];
             
-            if(($apiAutenticacao->ValidarByPessoaId($Autenticacao) == false)) echo "O seu acesso não foi autenticado!";
+            if(($apiAutenticacao->ValidarByPessoaId($Autenticacao) == false)){
+                 
+                 $retornojson = array(
+                    'Status' => false,
+                    'Do' => '',
+                    'Mensagem' => 'O seu acesso não foi autenticado!'
+                );
+                 
+            }
+            else if(($method != '') || ($Id != '') || ($controller = '')){
+                
+                //abrir sessao
+                $_SESSION['PessoaId'] = $retorno['PessoaId'];
+                
+                $retornojson = array(
+                    'Status' => true,
+                    'Do' => $controller."/".$method."/".$Id,
+                    'Mensagem' => ''
+                );
 
+            } 
             else
             {
                 //abrir sessão                
                 $_SESSION['PessoaId'] = $retorno['PessoaId'];
-                echo 'OK';
+                
+                $retornojson = array(
+                    'Status' => true,
+                    'Do' => 'home',
+                    'Mensagem' => ''
+                );
+
             }
         }
-        else echo "Login e/ou senha incorretos.";
+        else
+        {
+            $retornojson = array(
+                'Status' => false,
+                'Do' => '',
+                'Mensagem' => 'E-mail e/ou senha incorreto.'
+            );
+        }
+
+
+         echo json_encode($retornojson);
         
     }
     public function Close()

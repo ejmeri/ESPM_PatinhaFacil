@@ -1,4 +1,4 @@
-<?php echo print_r($view_animal); ?>
+<?php //echo print_r($view_animal); ?>
 
 <div class="container-in" style="margin-bottom:5%;" ng-app="">
     <header class="header-page text-center">
@@ -65,8 +65,8 @@
             <strong>
                 <i class="fa fa-image fa-5x" style="color: #57a3e8;"></i> Clique aqui para escolher as fotos para <?php echo $view_animal['Nome']; ?>
             </strong>
-            <input type="file" name="image" id="file6" value="<?php echo $view_imagem['Nome']; ?>" class="realupload form-control" accept="image/png, image/jpeg" required />
-            <?php echo APP_ROOT.'//uploads/'.$view_imagem['Nome']; ?>
+            <input type="file" name="image" id="file6" class="realupload form-control" accept="image/png, image/jpeg"/>
+            <input type="hidden" name="ImagemId" value="<?php echo $view_imagem['Id']; ?>">
         </div>
         <div class="clear">
             <input type="submit" id="savepet" name="botao" value="Salvar" class="btn btn-black">                

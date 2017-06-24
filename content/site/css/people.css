@@ -24,7 +24,7 @@ div.tab a {
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 8px 12px;
+    padding: 8px 20px;
     transition: 0.3s;
     font-size: 1.2em;
     text-decoration: none;
@@ -85,6 +85,9 @@ div.tab a.active {
 }
 
 @media screen and (max-width: 520px) {
+    div.tab {
+        max-width: 100%;
+    }
     div.tablinks {
         padding: 0px;
     }

@@ -23,53 +23,105 @@ use api\apiAutenticacao;
             $this->layout = "_layoutlogin";
             $this->title .= "Login";
 
-            $teste =  $this->getParams(0);
+            $Controller = $this->getParams(0);
+            $Method =  $this->getParams(1);
+            $MethodId = $this->getParams(2);
 
-            // print_r($teste);
+            $actions = array(
+                'Controller' => $Controller,
+                'Method' => $Method,
+                'MethodId' =>$MethodId
+            );
 
-            $EmailModel = new EmailModel();
+            // $EmailModel = new EmailModel();
 
             $this->dados = array(
-                'list' => $EmailModel->GetTipo()
+                'acoes' => $actions
             );
 
             if(isset($_POST['enter']))
-            {
+            {   
+                $controller = $_POST['Controller'];
+                $method = $_POST['Method'];
+                $methodId = $_POST['MethodId'];
+
                 $apiUsuario = new apiUsuario();
-                $this->PartialResultView($apiUsuario->Enter(new Usuario('POST', 'Usuario')));
+                $this->PartialResultView($apiUsuario->Enter(new Usuario('POST', 'Usuario'),$controller, $method, $methodId));
             }
             else if(isset($_POST['button']))
             {
+                $controller = $_POST['Controller'];
+                $method = $_POST['Method'];
+                $methodId = $_POST['MethodId'];
+
                 $Hash = new GerarHash();
                 $apiAutenticacao = new apiAutenticacao();
                 $PessoaModel = new PessoaModel();
-                $EmailModel = new EmailModel();
+                // $EmailModel = new EmailModel();
                 $UsuarioModel = new UsuarioModel();
 
                 $Autenticacao = new Autenticacao();
                 $Pessoa = new Pessoa('POST', 'Pessoa');                
                 $Usuario = new Usuario('POST', 'Usuario');
-                $Email = new Email('POST', 'Email');
+                // $Email = new Email('POST', 'Email');
         
                 $retorno = $PessoaModel->Save($Pessoa);
                 $Pessoa->Id = $retorno['Identity'];
 
                 $Usuario->PessoaId = $Pessoa->Id;
-                $Email->PessoaId = $Pessoa->Id;
+                // $Email->PessoaId = $Pessoa->Id;
                 $Autenticacao->PessoaId = $Pessoa->Id;
                 
-                $retornoEmail = $EmailModel->Save($Email);
+                // $retornoEmail = $EmailModel->Save($Email);
                 $Usuario->Senha = $Hash->Hash($Usuario->Senha);
                 $retornoUsuario = $UsuarioModel->Save($Usuario);
                 $apiAutenticacao->Autenticacao($Autenticacao);
                 
                 
-                if($retorno['sucess'] && $retornoEmail['sucess'] && $retornoUsuario['sucess']) {
-                    $this->PartialResultView('<h2>Parabéns '.$Pessoa->Nome.', você foi cadastrado em nosso sistema!</h2>
-                        <p>Enviamos um e-mail para você confirmar a sua conta, após confirmação o seu acesso estará liberado. <br>Faça seu login <a href="login"> <b>Aqui</b> </a>!</p>');
+                if($retorno['sucess'] && $retornoUsuario['sucess']) {
+                    
+
+                    
+                    $controller = $_POST['Controller'];
+                    $method = $_POST['Method'];
+                    $methodId = $_POST['MethodId'];
+
+                    
+                    if($controller != '' && $method != ''){
+
+                        $retorno = array(
+                            'Status' => true,
+                            'Do' => $controller."/".$method."/".$methodId,
+                            'Mensagem' => ''
+                        );
+
+                        $_SESSION['PessoaId'] = $retorno['PessoaId'];
+
+                        echo json_encode($retorno,  JSON_UNESCAPED_UNICODE);
+
+                    }
+                    else {
+
+                         $retorno = array(
+                            'Status' => true,
+                            'Do' => '',
+                            'Mensagem' => '<h2>Parabéns '.$Pessoa->Nome.', você foi cadastrado em nosso sistema!</h2>
+                                          <p>Enviamos um e-mail para você confirmar a sua conta, após confirmação o seu acesso estará liberado!</p>'
+                        );
+
+                        $this->PartialResultView(json_encode($retorno,  JSON_UNESCAPED_UNICODE));
+                    }
                 }
                 else {
-                     $this->PartialResultView($retorno['feedback']." <br> ".$retornoEmail['feedback']." <br>".$retornoUsuario['feedback']);
+
+                     $retorno = array(
+                            'Status' => false,
+                            'Do' => '',
+                            'Mensagem' => $retorno['feedback']." <br> ".$retornoUsuario['feedback']
+                     );
+                     $retorno = json_encode($retorno,  JSON_UNESCAPED_UNICODE);
+
+                     $this->PartialResultView($retorno);
                 }
             }
             else 
@@ -107,13 +159,13 @@ use api\apiAutenticacao;
                 $Autenticacao = new Autenticacao();
                 $Pessoa = new Pessoa('POST', 'Pessoa');                
                 $Usuario = new Usuario('POST', 'Usuario');
-                $Email = new Email('POST', 'Email');
+                // $Email = new Email('POST', 'Email');
         
                 $retorno = $PessoaModel->Save($Pessoa);
                 $Pessoa->Id = $retorno['Identity'];
 
                 $Usuario->PessoaId = $Pessoa->Id;
-                $Email->PessoaId = $Pessoa->Id;
+                // $Email->PessoaId = $Pessoa->Id;
                 $Autenticacao->PessoaId = $Pessoa->Id;
                 
                 $retornoEmail = $EmailModel->Save($Email);

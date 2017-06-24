@@ -263,10 +263,10 @@ function ChangeEndereco(id) {
 
 function showLogin(str) {
     if (str.length == 0) {
-        document.getElementById("txtlogin").innerHTML = "";
+        document.getElementById("returnlogin").innerHTML = "";
         return;
     } else {
-        postPartialView('login/Validar/' + str, 'txtlogin');
+        postPartialView('login/Validar/' + str, 'returnlogin');
     }
 
 }

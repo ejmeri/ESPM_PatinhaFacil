@@ -117,7 +117,7 @@
             <div class="form-insert">  
                 <article class="option-people margem-cellphone">
                     <section class="login-cabecalho">
-                        <h2 class="text-center">Ainda não ajudou um animalzinho? Ajude!</h2>
+                        <h2 class="text-center">Crie uma conta gratuita e ajude um animalzinho! <i class="fa fa-heart" style="color:red"></i></h2>
                     </section>
                     <section class="login-cabecalho">
                         <h3 class="text-center">Forneça suas informações</h3>
@@ -131,8 +131,12 @@
                     </div>
                 </article>
             </div>
-            <form id="frmCadastro" method="POST" action="login/novo" class="form-insert">
-                <div class="acess clear">
+            <form id="frmCadastro" method="POST" action="login" class="form-insert">
+                <input type="hidden" name="Id" value="0">
+                <input type="hidden" name="Controller" value="<?php echo $view_acoes['Controller'] ?>">                    
+                <input type="hidden" name="Method" value="<?php echo $view_acoes['Method'] ?>">
+                <input type="hidden" name="MethodId" value="<?php echo $view_acoes['MethodId'] ?>">
+                <div class="acess clear" style="padding-top:10px">
                     <h3>Informações Gerais</h3>
                 </div>
                     <div class="item-left">
@@ -153,7 +157,7 @@
                     <label for="Apelido" id="apelido"></label>
                     <input type="text" name="PessoaApelido" id="Apelido" class="form-control" value="" placeholder="Apelido" required autocomplete=off>
                 </div>
-                <div class="item-left clear">
+                <!--<div class="item-left clear">
                     <label for="Email"></label>
                     <input type="email" name="EmailNome" id="Email" class="form-control" value=""placeholder="E-mail" autocomplete=off required placeholder="example@example.com">
                 </div>
@@ -165,14 +169,14 @@
                             <?php foreach ($view_list as $tipoemail) { ?>
                                 <option value=<?php echo $tipoemail['Id']; ?>> <?php echo $tipoemail['Nome'];?></option><?php } } ?>
                     </select>
-                </div>
-                <div class="acess clear">
+                </div>-->
+                <div class="acess clear" style="padding-top:10px">
                     <h3>Informações de acesso</h3>
                 </div>
                 <div class="item-left clear">
                     <label for="user"></label>
-                    <input type="text" name="UsuarioLogin" id="user" class="form-control" value="" placeholder="Login" minLength=3 maxLength=30 autocomplete=off required onkeyup="showLogin(this.value)">
-                    <span id="txtlogin" class="text-warning"></span>
+                    <input type="email" name="UsuarioLogin" id="user" class="form-control" value="" placeholder="E-mail" minLength=3 maxLength=30 autocomplete=off required onkeyup="showLogin(this.value)">
+                    <span id="returnlogin" class="text-warning"></span>
                 </div>
                 <div class="item-left clear">
                     <label for="password"></label>
@@ -185,7 +189,14 @@
                 <div class="item-left margem clear">
                     <button type="submit" id="Create" name="button" class="btn btn-blue">Cadastrar</button>
                 </div>
-                <input type="hidden" name="Id" value="0">
+
+                <div class="clear padding">
+                    <h5>Ao se cadastrar, eu concordo com os <a href="termos">Termos de uso</a> e a <a href="termos">Política de privicidade</a> da PET.FÁCIL, e também, em receber comunicações da PET.FÁCIL, por exemplo, mensagens via e-mail/sms de pessoas interessadas em adotar ou doar algum pet.</h5>                    
+                </div>
+                <div class="col-lg-10 clear padding">
+                                       
+                   <strong>Estou de acordo com os termos</strong> <input type="checkbox" class="checkbox" name="" required>
+                </div>
             </form>
         </div>
         <div id="result" class="form-insert">

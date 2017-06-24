@@ -17,7 +17,7 @@ date_default_timezone_set('America/Sao_Paulo');
 // }
 
 define('APP_ROOT', 'http://' . $_SERVER['HTTP_HOST']);
-define('NEW_FILE', '22-06-2017:22:33');
+define('NEW_FILE', '24-06-2017:00:49');
 
 require_once 'helper/autoloader.php';
 

@@ -43,28 +43,38 @@ class apiAnimal
         }
 
         $retornoPessoaAnimalModel = $PessoaAnimalModel->Save($PessoaAnimal);        
-        $image = $Upload->SaveFile($_FILES['image']);
+        
+        if($_FILES['image']['size'] != 0) {
 
-        $AnimalImagem->AnimalId = $retornoAnimal['Identity'];
+            $error = 'aimge';
+            $image = $Upload->SaveFile($_FILES['image']);
+            $AnimalImagem->AnimalId = $retornoAnimal['Identity'];
+            $AnimalImagem->Nome = $image;
+            $AnimalImagem->Id = $_POST['ImagemId'];
 
-        $AnimalImagem->Nome = $image;
-
-        $AnimalModel->SaveImage($AnimalImagem);
+            $AnimalModel->SaveImage($AnimalImagem);
+        }
+        
 
         if($retornoPessoaAnimalModel['sucess']) 
         {
-            echo print_r($retornoPessoaAnimalModel);
-            echo '<br>';
-            echo print_r($PessoaAnimal);
-            echo '<br>';
-            echo  '<h2>Obrigado por estar ajudando mais um animalzinho</h2>';
-            echo  '<p>Veja os detalhes <a href="pets/detalhes/'.$PessoaAnimal->AnimalId.'"> <b class="link-blue">Aqui</b> </a>!</p>';
+            $jsonretorno = array(
+                'Status' => true,
+                'Do' => '',
+                'Mensagem' => '<h2>Obrigado por estar ajudando mais um animalzinho</h2>
+                               <p>Veja os detalhes <a href="pets/detalhes/'.$PessoaAnimal->AnimalId.'"> Aqui!</a></p> <br>'
+            );
         }
         else {
-            echo $retornoPessoaAnimalModel['feedback'];
-            echo '<br>';
-            
+             $jsonretorno = array(
+                'Status' => false,
+                'Do' => '',
+                'Mensagem' => $retornoPessoaAnimalModel['feedback']
+            );  
         }
+
+        echo json_encode($jsonretorno);
+
     }
     public function ListaPet(FilterPet $FilterPet)
     {
@@ -76,11 +86,11 @@ class apiAnimal
         $AnimalModel = new AnimalModel();
         return $AnimalModel->GetTenRandom();
     }
-    public function ConfirmarAdocao(Animal $Obj)
+    public function ConfirmarAdocao(Animal $obj)
     {
         if(!(isset($_SESSION['PessoaId']))) 
-        {
-            echo '<h3> Cadastre-se ou efetue seu login <a href="login/index/pets/4">Aqui </a>';
+        {   
+            echo '<h3> Cadastre-se ou efetue seu login <a href="login/index/pets/adotar/'.$obj->Id.'">aqui</a>';
         }
         else
         {

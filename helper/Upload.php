@@ -21,8 +21,8 @@ class Upload {
                 if (file_exists($target_file)) {
                     // echo "Sorry, file already exists.";
                     $uploadOk = 0;
-                    $target_file = $target_dir .$a. basename($file["name"]);
-                    $new = $a.basename($file["name"]);
+                    $target_file = $target_dir .'('.$a.')'. basename($file["name"]);
+                    $new = '('.$a.')'.basename($file["name"]);
                     $a++;                    
                 } else {
                     $uploadOk = 1;

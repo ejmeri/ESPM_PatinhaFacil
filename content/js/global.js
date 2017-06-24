@@ -88,10 +88,24 @@ function postForm(form, elementId, elementResultId, redirect = '0') {
         contentType: false,
         processData: false,
         success: function (retorno) {
-            retorno = retorno.toString();
-            if (retorno == 'OK') {
-                location.href = redirect
-            } else {
+            // retorno = retorno.toString();
+
+            try {
+                retorno = JSON.parse(retorno);
+                
+                if (retorno.Status && retorno.Do != '')
+                {   
+                    location.href = retorno.Do;
+                }
+                else if(retorno.Status && retorno.Do == '')
+                {
+                    $('#' + elementId).html(retorno.Mensagem);
+                    startperfil(form.attr('id'), 'divedit');
+                    $('#' + elementResultId).show();
+
+                }
+            }
+            catch (e) {
                 $('#' + elementId).html(retorno);
                 startperfil(form.attr('id'), 'divedit');
                 $('#' + elementResultId).show();
@@ -107,13 +121,19 @@ function postFormLogin(form, elementId, elementResultId, redirect) {
         url: form.attr("action"),
         data: form.serialize(),
         success: function (retorno) {
-            retorno = retorno.toString();
-            if (retorno == 'OK') {
-                location.href = redirect
-            } else {
+            console.log(retorno);
+            
+            
+            retorno = JSON.parse(retorno);
+
+            
+            if (retorno.Status) {
+                location.href = retorno.Do;
+            }
+            else {
                 $('#txtsenha').val('');
                 $('#txtlogin').focus();                
-                $('#' + elementId).html(retorno);
+                $('#' + elementId).html(retorno.Mensagem);
                 $('#' + elementResultId).show();
             }
         }

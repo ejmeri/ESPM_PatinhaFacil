@@ -4,14 +4,14 @@ namespace api;
 
 
 use helper\sendmail\HtmlEmail;
-use object\Email;
+use object\Usuario;
 use object\Autenticacao;
 use object\Login;
 use helper\sendmail\sendEmail;
 use helper\GerarHash;
 use helper\Database;
 use model\autenticacao\AutenticacaoModel;
-use model\email\EmailModel;
+use model\usuario\UsuarioModel;
 
     Class apiAutenticacao extends Database
     {
@@ -21,8 +21,8 @@ use model\email\EmailModel;
             $SendEmail = new sendEMail();
 
             $AutenticacaoModel = new AutenticacaoModel();
-            $EmailModel = new EmailModel();
-            $Email = new Email();
+            $UsuarioModel = new UsuarioModel();
+            $Usuario = new Usuario();
             
             $GerarHash = new GerarHash();
 
@@ -36,9 +36,9 @@ use model\email\EmailModel;
             $obj->Autenticado = 0;
             $retorno = $AutenticacaoModel->Save($obj);
 
-            $Email->PessoaId = $obj->PessoaId;
+            $Usuario->PessoaId = $obj->PessoaId;
 
-            $Email = $EmailModel->GetFirstByPessoaId($Email);
+            $Usuario = $UsuarioModel->GetByPessoaId($Usuario);
             
             // print_r($Email);
 
@@ -49,12 +49,12 @@ use model\email\EmailModel;
             $message .= file_get_contents('content/site/shared/emails/footer-email.html');
 
             $replacements = array(
-                '({name})' => $Email['Nome'],
+                '({name})' => $Usuario['Login'],
                 '({hash})' => $obj->Nome
             );
             $message = preg_replace( array_keys( $replacements ), array_values( $replacements ), $message );
             
-            $SendEmail->Send($Email['Nome'], 'Autenticação da sua conta', $message);
+            $SendEmail->Send($Usuario['Login'], 'Autenticação da sua conta', $message);
 
         }
         public function Validar(Autenticacao $obj)
