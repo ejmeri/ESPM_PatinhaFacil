@@ -18,6 +18,10 @@ Class UsuarioModel extends Model {
     {
         return $this->First($this->db->Select("SELECT Id, Login, Senha from usuario where pessoaid = '{$obj->PessoaId}'"));
     }
+    public function GetByPessoaIdNoPass(Usuario $obj)
+    {
+        return $this->First($this->db->Select("SELECT Id, Login from usuario where pessoaid = '{$obj->PessoaId}'"));
+    }
     public function GetByLogin(Usuario $obj)
     {
         return $this->First($this->db->Select("SELECT Id, Login, PessoaId from usuario where login = '{$obj->Login}'"));

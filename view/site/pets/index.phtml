@@ -1,3 +1,5 @@
+
+<input type="hidden" name="" id="UfId" value="<?php echo $view_estado ?>">
 <section id="list-animal" class="">
     <div class="container-in">
         <header class="about text-center">
@@ -13,7 +15,7 @@
             <form method="POST" id="SearchPet" class="form-search"  action="pets/ListaPet">   
                 <div class="filter col-sm-1">
                     <label for="especie">Espécie</label>
-                    <select class="form-control block" id="especie" name="FilterPetEspecie" onchange="showFilterRaca(this.value);"> 
+                    <select class="form-control block" id="especie" name="FilterPetEspecieId" onchange="showFilterRaca(this.value);"> 
                         <option value="0">Selecione a espécie</option>      
                         <?php if($view_especie > 0) { ?>
                                 <?php foreach ($view_especie as $li => $a) { ?>
@@ -25,13 +27,13 @@
                 </div>
                 <div class="filter" id="raca">
                 <label for="raca">Raça</label>
-                    <select class="form-control block" id="raca" name="FilterPetRaca">
+                    <select class="form-control block" id="raca" name="FilterPetRacaId">
                         <option value="0">Selecione uma espécie</option>
                     </select>
                 </div>
                 <div class="filter">
                     <label for="genero">Gênero</label>
-                    <select class="form-control block" id="genero" name="FilterPetGenero">
+                    <select class="form-control block" id="genero" name="FilterPetGeneroId">
                         <option value="0">Selecione o gênero</option>      
                         <?php if($view_genero > 0) { ?>
                                 <?php foreach ($view_genero as $li => $a) { ?>
@@ -43,7 +45,7 @@
                 </div>
                 <div class="filter">
                     <label for="cor">Pelagem</label>
-                    <select class="form-control block" id="pelagem" name="FilterPetPelagem">
+                    <select class="form-control block" id="pelagem" name="FilterPetPelagemId">
                         <option value="0">Selecione a pelagem</option>     
                         <?php if($view_pelagem > 0) { ?>
                                 <?php foreach ($view_pelagem as $li => $a) { ?>
@@ -55,7 +57,7 @@
                 </div>
                 <div class="filter">
                     <label for="porte">Porte</label>
-                    <select class="form-control block" id="porte" name="FilterPetPorte">
+                    <select class="form-control block" id="porte" name="FilterPetPorteId">
                         <option value="0">Selecione a o porte</option>      
                         <?php if($view_porte > 0) { ?>
                                 <?php foreach ($view_porte as $li => $a) { ?>
@@ -71,13 +73,13 @@
                         <option value="0">Selecione o estado</option>      
                         <?php if($view_porte > 0) { ?>
                                 <?php foreach ($view_estados as $li => $a) { ?>
-                                <option value=<?php echo $a['Sigla']; ?>> <?php echo $a['Nome']; ?></option>
+                                <option value=<?php echo $a['Sigla']; ?>  <?php echo ($a['Sigla'] == $view_estado ? 'selected' : ''); ?>> <?php echo $a['Nome']; ?></option>
                         <?php 
                             }
                         } ?> 
                     </select>
                 </div>
-                <div class="col-lg-3" style="padding: 5px 0px">
+                <div class="">
                     <label for=""></label> <br>
                     <button type="button" onclick="SubmitPartialForm($('#SearchPet'), 'ListPet')" class="btn btn-black"> <i class="fa fa-search"></i> PESQUISAR </button>                    
                 </div>

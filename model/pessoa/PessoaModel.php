@@ -15,8 +15,9 @@ class PessoaModel extends Model {
     {
         return $this->db->First($this->db->Select("SELECT * FROM pessoa WHERE id = '{$obj->Id}'"));  
     }
-    public function getlist(){
-        return $this->Select("SELECT * FROM pessoa");
+    public function getlist()
+    {
+        return $this->db->Select("SELECT * FROM pessoa");
     }
     public function GetTipoPessoaByName(TipoPessoa $obj)
     {
@@ -41,5 +42,9 @@ class PessoaModel extends Model {
     public function GetEnderecoByPessoaId(PessoaAnimal $obj)
     {
         return $this->db->First($this->db->Select("SELECT * from endereco where pessoaid = '{$obj->PessoaId}'"));
+    }
+    public function GetEstado()
+    {
+         return  $this->db->Select("SELECT * FROM estado order by nome");
     }
 }

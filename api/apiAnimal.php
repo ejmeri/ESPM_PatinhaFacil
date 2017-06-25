@@ -8,6 +8,7 @@ use object\PessoaAnimal;
 use object\Pessoa;
 use object\Animal;
 use object\AnimalImagem;
+use object\Estado;
 use model\pessoa\PessoaModel;
 use model\pessoaanimal\PessoaAnimalModel;
 use model\animal\AnimalModel;
@@ -81,10 +82,10 @@ class apiAnimal
         $AnimalModel = new AnimalModel();
         return $AnimalModel->ListaPet($FilterPet);
     }
-    public function GetTenRandom($random = 10)
+    public function GetTenRandom(Estado $obj, $Random = 10)
     {
         $AnimalModel = new AnimalModel();
-        return $AnimalModel->GetTenRandom();
+        return $AnimalModel->GetTenRandom($obj);
     }
     public function ConfirmarAdocao(Animal $obj)
     {

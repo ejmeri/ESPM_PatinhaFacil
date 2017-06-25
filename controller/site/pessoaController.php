@@ -129,7 +129,7 @@ class pessoaController extends Controller
     public function telefone($value = '')
     {
         new Session();
-        // error_reporting(!E_NOTICE);
+        error_reporting(!E_NOTICE);
         $Pessoa = new Pessoa();
 
         $Pessoa->Id = $_SESSION['PessoaId'];

@@ -7,15 +7,16 @@ use lib\Controller;
 use model\animal\AnimalModel;
 use model\pessoa\PessoaModel;
 use model\telefone\TelefoneModel;
-use model\email\EmailModel;
+use model\usuario\UsuarioModel;
 use model\raca\RacaModel;
 use model\especie\EspecieModel;
+use object\Estado;
 use object\Animal;
 use object\Raca;
 use object\Pessoa;
 use object\Telefone;
 use object\Especie;
-use object\Email;
+use object\Usuario;
 use object\FilterPet;
 use object\PessoaAnimal;
 use helper\Session;
@@ -29,20 +30,28 @@ class petsController extends Controller {
         // new Session();
         if(!isset($_SESSION['PessoaId'])) $this->layout = '_layoutlogoff';
         else $this->layout = '_layout';
+
         $this->title .= "Pets";
 
         
+        $apiAnimal = new ApiAnimal();
         $model = new EspecieModel();
         $modelAnimal = new AnimalModel();
         $modelTelefone = new TelefoneModel();
 
+    
+        $Estado = new Estado();
+        $Estado->Sigla = $this->getParams(0);
+
+        
         $this->dados = array(
+            'estado' =>  $Estado->Sigla,
             'especie' =>$modelAnimal->getEspecie(),
             'porte' =>$modelAnimal->getPorte(),
             'genero' =>$modelAnimal->getGenero(),
             'pelagem' =>$modelAnimal->getPelagem(),
             'estados' => $modelTelefone->GetUF(),
-            'random' =>$modelAnimal->GetTenRandom()
+            'random' => $apiAnimal->GetTenRandom($Estado)
         );
 
         $this->View();
@@ -163,7 +172,7 @@ class petsController extends Controller {
             $Pessoa = new Pessoa();
             $Animal = new Animal();
             $Telefone = new Telefone();
-            $Email = new Email();
+            $Usuario = new Usuario();
             $PessoaAnimal = new PessoaAnimal();
 
             $Animal->Id = $this->getParams(0);
@@ -171,12 +180,12 @@ class petsController extends Controller {
             $animalModel = new AnimalModel();
             $PessoaModel = new PessoaModel();
             $telefoneModel = new TelefoneModel();
-            $emailModel = new EmailModel();
+            $UsuarioModel = new UsuarioModel();
 
             $pets = $animalModel->GetById($Animal);
 
             $Telefone->PessoaId = $pets['PessoaId'];
-            $Email->PessoaId = $pets['PessoaId'];
+            $Usuario->PessoaId = $pets['PessoaId'];
             $Pessoa->Id = $pets['PessoaId'];
             $PessoaAnimal->PessoaId = $Pessoa->Id;
 
@@ -194,7 +203,7 @@ class petsController extends Controller {
                 'pet' => $pets,
                 'pessoa' => $PessoaModel->GetById($Pessoa),
                 'telefones' => $telefoneModel->GetbyPessoaId($Telefone),
-                'emails' => $emailModel->GetByPessoaId($Email),
+                'email' => $UsuarioModel->GetByPessoaIdNoPass($Usuario),
                 'endereco' => $endereco
             );
 
@@ -212,14 +221,11 @@ class petsController extends Controller {
         $apiAnimal = new apiAnimal();
         $FilterPet = new FilterPet('POST', 'FilterPet');
 
-        $random = $apiAnimal->GetTenRandom();
-        $lista = $apiAnimal->ListaPet($FilterPet);
+        $Estado = new Estado();
+        $Estado->Sigla = $this->getParams(1);
 
-        // echo '<br>';
-        // print_r($random);
-        // echo '<br>';
-        // print_r($lista);
-        // echo '<br>';
+        $random = $apiAnimal->GetTenRandom($Estado);
+        $lista = $apiAnimal->ListaPet($FilterPet);
 
         $this->dados = array(
             'list' => $lista,

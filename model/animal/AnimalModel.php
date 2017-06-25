@@ -2,6 +2,7 @@
 
 namespace model\animal;
 
+use object\Estado;
 use object\FilterPet;
 use object\Animal;
 use object\AnimalImagem;
@@ -37,13 +38,24 @@ Class AnimalModel extends Model {
         a.porteid = d.id join animalimagem e on
         a.id = e.animalid where b.especieid = '{$obj->EspecieId}'");
     }
-    public function GetTenRandom()
+    public function GetTenRandom(Estado $obj)
     {
-        return $this->db->Select("SELECT a.id, a.nome, b.nome 'raca', peso, e.nome 'imagem' FROM animal a join raca b on
-        a.racaid = b.id join genero c on
-        a.generoid = c.id join porte d on
-        a.porteid = d.id join animalimagem e on
-        a.id = e.animalid order by rand() and a.dtinclusao asc limit 10");
+        $uf = '"uf":"'.$obj->Sigla.'"';
+
+        return $this->db->Select("SELECT a.id, a.nome, f.nome 'raca', peso, e.nome 'imagem', d.jsonendereco from animal a join pessoaanimal b on
+                a.id = b.animalid join pessoa c on
+                b.pessoaid = c.id join endereco d on
+                c.id = d.pessoaid join animalimagem e on
+                a.id = e.animalid join raca f on
+                a.racaid = f.id   join especie g on
+                f.especieid = g.id where d.jsonendereco like '%{$uf}%'
+                order by rand() and a.dtinclusao asc limit 10");
+
+        // return $this->db->Select("SELECT a.id, a.nome, b.nome 'raca', peso, e.nome 'imagem' FROM animal a join raca b on
+        // a.racaid = b.id join genero c on
+        // a.generoid = c.id join porte d on
+        // a.porteid = d.id join animalimagem e on
+        // a.id = e.animalid ");
     }
     public function GetByPessoaId(Pessoa $obj)
     {
@@ -96,12 +108,25 @@ Class AnimalModel extends Model {
     }
     public function ListaPet(FilterPet $obj)
     {
+        
+        foreach ($obj as $ind => $val){
+            if(!($ind == 'DtInclusao') && !($ind == 'DtAtualizacao') && !($ind == 'Localizacao') && !($ind == 'Id')){        
+                
+                if($ind == 'EspecieId') $where[] = "f.$ind" .($val == '0' ? " <> 0 " : " = '{$val}'");
+                else $where[] = " {$ind} " .($val == '0' ? " <> 0 " : " = '{$val}'");
+            } 
+        }
+
+        $sql = implode(' AND ', $where);
+        
         $uf = '"uf":"'.$obj->Localizacao.'"';
+
         return $this->db->Select("SELECT a.id, a.nome, f.nome 'raca', peso, e.nome 'imagem', d.jsonendereco from animal a join pessoaanimal b on
                 a.id = b.animalid join pessoa c on
                 b.pessoaid = c.id join endereco d on
                 c.id = d.pessoaid join animalimagem e on
                 a.id = e.animalid join raca f on
-                a.racaid = f.id where (a.racaid = '{$obj->Raca}' or a.generoid = '{$obj->Genero}' or a.pelagemid = '{$obj->Pelagem}' or a.porteid = '{$obj->Porte}') and d.jsonendereco like '%{$uf}%'");  
+                a.racaid = f.id   join especie g on
+                f.especieid = g.id where $sql and d.jsonendereco like '%{$uf}%'");  
     }
 }

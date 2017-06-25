@@ -21,10 +21,10 @@ $(document).ready(function () {
     });
 
     $(".cellphone").focusin(function () {
-        $('.cellphone').mask('00000-0000');
+        $('.cellphone').mask('(00) 00000-0000');
     });
     $(".cellphone").focusout(function () {
-        $('.cellphone').unmask('00000-0000');
+        $('.cellphone').unmask();
     });
 
     $(".phone").focusin(function () {

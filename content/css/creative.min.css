@@ -44,6 +44,14 @@ h6 {
     font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif
 }
 
+/*
+.bg-minimuntransp {
+    background-color: rgb(20,20,255)
+}*/
+
+hr.sizemax {
+    max-width: 85%
+}
 hr {
     border-color: #53a3e8;
     border-width: 3px;
@@ -52,6 +60,10 @@ hr {
 
 hr.light {
     border-color: #fff
+}
+
+hr.opalight {
+    border-color: black
 }
 
 a {

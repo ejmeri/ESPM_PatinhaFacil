@@ -1,0 +1,190 @@
+<section class="bg-primary" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">Encontre aqui a felicidade para seu lar!</h2>
+                <hr class="light">
+                <p class="">Você sabia que há mais de 30 milhões de cães e gatos abandonados ? Você pode mudar isso! Basta entrar em nossa plataforma e adotar ou doar um novo amiginho. </p>
+                <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Começar!</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="bg-minimuntransp" id="pets">
+    <hr class="sizemax">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">Onde está o seu pet ?</h2>
+                    <hr class="opalight">
+                    <?php if (count($view_estados) > 0) { ?>
+                        <?php foreach ($view_estados as $li => $a){ ?>
+                                <span>
+                                    <a href="pets/index/<?php echo $a['Sigla'] ?>"><?php echo $a['Nome'] ?></a>
+                                </span>
+                        <?php 
+                        }
+                    }
+        ?>
+            </div>
+        </div>
+    </div>
+    <hr class="sizemax">
+</section>
+
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Pets <i class="fa fa-heart" style="color:red;"> </i> <i class="fa fa-paw fa-1x"></i></h2>
+                <hr class="">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <a href="login" style="color: black;" alt="Faça seu cadastro"><i class="fa fa-4x fa-sign-in sr-icons"></i></a>
+                    <a href="login" style="color: black;"><h3>Quero participar</h3></a>
+                    <p class="text-muted">Faça seu cadastro e comece a adotar ou doar um animal.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-thumbs-o-up sr-icons" style="color:blue;"></i>
+                    <h3>ONG's</h3>
+                    <p class="text-muted">Algumas parcerias que nós temos.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-bath sr-icons"></i>
+                    <h3>Você confia em como seu pet é tratado ?</h3>
+                    <p class="text-muted">Veja aqui alguns pet shop com serviços de qualidade.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i id="heart" class="fa fa-4x fa-heart-o sr-icons" style="color:red;"></i>
+                    <h3>Um pet é como um filho</h3>
+                    <p class="text-muted">É muito importante ter um animal de estimação em sua vida.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="no-padding" id="portfolio">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Histórias que deram certo <i class="fa fa-handshake-o fa-1x">  </i> <i class="fa fa-paw fa-1x"></i> </h2>
+                <hr class="">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row no-gutter popup-gallery">
+            <div class="col-lg-4 col-sm-6">
+                <a href="content/images/1.jpg?v" class="portfolio-box">
+                    <img src="content/images/1.jpg?v" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="content/images/2.jpg?v" class="portfolio-box">
+                    <img src="content/images/2.jpg?v" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="content/images/3.jpg?v" class="portfolio-box">
+                    <img src="content/images/3.jpg?v" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="content/images/4.jpg?v" class="portfolio-box">
+                    <img src="content/images/4.jpg?v" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="content/images/5.jpg?v" class="portfolio-box">
+                    <img src="content/images/5.jpg?v" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="content/images/6.jpg?v" class="portfolio-box">
+                    <img src="content/images/6.jpg?v" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--<aside class="bg-dark">
+    <div class="container text-center">
+        <div class="call-to-action">
+            <h2>Free Download at Start Bootstrap!</h2>
+            <a href="http://startbootstrap.com/template-overviews/creative/" class="btn btn-default btn-xl sr-button">Download Now!</a>
+        </div>
+    </div>
+</aside>-->

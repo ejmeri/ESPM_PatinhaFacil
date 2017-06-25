@@ -26,11 +26,11 @@ class TelefoneModel extends Model
     }
     public function GetbyPessoaId(Telefone $obj)
     {
-        return $this->db->Select("SELECT a.Id, a.Numero, TipoTelefoneId, DddId, b.Numero 'DDD' FROM telefone a join ddd b on a.dddid = b.id WHERE pessoaid = '{$obj->PessoaId}'");
+        return $this->db->Select("SELECT a.Id, a.Numero, TipoTelefoneId FROM telefone a WHERE pessoaid = '{$obj->PessoaId}'");
     }
     public function GetbyId(Telefone $obj)
     {
-        return $this->db->First($this->db->Select("SELECT Id, Numero, TipoTelefoneId, DddId FROM telefone WHERE id = '{$obj->Id}'"));
+        return $this->db->First($this->db->Select("SELECT Id, Numero, TipoTelefoneId FROM telefone WHERE id = '{$obj->Id}'"));
     }
     public function GetTipo()
     {

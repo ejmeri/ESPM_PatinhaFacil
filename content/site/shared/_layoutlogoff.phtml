@@ -200,8 +200,9 @@
         $(document).ready(function(){
 
             var espid = $('#especie').val();
+            var uf = $('#UfId').val();
 
-            showPet(espid);
+            showPet(espid, uf);
             
             // $("#items-filter").hide();
 
@@ -216,9 +217,9 @@
         });
 
 
-        function showPet(esp) {
-                postPartialView('pets/ListaPet/' + esp, 'ListPet'); 
-            }
+        function showPet(esp, uf) {
+                postPartialView('pets/ListaPet/' + esp + '/' + uf, 'ListPet'); 
+        }
 
         function showRaca(especie) {
                 postPartialView('pets/ListaRaca/' + especie, 'raca');        

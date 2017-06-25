@@ -3,11 +3,11 @@
 namespace object;
 
     Class FilterPet extends EntityBase {
-        public $Especie;
-        public $Raca;
-        public $Genero;
-        public $Pelagem;
-        public $Porte;
+        public $EspecieId;
+        public $RacaId;
+        public $GeneroId;
+        public $PelagemId;
+        public $PorteId;
         public $Localizacao;
     }
 

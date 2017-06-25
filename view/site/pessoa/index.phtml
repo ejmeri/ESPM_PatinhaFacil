@@ -24,6 +24,9 @@
             <div class="tablinks">
                 <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'tabpet')">Meus animais</a>                       
             </div>
+            <div class="tablinks">
+                <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'tabpreferencias')">Minhas preferências</a>   
+            </div>
         </div>
 
         <div id="retornoPessoa">
@@ -150,7 +153,7 @@
                     <strong>Lista de Telefones</strong>
                     <select class="form-control block" id="telefones" onchange="ChangeTelefone(this.value)">
                         <option value="0">Selecione o Telefone</option><?php if (count($view_telefones) > 0) { ?><?php foreach ($view_telefones as $telefone) { ?>
-                        <option value=<?php echo $telefone['Id']; ?>><?php echo '('.$telefone['DDD'].') '.$telefone['Numero'];?></option><?php } } ?>
+                        <option value=<?php echo $telefone['Id']; ?>><?php echo $telefone['Numero'];?></option><?php } } ?>
                     </select>                      
                 </div>
 
@@ -158,12 +161,16 @@
                     <input type="hidden" name="TelefoneId" id="Id" value="">
                     <input type="hidden" name="teste" id="botao" value="">
                     <div class="col-40 col-sm-1 col-fl clear" id="divedit" style="margin-bottom:2%;">
-                        <div>
+                        <!--<div>
                             <strong>DDDs</strong>
                             <select class="form-control block" id="ddds" name="TelefoneDddId" onchange="" required>
                                 <option value="">Selecione o DDD</option><?php if(count($view_ddd) > 0) { ?><?php foreach($view_ddd as $ddd) { ?>
                                 <option value=<?php echo $ddd['Id']; ?>><?php echo $ddd['Nome'];?></option><?php }} ?>
                             </select>
+                        </div>-->
+                        <div>
+                            <strong>Telefone</strong>
+                            <input type="text" id="txtpeoplenome" name="TelefoneNumero" value="" class="form-control cellphone" required autocomplete=off>
                         </div>
                         <div>
                             <strong>Tipo de telefone</strong>
@@ -171,10 +178,6 @@
                                 <option value="">Selecione o tipo</option><?php if (count($view_tipotelefone) > 0) { ?><?php foreach ($view_tipotelefone as $tipotelefone) { ?>
                                 <option value=<?php echo $tipotelefone['Id']; ?>> <?php echo $tipotelefone['Nome'];?></option><?php } } ?>
                             </select>
-                        </div>
-                        <div>
-                            <strong>Telefone</strong>
-                            <input type="text" id="txtpeoplenome" name="TelefoneNumero" value="" class="form-control" required autocomplete=off minlength=8 maxlength=9>
                         </div>
                     </div>
                     <div style="margin-top:1%;">
@@ -308,7 +311,7 @@
                                 <div class="interest">
                                     <!--<input type="submit" formaction="pets/petdetails" name="adotar" class="btn fa fa-5x" title="Adote!" value ="&#xf004;">                          -->
                                     <!--<input type="button" name="information" value="Mais informações" class="btn button">                                  -->
-                                    <a href="pets/editar/<?php echo $a['id'];?>" title="Ver informações!"><i class="fa fa-edit fa-5x" style="hover: blue" aria-hidden="true"></i></a>
+                                    <a href="pets/editar/<?php echo $a['id'];?>" title="Editar <?php echo $a['nome']; ?>"><i class="fa fa-edit fa-5x" style="hover: blue" aria-hidden="true"></i></a>
                                 </div>
                                 <!--<div class="interest">
                                     <a href="#" title="Demonstrar interesse!"><i class="fa fa-envelope-o fa-5x" aria-hidden="true"></i></a>                                
@@ -322,6 +325,41 @@
                 <h3 class="text-center" style="font-size: 1.5em">Você ainda não adotou ou doou algum pet <i class="fa fa-frown-o"></i></h3>
             <?php 
             } ?>
+        </div>
+        <div class="tabcontent col-10 inline-table col-fl extreme-padding" id="tabpreferencias">
+            <h5>Forneça algumas preferências para nós, ela nos ajudará a filtrar animais para você. <span style="color:red">Não obrigatório.</span> </h5>
+            <div id="retornoPreferencias" class="clear">
+                <div class="item-left">
+                    <strong>Espécie</strong>
+                    <select class="form-control">
+                        <option value="">Selecione a espécie</option>
+                    </select>
+                </div>
+                <div class="item-right">
+                    <strong>Raça</strong>
+                    <select class="form-control" name="PreferenciaRacaId">
+                        <option value="">Selecione a raça</option>
+                    </select>
+                </div>
+                <div class="item-left">
+                    <strong>Genêro</strong>
+                    <select class="form-control" name="PreferenciaGeneroId">
+                        <option value="">Selecione a genêro</option>
+                    </select>
+                </div>
+                <div class="item-right">
+                    <strong>Porte</strong>
+                    <select class="form-control" name="PreferenciaPorteId">
+                        <option value="">Selecione a porte</option>
+                    </select>
+                </div>
+                <div class="item-left">
+                    <strong>Pelagem</strong>
+                    <select class="form-control" name="PreferenciaPelagemId">
+                        <option value="">Selecione a pelagem</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
 
