@@ -1,29 +1,32 @@
 <?php if (count($view_list) > 0) { ?>
             <?php foreach ($view_list as $li => $a){ ?>
             <form method="post" action="">
-                <input type="hidden" name="AnimalId" value=<?php echo $a['id'];?>>
+                <input type="hidden" name="AnimalId" value=<?php echo $a['Id'];?>>
                     <div class="grid-pet">
                         <div class="img-pet">
-                            <a href="pets/adotar/<?php echo $a['id'];?>" title="Quero adotar!">
-                                <?php  echo '<img src="uploads/'.$a['imagem'].'" alt="Animal">'; ?>
+                            <a href="pets/adotar/<?php echo $a['Id'];?>" title="Quero adotar!">
+                                <?php  echo '<img src="uploads/'.$a['Imagem'].'" alt="Animal">'; ?>
                             </a>                            
                         </div>
                         <div class="information-pet">
-                            <div class="row">
-                                <strong>Nome: </strong> <span><?php echo $a['nome']; ?></span>                                
+                            <div class="padding-15">
+                                <strong>Nome: </strong> <span><?php echo $a['Nome']; ?></span>                                
                             </div>
-                            <div class="row">
-                                <strong>Raça: </strong> <span><?php echo $a['raca']; ?></span>                                
+                            <div class="padding-15">
+                                <strong>Raça: </strong> <span><?php echo $a['Raca']; ?></span>                                
                             </div>
-                            <div class="row">
-                                <strong>Peso: </strong> <span><?php echo $a['peso'].'Kgs'; ?></span>                                
+                             <div class="padding-15">
+                                <strong>Idade: </strong> <span><?php echo $a['Idade']; ?></span>                                
+                            </div>
+                            <div class="padding-15">
+                                <strong>DDD/Região:</strong> <span class="text-left"><?php echo '(' .$a['Ddd'] . ') - '. $a['Regiao']; ?></span>                                
                             </div>
                         </div>
                         <div class="adopt-pet">
                             <div class="information">
                                 <!--<input type="submit" formaction="pets/petdetails" name="adotar" class="btn fa fa-5x" title="Adote!" value ="&#xf004;">                          -->
                                 <!--<input type="button" name="information" value="Mais informações" class="btn button">                                  -->
-                                <a href="pets/adotar/<?php echo $a['id'];?>" title="Quero adotar!"><i class="fa fa-heart fa-5x" aria-hidden="true"></i></a>
+                                <a href="pets/adotar/<?php echo $a['Id'];?>" title="Quero adotar!"><i class="fa fa-heart fa-5x" aria-hidden="true"></i></a>
                             </div>
                             <!--<div class="interest">
                                 <a href="#" title="Demonstrar interesse!"><i class="fa fa-envelope-o fa-5x" aria-hidden="true"></i></a>                                
@@ -39,29 +42,32 @@
                 <!--<h4 class="text-center">Não encontramos resultado para a pesquisa, mas há muitos pets para serem doados.</h4>-->
                         <?php foreach ($view_random as $li => $a){ ?>
                        
-                        <input type="hidden" name="AnimalId" value=<?php echo $a['id'];?>>
+                        <input type="hidden" name="AnimalId" value=<?php echo $a['Id'];?>>
                             <div class="grid-pet">
                                 <div class="img-pet">
-                                    <a href="pets/adotar/<?php echo $a['id'];?>" title="Quero adotar!">
-                                        <?php  echo '<img src="uploads/'.$a['imagem'].'" alt="Animal">'; ?>
+                                    <a href="pets/adotar/<?php echo $a['Id'];?>" title="Quero adotar!">
+                                        <?php  echo '<img src="uploads/'.$a['Imagem'].'" alt="Animal">'; ?>
                                     </a>                               
                                 </div>
                                 <div class="information-pet">
-                                    <div class="row">
-                                        <strong>Nome: </strong> <span><?php echo $a['nome']; ?></span>                                
+                                    <div class="padding-15">
+                                        <strong>Nome: </strong> <span><?php echo $a['Nome']; ?></span>                                
                                     </div>
-                                    <div class="row">
-                                        <strong>Raça: </strong> <span><?php echo $a['raca']; ?></span>                                
+                                    <div class="padding-15">
+                                        <strong>Raça: </strong> <span><?php echo $a['Raca']; ?></span>                                
                                     </div>
-                                    <div class="row">
-                                        <strong>Peso: </strong> <span><?php echo $a['peso'].'Kgs'; ?></span>                                
+                                    <div class="padding-15">
+                                        <strong>Idade: </strong> <span><?php echo $a['Idade']; ?></span>                                
+                                    </div>
+                                    <div class="padding-15">
+                                        <strong>DDD/Região:</strong> <span class="text-left"><?php echo '(' .$a['Ddd'] . ') - '. $a['Regiao']; ?></span>                                
                                     </div>
                                 </div>
                                 <div class="adopt-pet">
                                     <div class="information">
                                         <!--<input type="submit" formaction="pets/petdetails" name="adotar" class="btn fa fa-5x" title="Adote!" value ="&#xf004;">                          -->
                                         <!--<input type="button" name="information" value="Mais informações" class="btn button">                                  -->
-                                        <a href="pets/adotar/<?php echo $a['id'];?>" title="Quero adotar!"><i class="fa fa-heart fa-5x" aria-hidden="true"></i></a>
+                                        <a href="pets/adotar/<?php echo $a['Id'];?>" title="Quero adotar!"><i class="fa fa-heart fa-5x" aria-hidden="true"></i></a>
                                     </div>
                                     <!--<div class="interest">
                                         <a href="#" title="Demonstrar interesse!"><i class="fa fa-envelope-o fa-5x" aria-hidden="true"></i></a>                                
@@ -72,6 +78,11 @@
                         }
                 }
                 else 
-                {
-                    echo '<h1 class="text-center"> Sem resultados </h1>';
-                } ?>
+                {?>
+                    <div class="alert alert-info alert-dismissable text-center" style="background-color: rgba(200,200,200,0.2); border-radius: 40px">
+                        <h1 style="color:black">Ainda não temos pets nos filtros do seu desejo! <i class="fa fa-frown-o" aria-hidden="true"></i></i></h1> 
+                        <hr style="max-width: 50px; border: 1px solid black">
+                        <h2 style="color:black">Estamos em busca de pessoas, ongs e etc que desejam doar animaizinhos!</h2>  
+                        <!--<h3><a href="login/index/pets/adotar/'.$obj->Id.'" class="btn btn-purple btn-lg">Clique aqui</a> </h3>-->
+                    </div>
+                <?php } ?>

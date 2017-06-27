@@ -7,6 +7,7 @@ use object\Pessoa;
 use object\Email;
 use object\Usuario;
 use object\Endereco;
+use object\Estado;
 use helper\Session;
 use lib\Controller;
 use api\apiUsuario;
@@ -24,6 +25,34 @@ class pessoaController extends Controller
         new Session();
 
         $this->title .= 'Meu Perfil';
+
+
+        if(isset($_POST['SavePeople'])) 
+        {
+            $this->general();
+        }
+        else if(isset($_POST['SaveAcesso'])) 
+        {
+            $this->acesso();
+        }
+        else if(isset($_POST['SaveEndereco']))
+        {
+            $this->endereco();
+        }
+        else if(isset($_POST['SaveDados']))
+        {
+            $this->telefone();
+        }
+
+        $this->Load();
+        $this->View();
+    }
+    public function pets()
+    {
+        new Session();
+
+        $this->title .= 'Meu Perfil';
+        
         $this->Load();
         $this->View();
     }
@@ -34,8 +63,8 @@ class pessoaController extends Controller
         
         $retorno = $PessoaModel->Save($Pessoa);
 
-        $this->Load();
-        $this->PartialView();
+        // $this->Load();
+        // $this->PartialView();
     }
     public function email($value = '')
     {
@@ -80,42 +109,33 @@ class pessoaController extends Controller
 
         $Pessoa->Id = $_SESSION['PessoaId'];
                 
-        $Endereco->Id = $this->getParams(0);
+        // $Endereco->Id = $this->getParams(0);
         $Endereco->PessoaId = $Pessoa->Id;
 
-        if ($_POST['save']) {
-            $apiPessoa = new apiPessoa();           
-            $NewEndereco = new Endereco('POST', 'Endereco');
 
-            $array = array(
-                'cep' => $_POST['CEP'],
-                'logradouro' => $_POST['logradouro'],
-                'bairro' => $_POST['bairro'],
-                'cidade' => $_POST['cidade'],
-                'uf' => $_POST['uf']
-            );
+        $apiPessoa = new apiPessoa();           
+        $NewEndereco = new Endereco('POST', 'Endereco');
 
-            $NewEndereco->JsonEndereco = json_encode($array, JSON_UNESCAPED_UNICODE);
-            $NewEndereco->PessoaId = $Pessoa->Id;
-            $retorno = $apiPessoa->SaveEndereco($NewEndereco);
-        }
+        $NewEndereco->PessoaId = $Pessoa->Id;
+        $retorno = $apiPessoa->SaveEndereco($NewEndereco);
+        
 
 
         $endereco = $modelTelefone->GetEnderecoFullByPessoaId($Endereco);
-        $deserialize = json_decode($json = $endereco['JsonEndereco']);
+        // $deserialize = json_decode($json = $endereco['JsonEndereco']);
 
-        $endereco['Logradouro'] = $deserialize->logradouro;
-        $endereco['Bairro'] = $deserialize->bairro;
-        $endereco['Cidade'] = $deserialize->cidade;
-        $endereco['UF'] = $deserialize->uf;
-        $endereco['CEP'] = $deserialize->cep;
+        // $endereco['Logradouro'] = $deserialize->logradouro;
+        // $endereco['Bairro'] = $deserialize->bairro;
+        // $endereco['Cidade'] = $deserialize->cidade;
+        // $endereco['UF'] = $deserialize->uf;
+        // $endereco['CEP'] = $deserialize->cep;
         
-        $this->dados = array(
-                'tipoendereco' => $modelTelefone->GetTipoEndereco(),
-                'endereco' => $endereco
-        );
+        // $this->dados = array(
+        //         'tipoendereco' => $modelTelefone->GetTipoEndereco(),
+        //         'endereco' => $endereco
+        // );
         
-        $this->PartialView();  
+        // // $this->PartialView();  
     }
     public function acesso($value = '')
     {
@@ -123,8 +143,8 @@ class pessoaController extends Controller
 
         $apiUsuario->EditAcesso();
         
-        $this->Load();
-        $this->PartialView();
+        // $this->Load();
+        // $this->PartialView();
     }
     public function telefone($value = '')
     {
@@ -135,29 +155,16 @@ class pessoaController extends Controller
         $Pessoa->Id = $_SESSION['PessoaId'];
 
         $Telefone = new Telefone();
-        $Telefone->Id = $this->getParams(0);
         $Telefone->PessoaId = $Pessoa->Id;
 
         $model = new PessoaModel();
         $modelTelefone = new TelefoneModel();
 
-        
-
-        if ($_POST['save']) {
-            $NewTel = new Telefone('POST', 'Telefone');
-            $NewTel->PessoaId = $Pessoa->Id;
-            $retorno = $modelTelefone->Save($NewTel);
-        }
+        $NewTel = new Telefone('POST', 'Telefone');
+        $NewTel->PessoaId = $Pessoa->Id;
+        $retorno = $modelTelefone->Save($NewTel);
 
 
-        $this->dados = array(
-            'telefones' => $modelTelefone->GetbyPessoaId($Telefone),
-            'telefone' => $modelTelefone->GetById($Telefone),
-            'tipotelefone' => $modelTelefone->GetTipo(),
-            'ddd' => $modelTelefone->GetDdd()
-        );
-        
-        $this->PartialView();
     }
     private function Load()
     {
@@ -180,13 +187,12 @@ class pessoaController extends Controller
         $modelAnimal = new AnimalModel();
         
         $endereco = $modelTelefone->GetEnderecoFullByPessoaId($Endereco);
-        $deserialize = json_decode($json = $endereco['JsonEndereco']);
+        
+        $Ddd = new \object\Ddd;
 
-        $endereco['Logradouro'] = $deserialize->logradouro;
-        $endereco['Bairro'] = $deserialize->bairro;
-        $endereco['Cidade'] = $deserialize->cidade;
-        $endereco['UF'] = $deserialize->uf;
-        $endereco['CEP'] = $deserialize->cep;
+        $Ddd->EstadoId = $endereco['EstadoId'];
+
+        if(!isset($Ddd->EstadoId)) $Ddd->EstadoId = 1;
 
         $this->dados = array(
             'dados' => $model->GetbyId($Pessoa),
@@ -194,13 +200,57 @@ class pessoaController extends Controller
             'emails' => $EmailModel->GetbyPessoaId($Email),
             'email' => $EmailModel->GetbyId($Email),
             'tipoemail' => $EmailModel->GetTipo(),
-            'telefones' => $modelTelefone->GetbyPessoaId($Telefone),
+            'telefone' => $modelTelefone->GetFirstbyPessoaId($Telefone),
             'tipotelefone' => $modelTelefone->GetTipo(),
-            'ddd' => $modelTelefone->GetDdd(),
+            'ddd' => $modelTelefone->GettDDDByUFId($Ddd),
+            'estados' => $modelTelefone->GetUF(),
             'tipoendereco' => $modelTelefone->GetTipoEndereco(),
             'enderecos' => $modelTelefone->GetEnderecoByPessoaId($Endereco),
             'endereco' => $endereco,
             'pets' => $modelAnimal->GetByPessoaId($Pessoa)
         );
+    }
+    public function DDD()
+    {
+
+        $Estado = new Estado();
+        $Estado->Sigla = $this->getParams(0);
+        
+        $model = new TelefoneModel();
+
+        $retorno = $model->GettDDDByUF($Estado);
+        $teste= '';
+        $html = '<select class="form-control"  id="SelectDDD" name="EnderecoDddId" required>';
+        foreach ($retorno as $key => $value) {
+           $html .=  
+                    '<option value="'.$value['Id'].'"> ('.$value['Numero'].') - '.$value['Regiao'].' </option>';
+            
+        }
+        $html .= '</select>';
+        // $this->PartialResultView(json_encode($retorno, 256));
+        $this->PartialResultView($html);
+    }
+    public function DDDByUFId()
+    {
+
+        $Ddd = new \object\Ddd();
+        $Ddd->EstadoId = $this->getParams(0);
+        
+        $model = new TelefoneModel();
+
+        if($Ddd->EstadoId == null) $Ddd->EstadoId = 0;
+        
+        $retorno = $model->GettDDDByUFId($Ddd);
+        $teste= '';
+        $html = '<select class="form-control"  id="SelectDDD" name="FilterPetDddId" required>';
+        $html .= '<option value="0"> Selecione a Região </option>';
+        foreach ($retorno as $key => $value) {
+           $html .=  
+                    '<option value="'.$value['Id'].'"> ('.$value['Numero'].') - '.$value['Regiao'].' </option>';
+            
+        }
+        $html .= '</select>';
+        // $this->PartialResultView(json_encode($retorno, 256));
+        $this->PartialResultView($html);
     }
 }

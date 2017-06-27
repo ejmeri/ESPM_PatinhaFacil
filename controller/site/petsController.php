@@ -26,7 +26,6 @@ use api\apiPessoa;
 class petsController extends Controller {
     public function index()
     {
-
         // new Session();
         if(!isset($_SESSION['PessoaId'])) $this->layout = '_layoutlogoff';
         else $this->layout = '_layout';
@@ -51,7 +50,7 @@ class petsController extends Controller {
             'genero' =>$modelAnimal->getGenero(),
             'pelagem' =>$modelAnimal->getPelagem(),
             'estados' => $modelTelefone->GetUF(),
-            'random' => $apiAnimal->GetTenRandom($Estado)
+            'random' => $apiAnimal->GetRandom($Estado)
         );
 
         $this->View();
@@ -93,27 +92,37 @@ class petsController extends Controller {
         if(!isset($_POST['botao']))
         {
             
+            
             $Animal = new Animal();
             $Animal->Id = $this->getParams(0);
 
             $AnimalModel = new AnimalModel();
+            $Especie = new Especie();
 
             $PessoaAnimal = $AnimalModel->GetPessoaAnimalByAnimalId($Animal);
 
-            if($PessoaAnimal['PessoaId'] != $_SESSION['PessoaId']){
+            if($PessoaAnimal['PessoaId'] != $_SESSION['PessoaId'])
+            {
                 header("Location: ". APP_ROOT. "/home");
-            }  
+            }
+
+            $animal = $AnimalModel->GetAnimalJoinRacaByAnimalId($Animal);
+
+            $Especie->Id = $animal['EspecieId'];
+
 
             $this->dados = array(
                 'especie'=> $AnimalModel->getEspecie(),
+                'raca' => $AnimalModel->getRacaByEspecieId($Especie),
                 'porte'=> $AnimalModel->getPorte(),
                 'genero' =>$AnimalModel->getGenero(),
                 'pelagem' =>$AnimalModel->getPelagem(),
                 'imagem' => $AnimalModel->GetImagemByAnimalId($Animal),
-                'animal' => $AnimalModel ->GetAnimalById($Animal)
+                'animal' => $animal
             );
 
             $this->View();
+            
         }
         else 
         {
@@ -191,14 +200,6 @@ class petsController extends Controller {
 
             $endereco = $PessoaModel->GetEnderecoByPessoaId($PessoaAnimal);
 
-            $deserialize = json_decode($json = $endereco['JsonEndereco']);
-
-            $endereco['Logradouro'] = $deserialize->logradouro;
-            $endereco['Bairro'] = $deserialize->bairro;
-            $endereco['Cidade'] = $deserialize->cidade;
-            $endereco['UF'] = $deserialize->uf;
-            $endereco['CEP'] = $deserialize->cep;
-
             $this->dados = array(
                 'pet' => $pets,
                 'pessoa' => $PessoaModel->GetById($Pessoa),
@@ -218,19 +219,32 @@ class petsController extends Controller {
     }
     public function ListaPet() 
     {   
+
+        error_reporting(!E_NOTICE);
+
         $apiAnimal = new apiAnimal();
         $FilterPet = new FilterPet('POST', 'FilterPet');
 
+
         $Estado = new Estado();
-        $Estado->Sigla = $this->getParams(1);
+        $Estado->Sigla = $this->getParams(0);
 
-        $random = $apiAnimal->GetTenRandom($Estado);
-        $lista = $apiAnimal->ListaPet($FilterPet);
+        if($Estado->Sigla != '0' && $Estado->Sigla != '')
+        {
+            $this->dados = array(
+            'random' => $apiAnimal->GetRandom($Estado)
+            );
+        }
+        else 
+        {
+            $this->dados = array(
+             'list' =>  $apiAnimal->ListaPet($FilterPet)
+            );
+        }
+        // echo print_r($Estado);
 
-        $this->dados = array(
-            'list' => $lista,
-            'random' => $random
-        );
+
+       
         
         $this->PartialView();
     }

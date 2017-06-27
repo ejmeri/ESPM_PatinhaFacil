@@ -4,8 +4,8 @@
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <h2 class="section-heading">Encontre aqui a felicidade para seu lar!</h2>
                 <hr class="light">
-                <p class="">Você sabia que há mais de 30 milhões de cães e gatos abandonados ? Você pode mudar isso! Basta entrar em nossa plataforma e adotar ou doar um novo amiginho. </p>
-                <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Começar!</a>
+                <p class="">Você sabia que há mais de 30 milhões de cães e gatos abandonados ? Você pode mudar isso! Basta entrar em nossa plataforma e adotar ou doar um novo animalzinho. </p>
+                <a href="#pets" class="page-scroll btn btn-default btn-xl sr-button">Começar!</a>
             </div>
         </div>
     </div>
@@ -14,22 +14,30 @@
     <hr class="sizemax">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading">Onde está o seu pet ?</h2>
-                    <hr class="opalight">
-                    <?php if (count($view_estados) > 0) { ?>
-                        <?php foreach ($view_estados as $li => $a){ ?>
-                                <span>
-                                    <a href="pets/index/<?php echo $a['Sigla'] ?>"><?php echo $a['Nome'] ?></a>
-                                </span>
-                        <?php 
-                        }
-                    }
-        ?>
+            <div class="col-lg-12">
+                <h2 class="section-heading text-center">Onde está o seu pet ?</h2>
+                <hr class="opalight">
+                <div class="col-md-12">
+                    <div class="mid-form">
+                        <ul class="list-group"> 
+                            <?php if (count($view_estados) > 0) { ?>
+                                <?php foreach ($view_estados as $li => $a){ ?>
+                                        <a href="pets/index/<?php echo $a['Sigla'] ?>">
+                                            <li class="list-group-item">
+                                                <?php echo $a['Nome'] ?>
+                                                <span class="badge"> <?php echo $a['Quantidade'] ?></span>
+                                            </li>
+                                        </a>
+                                <?php 
+                                }
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <hr class="sizemax">
 </section>
 
 <section id="services">

@@ -2,13 +2,8 @@
 
 namespace object;
 
-use lib\Object;
-
-class Email extends Object {
-    public $Id = 0;
+class Especie extends EntityBase {
     public $Nome;
-    public $DtInclusao;
-    public $DtAtualizacao;
 }
 
 ?>

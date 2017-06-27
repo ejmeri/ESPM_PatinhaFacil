@@ -3,12 +3,16 @@
 namespace object;
 
     Class Endereco extends EntityBase {
+        
+        public $Nome;        
         public $Numero;
-        public $Nome;
-        public $PessoaId;
-        public $TipoEnderecoId;
+        public $Logradouro;
         public $Complemento;
-        public $JsonEndereco = 'ELMERI';
+        public $PontoReferencia;
+        public $PessoaId;
+        // public $TipoEnderecoId;
+        public $DddId;
+        
     }
 
 ?>

@@ -105,8 +105,11 @@ use api\apiAutenticacao;
                          $retorno = array(
                             'Status' => true,
                             'Do' => '',
-                            'Mensagem' => '<h2>Parabéns '.$Pessoa->Nome.', você foi cadastrado em nosso sistema!</h2>
-                                          <p>Enviamos um e-mail para você confirmar a sua conta, após confirmação o seu acesso estará liberado!</p>'
+                            'Mensagem' => '
+                            <div class="alert alert-info alert-dismissable">
+                                <h2>Parabéns '.$Pessoa->Nome.', você foi cadastrado em nosso sistema!</h2>
+                                <p>Enviamos um e-mail para você confirmar a sua conta, após confirmação o seu acesso estará liberado!</p>
+                            </div>'
                         );
 
                         $this->PartialResultView(json_encode($retorno,  JSON_UNESCAPED_UNICODE));
@@ -134,7 +137,6 @@ use api\apiAutenticacao;
         {
             $api = new apiUsuario();
             $api->Close();
-            header('location:' . APP_ROOT . '/login');
         }
         public function novo()
         {

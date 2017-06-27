@@ -1,70 +1,70 @@
 <?php //print_r($view_pets); ?>
 
-<div class="container-in" style="margin-bottom:5%;">
+<div class="container-in" >
     <header class="header-page">
         <h1 class="text-center">Minhas Informações</h1>
     </header>
-    <div class="rectangle">
+
         <div class="tab" id="tabpessoa">
             <div class="tablinks">
-                <a href="javascript:;" onclick="openInfo(event, 'pessoa')">Gerais</a>                
+                <a href="#retornoPessoa">Gerais</a>                
             </div>
             <div class="tablinks">
-                <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'acesso')">Acesso</a>                
-            </div>
-            <!--<div class="tablinks">
-                <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'tabemail')">E-mails</a>   
-            </div>-->
-            <div class="tablinks">
-                <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'tabtelefone')">Telefone</a>    
+                <a href="javascript:;" class="tablinks">Acesso</a>                
             </div>
             <div class="tablinks">
-                <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'tabendereco')">Endereço</a>                
+                <a href="#tabdados" class="tablinks" >Dados para contato</a>    
             </div>
             <div class="tablinks">
-                <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'tabpet')">Meus animais</a>                       
+                <a href="#tabendereco" class="tablinks">Endereço</a>                
             </div>
             <div class="tablinks">
-                <a href="javascript:;" class="tablinks" onclick="openInfo(event, 'tabpreferencias')">Minhas preferências</a>   
+                <a href="pessoa/pets" class="tablinks">Meus animais</a>                       
+            </div>
+            <div class="tablinks">
+                <a href="#tabpreferencias" class="tablinks">Minhas preferências</a>   
             </div>
         </div>
 
         <div id="retornoPessoa">
-            <form method="POST" id="pessoa" class="tabcontent inline-table" action="pessoa/general">
+            <h2>Informações Gerais</h2>
+            <form method="POST" id="pessoa" class="tabcontent inline-table" action="pessoa">
                 <input type="hidden" name="PessoaId" value="<?php echo $view_dados['Id']; ?>">
                 <div class="col-8 inline-table padding col-fl">
                     <div class="item-left">
                         <strong>Nome/Razão Social</strong>
-                        <input type="text" id="txtpeoplenome" name="PessoaNome" value="<?php echo $view_dados['Nome']; ?>" class="form-control" required readonly>
+                        <input type="text" id="txtpeoplenome" name="PessoaNome" value="<?php echo $view_dados['Nome']; ?>" class="form-control" required>
                     </div>
                     <div class="item-right">
                         <strong>CPF/CNPJ</strong>
-                        <input type="text" id="txtpeoplecpf" name="PessoaCpfCnpj" value="<?php echo $view_dados['CpfCnpj']; ?>" class="form-control" autocomplete=off placeholder="000.000.000-00" required readonly onkeyup="ValidateCPFCNPJ(this.value)">
+                        <input type="text" id="txtpeoplecpf" name="PessoaCpfCnpj" value="<?php echo $view_dados['CpfCnpj']; ?>" class="form-control" autocomplete=off placeholder="" required  onkeyup="ValidateCPFCNPJ(this.value)">
                         <span id="txtCPF" class="text-warning"></span>
                     </div>
                     <div class="item-left clear">
                         <strong>Apelido/Nome Fantasia</strong>
-                        <input type="text" id="txtpeopleapelido" name="PessoaApelido" value="<?php echo $view_dados['Apelido']; ?>" placeholder="" class="form-control" required readonly>
+                        <input type="text" id="txtpeopleapelido" name="PessoaApelido" value="<?php echo $view_dados['Apelido']; ?>" placeholder="" class="form-control" required >
                     </div>
                     <div class="item-right">
                         <strong>RG/Inscrição Estadual</strong>
-                        <input type="text" id="txtpeoplerg" name="PessoaRg" value="<?php echo $view_dados['Rg']; ?>" class="form-control" required readonly>
+                        <input type="text" id="txtpeoplerg" name="PessoaRg" value="<?php echo $view_dados['Rg']; ?>" class="form-control" maxlength=45 required>
                     </div>
                 </div>
-                <div class="col-5">
-                    <button type="button" onclick="canceleditpeople('pessoa')" id="cancel" class="btn btn-black">Cancelar</button>
+                <div class="col-lg-5 clear">
+                    <!--<button type="button" onclick="canceleditpeople('pessoa')" id="cancel" class="btn btn-black">Cancelar</button>
                     <button type="button" onclick="editpeople('pessoa')" id="edit" class="btn btn-black">Editar</button>
-                    <button type="button" onclick="SubmitPartialForm($('#pessoa'), 'retornoPessoa')" id="save" name="save" class="btn btn-blue" data-toggle="modal" data-target="#myModal">Salvar</button>
+                    <button type="button" onclick="SubmitPartialForm($('#pessoa'), 'retornoPessoa')" id="save" name="save" class="btn btn-blue" data-toggle="modal" data-target="#myModal">Salvar</button>-->
+                    <input type="submit" name="SavePeople" value="Salvar" class="btn btn-black">
                 </div>
             </form>
         </div>
-
-        <div id="retornoAcesso">
-            <form method="POST" id="acesso" class="tabcontent inline-table" action="pessoa/acesso">
+        <hr class="clear">
+        <div id="retornoAcesso" style="margin-bottom:2%;">
+            <h2>Informações de acesso</h2>
+            <form method="POST" id="acesso" class="tabcontent" action="pessoa">
                 <input type="hidden" name="UsuarioId" value="<?php echo $view_user['Id']; ?>">
-                <div class="col-8 inline-table padding col-fl">
+                <div class="col-lg-10 padding">
                     <div class="item-left">
-                        <strong>Login</strong>
+                        <strong>E-mail</strong>
                         <input type="text" id="fieldlogin" name="UsuarioLogin" value="<?php echo $view_user['Login']; ?>" class="form-control" required readonly>
                     </div>
                     <div class="item-right">
@@ -90,77 +90,37 @@
                         <span class="text-warning" id="passretorno"></span>
                     </div>
                 </div>
-                <div class="col-5">
+                <div class="col-lg-5 clear">
                     <button type="button" onclick="canceledititempeople('acesso', 'divedit')" id="cancel" class="btn btn-black">Cancelar</button>
                     <button type="button" onclick="savepeople('acesso', 'divedit')" id="new" class="btn btn-black">Editar</button>
-                    <button type="button" onclick="SubmitPartialFormAcesso($('#acesso'), 'retornoAcesso')" id="save" name="save" class="btn btn-blue" data-toggle="modal" data-target="#myModal">Salvar</button>
+                    <!--<button type="button" onclick="SubmitPartialFormAcesso($('#acesso'), 'retornoAcesso')" id="save" name="save" class="btn btn-blue" data-toggle="modal" data-target="#myModal">Salvar</button>-->
+                    <input type="submit" name="SaveAcesso" id="save" value="Salvar" class="btn btn-black">
                 </div>
             </form>
         </div>
-
-        <div class="tabcontent inline-table padding col-fl" id="tabemail">
-            <div id="retornoEmail" class="clear">
-                <div class="col-40 col-sm-1 col-fl" style="margin-bottom:1%;">
-                    <strong>Lista de E-mails</strong>
-                    <select class="form-control block" id="emails" onchange="ChangeEmail(this.value)">
-                        <option value="0">Selecione o E-mail</option>
-                        <?php if (count($view_emails) > 0) { ?>
-                            <?php foreach ($view_emails as $email) { ?>
-                                <option value=<?php echo $email['Id']; ?>> <?php echo $email['Nome'];?></option><?php } } ?>
-                            </select>
-                        <!--<span id="warning" class="text-warning"></span>-->
-                    </div>
-
-                    <form method="POST" id="email" class="col-10 inline-table" action="pessoa/email">
-                        <input type="hidden" name="EmailId" id="Id" value="">
-                        <input type="hidden" name="teste" id="botao" value="">
-                        <div class="col-40 col-sm-1 col-fl clear" id="divedit" style="margin-bottom:2%;">
-                            <div>
-                                <strong>Tipo de E-mail</strong>
-                                <select class="form-control block" id="tipoemails" name="EmailTipoEmailId" onchange="" required>
-                                    <option value="">Selecione o tipo</option>
-                                    <?php if (count($view_tipoemail) > 0) { ?>
-                                        <?php foreach ($view_tipoemail as $tipoemail) { ?>
-                                    <option value=<?php echo $tipoemail['Id']; ?>> <?php echo $tipoemail['Nome'];?></option><?php } } ?>
-                                </select>
-                            </div>
-                            <div>
-                                <strong>E-mail</strong>
-                                <input type="text" id="txtpeoplenome" name="EmailNome" value="" class="form-control" required autocomplete=off>
-                            </div>
-                        </div>
-                        <div style="margin-top:1%;">
-                            <div class="col-40 col-fl clear">
-                                <div class="col-fl col-3">
-                                    <button type="button" onclick="canceledititempeople('email', 'divedit')" id="cancel" class="btn btn-black">Cancelar</button>
-                                    <!--<button type="button" onclick="edititempeople('telefone', 'divedit')" id="edit" class="btn btn-dark">Editar</button>-->
-                                </div>
-                                <div class="col-fl">
-                                    <button type="button" onclick="SubmitPartialForm($('#email'), 'retornoEmail')" id="save" name="save" class="btn btn-blue" data-toggle="modal" data-target="#myModal">Salvar</button>
-                                </div>
-                            </div>
-                            <div class="col-fl">
-                                <button type="button" onclick="savepeople('email', 'divedit')" id="new" class="btn btn-black">Novo</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-        </div>
-
-        <div class="tabcontent col-10 inline-table padding col-fl" id="tabtelefone">
+        <hr class="clear">
+        <div class="tabcontent" id="tabdados">
+            <h2>Dados para contato</h2>
             <div id="retornoTelefone" class="clear">
-                <div class="col-40 col-sm-1 col-fl">
+                <div class="col-lg-10">
+                    <div class="col-lg-5">
+                        <strong>E-mail: </strong>
+                        <input type="text" id="fieldlogin" name="UsuarioLogin" value="<?php echo $view_user['Login']; ?>" class="form-control" required readonly>
+                    </div>
+                </div>
+                
+                <!--<div class="col-lg-4 clear">
                     <strong>Lista de Telefones</strong>
                     <select class="form-control block" id="telefones" onchange="ChangeTelefone(this.value)">
                         <option value="0">Selecione o Telefone</option><?php if (count($view_telefones) > 0) { ?><?php foreach ($view_telefones as $telefone) { ?>
                         <option value=<?php echo $telefone['Id']; ?>><?php echo $telefone['Numero'];?></option><?php } } ?>
                     </select>                      
-                </div>
+                </div> -->
 
-                <form method="POST" id="telefone" class="col-10 inline-table" action="pessoa/telefone">
-                    <input type="hidden" name="TelefoneId" id="Id" value="">
+                <form method="POST" id="telefone" class="col-lg-10" action="pessoa">
+                    <input type="hidden" name="TelefoneId" id="Id" value="<?php echo $view_telefone['Id'] ?>">
                     <input type="hidden" name="teste" id="botao" value="">
-                    <div class="col-40 col-sm-1 col-fl clear" id="divedit" style="margin-bottom:2%;">
+                    <div class="col-lg-5" id="divedit" style="margin-bottom:2%;">
                         <!--<div>
                             <strong>DDDs</strong>
                             <select class="form-control block" id="ddds" name="TelefoneDddId" onchange="" required>
@@ -170,34 +130,37 @@
                         </div>-->
                         <div>
                             <strong>Telefone</strong>
-                            <input type="text" id="txtpeoplenome" name="TelefoneNumero" value="" class="form-control cellphone" required autocomplete=off>
+                            <input type="text" id="txtpeoplenome" name="TelefoneNumero" value="<?php echo $view_telefone['Numero'] ?>" class="form-control cellphone" required autocomplete=off>
                         </div>
                         <div>
                             <strong>Tipo de telefone</strong>
                             <select class="form-control block" id="tipotelefones" name="TelefoneTipoTelefoneId" onchange="" required>
                                 <option value="">Selecione o tipo</option><?php if (count($view_tipotelefone) > 0) { ?><?php foreach ($view_tipotelefone as $tipotelefone) { ?>
-                                <option value=<?php echo $tipotelefone['Id']; ?>> <?php echo $tipotelefone['Nome'];?></option><?php } } ?>
+                                <option value=<?php echo $tipotelefone['Id']; ?> <?php echo ($tipotelefone['Id'] == $view_telefone['TipoTelefoneId'] ? 'selected' : ''); ?>> <?php echo $tipotelefone['Nome'];?></option><?php } } ?>
                             </select>
                         </div>
                     </div>
-                    <div style="margin-top:1%;">
-                        <div class="col-40 col-fl clear">
+                    <div>
+                        <!--<div class="col-40 col-fl clear">
                             <div class="col-fl col-3">
                                 <button type="button" onclick="canceledititempeople('telefone', 'divedit')" id="cancel" class="btn btn-black">Cancelar</button>
                             </div>
                             <div class="col-fl">
                                 <button type="button" onclick="SubmitPartialForm($('#telefone'), 'retornoTelefone')" id="save" name="save" class="btn btn-blue" data-toggle="modal" data-target="#myModal">Salvar</button>
                             </div>
-                        </div>
-                        <div class="col-fl">
-                            <button type="button" onclick="savepeople('telefone', 'divedit')" id="new" class="btn btn-black">Novo</button>
+                        </div>-->
+                        <div class="col-lg-5 clear">
+                            <!--<button type="button" onclick="savepeople('telefone', 'divedit')" id="new" class="btn btn-black">Novo</button>-->
+                            <input type="submit" name="SaveDados" class="btn btn-black"  value="Salvar">
                         </div>
                     </div>
                 </form>
             </div>
         </div> 
-        
+        <hr class="clear">
+
         <div class="tabcontent col-10 inline-table padding col-fl" id="tabendereco">
+            <h2>Localização</h2>
             <div id="retornoEndereco" class="clear">
                 <!--<div class="col-lg-4">
                     <strong>Lista de Endereços</strong>
@@ -207,7 +170,7 @@
                     </select>                      
                 </div>-->
 
-                <form method="POST" id="endereco" class="col-10 inline-table" action="pessoa/endereco">
+                <form method="POST" id="endereco" class="" action="pessoa">
                     <input type="hidden" name="EnderecoId" id="Id" value="<?php echo $view_endereco['Id']; ?>">
                     <input type="hidden" name="teste" id="botao" value="">
                     <div id="diveditar">
@@ -220,33 +183,24 @@
                         </div>
                         <div class="form-inline">
                             <div class="form-group">
-                                <input type="text" id="EnderecoCep" name="CEP" value="<?php echo $view_endereco['CEP']; ?>" class="form-control cep" required autocomplete=off maxnlength=8>
-                            </div>
-                            <div class="form-group">
-                                <a href="javascript:BuscarCep();" id="buscarcep" class="btn btn-black" title="Buscar CEP">Pesquisar <i class="fa fa-search fa-1x"></i></a>                                                                   
+                                <input type="text" id="EnderecoCep" name="EnderecoCep" value="<?php echo $view_endereco['Cep']; ?>" class="form-control cep" required autocomplete=off maxnlength=8>
                             </div>
                             <div>
                                 <span id="infocep" style="color:red;"></span>
                             </div>
                         </div>
                         <div class="clear col-lg-9">
-                            <strong>Logradouro</strong>
-                            <input type="text" readonly id="EnderecoLogradouro" name="logradouro" value="<?php echo $view_endereco['Logradouro']; ?>" class="form-control" required autocomplete=off maxlength=45>
-                        </div>
-                        <div class="clear col-lg-9">
-                            <strong>Bairro</strong>
-                            <input type="text" id="EnderecoBairro" name="bairro" readonly value="<?php echo $view_endereco['Bairro']; ?>" class="form-control" required autocomplete=off maxlength=45>
-                        </div>
-                        <div class="clear col-lg-4">
-                            <div class="col-lg-10">
-                                <strong>Cidade</strong>
-                                <input type="text" readonly id="EnderecoCidade" name="cidade" value="<?php echo $view_endereco['Cidade']; ?>" class="form-control" required autocomplete=off maxlength=45>
+                                <strong>Endereço</strong>
+                                <input type="text" id="EnderecoLogradouro" name="EnderecoLogradouro" value="<?php echo $view_endereco['Logradouro']; ?>" class="form-control" required autocomplete=off maxlength=80>
                             </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="col-lg-10">
-                                <strong>Estado</strong>
-                                <input type="text" readonly id="EnderecoEstado" name="uf" value="<?php echo $view_endereco['UF']; ?>" class="form-control" required autocomplete=off maxlength=2>
+                        <div id="carregaCep">
+                            <div class="clear col-lg-9">
+                                <strong>Bairro</strong>
+                                <input type="text" id="EnderecoBairro" name="bairro" readonly class="form-control" required autocomplete=off maxlength=80>
+                            </div>
+                            <div class="clear col-lg-9">
+                                <strong>Cidade</strong>
+                                <input type="text" readonly id="EnderecoCidade" name="cidade" class="form-control" required autocomplete=off maxlength=80>
                             </div>
                         </div>
                         <div class="clear col-lg-4">
@@ -265,12 +219,29 @@
                             <strong>Ponto de referência</strong>
                             <input type="text" name="EnderecoPontoReferencia" value="<?php echo $view_endereco['PontoReferencia']; ?>" class="form-control" autocomplete=off maxlength=45>
                         </div>
-                        <div class="clear col-lg-4">
-                            <strong>Tipo de endereço</strong>
-                            <select class="form-control" id="enderecos" name="EnderecoTipoEnderecoId" required>
-                                <option value="">Selecione o tipo</option><?php if (count($view_tipoendereco) > 0) { ?><?php foreach ($view_tipoendereco as $tipoendereco) { ?>
-                                <option value=<?php echo $tipoendereco['Id']; ?> <?php echo ($tipoendereco['Id'] == $view_endereco['TipoEnderecoId'] ? 'selected' : ''); ?>><?php echo $tipoendereco['Nome'] ?></option><?php } } ?>
-                            </select>
+                        <div class="col-lg-9">
+                            <strong>Estado</strong>
+                            <select class="form-control selectpicker" id="SelectEstados" data-live-search="true" onchange="CarregaDDD(this.value)" required>
+                                    <!--<option value="">Selecione o estado</option>      -->
+                                    <?php if($view_estados > 0) { ?>
+                                        <?php foreach ($view_estados as $li => $a) { ?>
+                                            <option data-tokens="<?php echo $a['Nome']; ?>" value=<?php echo $a['Sigla']; ?> <?php echo ($a['Id'] ==  $view_endereco['EstadoId'] ? 'selected' : ''); ?>> <?php echo $a['Nome']; ?></option>
+                                    <?php 
+                                        }
+                                    } ?> 
+                            </select>   
+                        </div>
+                        <div class="clear col-lg-9">
+                            <strong>DDD + Região</strong>
+                            <div id="RetornoDDD">
+                                <select class="form-control" id="SelectDDD" name="EnderecoDddId" required>
+                                        <?php if($view_ddd > 0) { ?>
+                                        <?php foreach ($view_ddd as $li => $a) { ?>
+                                            <option value=<?php echo $a['Id']; ?>  <?php echo ($a['Id'] ==  $view_endereco['DddId'] ? 'selected' : ''); ?> ><?php echo 'DDD - '.$a['Numero']. ' e Região: '.$a['Regiao'] ?>
+                                    </option>
+                                    <?php } } ?>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="clear col-lg-10" style="padding-top:10px">
@@ -282,50 +253,15 @@
                         </div>-->
                         <div class="col-lg-2">
                             <!--<input type="button" onclick="SubmitPartialForm($('#endereco'), 'retornoEndereco', 'MensagemEndereco')" id="save" name="save" value="Salvar" class="btn btn-blue">-->
-                            <button type="button" onclick="SubmitPartialForm($('#endereco'), 'retornoEndereco')" id="saveend" name="save" class="btn btn-blue" data-toggle="modal" data-target="#myModal">Salvar</button>
+                            <!--<button type="button" onclick="SubmitPartialForm($('#endereco'), 'retornoEndereco')" id="saveend" name="save" class="btn btn-blue" data-toggle="modal" data-target="#myModal">Salvar</button>-->
+                            <input type="submit" name="SaveEndereco" value="Salvar" class="btn btn-black">
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-        <div class="tabcontent col-10 inline-table col-fl extreme-padding" id="tabpet">
-                <?php if (count($view_pets) > 0) { ?>
-                    <?php foreach ($view_pets as $li => $a){ ?>
-                    <input type="hidden" name="AnimalId" value=<?php echo $a['id'];?>>
-                        <div class="grid-peoplepet">
-                            <div class="img-pet">
-                                <?php  echo '<img src="uploads/'.$a['imagem'].'" alt="Animal">'; ?>                                
-                            </div>
-                            <div class="information-pet">
-                                <div class="row">
-                                    <strong>Nome: </strong> <span><?php echo $a['nome']; ?></span>                                
-                                </div>
-                                <div class="row">
-                                    <strong>Raça: </strong> <span><?php echo $a['raca']; ?></span>                                
-                                </div>
-                                <div class="row">
-                                    <strong>Peso: </strong> <span><?php echo $a['peso'].'Kgs'; ?></span>                                
-                                </div>
-                            </div>
-                            <div class="adopt-pet">
-                                <div class="interest">
-                                    <!--<input type="submit" formaction="pets/petdetails" name="adotar" class="btn fa fa-5x" title="Adote!" value ="&#xf004;">                          -->
-                                    <!--<input type="button" name="information" value="Mais informações" class="btn button">                                  -->
-                                    <a href="pets/editar/<?php echo $a['id'];?>" title="Editar <?php echo $a['nome']; ?>"><i class="fa fa-edit fa-5x" style="hover: blue" aria-hidden="true"></i></a>
-                                </div>
-                                <!--<div class="interest">
-                                    <a href="#" title="Demonstrar interesse!"><i class="fa fa-envelope-o fa-5x" aria-hidden="true"></i></a>                                
-                                </div>-->
-                            </div>
-                        </div>
-                <?php 
-                        }
-                 }
-            else { ?>
-                <h3 class="text-center" style="font-size: 1.5em">Você ainda não adotou ou doou algum pet <i class="fa fa-frown-o"></i></h3>
-            <?php 
-            } ?>
-        </div>
+        <hr class="clear">
+        
         <div class="tabcontent col-10 inline-table col-fl extreme-padding" id="tabpreferencias">
             <h5>Forneça algumas preferências para nós, ela nos ajudará a filtrar animais para você. <span style="color:red">Não obrigatório.</span> </h5>
             <div id="retornoPreferencias" class="clear">
@@ -380,5 +316,4 @@
                 </div>
             </div>
         </div>
-    </div>
 </div>

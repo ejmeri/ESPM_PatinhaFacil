@@ -4193,7 +4193,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar {
   position: relative;
   min-height: 50px;
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
   border: 1px solid transparent;
 }
 @media (min-width: 768px) {
@@ -6830,6 +6830,13 @@ body {
 
 
 /* Custom Button Styles */
+.btn-radius {
+  border-radius: 5px
+}
+.btn-purple {
+    color: #fff;
+    background-color: rgba(50,50, 255, 0.8);
+}
 
 .btn-dark {
     border-radius: 0;
@@ -6853,6 +6860,11 @@ body {
     border-radius: 0;
     color: #fff;
     background-color: black;
+}
+
+.btn-purple:hover,
+.btn-purple:active {
+    background-color: rgba(50,50, 255, 0.5)
 }
 
 
@@ -7621,3 +7633,28 @@ a:hover {
 }
 
 
+.form-group input[type="checkbox"] {
+    display: none;
+}
+
+.form-group input[type="checkbox"] + .btn-group > label span {
+    width: 25px;
+}
+
+.form-group input[type="checkbox"] + .btn-group > label span:first-child {
+    display: none;
+}
+.form-group input[type="checkbox"] + .btn-group > label span:last-child {
+    display: inline-block;   
+}
+
+.form-group input[type="checkbox"]:checked + .btn-group > label span:first-child {
+    display: inline-block;
+}
+.form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
+    display: none;   
+}
+
+.padding-15 {
+  padding: 0 15px
+}

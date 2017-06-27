@@ -64,6 +64,7 @@ body {
 .grid-pet {
     display: inline-table;
     width: 23%;
+    height: 75%;
     border: 1px lightgray solid;
     margin-right: 1%;
     margin-top: 2%;
@@ -104,10 +105,11 @@ body {
 }
 
 .information-pet {
+    padding: 20px 0;
     height: 33.333%;
     width: 100%;
     text-align: center;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
 }
 
 .adopt-pet {
@@ -182,7 +184,7 @@ body {
 .items-filter {
     width: 95%;
     margin: 0 auto;
-    margin-bottom: 8%;
+    /*margin-bottom: 8%;*/
 }
 
 .filter {

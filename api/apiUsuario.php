@@ -91,6 +91,8 @@ Class apiUsuario extends Database
     {
         // fechar a sessão aqui
         unset($_SESSION['PessoaId']);
+        header('location:' . APP_ROOT);
+
     }
     public function EditAcesso()
     {

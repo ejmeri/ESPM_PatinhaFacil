@@ -10,6 +10,7 @@ class Animal extends EntityBase
     public $DtNascimento;
     public $Peso;
     public $Descricao;
+    public $Adotado = '0';
     public $RacaId;
     public $PelagemId;
     public $GeneroId;

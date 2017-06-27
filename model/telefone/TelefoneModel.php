@@ -4,6 +4,7 @@ namespace model\telefone;
 
 use object\Telefone;
 use object\Endereco;
+use object\Estado;
 use lib\Model;
 
 class TelefoneModel extends Model
@@ -28,6 +29,10 @@ class TelefoneModel extends Model
     {
         return $this->db->Select("SELECT a.Id, a.Numero, TipoTelefoneId FROM telefone a WHERE pessoaid = '{$obj->PessoaId}'");
     }
+        public function GetFirstbyPessoaId(Telefone $obj)
+    {
+        return $this->db->First($this->db->Select("SELECT Id, Numero, TipoTelefoneId FROM telefone WHERE pessoaid = '{$obj->PessoaId}'"));
+    }
     public function GetbyId(Telefone $obj)
     {
         return $this->db->First($this->db->Select("SELECT Id, Numero, TipoTelefoneId FROM telefone WHERE id = '{$obj->Id}'"));
@@ -38,7 +43,11 @@ class TelefoneModel extends Model
     }
     public function GetDdd()
     {
-        return $this->db->Select("SELECT Id, Nome, Numero FROM ddd order by nome");
+        return $this->db->Select("SELECT Id, Regiao, Numero FROM ddd order by numero");
+    }
+    public function GetDddPessoa(\object\Ddd $obj)
+    {
+        return $this->db->Select("SELECT * FROM ddd where id = {$obj->Id} order by numero");
     }
     public function GetTipoEndereco()
     {
@@ -54,10 +63,21 @@ class TelefoneModel extends Model
     }
     public function GetEnderecoFullByPessoaId(Endereco $obj)
     {
-       return $this->db->First($this->db->Select("SELECT * from endereco where PessoaId = '{$obj->PessoaId}'"));
+       return $this->db->First($this->db->Select("SELECT a.*, c.Id 'EstadoId' from endereco a join ddd b on
+       a.dddid = b.id join estado c on
+       b.estadoid = c.id where a.PessoaId = '{$obj->PessoaId}'"));
     }
     public function GetUF()
     {
-        return $this->db->Select('SELECT Nome, Sigla from estado order by nome');
+        return $this->db->Select('SELECT Id, Nome, Sigla from estado order by nome');
+    }
+    public function GettDDDByUF(Estado $obj)
+    {
+        return  $this->db->Select("select a.Id, a.Numero, a.Regiao, b.Sigla from ddd a join estado b on
+                a.estadoid = b.id where b.sigla = '{$obj->Sigla}' order by a.Numero");
+    }
+    public function GettDDDByUFId(\object\Ddd $obj)
+    {
+         return $this->db->Select("SELECT * from ddd where estadoid = {$obj->EstadoId} order by numero");
     }
 }

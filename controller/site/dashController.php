@@ -5,15 +5,16 @@ namespace controller\site;
 use lib\Controller;
 use helper\Session;
 use model\pessoa\PessoaModel;
+use api\apiAnimal;
 
 class dashController extends Controller {
     public function index(){
         $this->layout = '_layoutdash';
         
-        $PessoaModel = new PessoaModel();
+        $apiAnimal = new apiAnimal();
         
         $this->dados = array(
-            'estados' => $PessoaModel->GetEstado()
+            'estados' => $apiAnimal->GetAnimalByUF()
         );
 
 

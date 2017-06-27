@@ -62,8 +62,19 @@ class apiAnimal
             $jsonretorno = array(
                 'Status' => true,
                 'Do' => '',
-                'Mensagem' => '<h2>Obrigado por estar ajudando mais um animalzinho</h2>
-                               <p>Veja os detalhes <a href="pets/detalhes/'.$PessoaAnimal->AnimalId.'"> Aqui!</a></p> <br>'
+                'Mensagem' => '
+                    <div class="panel panel-primary" id="panelpetsave">
+                        <button type="button" class="close" 
+                            data-target="#panelpetsave" 
+                            data-dismiss="alert"
+                            style="padding: 10px">
+                            <span aria-hidden="true" style="color:white">&times;</span><span class="sr-only" style="color:white">Close</span>
+                        </button>
+                        <div class="panel-heading">Informações Salvas!</div>
+                        <div class="panel-body">Obrigado por estar ajudando mais um animalzinho</div>
+                    </div>    
+                   <!-- <p>Veja os detalhes <a href="pets/detalhes/'.$PessoaAnimal->AnimalId.'"> Aqui!</a></p> -->
+                '
             );
         }
         else {
@@ -82,21 +93,32 @@ class apiAnimal
         $AnimalModel = new AnimalModel();
         return $AnimalModel->ListaPet($FilterPet);
     }
-    public function GetTenRandom(Estado $obj, $Random = 10)
+    public function GetRandom(Estado $obj, $Random = 10)
     {
         $AnimalModel = new AnimalModel();
-        return $AnimalModel->GetTenRandom($obj);
+        return $AnimalModel->GetRandom($obj);
     }
     public function ConfirmarAdocao(Animal $obj)
     {
         if(!(isset($_SESSION['PessoaId']))) 
         {   
-            echo '<h3> Cadastre-se ou efetue seu login <a href="login/index/pets/adotar/'.$obj->Id.'">aqui</a>';
+            echo '
+            <div class="alert alert-info alert-dismissable text-center" style="background-color: rgba(200,200,200,0.2); border-radius: 40px">
+                <h1 style="color:black">Nos ajude! <i class="fa fa-heart-o" style="color:red"></i></h1> 
+                <hr style="max-width: 50px; border: 1px solid black">
+                <h2 style="color:black"> Para continuar, cadastre-se ou faça seu login gratuitamente! </h2>  
+                <h3><a href="login/index/pets/adotar/'.$obj->Id.'" class="btn btn-purple btn-lg">Clique aqui</a> </h3>
+            </div>';
         }
         else
         {
             echo 'logado';
         }
+    }
+    public function GetAnimalByUF()
+    {
+        $AnimalModel = new AnimalModel();
+        return $AnimalModel->GetAnimalByUf();
     }
 }
 

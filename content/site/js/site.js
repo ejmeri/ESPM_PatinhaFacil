@@ -1,29 +1,41 @@
 function BuscarCep() {
     var cep = endereco.EnderecoCep.value;
-
     if (cep == '') {
         document.getElementById('infocep').innerHTML = 'Informe um CEP';
     } else if (cep.length < 8) {
         document.getElementById('infocep').innerHTML = 'O campo CEP deve conter 8 números.';
     } else {
         document.getElementById('infocep').innerHTML = '';
-        $.get('https://viacep.com.br/ws/' + cep + '/json/', function (data) {
 
-            var endCliente = JSON.parse(JSON.stringify(data));
-
-            if (endCliente.erro == true) document.getElementById('infocep').innerHTML = 'CEP não encontrado.';
-            else {
-                var endCliente = JSON.parse(JSON.stringify(data));
-
-                document.getElementById('EnderecoLogradouro').value = endCliente.logradouro;
-                document.getElementById('EnderecoBairro').value = endCliente.bairro;
-                document.getElementById('EnderecoCidade').value = endCliente.localidade;
-                document.getElementById('EnderecoEstado').value = endCliente.uf;
-            }
+        $.ajax({
+            url: 'https://viacep.com.br/ws/' + cep + '/json/',
+            dataType: 'jsonp',
+            crossDomain: true,
+            contentType: "application/json",
+            success: function (data) {
+                if (data.erro)
+                    document.getElementById('infocep').innerHTML = 'CEP não encontrado!';
+                else {
+                    $('#EnderecoLogradouro').val(data.logradouro);
+                    $('#EnderecoBairro').val(data.bairro);
+                    $('#EnderecoCidade').val(data.localidade);
+                    $('#EnderecoEstado').val(data.uf);
+                    $("#SelectEstados").val(data.uf).change();
+                    $('#carregaCep').show();
+                }
+            } // Ok
         });
+
     }
 }
 
+function CarregaDDD(uf) {
+    postPartialView('pessoa/DDD/'  + uf, 'RetornoDDD');
+};
+
+function CarregaDDDbyUfId(ufid) {
+    postPartialView('pessoa/DDDByUFId/'  + ufid, 'RetornoDDD');
+};
 
 // open tabs 
 

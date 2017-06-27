@@ -19,6 +19,8 @@
     <script src="content/site/js/site.js?<?php echo NEW_FILE;?>"></script>
     <link href="content/magnific-popup/magnific-popup.css?<?php echo NEW_FILE;?>" rel="stylesheet">
 
+
+    <script src="content/js/jquery.js?<?php echo NEW_FILE;?>"></script>
 	<link href="content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
@@ -27,7 +29,7 @@
 
 
 <!-- Navigation -->
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <nav id="mainNav" class="navbar navbar-default ">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -55,7 +57,7 @@
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">Parceiros <i class="fa fa-hand-o-down" aria-hidden="true"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Não temos</a></li>
+                            <li><a href="#">Quero ser parceiro</a></li>
                         </ul>
                 </li>
                 <li>
@@ -146,8 +148,8 @@
 </body>
 </html>
 
+
 <!-- jQuery -->
-    <script src="content/js/jquery.js?<?php echo NEW_FILE;?>"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
     <script src="content/js/jquerytransateValidatorsToBR.js"></script>
@@ -164,7 +166,15 @@
     <script src="content/magnific-popup/jquery.magnific-popup.min.js"></script>
 
     <!-- Theme JavaScript -->
-    <script src="content/js/creative.min.js?elmeri"></script>
+    <script src="content/js/creative.min.js?<?php echo NEW_FILE;?>"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+
+
 
     <!-- Custom Theme JavaScript -->
     <script>
@@ -270,8 +280,9 @@
         $(document).ready(function(){
 
             var espid = $('#especie').val();
+            var uf = $('#UfId').val();
 
-            showPet(espid);
+            showPet(espid, uf);
             
             // $("#items-filter").hide();
 
@@ -286,9 +297,9 @@
         });
 
 
-        function showPet(esp) {
-                postPartialView('pets/ListaPet/' + esp, 'ListPet'); 
-            }
+        function showPet(esp, uf) {
+                postPartialView('pets/ListaPet/' + esp + '/' + uf, 'ListPet'); 
+        }
 
         function showRaca(especie) {
                 postPartialView('pets/ListaRaca/' + especie, 'raca');        
@@ -426,12 +437,20 @@
                          <!--PEOPLE-->
 <script>
     $(document).ready(function(){
-        openInfo('event', 'pessoa');
-        startperfil('pessoa');
+
+        $('#carregaCep').hide();
+        // openInfo('event', 'pessoa');
+        // startperfil('pessoa');
         startperfil('acesso', 'divedit');
-        startperfil('email', 'divedit');
-        startperfil('endereco', 'divedit');
-        startperfil('telefone', 'divedit');    
+        // startperfil('email', 'divedit');
+        // startperfil('endereco', 'divedit');
+        // startperfil('telefone', 'divedit');
+
+
+        $("#EnderecoCep").focusout(function () {
+            BuscarCep();
+        });
+ 
     });
 </script>
 

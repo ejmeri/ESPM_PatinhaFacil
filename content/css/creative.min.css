@@ -4,9 +4,10 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 
-body::-webkit-scrollbar {
+/*body::-webkit-scrollbar {
     display: none;
-}
+}*/
+ 
 
 .navbar-default,
 a {
@@ -29,7 +30,7 @@ html {
 
 body {
     font-family: Merriweather, 'Helvetica Neue', Arial, sans-serif;
-    webkit-tap-highlight-color: #222;
+    -webkit-tap-highlight-color: #222;
 }
 
 .btn,
@@ -93,7 +94,7 @@ p {
 }
 
 section {
-    padding: 100px 0
+    padding: 50px 0
 }
 
 aside {
@@ -505,4 +506,19 @@ img::selection {
 img::-moz-selection {
     color: #fff;
     background: 0 0
+}
+
+.padding-topcreative {
+    padding: 10px 0;
+} 
+
+.mid-form {
+    max-width: 50%;
+    margin: 0 auto
+}
+
+@media (max-width:768px) {
+    .mid-form {
+        max-width: 100%
+    }
 }

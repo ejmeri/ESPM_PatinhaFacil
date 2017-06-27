@@ -41,10 +41,17 @@ class PessoaModel extends Model {
     }
     public function GetEnderecoByPessoaId(PessoaAnimal $obj)
     {
-        return $this->db->First($this->db->Select("SELECT * from endereco where pessoaid = '{$obj->PessoaId}'"));
+        return $this->db->First($this->db->Select("SELECT a.Logradouro, a.Cep, b.Numero 'Ddd', b.Regiao, c.Nome 'Estado' from endereco a join ddd b on 
+        a.dddid = b.id join estado c on
+        b.estadoid = c.id where a.pessoaid = '{$obj->PessoaId}'"));
     }
     public function GetEstado()
     {
-         return  $this->db->Select("SELECT * FROM estado order by nome");
+        return  $this->db->Select("SELECT * FROM estado order by nome");
+    }
+    public function GettDDDByUF(Estado $obj)
+    {
+        return  $this->db->Select("select a.Id, a.Numero, a.Regiao, b.Sigla from ddd a join estado b on
+                a.estadoid = b.id where b.sigla = {$obj->Sigla} order by a.Numero");
     }
 }

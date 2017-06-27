@@ -1,4 +1,4 @@
-<div class="container-in" style="margin-bottom:5%;" ng-app="">
+<div class="container-in" style="margin-bottom:3%;">
     <header class="header-page text-center">
         <h1 class="">Doar um animal</h1>
         <h4>Forneça as informações do pet</h4>
@@ -20,7 +20,7 @@
         </div>
         <div class="item-left">
             <label for="Nome" id="">Nome</label>
-            <input type="text" ng-model="name" name="AnimalNome" id="nome" class="form-control" value="" maxlength=45 autocomplete=off placeholder="Caso não tenha, escreva: Sem Nome" required>
+            <input type="text" name="AnimalNome" id="nome" class="form-control" value="" maxlength=45 autocomplete=off placeholder="Caso não tenha, escreva: Sem Nome" required>
         </div>
         <div class="item-right">
             <label for="pelagem" id="">Pelagem</label>
@@ -52,7 +52,7 @@
             <input type="text" class="form-control" name="AnimalDtNascimento" id="dtnascimento" placeholder="Ex: Por volta de 1 ano">
         </div>
         <div class="clear mg">
-            <label for="descricao" id="">Descreva um pouco sobre {{name}}</label> <br>
+            <label for="descricao" id="">Descreva um pouco sobre o pet</label> <br>
             <textarea id="descricao" maxlength=500 name="AnimalDescricao" placeholder="" class="textarea" onkeyup="countChar(this, 'labelcount')" required></textarea>
             <strong>Você ainda tem </strong><strong id="labelcount" class="text-warning">500</strong> <strong>caracteres para escrever.</strong>
         </div>
@@ -60,7 +60,7 @@
         <div class="clear">
             <!--<strong class="text-warning">Dica: </strong> <span>segure a tecla control (Ctrl) para selecionar múltiplas imagens.</span><br>            -->
             <strong>
-                    <i class="fa fa-image fa-5x" style="color: #57a3e8;"></i> Clique aqui para escolher as fotos para o {{name}}
+                    <i class="fa fa-image fa-5x" style="color: #57a3e8;"></i> Clique aqui para escolher a foto do pet
             </strong>
             <input type="file" name="image" id="file6" class="realupload form-control" accept="image/png, image/jpeg" required />
         </div>
