@@ -36,13 +36,104 @@ Class AnimalModel extends Model {
                 a.id = g.animalid where a.id = '{$obj->Id}';"));
 
     }
-    public function getlist(Animal $obj)
+    public function GetAllByUf(Estado $obj)
     {
-        return $this->db->Select("SELECT a.id, a.nome, b.nome 'raca', peso, e.nome 'imagem' FROM animal a join raca b on
-        a.racaid = b.id join genero c on
-        a.generoid = c.id join porte d on
-        a.porteid = d.id join animalimagem e on
-        a.id = e.animalid where b.especieid = '{$obj->EspecieId}'");
+        return $this->db->Select("SELECT 
+            b.Id,
+            b.Nome,
+            g.nome 'Raca',
+            b.peso 'Peso',
+            i.nome 'Imagem',
+            b.dtnascimento 'Idade',
+            e.Numero 'Ddd',
+            f.Nome 'Estado',
+            e.Regiao
+            FROM
+                pessoaanimal a
+                    JOIN
+                animal b ON a.animalid = b.id
+                    JOIN
+                pessoa c ON a.pessoaid = c.id
+                    JOIN
+                endereco d ON c.id = d.pessoaid
+                    JOIN
+                ddd e ON d.dddid = e.id
+                    JOIN
+                estado f ON e.estadoid = f.id
+                    JOIN
+                raca g ON b.racaid = g.id
+                    JOIN
+                especie h ON g.especieid = h.id
+                    JOIN
+                animalimagem i ON b.id = i.animalid
+            WHERE f.Sigla = '{$obj->Sigla}' and b.Adotado = 0
+                order by rand() and a.dtinclusao asc");
+    }
+    public function GetAllByUfNome(Estado $obj)
+    {
+        return $this->db->Select("SELECT 
+            b.Id,
+            b.Nome,
+            g.nome 'Raca',
+            b.peso 'Peso',
+            i.nome 'Imagem',
+            b.dtnascimento 'Idade',
+            e.Numero 'Ddd',
+            f.Nome 'Estado',
+            e.Regiao
+            FROM
+                pessoaanimal a
+                    JOIN
+                animal b ON a.animalid = b.id
+                    JOIN
+                pessoa c ON a.pessoaid = c.id
+                    JOIN
+                endereco d ON c.id = d.pessoaid
+                    JOIN
+                ddd e ON d.dddid = e.id
+                    JOIN
+                estado f ON e.estadoid = f.id
+                    JOIN
+                raca g ON b.racaid = g.id
+                    JOIN
+                especie h ON g.especieid = h.id
+                    JOIN
+                animalimagem i ON b.id = i.animalid
+            WHERE f.Nome = '{$obj->Sigla}' and b.Adotado = 0
+                order by rand() and a.dtinclusao asc");
+    }
+    public function GetList($limit = '6')
+    {
+         return $this->db->Select("SELECT 
+            b.Id,
+            b.Nome,
+            g.nome 'Raca',
+            b.peso 'Peso',
+            i.nome 'Imagem',
+            b.dtnascimento 'Idade',
+            e.Numero 'Ddd',
+            f.Nome 'Estado',
+            e.Regiao
+            FROM
+                pessoaanimal a
+                    JOIN
+                animal b ON a.animalid = b.id
+                    JOIN
+                pessoa c ON a.pessoaid = c.id
+                    JOIN
+                endereco d ON c.id = d.pessoaid
+                    JOIN
+                ddd e ON d.dddid = e.id
+                    JOIN
+                estado f ON e.estadoid = f.id
+                    JOIN
+                raca g ON b.racaid = g.id
+                    JOIN
+                especie h ON g.especieid = h.id
+                    JOIN
+                animalimagem i ON b.id = i.animalid
+            WHERE b.Adotado = 0
+                order by rand() and a.dtinclusao asc limit $limit");
     }
     public function GetAnimalByUf()
     {
@@ -60,7 +151,7 @@ Class AnimalModel extends Model {
                 estado f ON e.estadoid = f.id
                 group by f.Sigla, f.Nome");
     }
-    public function GetRandom(Estado $obj, $random = '10')
+    public function GetRandom(Estado $obj, $random)
     {
 
        return $this->db->Select("SELECT 
@@ -92,7 +183,7 @@ Class AnimalModel extends Model {
                     JOIN
                 animalimagem i ON b.id = i.animalid
             WHERE f.Sigla = '{$obj->Sigla}' and b.Adotado = 0
-                order by rand() and a.dtinclusao asc limit 10");
+                order by rand() and a.dtinclusao asc limit 0, 10");
 
         // return $this->db->Select("SELECT a.id, a.nome, b.nome 'raca', peso, e.nome 'imagem' FROM animal a join raca b on
         // a.racaid = b.id join genero c on
@@ -153,7 +244,7 @@ Class AnimalModel extends Model {
             return $this->db->Update($obj,array('Id'=>$obj->Id),'animalimagem');
         }
     }
-    public function ListaPet(FilterPet $obj)
+    public function ListaPet(FilterPet $obj, $Pagina)
     {
         
         foreach ($obj as $ind => $val){
@@ -166,9 +257,9 @@ Class AnimalModel extends Model {
 
         $filtros = implode(' AND ', $where);
         
-        return $this->db->Select("
+       return $this->db->Select("
         SELECT 
-            b.Id,
+            a.Id,
             b.Nome,
             g.nome 'Raca',
             b.peso 'Peso',
@@ -195,6 +286,6 @@ Class AnimalModel extends Model {
                 especie h ON g.especieid = h.id
                     JOIN
                 animalimagem i ON b.id = i.animalid
-            WHERE $filtros and b.Adotado = 0");  
+            WHERE $filtros and b.Adotado = 0 limit $Pagina, 12");  
     }
 }

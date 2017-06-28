@@ -41,7 +41,6 @@ class petsController extends Controller {
     
         $Estado = new Estado();
         $Estado->Sigla = $this->getParams(0);
-
         
         $this->dados = array(
             'estado' =>  $Estado->Sigla,
@@ -50,7 +49,8 @@ class petsController extends Controller {
             'genero' =>$modelAnimal->getGenero(),
             'pelagem' =>$modelAnimal->getPelagem(),
             'estados' => $modelTelefone->GetUF(),
-            'random' => $apiAnimal->GetRandom($Estado)
+            'random' => $apiAnimal->GetRandom($Estado),
+            'all' => $apiAnimal->GetAllByUf($Estado)
         );
 
         $this->View();
@@ -225,27 +225,38 @@ class petsController extends Controller {
         $apiAnimal = new apiAnimal();
         $FilterPet = new FilterPet('POST', 'FilterPet');
 
-
         $Estado = new Estado();
         $Estado->Sigla = $this->getParams(0);
+        $Pagina = $this->getParams(1);
 
-        if($Estado->Sigla != '0' && $Estado->Sigla != '')
+
+
+        if(isset($Estado->Sigla) && strlen($Estado->Sigla) < 3)
         {
             $this->dados = array(
-            'random' => $apiAnimal->GetRandom($Estado)
+                'random' => $apiAnimal->GetRandom($Estado),
+                'all' => $apiAnimal->GetAllByUf($Estado)
             );
         }
         else 
         {
+            if(!isset($Pagina))
+                $Pagina = 0;
+                
+            
+            $lista = $apiAnimal->ListaPet($FilterPet, $Pagina);
+
+                
             $this->dados = array(
-             'list' =>  $apiAnimal->ListaPet($FilterPet)
+                'list' => $lista,
+                'all' => $apiAnimal->GetAllByUfNome($Estado),
+                'pagina' => $Pagina
+                
             );
         }
-        // echo print_r($Estado);
-
-
-       
         
+        // echo print_r($apiAnimal->GetAllByNome($Estado));
+  
         $this->PartialView();
     }
     public function ListaRaca()

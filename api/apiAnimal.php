@@ -88,15 +88,28 @@ class apiAnimal
         echo json_encode($jsonretorno);
 
     }
-    public function ListaPet(FilterPet $FilterPet)
-    {
+    public function ListaPet(FilterPet $FilterPet, $Pagina = '0')
+    {   
+
+        if($Pagina > 0) $Pagina *= 10;
+
         $AnimalModel = new AnimalModel();
-        return $AnimalModel->ListaPet($FilterPet);
+        return $AnimalModel->ListaPet($FilterPet, $Pagina);
     }
-    public function GetRandom(Estado $obj, $Random = 10)
+    public function GetAllByUf(Estado $obj)
     {
         $AnimalModel = new AnimalModel();
-        return $AnimalModel->GetRandom($obj);
+        return $AnimalModel->GetAllByUf($obj);
+    }
+    public function GetAllByUfNome(Estado $obj)
+    {
+        $AnimalModel = new AnimalModel();
+        return $AnimalModel->GetAllByUfNome($obj);
+    }
+    public function GetRandom(Estado $obj, $Random = '16')
+    {
+        $AnimalModel = new AnimalModel();
+        return $AnimalModel->GetRandom($obj, $Random);
     }
     public function ConfirmarAdocao(Animal $obj)
     {

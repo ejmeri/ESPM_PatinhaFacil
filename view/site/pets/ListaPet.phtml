@@ -1,3 +1,7 @@
+<section id="#start">
+    
+
+
 <?php if (count($view_list) > 0) { ?>
             <?php foreach ($view_list as $li => $a){ ?>
             <form method="post" action="">
@@ -18,7 +22,7 @@
                              <div class="padding-15">
                                 <strong>Idade: </strong> <span><?php echo $a['Idade']; ?></span>                                
                             </div>
-                            <div class="padding-15">
+                            <div class="">
                                 <strong>DDD/Região:</strong> <span class="text-left"><?php echo '(' .$a['Ddd'] . ') - '. $a['Regiao']; ?></span>                                
                             </div>
                         </div>
@@ -85,4 +89,27 @@
                         <h2 style="color:black">Estamos em busca de pessoas, ongs e etc que desejam doar animaizinhos!</h2>  
                         <!--<h3><a href="login/index/pets/adotar/'.$obj->Id.'" class="btn btn-purple btn-lg">Clique aqui</a> </h3>-->
                     </div>
-                <?php } ?>
+<?php } ?>
+
+</section>
+
+<div class="lista clear">
+<?php  if(count($view_all) > 0) {
+            $total = ceil(count($view_all) / 10); ?>
+            <strong>Página <?php echo ($view_pagina + 1).'/'.$total ?></strong>
+    <nav aria-label="navigation">
+        <ul class="pagination">
+            <li class="page-item <?php echo $total > 1 && $view_pagina > 0 ? '' : 'disabled' ?>"><a class="page-link" href="javascript: topFunction();" id="linkpages" onclick="ListaPetsPagina('pets/ListaPet/estado/<?php echo $view_pagina ?>','SearchPet', 'ListPet')">Anterior</a></li>
+                <?php
+                    for ($i = 0; $i < $total; $i++) {
+                    ?>
+                    <li <?php echo $i == $view_pagina ? 'class="active"' : "" ?>>
+                        <a href="javascript: topFunction();" id="linkpages" onclick="ListaPetsPagina('pets/ListaPet/estado/<?php echo $i ?>','SearchPet', 'ListPet')"><?php echo $i+1; ?></a>
+                    </li>                   
+            <?php } ?>
+            <li class="page-item <?php echo $total > 1 ? '' : 'disabled' ?>"><a class="page-link" href="javascript: topFunction();" id="linkpages" onclick="ListaPetsPagina('pets/ListaPet/estado/<?php echo $view_pagina + 1 ?>','SearchPet', 'ListPet')">Próxima</a></li>
+        </ul>
+    </nav>
+    <?php
+    } ?>
+</div>

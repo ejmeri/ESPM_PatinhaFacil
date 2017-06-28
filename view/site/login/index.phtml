@@ -15,102 +15,39 @@
             </div>
         </div>
         <br>
+        <?php if(count($view_lista) > 2) { ?>
         <section class="no-padding" id="portfolio">
             <div class="container-fluid">
                 <div class="row no-gutter popup-gallery">
+                    <?php foreach ($view_lista as $li => $a) { ?>
                     <div class="col-lg-4 no-padding col-sm-6">
-                        <a href="content/images/imgteste.jpeg" class="portfolio-box">
-                            <img src="content/images/imgteste.jpeg" class="img-responsive" alt="">
+                        <a href="uploads/<?php echo $a['Imagem']; ?>" class="portfolio-box">
+                            <img src="uploads/<?php echo $a['Imagem']; ?>" class="img-responsive" alt="">
                             <div class="portfolio-box-caption">
                                 <div class="portfolio-box-caption-content">
                                     <div class="project-category text-faded">
-                                        Category
+                                        <?php echo $a['Nome']; ?>
                                     </div>
                                     <div class="project-name">
-                                        Project Name
+                                        <?php echo ' DDD('.$a['Ddd'].') <br> '. $a['Estado']. ''; ?>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
-                    <div class="col-lg-4 no-padding col-sm-6">
-                        <a href="content/images/Optimized-imgbanner.jpg" class="portfolio-box">
-                            <img src="content/images/Optimized-imgbanner.jpg" class="img-responsive" alt="">
-                            <div class="portfolio-box-caption">
-                                <div class="portfolio-box-caption-content">
-                                    <div class="project-category text-faded">
-                                        Category
-                                    </div>
-                                    <div class="project-name">
-                                        Project Name
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 no-padding col-sm-6">
-                        <a href="content/images/optimized-imgbanner2.png" class="portfolio-box">
-                            <img src="content/images/optimized-imgbanner2.png" class="img-responsive" alt="">
-                            <div class="portfolio-box-caption">
-                                <div class="portfolio-box-caption-content">
-                                    <div class="project-category text-faded">
-                                        Category
-                                    </div>
-                                    <div class="project-name">
-                                        Project Name
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 no-padding col-sm-6">
-                        <a href="content/images/pet.jpg" class="portfolio-box">
-                            <img src="content/images/pet.jpg" class="img-responsive" alt="">
-                            <div class="portfolio-box-caption">
-                                <div class="portfolio-box-caption-content">
-                                    <div class="project-category text-faded">
-                                        Category
-                                    </div>
-                                    <div class="project-name">
-                                        Project Name
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 no-padding col-sm-6">
-                        <a href="content/images/humanpet.jpg" class="portfolio-box">
-                            <img src="content/images/humanpet.jpg" class="img-responsive" alt="">
-                            <div class="portfolio-box-caption">
-                                <div class="portfolio-box-caption-content">
-                                    <div class="project-category text-faded">
-                                        Category
-                                    </div>
-                                    <div class="project-name">
-                                        Project Name
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 no-padding col-sm-6">
-                        <a href="content/images/1.jpg?v" class="portfolio-box">
-                            <img src="content/images/1.jpg?v" class="img-responsive" alt="">
-                            <div class="portfolio-box-caption">
-                                <div class="portfolio-box-caption-content">
-                                    <div class="project-category text-faded">
-                                        Category
-                                    </div>
-                                    <div class="project-name">
-                                        Project Name
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </section>
+        <?php  }
+        else {
+        ?>
+        <section class="no-padding" id="portfolio">
+            <div class="container-fluid">
+                <strong>Em breve muitos pets estarão aqui</strong>
+            </div>
+        </section>
+        <?php } ?>
     </div>
     <div class="container-right" id="frame">   
         <div class="form">

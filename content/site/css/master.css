@@ -3496,7 +3496,7 @@ input[type="button"].btn-block {
   display: block;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .collapse {
   display: none;
 }
@@ -4123,7 +4123,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
-  color: #fff;
+  color: black;
   background-color: #337ab7;
 }
 .nav-stacked > li {
@@ -7444,7 +7444,7 @@ a:hover {
     background-color: transparent
 }
 
-@media (min-width:769px) {
+@media (min-width:768px) {
     .navbar-default .navbar-nav > li.dropdown:hover > a, 
     .navbar-default .navbar-nav > li.dropdown:hover > a:hover,
     .navbar-default .navbar-nav > li.dropdown:hover > a:focus {
@@ -7657,4 +7657,9 @@ a:hover {
 
 .padding-15 {
   padding: 0 15px
+}
+
+.img-450-250 {
+    width: 450px;
+    height: 250px;
 }

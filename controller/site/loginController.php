@@ -33,10 +33,11 @@ use api\apiAutenticacao;
                 'MethodId' =>$MethodId
             );
 
-            // $EmailModel = new EmailModel();
+            $AnimalModel = new \model\animal\AnimalModel;
 
             $this->dados = array(
-                'acoes' => $actions
+                'acoes' => $actions,
+                'lista' => $AnimalModel->GetList()
             );
 
             if(isset($_POST['enter']))

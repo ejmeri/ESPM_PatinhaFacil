@@ -12,11 +12,13 @@ class dashController extends Controller {
         $this->layout = '_layoutdash';
         
         $apiAnimal = new apiAnimal();
-        
-        $this->dados = array(
-            'estados' => $apiAnimal->GetAnimalByUF()
-        );
 
+
+
+        $this->dados = array(
+            'estados' => $apiAnimal->GetAnimalByUF(),
+            'elmeri' => $elemri
+        );
 
         $this->View();
     }

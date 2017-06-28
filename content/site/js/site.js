@@ -30,11 +30,11 @@ function BuscarCep() {
 }
 
 function CarregaDDD(uf) {
-    postPartialView('pessoa/DDD/'  + uf, 'RetornoDDD');
+    postPartialView('pessoa/DDD/' + uf, 'RetornoDDD');
 };
 
 function CarregaDDDbyUfId(ufid) {
-    postPartialView('pessoa/DDDByUFId/'  + ufid, 'RetornoDDD');
+    postPartialView('pessoa/DDDByUFId/' + ufid, 'RetornoDDD');
 };
 
 // open tabs 
@@ -194,7 +194,59 @@ function ValidateCPFCNPJ(str) {
 
 
 // INSERIR PESSOA
+//    // init bootpag
+//         $('#page-selection').bootpag({
+//             total: 10
+//         }).on("page", function(event, /* page number here */ num){
+//              $("#content").html("Insert content"); // some ajax content loading...
+//         });
 
+function ListaPetsPagina(url, form, elementId) {
+
+    var formulario = $('#' + form);
+    var estado = $('#estado option:selected').text();
+
+    url = url.replace("estado", estado.substring(1));
+
+    console.log(url);
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: new FormData(formulario[0]),
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (retorno) {
+            $('#' + elementId).html(retorno);
+        }
+    });
+    return false;
+}
+
+function ListaPets(url, form, elementId) {
+
+    var formulario = $('#' + form);
+
+    if (!formulario.valid())
+        return false;
+    
+    var estado = $('#estado option:selected').text();
+
+    url = url.replace("estado", estado.substring(1));
+    
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: new FormData(formulario[0]),
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (retorno) {
+            $('#' + elementId).html(retorno);
+        }
+    });
+    return false;
+}
 
 function SubmitPartialForm(form, elementId) {
 

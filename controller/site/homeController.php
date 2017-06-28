@@ -14,6 +14,13 @@ class homeController extends Controller {
     }
     public function index(){
         $this->title = 'Home';
+
+        $AnimalModel = new \model\animal\AnimalModel;
+
+        $this->dados = array(
+            'lista' => $AnimalModel->GetList()
+        );
+
         $this->view();
     }
 }
