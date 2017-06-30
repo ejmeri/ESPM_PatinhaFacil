@@ -13,12 +13,16 @@ class homeController extends Controller {
         $this->layout = '_layouthome';
     }
     public function index(){
+        
         $this->title = 'Home';
 
         $AnimalModel = new \model\animal\AnimalModel;
 
+        $apiAnimal = new \api\apiAnimal();
+
         $this->dados = array(
-            'lista' => $AnimalModel->GetList()
+            'lista' => $AnimalModel->GetList(),
+            'estadospet' => $apiAnimal->GetAnimalByUF()
         );
 
         $this->view();

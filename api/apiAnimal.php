@@ -112,7 +112,7 @@ class apiAnimal
         return $AnimalModel->GetRandom($obj, $Random);
     }
     public function ConfirmarAdocao(Animal $obj)
-    {
+    {   
         if(!(isset($_SESSION['PessoaId']))) 
         {   
             echo '
@@ -120,7 +120,7 @@ class apiAnimal
                 <h1 style="color:black">Nos ajude! <i class="fa fa-heart-o" style="color:red"></i></h1> 
                 <hr style="max-width: 50px; border: 1px solid black">
                 <h2 style="color:black"> Para continuar, cadastre-se ou faça seu login gratuitamente! </h2>  
-                <h3><a href="login/index/pets/adotar/'.$obj->Id.'" class="btn btn-purple btn-lg">Clique aqui</a> </h3>
+                <h3><a href="login/index/goto/pets/adotar/'.$obj->Id.'" class="btn btn-purple btn-lg">Clique aqui</a> </h3>
             </div>';
         }
         else

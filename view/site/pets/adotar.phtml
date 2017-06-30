@@ -3,7 +3,7 @@
     <form method="POST" action="pets/adotar" id="ConfirmarAdocao">
         <input type="hidden" name="AnimalId" value="<?php echo $view_pet['Id']; ?>">
         <header class="header-page">
-		    <h1 class="text-center">Confirme sua adoção</h1>            
+		    <h1 class="text-center">Confirme sua adoção <i class="fa fa-handshake-o" aria-hidden="true"></i></h1>            
         </header>
 			<div class="col-lg-10 animal" id="portfolio">
                 <div class="no-gutter popup-gallery">
@@ -66,8 +66,8 @@
                 </div>
             </div>
             <div class="info-people clear">
-                <strong><i class="fa fa-map-marker" aria-hidden="true"></i> Localização</strong>
-                <p><?php echo 'Cep: '.$view_endereco['Cep'].' <br>DDD('.$view_endereco['Ddd'].') - Estado: '.$view_endereco['Estado']; ?></p>
+                <strong><i class="fa fa-map-marker" aria-hidden="true"></i> <i class="fa fa-paw" aria-hidden="true"></i> Localização</strong>
+                <p><?php echo '<strong>Cep: </strong> '.$view_endereco['Cep'].' <br> <strong>Estado:</strong> '.$view_endereco['Estado'].' - <strong>DDD('.$view_endereco['Ddd'].')</strong> - <strong> Região: </strong> '.$view_endereco['Regiao'] ?></p>
             </div>
             <div class="info-people">
                 <strong class="text-warning">Em caso de confirmação</strong>

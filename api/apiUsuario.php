@@ -24,12 +24,11 @@ Class apiUsuario extends Database
        if(count($array) > 0) echo 'E-mail indisponível. <a href="login/esqueciasenha">Recupar senha</a>';
 
     }
-    public function Enter(Usuario $obj, $controller = '', $method = '', $Id = '')
+    public function Enter(Usuario $obj, $redirect = '')
     {   
         $Hash = new GerarHash();
         $UsuarioModel = new UsuarioModel();
         $retorno = $UsuarioModel->Enter($obj);
-
 
         
         // if(!isset($retorno)) echo "Login não encontrado.";
@@ -49,14 +48,14 @@ Class apiUsuario extends Database
                 );
                  
             }
-            else if(($method != '') || ($Id != '') || ($controller = '')){
+            else if(($redirect != '')){
                 
                 //abrir sessao
                 $_SESSION['PessoaId'] = $retorno['PessoaId'];
                 
                 $retornojson = array(
                     'Status' => true,
-                    'Do' => $controller."/".$method."/".$Id,
+                    'Do' => $redirect,
                     'Mensagem' => ''
                 );
 
@@ -95,19 +94,68 @@ Class apiUsuario extends Database
 
     }
     public function EditAcesso()
-    {
+    {   
+
+        $Hash = new GerarHash();
         $UsuarioModel = new UsuarioModel();
         $Usuario = new Usuario('POST', 'Usuario');
-        
-        $Hash = new GerarHash();
-        $PassHashed = $Hash->Hash($Usuario->Senha);
-        $Usuario->Senha = $PassHashed;
 
+
+        $OldPassHash = $Hash->Hash($_POST['senhaantiga']);
 
         $Usuario->PessoaId = $_SESSION['PessoaId'];
-        $retorno = $UsuarioModel->Save($Usuario);
+        $OldUser = $UsuarioModel->GetByPessoaId($Usuario);
 
-        // echo print_r($Usuario);
+        if($OldPassHash != $OldUser['Senha'])
+        {
+            $retornojson = array(
+                'Status' => true,
+                'Do' => '',
+                'Mensagem' => 
+                    '<div class="alert alert-danger alert-dismissable fade in">
+                        <a href="#" class="close" style="padding-right: 20px" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Sua senha antiga está incorreta!</strong>
+                    </div>'
+            );
+        }
+        else 
+        {
+            $PassHashed = $Hash->Hash($Usuario->Senha);
+            $PassHashed = $Hash->Hash($Usuario->Senha);
+            $Usuario->Senha = $PassHashed;
+
+            $Usuario->Id = $OldUser['Id'];
+            $Usuario->DtInclusao = $OldUser['DtInclusao'];
+            $Usuario->Login = $OldUser['Login'];
+
+            $retorno = $UsuarioModel->Save($Usuario);
+
+            if($retorno['sucess'])
+            {
+                $retornojson = array(
+                'Status' => true,
+                'Do' => '',
+                'Mensagem' => 
+                    '<div class="alert alert-success alert-dismissable fade in">
+                        <a href="#" class="close" style="padding-right: 20px" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>A sua senha foi alterada!</strong> <br>
+                            <a href="pessoa" class=""> Voltar </a>
+                        </div>'
+            );
+            }
+            else 
+            {
+                $retornojson = array(
+                'Status' => true,
+                'Do' => '',
+                'Mensagem' => '<div class="alert alert-info alert-dismissable">
+                                    <h2>'.$retorno['feedback'].'</h2>
+                               </div>'
+                );
+            }
+        }
+        
+        return $retornojson;
 
     }
     public function SendEmail(Usuario $obj)

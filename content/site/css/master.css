@@ -7663,3 +7663,7 @@ a:hover {
     width: 450px;
     height: 250px;
 }
+
+.not-active {
+   pointer-events: none;
+}

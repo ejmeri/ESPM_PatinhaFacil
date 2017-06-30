@@ -10,7 +10,7 @@
                 <a href="#retornoPessoa">Gerais</a>                
             </div>
             <div class="tablinks">
-                <a href="javascript:;" class="tablinks">Acesso</a>                
+                <a href="#retornoAcesso" class="tablinks">Acesso</a>                
             </div>
             <div class="tablinks">
                 <a href="#tabdados" class="tablinks" >Dados para contato</a>    
@@ -57,8 +57,8 @@
                 </div>
             </form>
         </div>
-        <hr class="clear">
-        <div id="retornoAcesso" style="margin-bottom:2%;">
+        <hr class="clear sizemax">
+        <div id="retornoAcesso" style="margin-bottom:5%;">
             <h2>Informações de acesso</h2>
             <form method="POST" id="acesso" class="tabcontent" action="pessoa">
                 <input type="hidden" name="UsuarioId" value="<?php echo $view_user['Id']; ?>">
@@ -74,7 +74,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-40 col-sm-1 col-fl clear" id="divedit" style="margin-bottom:2%;">
+                <!--<div class="col-40 col-sm-1 col-fl clear" id="divedit" style="margin-bottom:2%;">
                     <div>
                         <strong>Senha antiga</strong>
                         <input type="password" id="" name="SenhaAntiga" onkeyup="ValidatePass(this.value)" value="" class="form-control" required autocomplete=off>
@@ -89,16 +89,19 @@
                         <input type="password" id="repassword" onkeyup="validatepassword(this.value)" name="ConfirmarSenha" value="" class="form-control" required autocomplete=off>
                         <span class="text-warning" id="passretorno"></span>
                     </div>
-                </div>
+                </div>-->
                 <div class="col-lg-5 clear">
-                    <button type="button" onclick="canceledititempeople('acesso', 'divedit')" id="cancel" class="btn btn-black">Cancelar</button>
+                    <!--<button type="button" onclick="canceledititempeople('acesso', 'divedit')" id="cancel" class="btn btn-black">Cancelar</button>
                     <button type="button" onclick="savepeople('acesso', 'divedit')" id="new" class="btn btn-black">Editar</button>
-                    <!--<button type="button" onclick="SubmitPartialFormAcesso($('#acesso'), 'retornoAcesso')" id="save" name="save" class="btn btn-blue" data-toggle="modal" data-target="#myModal">Salvar</button>-->
-                    <input type="submit" name="SaveAcesso" id="save" value="Salvar" class="btn btn-black">
+                    <button type="button" onclick="SubmitPartialFormAcesso($('#acesso'), 'retornoAcesso')" id="save" name="save" class="btn btn-blue" data-toggle="modal" data-target="#myModal">Salvar</button>-->
+                    <!--<input type="submit" name="SaveAcesso" id="save" value="Salvar" class="btn btn-black">-->
+                    <a href="pessoa/alterarsenha" class="btn btn-black">Alterar senha</a>
                 </div>
             </form>
         </div>
-        <hr class="clear">
+        <div>
+            <hr class="clear">            
+        </div>
         <div class="tabcontent" id="tabdados">
             <h2>Dados para contato</h2>
             <div id="retornoTelefone" class="clear">
@@ -129,8 +132,8 @@
                             </select>
                         </div>-->
                         <div>
-                            <strong>Telefone</strong>
-                            <input type="text" id="txtpeoplenome" name="TelefoneNumero" value="<?php echo $view_telefone['Numero'] ?>" class="form-control cellphone" required autocomplete=off>
+                            <strong>DDD + Número para contato</strong>
+                            <input type="text" id="txtpeoplenome" name="TelefoneNumero" value="<?php echo $view_telefone['Numero'] ?>" class="form-control cellphone" required autocomplete=off placeholder="Celular de preferência :)">
                         </div>
                         <div>
                             <strong>Tipo de telefone</strong>

@@ -20,41 +20,25 @@ use api\apiAutenticacao;
     {
         public function index()
         {    
+            error_reporting(!E_NOTICE);
+
             $this->layout = "_layoutlogin";
             $this->title .= "Login";
 
-            $Controller = $this->getParams(0);
-            $Method =  $this->getParams(1);
-            $MethodId = $this->getParams(2);
+            $goto = $this->getParams(0);
 
-            $actions = array(
-                'Controller' => $Controller,
-                'Method' => $Method,
-                'MethodId' =>$MethodId
-            );
+            if(isset($goto))
+                $Page = $this->getParams(1).'/'.$this->getParams(2).'/'.$this->getParams(3);
 
             $AnimalModel = new \model\animal\AnimalModel;
 
-            $this->dados = array(
-                'acoes' => $actions,
-                'lista' => $AnimalModel->GetList()
-            );
-
             if(isset($_POST['enter']))
             {   
-                $controller = $_POST['Controller'];
-                $method = $_POST['Method'];
-                $methodId = $_POST['MethodId'];
-
                 $apiUsuario = new apiUsuario();
-                $this->PartialResultView($apiUsuario->Enter(new Usuario('POST', 'Usuario'),$controller, $method, $methodId));
+                $this->PartialResultView($apiUsuario->Enter(new Usuario('POST', 'Usuario'), $Page));
             }
             else if(isset($_POST['button']))
             {
-                $controller = $_POST['Controller'];
-                $method = $_POST['Method'];
-                $methodId = $_POST['MethodId'];
-
                 $Hash = new GerarHash();
                 $apiAutenticacao = new apiAutenticacao();
                 $PessoaModel = new PessoaModel();
@@ -81,22 +65,15 @@ use api\apiAutenticacao;
                 
                 if($retorno['sucess'] && $retornoUsuario['sucess']) {
                     
-
-                    
-                    $controller = $_POST['Controller'];
-                    $method = $_POST['Method'];
-                    $methodId = $_POST['MethodId'];
-
-                    
-                    if($controller != '' && $method != ''){
+                    if($Page != ''){
 
                         $retorno = array(
                             'Status' => true,
-                            'Do' => $controller."/".$method."/".$methodId,
+                            'Do' => $Page,
                             'Mensagem' => ''
                         );
 
-                        $_SESSION['PessoaId'] = $retorno['PessoaId'];
+                        $_SESSION['PessoaId'] = $Pessoa->Id;
 
                         echo json_encode($retorno,  JSON_UNESCAPED_UNICODE);
 
@@ -130,6 +107,11 @@ use api\apiAutenticacao;
             }
             else 
             { 
+                $this->dados = array(
+                    'redirect' => $goto.'/'.$Page,
+                    'lista' => $AnimalModel->GetList()
+                );
+
                $this->View();
             }
 
@@ -146,10 +128,6 @@ use api\apiAutenticacao;
 
             $EmailModel = new EmailModel();
 
-            $this->dados = array(
-                'list' => $EmailModel->GetTipo()
-            );
-            
             if(!isset($_POST['button'])) $this->view();
             else
             {

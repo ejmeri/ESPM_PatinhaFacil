@@ -24,6 +24,7 @@ use api\apiAnimal;
 use api\apiPessoa;
 
 class petsController extends Controller {
+   
     public function index()
     {
         // new Session();
@@ -42,6 +43,7 @@ class petsController extends Controller {
         $Estado = new Estado();
         $Estado->Sigla = $this->getParams(0);
         
+
         $this->dados = array(
             'estado' =>  $Estado->Sigla,
             'especie' =>$modelAnimal->getEspecie(),
@@ -50,7 +52,8 @@ class petsController extends Controller {
             'pelagem' =>$modelAnimal->getPelagem(),
             'estados' => $modelTelefone->GetUF(),
             'random' => $apiAnimal->GetRandom($Estado),
-            'all' => $apiAnimal->GetAllByUf($Estado)
+            'all' => $apiAnimal->GetAllByUf($Estado),
+            'estadospet' => $apiAnimal->GetAnimalByUF()
         );
 
         $this->View();
@@ -229,13 +232,13 @@ class petsController extends Controller {
         $Estado->Sigla = $this->getParams(0);
         $Pagina = $this->getParams(1);
 
-
-
+        
         if(isset($Estado->Sigla) && strlen($Estado->Sigla) < 3)
         {
             $this->dados = array(
                 'random' => $apiAnimal->GetRandom($Estado),
-                'all' => $apiAnimal->GetAllByUf($Estado)
+                'all' => $apiAnimal->GetAllByUf($Estado),
+                'estadospet' => $apiAnimal->GetAnimalByUF()
             );
         }
         else 
@@ -250,8 +253,7 @@ class petsController extends Controller {
             $this->dados = array(
                 'list' => $lista,
                 'all' => $apiAnimal->GetAllByUfNome($Estado),
-                'pagina' => $Pagina
-                
+                'pagina' => $Pagina, 
             );
         }
         

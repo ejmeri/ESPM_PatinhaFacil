@@ -3,6 +3,7 @@
 
 
 // echo $_SERVER['HTTP_HOST'];
+
 session_start();
 
 date_default_timezone_set('America/Sao_Paulo');
@@ -16,8 +17,8 @@ date_default_timezone_set('America/Sao_Paulo');
 //     }
 // }
 
-define('APP_ROOT', 'http://' . $_SERVER['HTTP_HOST']);
-define('NEW_FILE', '28-06-2017:16:12');
+define('APP_ROOT', 'http://' . $_SERVER['HTTP_HOST']. '/ESPMProducao');
+define('NEW_FILE', '29-06-2017:22:10');
 
 require_once 'helper/autoloader.php';
 

@@ -1,3 +1,6 @@
+
+<?php // echo $view_redirect ?>
+
 <section class="container-in">
     <div class="form-image text-center">
         <div style="padding: 0 25% 0 25%">
@@ -68,11 +71,8 @@
                     </div>
                 </article>
             </div>
-            <form id="frmCadastro" method="POST" action="login" class="form-insert">
+            <form id="frmCadastro" method="POST" action="login/index/<?php echo $view_redirect ?>" class="form-insert">
                 <input type="hidden" name="Id" value="0">
-                <input type="hidden" name="Controller" value="<?php echo $view_acoes['Controller'] ?>">                    
-                <input type="hidden" name="Method" value="<?php echo $view_acoes['Method'] ?>">
-                <input type="hidden" name="MethodId" value="<?php echo $view_acoes['MethodId'] ?>">
                 <div class="acess clear" style="padding-top:10px">
                     <h3>Informações Gerais</h3>
                 </div>

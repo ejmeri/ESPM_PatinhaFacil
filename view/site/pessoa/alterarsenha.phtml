@@ -1,0 +1,52 @@
+<section class="container-in" style="margin-bottom: 25px">
+    <header class="header-page text-center">
+        <h1>Alterar senha</h1>
+    </header>
+    <hr style="border: 1px solid #53a8e3; max-width: 100px">
+    <div>
+        <form method="POST" action="pessoa/alterarsenha" id="frmAlterarSenha" class="form-insert">
+            <div class="col-lg-5">
+                <strong>Senha antiga</strong>
+                <input type="password" name="senhaantiga" value="" class="form-control" required>
+                <span class="text-warning" id="oldpass"></span>
+            </div>
+            <div class="col-lg-5 clear">
+                <strong>Nova senha</strong>
+                <input type="password" name="confirmarsenha" id="password" value="" class="form-control" required  minlength=6>           
+            </div>
+            <div class="col-lg-5 clear mg">
+                <strong>Confirmar senha</strong>
+                <input type="password" name="UsuarioSenha" id="repassword" value="" class="form-control" required minlength=6>           
+            </div>
+            <div class="col-lg-12 mg">
+                <input type="submit" name="save" value="Salvar" class="btn btn-black">            
+            </div>
+        </form>
+        <div id="result" class="form-insert clear">
+            <span id="txtHint"></span>
+        </div>
+    </div>
+</section>
+
+
+<script type="text/javascript">
+
+        $(document).ready(function(){
+
+            var formulario = $('#frmAlterarSenha');
+
+            formulario.validate({
+                    errorClass: 'text-errors',
+                    rules: {
+                        UsuarioSenha: {
+                            equalTo: "#password"
+                        }
+                    },
+                    submitHandler: function (form) {
+                        postForm(formulario,'txtHint', 'result', '');
+                        $('input[type=password]').val('');
+                        $('#password').focus();
+                    }   
+            });
+        });
+</script>

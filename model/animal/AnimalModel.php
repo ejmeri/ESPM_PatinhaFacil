@@ -105,7 +105,7 @@ Class AnimalModel extends Model {
     public function GetList($limit = '6')
     {
          return $this->db->Select("SELECT 
-            b.Id,
+            a.Id,
             b.Nome,
             g.nome 'Raca',
             b.peso 'Peso',
@@ -133,7 +133,7 @@ Class AnimalModel extends Model {
                     JOIN
                 animalimagem i ON b.id = i.animalid
             WHERE b.Adotado = 0
-                order by rand() and a.dtinclusao asc limit $limit");
+                order by rand(), b.dtinclusao and a.dtinclusao asc limit $limit");
     }
     public function GetAnimalByUf()
     {
@@ -259,7 +259,7 @@ Class AnimalModel extends Model {
         
        return $this->db->Select("
         SELECT 
-            a.Id,
+            b.Id,
             b.Nome,
             g.nome 'Raca',
             b.peso 'Peso',

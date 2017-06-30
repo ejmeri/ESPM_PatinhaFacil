@@ -47,6 +47,22 @@ class pessoaController extends Controller
         $this->Load();
         $this->View();
     }
+    public function alterarsenha() 
+    {
+        new Session();
+
+        $this->title .= 'Alterar senha';
+        $this->layout = '_layout';
+
+        if(!isset($_POST['save'])) $this->View();
+        else
+        {
+            $apiUsuario = new apiUsuario();
+            $retorno = $apiUsuario->EditAcesso();
+
+            $this->PartialResultView(json_encode($retorno,  JSON_UNESCAPED_UNICODE));
+        }
+    }
     public function pets()
     {
         new Session();
@@ -168,6 +184,8 @@ class pessoaController extends Controller
     }
     private function Load()
     {
+
+        $apiAnimal = new \api\apiAnimal();
         $Usuario = new Usuario();
         $Telefone = new Telefone();
         $Email = new Email();
@@ -207,7 +225,8 @@ class pessoaController extends Controller
             'tipoendereco' => $modelTelefone->GetTipoEndereco(),
             'enderecos' => $modelTelefone->GetEnderecoByPessoaId($Endereco),
             'endereco' => $endereco,
-            'pets' => $modelAnimal->GetByPessoaId($Pessoa)
+            'pets' => $modelAnimal->GetByPessoaId($Pessoa),
+            'estadospet' => $apiAnimal->GetAnimalByUF()
         );
     }
     public function DDD()

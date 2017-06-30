@@ -1,6 +1,4 @@
 <section id="#start">
-    
-
 
 <?php if (count($view_list) > 0) { ?>
             <?php foreach ($view_list as $li => $a){ ?>
@@ -107,7 +105,7 @@
                         <a href="javascript: topFunction();" id="linkpages" onclick="ListaPetsPagina('pets/ListaPet/estado/<?php echo $i ?>','SearchPet', 'ListPet')"><?php echo $i+1; ?></a>
                     </li>                   
             <?php } ?>
-            <li class="page-item <?php echo $total > 1 ? '' : 'disabled' ?>"><a class="page-link" href="javascript: topFunction();" id="linkpages" onclick="ListaPetsPagina('pets/ListaPet/estado/<?php echo $view_pagina + 1 ?>','SearchPet', 'ListPet')">Próxima</a></li>
+            <li class="page-item <?php echo $total > 1 ? '' : 'disabled' ?>"><a class="page-link" href="javascript: topFunction();" id="linkpages" onclick="ListaPetsPagina('pets/ListaPet/estado/<?php echo $total == 1 ? $view_pagina : $view_pagina + 1 ?>','SearchPet', 'ListPet')">Próxima</a></li>
         </ul>
     </nav>
     <?php

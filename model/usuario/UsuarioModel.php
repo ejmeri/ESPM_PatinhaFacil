@@ -16,11 +16,11 @@ Class UsuarioModel extends Model {
     }
     public function GetByPessoaId(Usuario $obj)
     {
-        return $this->First($this->db->Select("SELECT Id, Login, Senha from usuario where pessoaid = '{$obj->PessoaId}'"));
+        return $this->First($this->db->Select("SELECT Id, Login, Senha, DtInclusao from usuario where pessoaid = '{$obj->PessoaId}'"));
     }
     public function GetByPessoaIdNoPass(Usuario $obj)
     {
-        return $this->First($this->db->Select("SELECT Id, Login from usuario where pessoaid = '{$obj->PessoaId}'"));
+        return $this->First($this->db->Select("SELECT Id, Login, DtInclusao, DtAtualizacao from usuario where pessoaid = '{$obj->PessoaId}'"));
     }
     public function GetByLogin(Usuario $obj)
     {
