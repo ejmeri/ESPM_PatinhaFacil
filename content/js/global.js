@@ -89,13 +89,12 @@ function postForm(form, elementId, elementResultId, redirect = '0') {
         processData: false,
         success: function (retorno) {
             // retorno = retorno.toString();
-
             console.log(retorno);
-            retorno = retorno.replace('\/','');
-            try {
+         
+            try 
+            {
                 retorno = JSON.parse(retorno);
                 
-                console.log(retorno);
 
                 if (retorno.Status && retorno.Do != '')
                 {   
@@ -126,11 +125,8 @@ function postFormLogin(form, elementId, elementResultId, redirect) {
         url: form.attr("action"),
         data: form.serialize(),
         success: function (retorno) {
-            console.log(retorno);
-            
-            
+                      
             retorno = JSON.parse(retorno);
-
             
             if (retorno.Status) {
                 location.href = retorno.Do;

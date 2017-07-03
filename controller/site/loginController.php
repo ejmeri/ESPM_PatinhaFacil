@@ -61,9 +61,7 @@ use api\apiAutenticacao;
                 $Usuario->Senha = $Hash->Hash($Usuario->Senha);
                 $retornoUsuario = $UsuarioModel->Save($Usuario);
                 $retornoAutenticacao = $apiAutenticacao->Autenticacao($Autenticacao);
-                
-                echo $retornoAutenticacao;
-                
+                                
                 if($retorno['sucess'] && $retornoUsuario['sucess'] && $retornoAutenticacao == 'ok') {
                     
                     if($Page != ''){
@@ -76,12 +74,12 @@ use api\apiAutenticacao;
 
                         $_SESSION['PessoaId'] = $Pessoa->Id;
 
-                        echo json_encode($retorno,  JSON_UNESCAPED_UNICODE);
+                        $retorno =  json_encode($retorno,  JSON_UNESCAPED_UNICODE);
 
                     }
                     else {
 
-                         $retorno = array(
+                        $retorno = array(
                             'Status' => true,
                             'Do' => '',
                             'Mensagem' => '<div class="alert alert-info alert-dismissable">
@@ -90,7 +88,8 @@ use api\apiAutenticacao;
                             </div>'
                         );
 
-                        $this->PartialResultView(json_encode($retorno,  JSON_UNESCAPED_UNICODE));
+                        $retorno =  json_encode($retorno,  JSON_UNESCAPED_UNICODE);
+                        
                     }
                 }
                 else {
@@ -103,8 +102,10 @@ use api\apiAutenticacao;
                      
                      $retorno = json_encode($retorno,  JSON_UNESCAPED_UNICODE);
 
-                     $this->PartialResultView($retorno);
                 }
+
+                $this->PartialResultView($retorno);
+                
             }
             else 
             { 

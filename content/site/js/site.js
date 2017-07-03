@@ -386,4 +386,22 @@ function showPet() {
 }
 
 
+function BuscarCepAdotar(cep) {
+
+    if(cep.length != 0) {
+        $.ajax({
+            url: 'https://viacep.com.br/ws/' + cep + '/json/',
+            dataType: 'jsonp',
+            crossDomain: true,
+            contentType: "application/json",
+            success: function (data) {
+                $('#Logradouro').text(data.logradouro);
+                $('#Bairro').text(data.bairro);
+                $('#Cidade').text(data.localidade);
+            } // ok
+        });
+    }
+}
+
+
 // lista pet fim
