@@ -90,15 +90,19 @@ function postForm(form, elementId, elementResultId, redirect = '0') {
         success: function (retorno) {
             // retorno = retorno.toString();
 
+            console.log(retorno);
+            retorno = retorno.replace('\/','');
             try {
                 retorno = JSON.parse(retorno);
                 
+                console.log(retorno);
+
                 if (retorno.Status && retorno.Do != '')
                 {   
                     location.href = retorno.Do;
                 }
                 else if(retorno.Status && retorno.Do == '')
-                {
+                {   
                     $('#' + elementId).html(retorno.Mensagem);
                     startperfil(form.attr('id'), 'divedit');
                     $('#' + elementResultId).show();
@@ -110,6 +114,7 @@ function postForm(form, elementId, elementResultId, redirect = '0') {
                 startperfil(form.attr('id'), 'divedit');
                 $('#' + elementResultId).show();
             }
+
         }
     });
     return false;

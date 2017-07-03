@@ -60,10 +60,11 @@ use api\apiAutenticacao;
                 // $retornoEmail = $EmailModel->Save($Email);
                 $Usuario->Senha = $Hash->Hash($Usuario->Senha);
                 $retornoUsuario = $UsuarioModel->Save($Usuario);
-                $apiAutenticacao->Autenticacao($Autenticacao);
+                $retornoAutenticacao = $apiAutenticacao->Autenticacao($Autenticacao);
                 
+                echo $retornoAutenticacao;
                 
-                if($retorno['sucess'] && $retornoUsuario['sucess']) {
+                if($retorno['sucess'] && $retornoUsuario['sucess'] && $retornoAutenticacao == 'ok') {
                     
                     if($Page != ''){
 
@@ -83,8 +84,7 @@ use api\apiAutenticacao;
                          $retorno = array(
                             'Status' => true,
                             'Do' => '',
-                            'Mensagem' => '
-                            <div class="alert alert-info alert-dismissable">
+                            'Mensagem' => '<div class="alert alert-info alert-dismissable">
                                 <h2>Parabéns '.$Pessoa->Nome.', você foi cadastrado em nosso sistema!</h2>
                                 <p>Enviamos um e-mail para você confirmar a sua conta, após confirmação o seu acesso estará liberado!</p>
                             </div>'
@@ -98,8 +98,9 @@ use api\apiAutenticacao;
                      $retorno = array(
                             'Status' => false,
                             'Do' => '',
-                            'Mensagem' => $retorno['feedback']." <br> ".$retornoUsuario['feedback']
+                            'Mensagem' => $retorno['feedback']." <br> ".$retornoUsuario['feedback']."<br>".$retornoAutenticacao
                      );
+                     
                      $retorno = json_encode($retorno,  JSON_UNESCAPED_UNICODE);
 
                      $this->PartialResultView($retorno);

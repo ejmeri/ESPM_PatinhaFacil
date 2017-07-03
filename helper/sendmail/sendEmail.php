@@ -5,9 +5,12 @@ namespace helper\sendmail;
 
     Class sendEmail
     {
-        public function Send($to, $subject, $message)
+        public function Send($to, $subject, $message, $tipoemail = 'novousuario')
         {
            
+
+            $tipoemail = 'no-reply';
+
             $mail = new PhpMailer(); // instancia a classe PHPMailer
 
             $mail->IsSMTP();
@@ -22,13 +25,13 @@ namespace helper\sendmail;
 
             //configuração do usuário do gmail
             $mail->SMTPAuth = true; 
-            $mail->Username = 'autenticacao@petfacil.net.br'; // usuario gmail.   
+            $mail->Username = $tipoemail.'@petfacil.net.br'; // usuario gmail.   
             $mail->Password = 'p3t.f4c1l'; // senha do email.
 
             $mail->SingleTo = true; 
 
             // configuração do email a ver enviado.
-            $mail->From = "autenticacao@petfacil.net.br"; 
+            $mail->From = $tipoemail.'@petfacil.net.br'; 
             $mail->FromName = "Equipe PET.FÁCIL"; 
 
             $mail->addAddress($to); // email do destinatario.
@@ -36,7 +39,7 @@ namespace helper\sendmail;
             $mail->Subject = $subject; 
             $mail->Body = $message;
 
-            if(!$mail->Send()) echo "Erro ao enviar Email:" . $mail->ErrorInfo;
+            if(!$mail->Send()) return "Erro ao enviar Email:" . $mail->ErrorInfo;
             else return "ok";
         }
     }

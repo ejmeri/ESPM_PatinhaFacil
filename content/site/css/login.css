@@ -8,9 +8,9 @@ body {
     background: #eaeaea;
 }
 
-body::-webkit-scrollbar {
+/*body::-webkit-scrollbar {
     display: none;
-}
+}*/
 
 .form-image {
     width: 45%;

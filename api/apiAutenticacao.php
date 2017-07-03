@@ -54,7 +54,7 @@ use model\usuario\UsuarioModel;
             );
             $message = preg_replace( array_keys( $replacements ), array_values( $replacements ), $message );
             
-            $SendEmail->Send($Usuario['Login'], 'Autenticação da sua conta', $message);
+            return $SendEmail->Send($Usuario['Login'], 'Autenticação da sua conta', $message);
 
         }
         public function Validar(Autenticacao $obj)
