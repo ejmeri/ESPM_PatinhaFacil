@@ -82,18 +82,18 @@
                         <!--<input type="text" id="CNPJ" name="Cnpj" class="form-control cnpj" value="" autocomplete=off placeholder="00.000.000/0000-00" required onkeyup="ValidateCPFCNPJ(this.value)">-->
                         <span id="txtCPF" class="text-warning"></span>                                                        
                     </div>
-                <div class="item-right">
+                <!--<div class="item-right">
                     <label for="RG" id="number"></label>
                     <input type="text" name="PessoaRg" id="Rg" class="form-control" value="" placeholder="RG" required autocomplete=off>
-                </div> 
-                <div class="item-left clear">
+                </div> -->
+                <div class="item-right">
                     <label for="Nome" id="nome"></label>
                     <input type="text" name="PessoaNome" id="Nome" class="form-control" value="" placeholder="Nome" required maxlength=80 autocomplete=off>
                 </div>
-                <div class="item-right">
+                <!--<div class="item-right">
                     <label for="Apelido" id="apelido"></label>
                     <input type="text" name="PessoaApelido" id="Apelido" class="form-control" value="" placeholder="Apelido" required autocomplete=off>
-                </div>
+                </div>-->
                 <!--<div class="item-left clear">
                     <label for="Email"></label>
                     <input type="email" name="EmailNome" id="Email" class="form-control" value=""placeholder="E-mail" autocomplete=off required placeholder="example@example.com">
@@ -108,11 +108,27 @@
                     </select>
                 </div>-->
                 <div class="acess clear" style="padding-top:10px">
+                    <h3>Informações de contato</h3>
+                </div>
+                <div class="item-left clear">
+                    <label for="user"></label>
+                    <input type="text" name="TelefoneNumero" id="Telefone" class="form-control cellphone" value="" placeholder="(DDD + Número)" autocomplete=off required>
+                </div>
+                <div class="item-right">
+                    <label for="password"></label>
+                     <select class="form-control" name="TelefoneTipoTelefoneId" required>
+                        <option value="">Selecione o Tipo de Telefone</option>
+                        <?php if (count($view_tipotelefone) > 0) { ?>
+                            <?php foreach ($view_tipotelefone as $tipo) { ?>
+                                <option value=<?php echo $tipo['Id']; ?>> <?php echo $tipo['Nome'];?></option><?php } } ?>
+                    </select>
+                </div>
+                <div class="acess clear" style="padding-top:10px">
                     <h3>Informações de acesso</h3>
                 </div>
                 <div class="item-left clear">
                     <label for="user"></label>
-                    <input type="email" name="UsuarioLogin" id="user" class="form-control" value="" placeholder="E-mail" minLength=3 maxLength=30 autocomplete=off required onkeyup="showLogin(this.value)">
+                    <input type="email" name="UsuarioLogin" id="user" class="form-control" value="" placeholder="E-mail" minLength=3 maxLength=255 autocomplete=off required onkeyup="showLogin(this.value)">
                     <span id="returnlogin" class="text-warning"></span>
                 </div>
                 <div class="item-left clear">
@@ -139,7 +155,24 @@
         <div id="result" class="form-insert">
             <span id="txtHint"></span>
         </div>
+        <div  style="display: none;" id="spin" class="text-center padding">
+            <div class="loader">
+            </div>
+            <strong>Salvando suas informações...</strong>
+        </div>
+        
+
+
+        <!--<button type="button" onclick="loadshow();" id="btnspin"> Salvar</button>-->
     </div>                                          
 </div>
 
 </section>
+
+<script>
+
+function loadshow() {
+    $('#spin').css("display", "block");
+    
+}
+</script>

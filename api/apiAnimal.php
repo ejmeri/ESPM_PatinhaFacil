@@ -106,7 +106,7 @@ class apiAnimal
         $AnimalModel = new AnimalModel();
         return $AnimalModel->GetAllByUfNome($obj);
     }
-    public function GetRandom(Estado $obj, $Random = '16')
+    public function GetRandom(Estado $obj, $Random = '20')
     {
         $AnimalModel = new AnimalModel();
         return $AnimalModel->GetRandom($obj, $Random);

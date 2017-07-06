@@ -183,7 +183,7 @@ Class AnimalModel extends Model {
                     JOIN
                 animalimagem i ON b.id = i.animalid
             WHERE f.Sigla = '{$obj->Sigla}' and b.Adotado = 0
-                order by rand() and a.dtinclusao asc limit 0, 10");
+                order by rand() and a.dtinclusao asc limit 0, $random");
 
         // return $this->db->Select("SELECT a.id, a.nome, b.nome 'raca', peso, e.nome 'imagem' FROM animal a join raca b on
         // a.racaid = b.id join genero c on
@@ -286,6 +286,6 @@ Class AnimalModel extends Model {
                 especie h ON g.especieid = h.id
                     JOIN
                 animalimagem i ON b.id = i.animalid
-            WHERE $filtros and b.Adotado = 0 limit $Pagina, 12");  
+            WHERE $filtros and b.Adotado = 0 limit $Pagina, 20");  
     }
 }

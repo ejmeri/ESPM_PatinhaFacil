@@ -79,6 +79,8 @@ function postPartialView(url, elementId) {
 };
 
 function postForm(form, elementId, elementResultId, redirect = '0') {
+
+    $('#spin').css("display", "block");
     // alert('elmeri');
     $.ajax({
         type: "POST",
@@ -89,7 +91,7 @@ function postForm(form, elementId, elementResultId, redirect = '0') {
         processData: false,
         success: function (retorno) {
             // retorno = retorno.toString();
-            console.log(retorno);
+            // console.log(retorno);
          
             try 
             {
@@ -107,12 +109,15 @@ function postForm(form, elementId, elementResultId, redirect = '0') {
                     $('#' + elementResultId).show();
 
                 }
+                
             }
             catch (e) {
                 $('#' + elementId).html(retorno);
                 startperfil(form.attr('id'), 'divedit');
                 $('#' + elementResultId).show();
             }
+
+            $('#spin').css("display", "none");
 
         }
     });

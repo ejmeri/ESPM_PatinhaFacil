@@ -31,6 +31,8 @@ use api\apiAutenticacao;
                 $Page = $this->getParams(1).'/'.$this->getParams(2).'/'.$this->getParams(3);
 
             $AnimalModel = new \model\animal\AnimalModel;
+            $TelfoneModel = new \model\telefone\TelefoneModel();
+            
 
             if(isset($_POST['enter']))
             {   
@@ -48,21 +50,24 @@ use api\apiAutenticacao;
                 $Autenticacao = new Autenticacao();
                 $Pessoa = new Pessoa('POST', 'Pessoa');                
                 $Usuario = new Usuario('POST', 'Usuario');
+                $Telefone = new \object\Telefone('POST', 'Telefone');
                 // $Email = new Email('POST', 'Email');
         
                 $retorno = $PessoaModel->Save($Pessoa);
                 $Pessoa->Id = $retorno['Identity'];
 
+                $Telefone->PessoaId = $Pessoa->Id;
                 $Usuario->PessoaId = $Pessoa->Id;
                 // $Email->PessoaId = $Pessoa->Id;
                 $Autenticacao->PessoaId = $Pessoa->Id;
                 
                 // $retornoEmail = $EmailModel->Save($Email);
+                $retornoTelefone = $TelfoneModel->Save($Telefone);
                 $Usuario->Senha = $Hash->Hash($Usuario->Senha);
                 $retornoUsuario = $UsuarioModel->Save($Usuario);
                 $retornoAutenticacao = $apiAutenticacao->Autenticacao($Autenticacao);
                                 
-                if($retorno['sucess'] && $retornoUsuario['sucess'] && $retornoAutenticacao == 'ok') {
+                if($retorno['sucess'] && $retornoUsuario['sucess'] && $retornoTelefone['sucess'] && $retornoAutenticacao == 'ok') {
                     
                     if($Page != ''){
 
@@ -82,9 +87,10 @@ use api\apiAutenticacao;
                         $retorno = array(
                             'Status' => true,
                             'Do' => '',
-                            'Mensagem' => '<div class="alert alert-info alert-dismissable">
-                                <h2>Parabéns '.$Pessoa->Nome.', você foi cadastrado em nosso sistema!</h2>
-                                <p>Enviamos um e-mail para você confirmar a sua conta, após confirmação o seu acesso estará liberado!</p>
+                            'Mensagem' => '<div class="alert alert-info alert-dismissable fade in">
+                                <a href="#" class="close" style="padding-right: 20px" data-dismiss="alert" aria-label="close">&times;</a>
+                                <h2 style="color:#000">Parabéns '.$Pessoa->Nome.', você foi cadastrado em nosso sistema!</h2>
+                                <p style="color:red">Enviamos um e-mail para você confirmar a sua conta, após confirmação o seu acesso estará liberado!</p>
                             </div>'
                         );
 
@@ -111,7 +117,8 @@ use api\apiAutenticacao;
             { 
                 $this->dados = array(
                     'redirect' => $goto.'/'.$Page,
-                    'lista' => $AnimalModel->GetList()
+                    'lista' => $AnimalModel->GetList(),
+                    'tipotelefone' => $TelfoneModel->GetTipo()
                 );
 
                $this->View();

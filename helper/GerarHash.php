@@ -13,7 +13,7 @@
         {
             if($hashtype == '')
             {
-                $hashtype = 'camellia-256-ecb';
+                $hashtype = 'fnv1a32';
             }
 
             return openssl_encrypt($valor, $hashtype,'[gOFdl+(BF[(');
@@ -22,7 +22,7 @@
         {
             if($hashtype == '')
             {
-                $hashtype = 'camellia-256-ecb';
+                $hashtype = 'fnv1a32';
             }
             
             return openssl_decrypt($valor, $hashtype,'[gOFdl+(BF[(');

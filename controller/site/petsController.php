@@ -189,12 +189,15 @@ class petsController extends Controller {
 
             $Animal->Id = $this->getParams(0);
 
+            $apiAnimal = new apiAnimal();
             $animalModel = new AnimalModel();
             $PessoaModel = new PessoaModel();
             $telefoneModel = new TelefoneModel();
             $UsuarioModel = new UsuarioModel();
 
             $pets = $animalModel->GetById($Animal);
+
+           
 
             $Telefone->PessoaId = $pets['PessoaId'];
             $Usuario->PessoaId = $pets['PessoaId'];
@@ -203,12 +206,15 @@ class petsController extends Controller {
 
             $endereco = $PessoaModel->GetEnderecoByPessoaId($PessoaAnimal);
 
+             if(count($pets) < 1) header("Location: ". APP_ROOT. "/pets/index/SP");
+
             $this->dados = array(
                 'pet' => $pets,
                 'pessoa' => $PessoaModel->GetById($Pessoa),
                 'telefones' => $telefoneModel->GetbyPessoaId($Telefone),
                 'email' => $UsuarioModel->GetByPessoaIdNoPass($Usuario),
-                'endereco' => $endereco
+                'endereco' => $endereco,
+                'estadospet' => $apiAnimal->GetAnimalByUF()
             );
 
             $this->View();

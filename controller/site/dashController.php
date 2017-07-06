@@ -22,6 +22,11 @@ class dashController extends Controller {
 
         $this->View();
     }
+    public function doacao()
+    {
+        $this->layout = '_layoutlogoff';
+        $this->View();
+    }
     public function email($value='')
     {
         $this->layout = '_email';
