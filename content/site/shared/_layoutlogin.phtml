@@ -25,8 +25,8 @@
                     <button class="navbar-toggle" data-target="#navbar-collapse" data-toggle="collapse" type="button">
                         <span class="sr-only">Toggle navigation</span> Login <i class="fa fa-bars"></i>
                     </button>
-                    <div class="container-in">
-                        <a class="navbar-brand" href="<?php echo APP_ROOT ?>">pet.fácil</a>
+                    <div class="container-in text-center">
+                        <a class="navbar-brand" href="<?php echo APP_ROOT ?>">Patinha Fácil</a>
                     </div>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -72,32 +72,31 @@
    </section>    
 
         <!-- Footer -->
-    <footer id="footer">
+    <footer id="footer" style="background-color: #5aa1d8">
         <div class="container-in">
                 <div class="col-10 text-center">
-                    <h4><strong>PET.FÁCIL</strong>
+                    <h4><strong>Patinha Fácil</strong>
                     </h4>
-                    <p>Rua Manaira, 00 - Jardim Mutinga
-                        <br>Barueri, São Paulo</p>
+                   <p>Barueri, São Paulo</p>
                     <ul class="list-unstyled">
                         <li><i class="fa fa-phone fa-fw"></i> (11) 90000-0000</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">name@example.com</a>
+                        <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:contato@patinhafacil.com.br"> contato@patinhafacil.com.br </a>
                         </li>
                     </ul>
                     <br>
                     <ul class="list-inline">
                         <li>
-                            <a href="https://www.facebook.com/adtfacil" target="_blank" title="Visite nosso facebook"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                            <a href="https://www.facebook.com/patinhafacil" target="_blank" title="Visite nosso facebook"><i class="fa fa-facebook fa-fw fa-3x facebook"></i></a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                            <a href="https://www.vakinha.com.br/vaquinha/ajude-a-pet-facil-870fcf77-9ea4-4381-8071-cebbc63ba436" target="_blank"><i class="fa fa-money fa-fw fa-3x money"></i></a>
                         </li>
                         <li>
-                            <a href="https://www.instagram.com/pet.facil" target="_blank"><i class="fa fa-instagram fa-fw fa-3x"></i></a>
+                            <a href="https://www.instagram.com/patinhafacil" target="_blank" title="Visite nosso instagram"><i class="fa fa-instagram fa-fw fa-3x instagram"></i></a>
                         </li>
                     </ul>
                     <hr class="small">
-                <p class="text-muted">Copyright &copy; Pet Fácil <?php echo date("Y"); ?></p>
+                <p class="text-muted">Copyright &copy; Patinha Fácil <?php echo date("Y"); ?></p>
                 </div>
         </div>
         <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
@@ -233,14 +232,6 @@
         });
     </script>
 
- <script type="text/javascript">
-    $(document).ready(function(){
-
-       
-
-
-    });
-   </script>
 
                                     <!--FIM JQUERY/JAVASCRIPT PAGE NEWLOGIN-->
 
@@ -274,3 +265,12 @@
     });
 </script>                 
                          <!--FIM PERDI MINHA SENHA-->
+
+
+<script>
+    $(document).ready(function(){
+        $("#user").focusout(function () {
+           showLogin($('#user').val());
+        });
+    });
+</script>

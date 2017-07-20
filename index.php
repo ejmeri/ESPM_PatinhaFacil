@@ -18,7 +18,7 @@ date_default_timezone_set('America/Sao_Paulo');
 // }
 
 define('APP_ROOT', 'http://' . $_SERVER['HTTP_HOST'] . '/ESPMProducao');
-define('NEW_FILE', '02-06-2017:22:04');
+define('NEW_FILE', '19-07-2017/00h32m');
 
 require_once 'helper/autoloader.php';
 

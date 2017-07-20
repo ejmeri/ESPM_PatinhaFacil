@@ -22,7 +22,13 @@ Class apiUsuario extends Database
        $array = (array) $query;
 
        if(count($array) > 0) echo 'E-mail indisponível. <a href="login/esqueciasenha">Recupar senha</a>';
+    //    else if (count($array) == 0)
+    //    {
+    //         $validateemail = file_get_contents('https://api.email-validator.net/api/verify?EmailAddress='.$obj->Login.'&APIKey=ev-42f1cd54afea3976d23c11a12ee6e30f'); 
+    //         $validateemail = json_decode($validateemail);
 
+    //         if($validateemail->status != '200') echo 'E-mail inválido/Inexistente';
+    //    }
     }
     public function Enter(Usuario $obj, $redirect = '')
     {   
@@ -32,8 +38,8 @@ Class apiUsuario extends Database
 
         
         // if(!isset($retorno)) echo "Login não encontrado.";
-        $decrypt = $Hash->Unhash($retorno['Senha']);
-        if($decrypt == $obj->Senha) 
+        // $decrypt = $Hash->Unhash($retorno['Senha']);
+        if($retorno['Senha'] == $Hash->HashPass($obj->Senha)) 
         {   
             $apiAutenticacao = new apiAutenticacao();
             $Autenticacao = new Autenticacao();
@@ -44,7 +50,7 @@ Class apiUsuario extends Database
                  $retornojson = array(
                     'Status' => false,
                     'Do' => '',
-                    'Mensagem' => 'O seu acesso não foi autenticado!'
+                    'Mensagem' => 'O sua conta não foi confirmada!'
                 );
                  
             }
@@ -101,7 +107,7 @@ Class apiUsuario extends Database
         $Usuario = new Usuario('POST', 'Usuario');
 
 
-        $OldPassHash = $Hash->Hash($_POST['senhaantiga']);
+        $OldPassHash = $Hash->HashPass($_POST['senhaantiga']);
 
         $Usuario->PessoaId = $_SESSION['PessoaId'];
         $OldUser = $UsuarioModel->GetByPessoaId($Usuario);
@@ -120,8 +126,7 @@ Class apiUsuario extends Database
         }
         else 
         {
-            $PassHashed = $Hash->Hash($Usuario->Senha);
-            $PassHashed = $Hash->Hash($Usuario->Senha);
+            $PassHashed = $Hash->HashPass($Usuario->Senha);
             $Usuario->Senha = $PassHashed;
 
             $Usuario->Id = $OldUser['Id'];
@@ -158,58 +163,65 @@ Class apiUsuario extends Database
         return $retornojson;
 
     }
-    public function SendEmail(Usuario $obj)
+    public function EsqueciASenha(Usuario $obj)
     {
-        $Email = new Email();
+        $UsuarioModel = new UsuarioModel();        
+        $retornoUsuario = $UsuarioModel->GetByLogin($obj);
 
-        $html = new HtmlEmail();
-        $SendEmail = new sendEMail();
+        if($retornoUsuario['Id'] > 0)
+        {
+            $html = new HtmlEmail();
+            $SendEmail = new sendEMail();
 
-        $Hash = new GerarHash();
-        $EmailModel = new EmailModel();
-        $UsuarioModel = new UsuarioModel();
-        $NewPassword = $Hash->RandomNumbers();
-        $PassHashed = $Hash->Hash($NewPassword);
+            $Hash = new GerarHash();
+            $EmailModel = new EmailModel();
+            $NewPassword = $Hash->RandomNumbers();
+            $PassHashed = $Hash->HashPass($NewPassword);
 
       
-        $retornoUsuario = $UsuarioModel->GetByLogin($obj);
-        $obj->Senha = $PassHashed;
-        $obj->PessoaId = $retornoUsuario['PessoaId'];
-        $obj->Id = $retornoUsuario['Id'];
+        
+            $obj->Senha = $PassHashed;
+            $obj->PessoaId = $retornoUsuario['PessoaId'];
+            $obj->Id = $retornoUsuario['Id'];
 
         
-        $UsuarioModel->Save($obj);
+            $UsuarioModel->Save($obj);
 
-        $Email->PessoaId = $retornoUsuario['PessoaId'];
-        
-        $retornoEmail = $EmailModel->GetFirstbyPessoaId($Email);
+            // $Email->PessoaId = $retornoUsuario['PessoaId'];
+            
+            // $retornoEmail = $EmailModel->GetFirstbyPessoaId($Email);
 
-        $message = file_get_contents('content/site/shared/emails/header-email.html');
-        $message .= file_get_contents('content/site/shared/emails/_recuperarsenha.html');
-        $message .= file_get_contents('content/site/shared/emails/footer-email.html');
+            $message = file_get_contents('content/site/shared/emails/header-email.html');
+            $message .= file_get_contents('content/site/shared/emails/_recuperarsenha.html');
+            $message .= file_get_contents('content/site/shared/emails/footer-email.html');
 
-        $replacements = array(
-            '({name})' => $retornoUsuario['Login'],
-            '({senha})' => $NewPassword
-        );
+            $replacements = array(
+                '({name})' => $retornoUsuario['Login'],
+                '({senha})' => $NewPassword
+            );
 
-        $message = preg_replace( array_keys( $replacements ), array_values( $replacements ), $message );
-        
-        $retorno = $SendEmail->Send($retornoEmail['Nome'], 'Recuperação de senha', $message);
+            $message = preg_replace( array_keys( $replacements ), array_values( $replacements ), $message );
+            
+            $retorno = $SendEmail->Send($retornoUsuario['Login'], 'Recuperação de senha', $message);
 
-        if($retorno == 'ok')
-        {
-            echo 'Sua senha foi recuperada, enviamos para o seu e-mail: '.$retornoEmail['Nome'].'.';
+            if($retorno == 'ok')
+            {
+                echo 'Sua senha foi recuperada, enviamos para o seu e-mail: '.$retornoUsuario['Login'].'. <br> Verifique sua caixa de spam.';
+            }
+            else
+            {
+                echo 'Ocorreu um erro: '.$retorno;
+            }
         }
-        else
+        else 
         {
-            echo 'Ocorreu um erro: '.$retorno;
+            echo 'Usuário não encontrado.';
         }
     }
     public function ValidarSenha(Usuario $obj)
     {
        $Hash = new GerarHash();
-       $PassHashed = $Hash->Hash($obj->Senha);
+       $PassHashed = $Hash->HashPass($obj->Senha);
        $PessoaId = $_SESSION['PessoaId'];
 
        $query = $this->Select("select login from usuario where senha = '{$PassHashed}' and pessoaid = '{$PessoaId}'");

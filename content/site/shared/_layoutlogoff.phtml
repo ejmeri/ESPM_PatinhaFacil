@@ -36,7 +36,7 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="">Pet.fácil</a>
+                <a class="navbar-brand page-scroll" href="">Patinha Fácil</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -65,16 +65,31 @@
                         ?>
                     </ul>
                 </li>
-                <li>
-                    <a href="#services" class="page-scroll">Nossas opcões</a>
-                </li>
-                <li>
-                    <a href="home#portfolio" class="page-scroll">Pets disponíveis</a>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Achados e perdidos</a>
+                    <ul class="dropdown-menu">
+                        <?php if (count($view_achadosperdidos) > 0) { ?>
+                            <?php foreach ($view_achadosperdidos as $li => $a){ ?>
+                                <li>
+                                    <a href="ajuda/achadoseperdidos/<?php echo $a['Sigla'] ?>">  <?php echo $a['Nome'] ?>
+                                    <span class="badge"> <?php echo $a['Quantidade'] ?></span> </a>
+                                   
+                                </li>
+                             <?php 
+                            }
+                        }
+                        else {
+                            ?>  
+                            <li>
+                                <a href="javascript:;">Ainda não temos animais nessa área</a>
+                            </li>
+                        <?php } ?>
+                    </ul>
                 </li>
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">Parceiros <i class="fa fa-hand-o-down" aria-hidden="true"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Quero ser um parceiro</a></li>
+                            <li><a href="javascript:;">Quero ser um parceiro</a></li>
                         </ul>
                 </li>
                 <li>
@@ -89,7 +104,7 @@
                         <a href="login" class="page-scroll">Efetuar login <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
                     </li>
                     <li>
-                        <a href="login" class="page-scroll">Quero doar um pet <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+                        <a href="login" class="page-scroll">Quero ajudar um pet <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
                     </li>
                 </ul>
             </div>
@@ -109,8 +124,8 @@
                 </div>
             </div>
         </a>
-        <h3>Encontre aqui a felicidade para seu lar</h3>
-        <a href="#start" class="btn btn-black btn-lg">Começar</a>
+        <h3 style="color: #5aa1d8">Patinha Fácil</h3>
+        <h3 style="color: #FFF">Encontre aqui a felicidade para seu lar</h3>
         <br>
         <!--<a href="#about" class="btn btn-dark btn-lg">Começar</a>-->
     </div>
@@ -123,25 +138,24 @@
     <footer id="footer">
         <div class="container-in">
                 <div class="col-10 text-center">
-                    <h4><strong>PET.FÁCIL</strong>
+                    <h4><strong>Patinha Fácil</strong>
                     </h4>
-                    <p>Rua Manaira, 00 - Jardim Mutinga
-                        <br>Barueri, São Paulo</p>
+                    <p>Barueri, São Paulo</p>
                     <ul class="list-unstyled">
                         <li><i class="fa fa-phone fa-fw"></i> (11) 90000-0000</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">name@example.com</a>
+                        <li><i class="fa fa-envelope-o fa-fw"></i> <a class="facebook" href="mailto:contato@patinhafacil.com.br">contato@patinhafacil.com.br</a>
                         </li>
                     </ul>
                     <br>
                     <ul class="list-inline">
                         <li>
-                            <a href="https://www.facebook.com/adtfacil" target="_blank" title="Visite nosso facebook"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                            <a href="https://www.facebook.com/patinhafacil" target="_blank" title="Visite nosso facebook"><i class="fa fa-facebook fa-fw fa-3x facebook"></i></a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                            <a href="https://www.vakinha.com.br/vaquinha/ajude-a-pet-facil-870fcf77-9ea4-4381-8071-cebbc63ba436" target="_blank"><i class="fa fa-money fa-fw fa-3x money"></i></a>
                         </li>
                         <li>
-                            <a href="https://www.instagram.com/pet.facil"><i class="fa fa-instagram fa-fw fa-3x"></i></a>
+                            <a href="https://www.instagram.com/patinhafacil" target="_blank"><i class="fa fa-instagram fa-fw fa-3x instagram"></i></a>
                         </li>
                     </ul>
                     <hr class="small">
@@ -226,43 +240,6 @@
     });
     </script>
                       
-    
-                                <!--JQUERY/JAVASCRIPT PAGE PETS-->     
-    <script>
-        $(document).ready(function(){
-
-            var espid = $('#especie').val();
-            var uf = $('#UfId').val();
-
-                showPet(espid, uf);
-            
-            // $("#items-filter").hide();
-
-            $("#filters").click(function(){
-                if($("#items-filter").is(':visible')) {
-                        $("#items-filter").hide();
-                }
-                else {
-                    $("#items-filter").show();
-                }   
-            });
-        });
-
-
-        function showPet(esp, uf) {
-                postPartialView('pets/ListaPet/' + uf, 'ListPet'); 
-        }
-
-        function showRaca(especie) {
-                postPartialView('pets/ListaRaca/' + especie, 'raca');        
-        }
-        function showFilterRaca(especie) {
-                postPartialView('pets/FilterListaRaca/' + especie, 'raca');        
-        }
-            
-    </script>
-                            <!-- FIM JQUERY/JAVASCRIPT PAGE PETS-->   
-
 
 <script type="text/javascript">
      

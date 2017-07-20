@@ -12,7 +12,7 @@
         <br>
         <form method="POST" action="login/esqueciasenha" id="frmRecuperar">
             <div class="col-lg-5 no-pad-left">
-                <input type="text" name="UsuarioLogin" id="user" class="form-control" value="" placeholder="Nome de usuário" autocomplete=off required>
+                <input type="text" name="UsuarioLogin" id="user" class="form-control" value="" placeholder="E-mail" autocomplete=off required>
                 <span id="txtforgot" class="text-warning"></span>
             </div>
             <div class="col-lg-2 no-pad-cel no-pad">
@@ -22,10 +22,23 @@
         <div class="col-lg-12 no-padding">
             <a href="login">Voltar à tela de login</a>                        
         </div>
+        <div  style="display: none;" id="spin" class="text-center padding clear">
+            <div class="loader">
+            </div>
+            <strong>Salvando suas informações...</strong>
+        </div>
         <div id="resultsenha" class="col-lg-12 no-padding">
             <span id="retornosenha"></span>
-         </div>
+         </div> 
     </div>
 
     
 </section>
+
+<script>
+
+function loadshow() {
+    $('#spin').css("display", "block");
+    
+}
+</script>

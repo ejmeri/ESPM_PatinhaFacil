@@ -15,6 +15,8 @@ class Animal extends EntityBase
     public $PelagemId;
     public $GeneroId;
     public $PorteId;
+    public $AreaId;
+    public $Castrado;
 }
 
 ?>

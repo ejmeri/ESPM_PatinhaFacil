@@ -12,7 +12,7 @@ class HtmlEmail {
     <title>E-mail</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <base href="http://www.petfacil.net.br/">
+    <base href="http://www.patinhafacil.com.br/">
     <link href="content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="content/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="content/css/email/email.css?v=1.4" rel="stylesheet">
@@ -23,7 +23,7 @@ class HtmlEmail {
     <section class="section-email">
         <header class="header">
             <article class="text-center">
-                <h1>PET.FÁCIL</h1>
+                <h1>Patinha Fácil</h1>
                 <img src="content/images/ejmeri-1.png" alt="logo">
                 <hr class="small bg-color">                
             </article>
@@ -32,7 +32,7 @@ class HtmlEmail {
             <header class="">
                 <article class="clear">
                     <h4> Olá,'.$nome.' bem-vindo</h4>
-                    <h4>A equipe PET.FÁCIL fica muito feliz por ter você como usuário. </h4>
+                    <h4>A equipe Patinha Fácil fica muito feliz por ter você como usuário. </h4>
                 </article>
 
             </header>
@@ -40,7 +40,7 @@ class HtmlEmail {
             <article class="text text-center">
                 <h4>Para liberar o seu acesso, basta clicar no link abaixo:</h4>
 
-                <a href="http://www.petfacil.net.br/login/autenticacao/'.$hash.'" class="text-white">
+                <a href="http://www.patinhafacil.com.br/login/autenticacao/'.$hash.'" class="text-white">
                     <div class="link">
                         Autenticação de acesso <i class="fa fa-paw"> </i> <i class="fa fa-unlock-alt"></i>
                     </div>
@@ -62,7 +62,7 @@ class HtmlEmail {
                     </div>
                     <div class="col-lg-4 text-center">
                         <i class="fa fa-envelope-o fa-3x sr-contact"></i>
-                        <p><a href="mailto:feedback@petfacil.com.br">feedback@petfacil.com.br</a></p>
+                        <p><a href="mailto:feedback@patinhafacil.com.br">feedback@patinhafacil.com.br</a></p>
                     </div>
                 </div>
             </div>

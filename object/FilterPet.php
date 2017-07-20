@@ -10,6 +10,7 @@ namespace object;
         public $PorteId = 0;
         public $EstadoId = 0;
         public $DddId = 0;
+        public $Castrado = 0;
     }
 
 ?>

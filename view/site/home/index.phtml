@@ -4,7 +4,12 @@
         <div class="container-in">
             <div class="text-center">
                 <h2>Aqui está o seu amigo!</h2>
-                <p class="lead">Pet Fácil.</p>
+                <p class="lead">Patinha Fácil.</p>
+				<?php 
+					if($view_auth['Autenticado'] == 0 )
+						{
+					?>		<p class="lead text-warning">Mandamos um E-mail para você confirmar sua conta, isso é importante para o seu próximo acesso.</p>
+				<?php	} ?>
                 <p class="lead">É a sua primeira vez por aqui ? Visite seu  <a href="pessoa"> Perfil <i class="fa fa-user-circle"></i></a></p>
             </div>
             <!-- /.row -->
@@ -30,7 +35,7 @@
 										<strong>São muitos cãezinhos</strong>
 									</h4>
 									<p><strong>Encontre aqui seu cãozinho.</strong></p>
-									<input type="submit" name="Cão" class="btn btn-light" value="Veja mais">
+									<!-- <input type="submit" name="Cão" class="btn btn-light" value="Veja mais"> -->
 								</div>
 							</div>
 							<div class="service-item col-fl col-tb-2 col-sm-1">
@@ -45,7 +50,6 @@
 										<strong>São muitos gatinhos.</strong>
 									</h4>
 									<p><strong>Encontre aqui seu gatinho.</strong></p>
-									<input type="submit" name="Gato" class="btn btn-light" value="Veja mais">
 								</div>
 							</div>
 							<div class="service-item col-fl col-tb-2 col-sm-1">
@@ -60,7 +64,7 @@
 										<strong>Ajude-me</strong>
 									</h4>
 									<p><strong>Para quem doar ?</strong></p>
-									<a href="#" class="btn btn-light">Veja a lista</a>
+									<a href="ajuda/pets" class="btn btn-light">Veja a lista</a>
 								</div>
 							</div>
 						</form>
@@ -82,10 +86,10 @@
                 </div>
             </div>
             <div class="col-10 inline-table">
-                <div class="no-gutter popup-gallery">
+                <div class="no-gutter">
             <?php foreach ($view_lista as $li => $a) { ?>
                     <div class="col-lg-4 col-sm-6">
-                        <a href="uploads/<?php echo $a['Imagem']; ?>" class="portfolio-box">
+                        <a href="pets/adotar/<?php echo $a['Id'] .'/'. hash('md5',$a['Id']) ?>" class="portfolio-box">
                             <img src="uploads/<?php echo $a['Imagem']; ?>" class="img-responsive img-450-250" alt="">
                             <div class="portfolio-box-caption">
                                 <div class="portfolio-box-caption-content">
@@ -97,7 +101,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </a>
+						</a>
                     </div>					
         <?php 
             } ?>
@@ -116,3 +120,14 @@
             </div>
 <?php   } ?> 
     </section>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-102556198-1', 'auto');
+  ga('send', 'pageview');
+
+</script>

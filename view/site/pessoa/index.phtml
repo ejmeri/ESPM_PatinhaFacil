@@ -1,5 +1,8 @@
 <?php //print_r($view_pets); ?>
 
+
+
+
 <div class="container-in" >
     <header class="header-page">
         <h1 class="text-center">Minhas Informações</h1>
@@ -40,14 +43,14 @@
                         <input type="text" id="txtpeoplecpf" name="PessoaCpfCnpj" value="<?php echo $view_dados['CpfCnpj']; ?>" class="form-control" autocomplete=off placeholder="" required  onkeyup="ValidateCPFCNPJ(this.value)">
                         <span id="txtCPF" class="text-warning"></span>
                     </div>
-                    <div class="item-left clear">
+                    <!--<div class="item-left clear">
                         <strong>Apelido/Nome Fantasia</strong>
                         <input type="text" id="txtpeopleapelido" name="PessoaApelido" value="<?php echo $view_dados['Apelido']; ?>" placeholder="" class="form-control" required >
                     </div>
                     <div class="item-right">
                         <strong>RG/Inscrição Estadual</strong>
                         <input type="text" id="txtpeoplerg" name="PessoaRg" value="<?php echo $view_dados['Rg']; ?>" class="form-control" maxlength=45 required>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="col-lg-5 clear">
                     <!--<button type="button" onclick="canceleditpeople('pessoa')" id="cancel" class="btn btn-black">Cancelar</button>
@@ -70,7 +73,8 @@
                     <div class="item-right">
                         <strong>Senha</strong>
                         <div style="margin-top: 3%;">
-                            <strong class="clear">***********</strong>                        
+                             <a href="pessoa/alterarsenha">Alterar senha</a>
+                            <!--<strong class="clear">***********</strong>                        -->
                         </div>
                     </div>
                 </div>
@@ -95,7 +99,7 @@
                     <button type="button" onclick="savepeople('acesso', 'divedit')" id="new" class="btn btn-black">Editar</button>
                     <button type="button" onclick="SubmitPartialFormAcesso($('#acesso'), 'retornoAcesso')" id="save" name="save" class="btn btn-blue" data-toggle="modal" data-target="#myModal">Salvar</button>-->
                     <!--<input type="submit" name="SaveAcesso" id="save" value="Salvar" class="btn btn-black">-->
-                    <a href="pessoa/alterarsenha" class="btn btn-black">Alterar senha</a>
+                    <!--<a href="pessoa/alterarsenha" class="btn btn-black">Alterar senha</a>-->
                 </div>
             </form>
         </div>
@@ -264,40 +268,72 @@
             </div>
         </div>
         <hr class="clear">
-        
+    
         <div class="tabcontent col-10 inline-table col-fl extreme-padding" id="tabpreferencias">
+            <h2>Preferências</h2>
             <h5>Forneça algumas preferências para nós, ela nos ajudará a filtrar animais para você. <span style="color:red">Não obrigatório.</span> </h5>
-            <div id="retornoPreferencias" class="clear">
-                <div class="item-left">
-                    <strong>Espécie</strong>
-                    <select class="form-control">
-                        <option value="">Selecione a espécie</option>
-                    </select>
-                </div>
-                <div class="item-right">
-                    <strong>Raça</strong>
-                    <select class="form-control" name="PreferenciaRacaId">
-                        <option value="">Selecione a raça</option>
-                    </select>
-                </div>
-                <div class="item-left">
-                    <strong>Genêro</strong>
-                    <select class="form-control" name="PreferenciaGeneroId">
-                        <option value="">Selecione a genêro</option>
-                    </select>
-                </div>
-                <div class="item-right">
-                    <strong>Porte</strong>
-                    <select class="form-control" name="PreferenciaPorteId">
-                        <option value="">Selecione a porte</option>
-                    </select>
-                </div>
-                <div class="item-left">
-                    <strong>Pelagem</strong>
-                    <select class="form-control" name="PreferenciaPelagemId">
-                        <option value="">Selecione a pelagem</option>
-                    </select>
-                </div>
+            <!--<h5>No momento que você cadastra suas preferências, você estará sujeito a receber ligações/e-mails de pessoas que tenham um pet de acordo com as mesmas. <span style="color:blue">Caso tenha cadastrado suas prefêrencias, mas não queira mais ser informado(a) sobre as mesmas deixe a opção "Aceito receber e-mail/ligações sobre minhas preferências" como "Não".</span> </h5>-->
+            <div id="retornoPreferencias" class="clear">    
+                
+                <form method="POST" action="pessoa" id="frmPref">
+                    
+                    <input type="hidden" name="PreferenciaId" value="<?php echo $view_preference['Id'] ?>">
+
+                    <div class="item-left">
+                        <strong>Aceito receber e-mail/ligações sobre minhas preferências</strong>
+                        <select class="form-control" name="PreferenciaEmail">
+                            <option value="0" <?php echo ($view_preference['Email'] == 0 ? 'selected' : ''); ?>>Não</option>
+                            <option value="1" <?php echo ($view_preference['Email'] == 1? 'selected' : ''); ?>>Sim</option>
+                        </select>
+                    </div>
+                    <div class="item-left clear">
+                        <strong>Espécie</strong>
+                        <select class="form-control" id="especiepref" onchange="showRaca(this.value, 'Preferencia');" name="PreferenciaEspecieId">
+                            <option value="0">Selecione a espécie</option>   
+                            <?php if($view_especie > 0) { ?>
+                                <?php foreach ($view_especie as $li => $especie) { ?>
+                                    <option value=<?php echo $especie['Id']; ?>  <?php echo ($especie['Id'] ==  $view_preference['EspecieId'] ? 'selected' : ''); ?> ><?php echo $especie['Nome'] ?>
+                                </option>
+                            <?php } } ?>
+                        </select>
+                    </div>
+                    <div class="item-right">
+                        <strong>Raça</strong>
+                        <select class="form-control" id="raca" name="PreferenciaRacaId">
+                            <option value="">Selecione a Raça</option>
+                            <?php if($view_raca > 0) { ?><?php foreach ($view_raca as $li => $a) { ?>
+                            <option value=<?php echo $a['Id']; ?> <?php echo ($a['Id'] == $view_preference['RacaId'] ? 'selected' : ''); ?>> <?php echo $a['Nome']; ?></option><?php } } ?>
+                        </select>
+                    </div>
+                    <div class="item-left">
+                        <strong>Genêro</strong>
+                        <select class="form-control" name="PreferenciaGeneroId">
+                            <option value="">Selecione a genêro</option>
+                            <?php if($view_genero > 0) { ?><?php foreach ($view_genero as $li => $a) { ?>
+                            <option value=<?php echo $a['Id']; ?> <?php echo ($a['Id'] == $view_preference['GeneroId'] ? 'selected' : ''); ?>> <?php echo $a['Nome']; ?></option><?php } } ?>
+                        </select>
+                    </div>
+                    <div class="item-right">
+                        <strong>Porte</strong>
+                        <select class="form-control" name="PreferenciaPorteId">
+                            <option value="">Selecione a porte</option>
+                            <?php if($view_porte > 0) { ?><?php foreach ($view_porte as $li => $a) { ?>
+                            <option value=<?php echo $a['Id']; ?> <?php echo ($a['Id'] == $view_preference['PorteId'] ? 'selected' : ''); ?>> <?php echo $a['Nome']; ?></option><?php } } ?>
+                        </select>
+                    </div>
+                    <div class="item-left">
+                        <strong>Pelagem</strong>
+                        <select class="form-control" name="PreferenciaPelagemId">
+                            <option value="">Selecione a pelagem</option>
+                            <?php if($view_pelagem > 0) { ?><?php foreach ($view_pelagem as $li => $a) { ?>
+                            <option value=<?php echo $a['Id']; ?> <?php echo ($a['Id'] == $view_preference['PelagemId'] ? 'selected' : ''); ?>> <?php echo $a['Nome']; ?></option><?php } } ?>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-3 clear padding">
+                        <input type="submit" name="SavePreference" value="Salvar" class="btn btn-black">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -320,3 +356,23 @@
             </div>
         </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+
+        $('#carregaCep').hide();
+        
+        // openInfo('event', 'pessoa');
+        // startperfil('pessoa');
+        // startperfil('acesso', 'divedit');
+        // startperfil('email', 'divedit');
+        // startperfil('endereco', 'divedit');
+        // startperfil('telefone', 'divedit');
+
+
+        $("#EnderecoCep").focusout(function () {
+            BuscarCep();
+        });
+ 
+    });
+</script>

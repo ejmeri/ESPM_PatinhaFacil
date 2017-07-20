@@ -1,12 +1,96 @@
 <header class="header-page">
-        <h1 class="text-center">Pets que estou doando/doei</h1>
-    </header>
-<section class="container-in">
-    <hr style="border: 1px solid #53a8e7; max-width: <100px></100px>">
-    <?php if (count($view_pets) > 0) { ?>
+        <h1 class="text-center">Animais que estou ajudando</h1>
+</header>
+    <div class="grid-filter">    
+        <div class="header-grid-filter">
+            <a href="javascript:;" class="header-grid-text" id="filters">Filtros <i class="fa fa-angle-down fa-1x" aria-hidden="true"></i></a>
+            <hr style="border: 1px solid #53a3e8">
+        </div>
+        <div class="items-filter padding" id="items-filter">
+            <form method="POST" id="SearchPetPessoa" class="form-search"  action="pets/ListaPet">   
+                <div class="filter col-sm-1">
+                    <label for="especie"><strong>Espécie</strong></label>
+                    <select class="form-control block" id="especie" name="FilterPetEspecieId" onchange="showFilterRaca(this.value);"> 
+                        <option value="0">Selecione a espécie</option>      
+                        <?php if($view_especie > 0) { ?>
+                                <?php foreach ($view_especie as $li => $a) { ?>
+                            <option value=<?php echo $a['Id']; ?>> <?php echo $a['Nome']; ?></option>
+                        <?php 
+                            }
+                        } ?> 
+                    </select>
+                </div>
+                <div class="filter" id="raca">
+                <label for="raca"><strong>Raça</strong></label>
+                    <select class="form-control block" id="raca" name="FilterPetRacaId">
+                        <option value="0">Selecione uma espécie</option>
+                    </select>
+                </div>
+                <div class="filter">
+                    <label for="genero"><strong>Gênero</strong></label>
+                    <select class="form-control block" id="genero" name="FilterPetGeneroId">
+                        <option value="0">Selecione o gênero</option>      
+                        <?php if($view_genero > 0) { ?>
+                                <?php foreach ($view_genero as $li => $a) { ?>
+                            <option value=<?php echo $a['Id']; ?>> <?php echo $a['Nome']; ?></option>
+                        <?php 
+                            }
+                        } ?>  
+                    </select>
+                </div>
+                <div class="filter">
+                    <label for="cor"><strong>Pelagem</strong></label>
+                    <select class="form-control block" id="pelagem" name="FilterPetPelagemId">
+                        <option value="0">Selecione a pelagem</option>     
+                        <?php if($view_pelagem > 0) { ?>
+                                <?php foreach ($view_pelagem as $li => $a) { ?>
+                            <option value=<?php echo $a['Id']; ?>> <?php echo $a['Nome']; ?></option>
+                        <?php 
+                            }
+                        } ?>  
+                    </select>
+                </div>
+                <div class="filter">
+                    <label for="porte"><strong>Porte</strong></label>
+                    <select class="form-control block" id="porte" name="FilterPetPorteId">
+                        <option value="0">Selecione a o porte</option>      
+                        <?php if($view_porte > 0) { ?>
+                                <?php foreach ($view_porte as $li => $a) { ?>
+                            <option value=<?php echo $a['Id']; ?>> <?php echo $a['Nome']; ?></option>
+                        <?php 
+                            }
+                        } ?> 
+                    </select>
+                </div>
+                <div class="clear filter">
+                    <label for="porte"><strong>Área</strong></label> <br>
+                    <div class="col-lg-12">
+                        <select class="form-control" name="AreaId">
+                            <option value="">Selecione a área</option>      
+                            <?php if($view_area > 0) { ?>
+                                <?php foreach ($view_area as $li => $a) { ?>
+                            <option value=<?php echo $a['Id']; ?>> <?php echo $a['Nome']; ?></option>
+                        <?php 
+                            }
+                        } ?> 
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label for="" style="color:white">any</label> <br>
+                    <button type="button" onclick="ListaPetsPessoa('pessoa/ListaPet', 'SearchPetPessoa','ListPet')" class="btn btn-black"> <i class="fa fa-search"></i> PESQUISAR </button>                    
+                </div>
+                <div class="col-lg-12">
+                    <hr style="border: 1px solid #53a3e8">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <section class="container-in" id="ListPet">
+    
+      <?php if (count($view_pets) > 0) { ?>
                 <?php foreach ($view_pets as $li => $a){ ?>
-                <form method="post" action="">
-                <input type="hidden" name="AnimalId" value=<?php echo $a['id'];?>>
                     <div class="grid-pet">
                         <div class="img-pet">
                             <?php  echo '<img src="uploads/'.$a['imagem'].'" alt="Animal">'; ?>                                
@@ -21,25 +105,53 @@
                             <div class="row">
                                 <strong>Peso: </strong> <span><?php echo $a['peso'].'Kgs'; ?></span>                                
                             </div>
+                            <div class="row">
+                                 <strong>Idade: </strong> <span><?php echo $a['dtnascimento']; ?></span>                                 
+                            </div>
                         </div>
                         <div class="adopt-pet">
                             <div class="information">
                                 <!--<input type="submit" formaction="pets/petdetails" name="adotar" class="btn fa fa-5x" title="Adote!" value ="&#xf004;">                          -->
                                 <!--<input type="button" name="information" value="Mais informações" class="btn button">                                  -->
-                                <a href="pets/editar/<?php echo $a['id'];?>" title="Editar <?php echo $a['nome']; ?>"><i class="fa fa-edit fa-5x" aria-hidden="true"></i></a>
+                                <a href="pets/editar/<?php echo $a['id'] .'/'. hash('md5',$a['id']);?>" title="Editar <?php echo $a['nome']; ?>"><i class="fa fa-edit fa-5x" aria-hidden="true"></i></a>
                             </div>
                             <!--<div class="interest">
                                 <a href="#" title="Demonstrar interesse!"><i class="fa fa-envelope-o fa-5x" aria-hidden="true"></i></a>                                
                             </div>-->
                         </div>
                     </div>                
-                </form>
         <?php 
                 }
         }
         else { ?>
-            <h3 class="text-center" style="font-size: 1.5em; color:red;">Você ainda não adotou ou doou algum pet <i class="fa fa-frown-o"></i></h3>
+           <div class="alert alert-info alert-dismissable text-center" style="background-color: rgba(200,200,200,0.2); border-radius: 40px">
+                <h2 style="color:black">Não há animais no seu cadastro. <a href="pets/novo">Ajude um agora!</a> </h2> 
+                <!--<h3><a href="login/index/pets/adotar/'.$obj->Id.'" class="btn btn-purple btn-lg">Clique aqui</a> </h3>-->
+            </div>
         <?php }
         
         ?>
-</section>
+    </section>
+
+
+
+<script>
+        $(document).ready(function(){
+
+
+            $("#filters").click(function(){
+                if($("#items-filter").is(':visible')) {
+                        $("#items-filter").hide();
+                }
+                else {
+                    $("#items-filter").show();
+                }   
+            });
+        });
+
+
+        function showFilterRaca(especie) {
+                postPartialView('pets/FilterListaRaca/' + especie, 'raca');        
+        }
+            
+    </script>

@@ -1,0 +1,55 @@
+
+<?php //echo print_r($view_listpeople) ?>
+<div class="container-in" >
+    <header class="header-page">
+        <h2 class="text-center">Filtramos <?php echo count($view_listpeople) ?> pessoa(s) que talvez aceitem sua doação</h2>
+    </header>
+    <hr class="sizemax">
+</div>
+ 
+<div id="result"  style="display: none;" class="text-center padding clear">
+    <div class="loader">
+    </div>
+    <strong>Enviando E-mails...</strong>
+</div>
+    
+<div class="container-in" >
+    <section>
+        <?php if(count($view_listpeople) == 0) { ?>
+            <div class="text-center mg">
+                <h3>Ainda não há pessoas interessadas no seu pet. <i class="fa fa-frown-o"></i></h3>
+                <a href="ajuda/pets" class="btn btn-black">Voltar</a>                
+            </div> 
+        <?php }
+        else 
+        { ?>
+            <div class="form-insert">
+                <a href="javascript: Email('ajuda/paraquemdoar/<?php echo $view_petid ?>/email');" data-toggle="tooltip" data-placement="top" title="Enviaremos um e-mail para 5 pessoas dessa lista com o seu nome, telefone e o pet que está oferecendo">Enviar E-mail automático.</a> <br>
+                <ul class="list-group">
+
+                    <?php $cont = 0;
+                    foreach ($view_listpeople as $li => $a) { $cont++; ?>
+                            
+                            <li class="list-group-item">
+                                    <strong><?php echo $cont.' - '.$a['Nome'] ?> </strong> <span  data-toggle="tooltip" data-placement="top" title="Você pode entrar em contato com esta pessoa pelo
+                                    Email: <?php echo $a['Email'] ?> ou pelo Telefone: <?php echo $a['Telefone'] ?>" class="badge">Entrar em contato</span>
+                            </li>        
+                    <?php } ?>
+                </ul> 
+<?php } ?>
+            </div>
+    </section>
+
+
+     <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+
+        });
+
+        function Email(url) {
+            $('#result').show();
+                postPartialView(url, 'result');
+            // $('#spin').hide();
+        }
+    </script>

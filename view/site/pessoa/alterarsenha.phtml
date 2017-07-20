@@ -7,7 +7,7 @@
         <form method="POST" action="pessoa/alterarsenha" id="frmAlterarSenha" class="form-insert">
             <div class="col-lg-5">
                 <strong>Senha antiga</strong>
-                <input type="password" name="senhaantiga" value="" class="form-control" required>
+                <input type="password" id="senhaantiga" name="senhaantiga" value="" class="form-control" required>
                 <span class="text-warning" id="oldpass"></span>
             </div>
             <div class="col-lg-5 clear">
@@ -24,6 +24,10 @@
         </form>
         <div id="result" class="form-insert clear">
             <span id="txtHint"></span>
+        </div>
+
+        <div class="form-insert clear">
+            <a href="pessoa">Voltar para o meu perfil</a>                        
         </div>
     </div>
 </section>
@@ -45,7 +49,7 @@
                     submitHandler: function (form) {
                         postForm(formulario,'txtHint', 'result', '');
                         $('input[type=password]').val('');
-                        $('#password').focus();
+                        $('#senhaantiga').focus();
                     }   
             });
         });

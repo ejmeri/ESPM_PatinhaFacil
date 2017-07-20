@@ -16,11 +16,12 @@ function BuscarCep() {
                 if (data.erro)
                     document.getElementById('infocep').innerHTML = 'CEP não encontrado!';
                 else {
+                    console.log(data);
                     $('#EnderecoLogradouro').val(data.logradouro);
                     $('#EnderecoBairro').val(data.bairro);
                     $('#EnderecoCidade').val(data.localidade);
-                    $('#EnderecoEstado').val(data.uf);
-                    $("#SelectEstados").val(data.uf).change();
+                    $('#EnderecoEstado').val(data.uf.toLowerCase());
+                    $("#SelectEstados").val(data.uf.toLowerCase()).change();
                     $('#carregaCep').show();
                 }
             } // Ok
@@ -201,6 +202,29 @@ function ValidateCPFCNPJ(str) {
 //              $("#content").html("Insert content"); // some ajax content loading...
 //         });
 
+
+function ListaPetsPessoa(url, form, elementId) {
+
+    var formulario = $('#' + form);
+
+    if (!formulario.valid())
+        return false;
+
+    
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: new FormData(formulario[0]),
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (retorno) {
+            $('#' + elementId).html(retorno);
+        }
+    });
+    return false;
+}
+
 function ListaPetsPagina(url, form, elementId) {
 
     var formulario = $('#' + form);
@@ -208,7 +232,6 @@ function ListaPetsPagina(url, form, elementId) {
 
     url = url.replace("estado", estado.substring(1));
 
-    console.log(url);
     $.ajax({
         type: "POST",
         url: url,
@@ -233,6 +256,49 @@ function ListaPets(url, form, elementId) {
     var estado = $('#estado option:selected').text();
 
     url = url.replace("estado", estado.substring(1));
+    
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: new FormData(formulario[0]),
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (retorno) {
+            $('#' + elementId).html(retorno);
+        }
+    });
+    return false;
+}
+
+function ListaAdotaveisPagina(url, form, elementId) {
+
+    var formulario = $('#' + form);
+
+    console.log(url);
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: new FormData(formulario[0]),
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (retorno) {
+            $('#' + elementId).html(retorno);
+        }
+    });
+    return false;
+}
+
+
+function ListaAdotaveis(url, form, elementId) {
+
+
+    var formulario = $('#' + form);
+
+    if (!formulario.valid())
+        return false;
+
     
     $.ajax({
         type: "POST",
@@ -381,10 +447,17 @@ function countChar(val, label) {
 
 // lista pet
 
+function showAchadosPerdidos(uf) {
+    postPartialView('ajuda/ListaPet/' + uf, 'ListAchadosPerdidos');
+}
+
 function showPet() {
     postPartialView('pets/ListaPet', 'ListPet');
 }
 
+function showPeople() {
+    postPartialView('home/ListaAdotaveis', 'ListPeople');    
+}
 
 function BuscarCepAdotar(cep) {
 

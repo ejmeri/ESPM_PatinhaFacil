@@ -1,0 +1,67 @@
+        <div class="form-email" style="max-width: 85%;
+            margin: 0 auto;
+            height: auto;
+            padding: 0px 0px 50px 0px;
+            ">
+            <div>
+                <div class="clear" style="clear: both;">
+                    <h4 style="font-family: inherit;
+    font-weight: 500;
+    color: inherit"> Olá, {donopet} <br> Tudo bem? </h4>
+                    <h4 style="font-family: inherit;
+    font-weight: 500;
+    color: inherit">Há uma pessoa que deseja adotar um animal que está no seu cadastro. </h4>
+                </div>
+
+            </div>
+        <div class="text text-center" style="text-align:center;  max-width: 85%;
+                margin: 0 auto;
+                height: auto;">
+                <h3 style="font-family: inherit;
+                font-weight: bold;
+                line-height: 1.1;
+                color: inherit">Animal: </h3>
+                <div>
+                    <strong>Nome: </strong> <span>{petnome}</span> <br>
+                    <strong>Espécie: </strong> <span>{petespecie}</span> <br>
+                    <strong>Raça: </strong> <span>{petraca}</span> <br>
+                    <strong>Pelagem: </strong> <span>{petpelagem}</span> <br>
+                    <strong>Idade: </strong> <span>{petidade}</span> <br>
+                </div>
+                <br>
+                <div style="max-width: 70%; margin: 0 auto; padding: 5px; border: 1px solid #000; border-radius: 10px">
+                    <div style="margin: 0 auto;">
+                    <a href="pets/adotar/{petid}">
+                        <img src="uploads/{petimagem}" style="width: 100%; height: 40%; border-radius: 10px" alt="">
+                    </a>
+
+                </div>
+                </div>
+                
+                        <!-- <div class="link" style="text-align: center;
+                                        background: #53a3e8;
+                                        max-width: 50%;
+                                        vertical-align: middle;
+                                        margin: 0 auto;
+                                        border-radius: 10px;
+                                        padding: 12px;">
+                            <img src="content/images/icons/unlock_1x.png" style="display:block; margin: 0 auto;">
+                        </div> 
+                    </a> -->
+            </div>
+            <div>
+                <h2>Pessoa que deseja adotar o animal</h2>
+                <div>
+                    <strong>Nome: </strong> <span>{pessoanome}</span> <br>
+                    <strong>Telefone: </strong> <span>{pessoatelefone}</span> <br>
+                    <strong>E-mail: </strong> <span>{pessoaemail}</span> <br> <br>
+                    <strong style="color: #53a3e8">Por que essa pessoa deseja adotar esse animal:</strong>
+                    <br><span>"{porqueadotar}"</span> 
+                </div>
+                <br>
+                <span style="color:red;">Você pode responder diretamente neste e-mail, que será enchaminhado para a pessoa que fez o pedido.</span>
+                <br>
+                <span style="color:red;">Se este animal já foi doado, avise esta pessoa e nos informe em Minha Conta->Meus Animais->"Pet Encontrado/Adotado?".</span>
+            </div>
+
+        </div>

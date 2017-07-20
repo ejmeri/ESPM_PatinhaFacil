@@ -86,14 +86,22 @@ use model\usuario\UsuarioModel;
 
             $array = $AutenticacaoModel->GetByNome($obj);
             
-            $obj->Autenticado = 1;
-            $obj->Id = $array['Id'];
-            $obj->Nome = $array['Nome'];
-            $obj->PessoaId = $array['PessoaId'];
+            if($array['Id'] > 0)
+            {
+                $obj->Autenticado = 1;
+                $obj->Id = $array['Id'];
+                $obj->Nome = $array['Nome'];
+                $obj->PessoaId = $array['PessoaId'];
 
             $retorno = $AutenticacaoModel->Save($obj);
+            }
+            else 
+            {
+                $retorno = 'Error';
+            }
 
-            return $retorno['sucess'];
+            return $retorno;
+            
         }
     }
 

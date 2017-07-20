@@ -97,7 +97,6 @@ function postForm(form, elementId, elementResultId, redirect = '0') {
             {
                 retorno = JSON.parse(retorno);
                 
-
                 if (retorno.Status && retorno.Do != '')
                 {   
                     location.href = retorno.Do;
@@ -105,15 +104,12 @@ function postForm(form, elementId, elementResultId, redirect = '0') {
                 else if(retorno.Status && retorno.Do == '')
                 {   
                     $('#' + elementId).html(retorno.Mensagem);
-                    startperfil(form.attr('id'), 'divedit');
                     $('#' + elementResultId).show();
-
                 }
                 
             }
             catch (e) {
                 $('#' + elementId).html(retorno);
-                startperfil(form.attr('id'), 'divedit');
                 $('#' + elementResultId).show();
             }
 

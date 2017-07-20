@@ -62,6 +62,30 @@ Class apiPessoa
             'ddd' => $modelTelefone->GetDdd()
         );
     }
+    public function ListaAdotaveis(\object\Preferencia $obj, $Pagina = '0')
+    {
+         if($Pagina > 0) $Pagina *= 10;
+
+        $PessoaModel = new PessoaModel();
+        return $PessoaModel->ListaAdotaveis($FilterPet, $Pagina);
+    }
+    public function ListaPet(\object\FilterPet $obj, Pessoa $Pessoa, \object\Area $Area)
+    {
+       $PessoaModel = new PessoaModel();
+
+        foreach ($obj as $ind => $val)
+        {
+            if(!($ind == 'DtInclusao') && !($ind == 'DtAtualizacao') && !($ind == 'Id') && !($ind == 'DddId') && !($ind == 'EstadoId')){        
+                
+                if($ind == 'EspecieId') $where[] = "b.$ind" .($val == '0' || $val == '' ? " <> 0 " : " = '{$val}'");
+                else $where[] = " {$ind} " .($val == '0' ? " <> 0 " : " = '{$val}'");
+            } 
+        }
+
+        $filtros = implode(' AND ', $where);
+
+       return $PessoaModel->ListaPet($filtros, $Pessoa, $Area);
+    }
     
 }
 

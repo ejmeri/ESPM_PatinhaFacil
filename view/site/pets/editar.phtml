@@ -1,8 +1,7 @@
 <?php //echo print_r($view_animal); ?>
 
-<script>
-    document.getElementById('especie').onchange();
-</script>
+
+
 <div class="container-in" style="margin-bottom:5%;" ng-app="">
     <header class="header-page text-center">
         <h1 class="">Editar informações</h1>
@@ -60,8 +59,23 @@
             <label for="dtnascimento" id="">Idade</label>
             <input type="text" class="form-control" name="AnimalDtNascimento" id="dtnascimento"  value="<?php echo $view_animal['DtNascimento']; ?>" placeholder="Ex: Por volta de 1 ano">
         </div>
-        <div class="item-left clear mg">
-            <label for="genero" id="teste"><strong>Pet Adotado?</strong></label>
+         <div class="item-left">
+            <label for="area" id="">Animal castrado</label>
+            <select class="form-control" name="AnimalCastrado" required>
+                <option value="">Selecione</option>
+                <option value="2"  <?php echo (0 == $view_animal['Castrado'] ? 'selected' : ''); ?>>Não</option>
+                <option value="1"  <?php echo (1 == $view_animal['Castrado'] ? 'selected' : ''); ?>>Sim</option>
+            </select>
+        </div>
+        <div class="item-right">
+            <label for="area" id="">Área</label>
+            <select class="form-control" name="AnimalAreaId" required>
+                <option value="">Selecione o área</option><?php if($view_area > 0) { ?><?php foreach ($view_area as $li => $a) { ?>
+                <option value=<?php echo $a['Id']; ?> <?php echo ($a['Id'] == $view_animal['AreaId'] ? 'selected' : ''); ?>> <?php echo $a['Nome']; ?></option><?php } } ?>
+            </select>
+        </div>
+        <div class="item-right mg">
+            <label for="genero" id="teste"><strong>Pet Encontrado/Adotado?</strong></label>
             <select class="form-control" name="AnimalAdotado" required>
                 <option value="0" <?php echo ($view_animal['Adotado'] == '0' ? 'selected' : ''); ?>>Não</option>
                 <option value="1" <?php echo ($view_animal['Adotado'] == '1' ? 'selected' : ''); ?>>Sim</option>
@@ -75,7 +89,7 @@
         <div class="clear">
             <!--<strong class="text-warning">Dica: </strong> <span>segure a tecla control (Ctrl) para selecionar múltiplas imagens.</span><br>            -->
             <strong>
-                <i class="fa fa-image fa-5x" style="color: #57a3e8;"></i> Clique aqui para escolhe uma foto
+                <i class="fa fa-image fa-5x" style="color: #57a3e8;"></i> Clique aqui para escolher a foto do pet
             </strong>
             <input type="file" name="image" id="file6" class="realupload form-control" accept="image/png, image/jpeg"/>
             <input type="hidden" name="ImagemId" value="<?php echo $view_imagem['Id']; ?>">
@@ -85,7 +99,13 @@
         </div>
     </form>
 
-     <div id="result" class="form-insert clear" style="padding-top: 10px">
+    <div  style="display: none;" id="spin" class="text-center padding">
+        <div class="loader">
+        </div>
+        <strong>Salvando informações...</strong>
+    </div>
+
+    <div id="result" class="form-insert clear" style="padding-top: 10px">
         <span id="txtretorno">
             
         </span>
@@ -102,3 +122,32 @@
 
    
 </div>
+
+
+<script  type="text/javascript">
+   $("#file6").on('change', function () {
+
+        if (typeof (FileReader) != "undefined") {
+
+            var image_holder = $("#image-holder");
+            image_holder.empty();
+
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("<img />", {
+                    "src": e.target.result,
+                    "class": "thumb-image"
+                }).appendTo(image_holder);
+
+            }
+            image_holder.show();
+            reader.readAsDataURL($(this)[0].files[0]);
+        } else {
+            alert("This browser does not support FileReader.");
+        }
+    });
+
+     function showRaca(especie, table = '') {
+            postPartialView('pets/ListaRaca/' + especie + '/' + table, 'raca');        
+    }
+</script>

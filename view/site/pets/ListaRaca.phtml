@@ -1,12 +1,12 @@
 
 <?php /*echo print_r($view_list);*/ ?>
 
-<label for="raca">Raça</label>
-<select class="form-control block" id="raca" name="AnimalRacaId" onchange="">   
+<label for="raca"><strong>Raça</strong> </label>
+<select class="form-control block" id="raca" name="AnimalRacaId" onchange="" required>   
     <?php if (count($view_list > 0)) { ?>
     <option value="">Selecione a raça</option>  
           <?php foreach ($view_list as $li => $a) { ?>
             <option value=<?php echo $a['id']; ?>><?php echo $a['nome'];?></option>   
     <?php }
-    } else { ?> <option value="0">Selecione uma espécie</option>  <?php } ?>
+    } else { ?> <option value="">Selecione uma espécie</option>  <?php } ?>
 </select>

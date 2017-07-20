@@ -53,7 +53,8 @@ class petsController extends Controller {
             'estados' => $modelTelefone->GetUF(),
             'random' => $apiAnimal->GetRandom($Estado),
             'all' => $apiAnimal->GetAllByUf($Estado),
-            'estadospet' => $apiAnimal->GetAnimalByUF()
+            'estadospet' => $apiAnimal->GetAnimalByUF(),
+            'achadosperdidos' =>$apiAnimal->GetAnimalAchadosPerdidosByUfNome()
         );
 
         $this->View();
@@ -67,12 +68,16 @@ class petsController extends Controller {
         if(!isset($_POST['botao']))
         {
             $AnimalModel = new AnimalModel();
+            $apiAnimal = new apiAnimal();
 
             $this->dados = array(
                 'especie'=> $AnimalModel->getEspecie(),
                 'porte'=> $AnimalModel->getPorte(),
                 'genero' =>$AnimalModel->getGenero(),
-                'pelagem' =>$AnimalModel->getPelagem()
+                'pelagem' =>$AnimalModel->getPelagem(),
+                'area' => $AnimalModel->GetArea(),
+                'achadosperdidos' =>$apiAnimal->GetAnimalAchadosPerdidosByUfNome(),
+                'estadospet' => $apiAnimal->GetAnimalByUF()
             );
 
             $this->View();
@@ -95,7 +100,7 @@ class petsController extends Controller {
         if(!isset($_POST['botao']))
         {
             
-            
+            $apiAnimal = new apiAnimal;
             $Animal = new Animal();
             $Animal->Id = $this->getParams(0);
 
@@ -121,6 +126,9 @@ class petsController extends Controller {
                 'genero' =>$AnimalModel->getGenero(),
                 'pelagem' =>$AnimalModel->getPelagem(),
                 'imagem' => $AnimalModel->GetImagemByAnimalId($Animal),
+                'area' => $AnimalModel->GetArea(),
+                'estadospet' => $apiAnimal->GetAnimalByUF(),
+                'achadosperdidos' =>$apiAnimal->GetAnimalAchadosPerdidosByUfNome(),
                 'animal' => $animal
             );
 
@@ -169,7 +177,7 @@ class petsController extends Controller {
 
         $this->View();   
     }
-    public function adotar($AnimalId ='')
+    public function adotar()
     {
         // new Session();
         // error_reporting(!E_NOTICE);
@@ -206,7 +214,7 @@ class petsController extends Controller {
 
             $endereco = $PessoaModel->GetEnderecoByPessoaId($PessoaAnimal);
 
-             if(count($pets) < 1) header("Location: ". APP_ROOT. "/pets/index/SP");
+             if(count($pets) < 1) header("Location: ". APP_ROOT. "/home");
 
             $this->dados = array(
                 'pet' => $pets,
@@ -214,6 +222,7 @@ class petsController extends Controller {
                 'telefones' => $telefoneModel->GetbyPessoaId($Telefone),
                 'email' => $UsuarioModel->GetByPessoaIdNoPass($Usuario),
                 'endereco' => $endereco,
+                'achadosperdidos' =>$apiAnimal->GetAnimalAchadosPerdidosByUfNome(),
                 'estadospet' => $apiAnimal->GetAnimalByUF()
             );
 
@@ -223,11 +232,11 @@ class petsController extends Controller {
         {
             $ApiAnimal = new apiAnimal();
 
-            $this->PartialResultView($ApiAnimal->ConfirmarAdocao(new Animal('POST', 'Animal')));
+            $this->PartialResultView($ApiAnimal->ConfirmarAdocao(new Animal('POST', 'Animal'), $_POST['PorqueAdotar']));
         }
     }
     public function ListaPet() 
-    {   
+    {
 
         error_reporting(!E_NOTICE);
 
@@ -272,11 +281,18 @@ class petsController extends Controller {
 
         $Raca = new Raca();
         $Raca->EspecieId = $this->getParams(0);
+        $table = $this->getParams(1);
+
+        if(!isset($table)) 
+        {
+            $table = 'Animal';
+        }
 
         $model = new RacaModel();
         
         $this->dados = array(
-            'list' => $model->getlist($Raca)
+            'list' => $model->getlist($Raca),
+            'table' => $table
         );
         
         $this->PartialView();

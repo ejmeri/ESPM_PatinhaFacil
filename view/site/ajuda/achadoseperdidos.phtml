@@ -1,0 +1,195 @@
+
+
+<input type="hidden" name="" id="UfId" value="<?php echo $view_estado ?>">
+<section id="list-animal" class="">
+    <div class="container-in">
+        <header class="about text-center">
+            <h2>Achados e Perdidos</h2>
+        </header>
+    </div>
+    <div class="grid-filter">    
+        <div class="header-grid-filter">
+            <a href="javascript:;" class="header-grid-text" id="filters">Filtros <i class="fa fa-angle-down fa-1x" aria-hidden="true"></i></a>
+            <hr style="border: 1px solid #53a3e8">
+        </div>
+        <div class="items-filter padding" id="items-filter">
+            <form method="POST" id="SearchPet" class="form-search"  action="ajuda/ListaPet">   
+                <div class="filter col-sm-1">
+                    <label for="especie"><strong>Espécie</strong></label>
+                    <select class="form-control block" id="especie" name="FilterPetEspecieId" onchange="showFilterRaca(this.value);"> 
+                        <option value="0">Selecione a espécie</option>      
+                        <?php if($view_especie > 0) { ?>
+                                <?php foreach ($view_especie as $li => $a) { ?>
+                            <option value=<?php echo $a['Id']; ?>> <?php echo $a['Nome']; ?></option>
+                        <?php 
+                            }
+                        } ?> 
+                    </select>
+                </div>
+                <div class="filter" id="raca">
+                <label for="raca"><strong>Raça</strong></label>
+                    <select class="form-control block" id="raca" name="FilterPetRacaId">
+                        <option value="0">Selecione uma espécie</option>
+                    </select>
+                </div>
+                <div class="filter">
+                    <label for="genero"><strong>Gênero</strong></label>
+                    <select class="form-control block" id="genero" name="FilterPetGeneroId">
+                        <option value="0">Selecione o gênero</option>      
+                        <?php if($view_genero > 0) { ?>
+                                <?php foreach ($view_genero as $li => $a) { ?>
+                            <option value=<?php echo $a['Id']; ?>> <?php echo $a['Nome']; ?></option>
+                        <?php 
+                            }
+                        } ?>  
+                    </select>
+                </div>
+                <div class="filter">
+                    <label for="cor"><strong>Pelagem</strong></label>
+                    <select class="form-control block" id="pelagem" name="FilterPetPelagemId">
+                        <option value="0">Selecione a pelagem</option>     
+                        <?php if($view_pelagem > 0) { ?>
+                                <?php foreach ($view_pelagem as $li => $a) { ?>
+                            <option value=<?php echo $a['Id']; ?>> <?php echo $a['Nome']; ?></option>
+                        <?php 
+                            }
+                        } ?>  
+                    </select>
+                </div>
+                <div class="filter">
+                    <label for="porte"><strong>Porte</strong></label>
+                    <select class="form-control block" id="porte" name="FilterPetPorteId">
+                        <option value="0">Selecione a o porte</option>      
+                        <?php if($view_porte > 0) { ?>
+                                <?php foreach ($view_porte as $li => $a) { ?>
+                            <option value=<?php echo $a['Id']; ?>> <?php echo $a['Nome']; ?></option>
+                        <?php 
+                            }
+                        } ?> 
+                    </select>
+                </div>
+                <div class="filter">
+                    <label for="porte"><strong>Área</strong></label> <br>
+                    <div class="col-lg-12">
+                        <select class="form-control" name="AreaId">
+                            <option value="0">Selecione a área</option>      
+                            <?php if($view_area > 0) { ?>
+                                    <?php foreach ($view_area as $li => $a) { ?>
+                                    <option value=<?php echo $a['Id']; ?>> <?php echo $a['Nome']; ?></option>
+                            <?php 
+                                }
+                            } ?> 
+                        </select>
+                    </div>
+                </div>
+                <div class="filter">
+                    <label for="porte"><strong>Localização</strong></label>
+                    <div class="col-lg-10">
+                        <select class="form-control selectpicker"  data-live-search="true" id="estado" name="FilterPetEstadoId" required onchange="CarregaDDDbyUfId(this.value)">
+                            <option value="">Selecione o estado</option>      
+                            <?php if($view_estados > 0) { ?>
+                                    <?php foreach ($view_estados as $li => $a) { ?>
+                                    <option data-tokens="<?php echo $a['Nome'].', '.$a['Sigla']; ?>" value=<?php echo $a['Id']; ?>  <?php echo ($a['Sigla'] == $view_estado ? 'selected' : ''); ?>> <?php echo $a['Nome']; ?></option>
+                            <?php 
+                                }
+                            } ?> 
+                        </select>
+                    </div>
+                </div>
+                <div class="filter">
+                    <label for="porte"><strong>DDD + Região</strong></label>
+                    <div id="RetornoDDD">   
+                        <select class="form-control" id="SelectDDD" id="regiao" name="FilterPetDddId">
+                            <option value="">Selecione a região</option> 
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label for="" style="color:white">any</label> <br>
+                    <button type="button" onclick="ListaPets('ajuda/ListaPet/estado/0', 'SearchPet', 'ListAchadosPerdidos')" class="btn btn-black"> <i class="fa fa-search"></i> PESQUISAR </button>                    
+                </div>
+                <div class="col-lg-12">
+                    <hr style="border: 1px solid #53a3e8">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="clear container-in">        
+        <div class="bs-docs-example">    
+            <div class="result-search" id="ListAchadosPerdidos">       
+                <!--    LISTA FEITA COM BASE EM PARTIALVIEW    -->
+            
+            </div>            
+        </div>
+    </div>
+</section>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+       $('#estado').change();     
+    });
+
+
+    function topFunction() 
+    {
+        var body = $("body");
+        var top = body.scrollTop() // Get position of the body
+
+        if(top!=0)
+        {
+            body.animate(
+                {
+                    scrollTop:450
+                }, 
+                500);
+        }
+    }
+</script>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-102556198-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+<script>
+    $(document).ready(function(){
+
+        var espid = $('#especie').val();
+        var uf = $('#UfId').val();
+        
+        // showPeople();
+        showAchadosPerdidos(uf);
+        
+        // $("#items-filter").hide();
+
+        $("#filters").click(function(){
+            if($("#items-filter").is(':visible')) {
+                    $("#items-filter").hide();
+            }
+            else {
+                $("#items-filter").show();
+            }   
+        });
+    });
+
+
+    function showPet(esp, uf) {
+            postPartialView('pets/ListaPet/' + uf, 'ListPet');
+    }
+
+    function showRaca(especie, table = 'Animal') {
+            postPartialView('pets/ListaRaca/' + especie + '/' + table, 'raca');        
+    }
+    function showFilterRaca(especie) {
+            postPartialView('pets/FilterListaRaca/' + especie, 'raca');        
+    }
+        
+</script>

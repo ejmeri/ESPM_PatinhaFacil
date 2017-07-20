@@ -9,11 +9,15 @@
 
             return $hash;
         }
+        public function HashPass($pwd)
+        {
+            return hash('haval192,5', $pwd);
+        }
         public function Hash($valor,$hashtype = '')
         {
             if($hashtype == '')
             {
-                $hashtype = 'fnv1a32';
+                $hashtype = 'camellia-256-ecb';
             }
 
             return openssl_encrypt($valor, $hashtype,'[gOFdl+(BF[(');
@@ -22,7 +26,7 @@
         {
             if($hashtype == '')
             {
-                $hashtype = 'fnv1a32';
+                $hashtype = 'camellia-256-ecb';
             }
             
             return openssl_decrypt($valor, $hashtype,'[gOFdl+(BF[(');

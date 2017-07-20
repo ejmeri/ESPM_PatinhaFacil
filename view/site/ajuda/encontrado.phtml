@@ -1,0 +1,109 @@
+<div class="container-in">
+
+    <form method="POST" action="pets/adotar" id="ConfirmarAdocao">
+        <input type="hidden" name="AnimalId" value="<?php echo $view_pet['Id']; ?>">
+        <header class="header-page">
+		    <h1 class="text-center">Confirme sua adoção <i class="fa fa-handshake-o" aria-hidden="true"></i></h1>            
+        </header>
+			<div class="col-lg-10 animal" id="portfolio">
+                <div class="no-gutter popup-gallery">
+                    <a href="uploads/<?php echo $view_pet['Imagem']; ?>" class="portfolio-box">
+                        <div id="photo-confirm"><img src="uploads/<?php echo $view_pet['Imagem']; ?>" class="foto" alt="Foto do animal"></div>
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Clique para ampliar
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <span>Clique na imagem para ampliar</sxpan>                    
+                </div>
+			</div>
+			<div class="info-confirmpet">
+                <div class="info-pet">
+                    <strong>Nome</strong><br>
+                    <span><?php echo $view_pet['Nome']; ?></span>
+                </div>
+                <div class="info-pet">
+                    <strong>Idade</strong><br>
+                    <span><?php echo $view_pet['DtNascimento']; ?></span>
+                </div>
+                <div class="info-pet">
+                    <strong>Pelagem</strong><br>
+                    <span><?php echo $view_pet['Pelagem']; ?></span>
+                </div>
+			</div>
+            <div class="clear col-lg-10">
+                <h3>Breve história sobre o animal</h3>
+                    <span><?php echo $view_pet['Descricao']; ?></span>
+            </div>
+            <header class="header-page clear">
+                <h1 class="text-center">Informações da pessoa/ong que encontrou o animal</h1>
+            </header>
+			<div class="info-people clear">
+				<strong>Nome</strong>
+				<p><?php echo $view_pessoa['Nome']; ?><p>
+            </div>
+            <hr>
+            <div class="info-people">
+                <div class="col-lg-4">
+                    <strong>Formas de contato</strong>
+                    <hr>                  
+                </div>
+                <div class="col-lg-2 clear">
+                    <strong>Telefones</strong> <br>
+                    <?php if (count($view_telefones) > 0) { ?>
+                                <?php foreach ($view_telefones as $telefone) { ?>
+                                    <i <?php echo (strlen($telefone['Numero']) == 9 ? 'class="fa fa-whatsapp" aria-hidden="true"' : 'class="fa fa-phone" aria-hidden="true"'); ?>></i><span> <?php echo $telefone['Numero'];?></span><br>
+                     <?php } } ?> 
+                    <!--<p>(00) 0000-0000</p>-->
+                </div>
+                <div class="col-lg-6">
+                    <strong>E-mail</strong> <br>
+                    <i class="fa fa-envelope-o fa-fw"></i><a  href="<?php echo ' mailto:'.$view_email['Login'];?>"><?php echo $view_email['Login'];?></a><br>
+                    <!--<p>(00) 0000-0000</p>-->
+                </div>
+                <div class="clear col-lg-4">
+                    <hr>
+                </div>
+            </div>
+            <div class="info-people clear">
+                <strong><i class="fa fa-map-marker" aria-hidden="true"></i> <i class="fa fa-paw" aria-hidden="true"></i> Localização</strong>
+                <hr style="width: 33%; margin-left: 0">
+                <?php echo '<strong>Cep: </strong> <span id="cep">'.$view_endereco['Cep']. '</span>' ?>
+                <br><p><strong>Endereço: </strong><span id="Logradouro"></span>
+                <br><strong>Bairro: </strong><span id="Bairro"></span> 
+                <br><strong>Cidade: </strong><span id="Cidade"></span>
+                <br><?php echo '<strong>Estado:</strong> '.$view_endereco['Estado'].' - <strong>DDD('.$view_endereco['Ddd'].')</strong> - <strong> Região: </strong> '.$view_endereco['Regiao'] ?></p>
+            </div>
+            <div class="info-people">
+                <strong class="text-warning">Se você encontrou ou perdeu esse animal, entre em contato urgentemente com esta pessoa. </strong>
+                <p>Ficamos bem felizes em poder ajudá-lo(a). </p>
+            </div>
+    </form>
+    <div id="result" class="mg clear">
+        <span id="txtretorno">
+            
+        </span>
+    </div>
+
+    <script>
+    
+        $(document).ready(function(){
+
+            $('#why').hide();
+            $('[data-toggle="tooltip"]').tooltip();
+            
+            var cep = $('#cep').text();
+
+            BuscarCepAdotar(cep);  
+        });
+
+
+        function Why() {
+            $('#why').show();
+        }
+    </script>
+
+</div>

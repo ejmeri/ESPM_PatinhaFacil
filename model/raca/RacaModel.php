@@ -9,8 +9,8 @@ class RacaModel extends Model {
 
     public function getlist(Raca $obj){
         $EspecieId = $obj->EspecieId ? $obj->EspecieId : "0";
-
-        return $this->db->Select("SELECT id, nome FROM raca where especieid = {$EspecieId}");
+        
+        return $this->db->Select("SELECT id, nome FROM raca where especieid = {$EspecieId} order by nome");
     }
     public function save(Raca $obj){
         if (empty($obj->Id)){

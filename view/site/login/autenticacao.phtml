@@ -1,15 +1,19 @@
-<div class="container-in">
+<div class="container-in text-center">
     <header class="header-page">
-        <h1 class="text-center">Autenticação de acesso</h1>
+        <h1 class="text-center">Confirmação de acesso</h1>
     </header>
+    <hr style="border: 1px solid #53a3e8; max-width: 150px">
       <?php if ($view_auth == 'Autenticado') { ?>      
                 <h2> Não encontramos nada sobre sua requisição!</h2>
-                <h4> Qualquer dúvida entre em contato conosco </h4>
+                <h4> Qualquer dúvida entre em contato conosco: contato@patinhafacil.com.br </h4>
             <?php 
             }
-            else 
+            else if ($view_auth == 'Error')
             { ?>
-                <h2> O seu acesso foi autenticado, faça seu login <a href="login">aqui</a> </h2>
+                <h2> Ocorreu um erro ao confirmar sua conta. </h2>
             <?php 
-            } ?>
+            } 
+            else { ?> <h2> O seu acesso foi autenticado, faça seu login <a href="login">aqui</a></h2> <?php } ?>
 </div>
+<br>
+<br>

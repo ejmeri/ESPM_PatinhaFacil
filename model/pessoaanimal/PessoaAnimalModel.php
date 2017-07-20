@@ -20,6 +20,10 @@ class PessoaAnimalModel extends Model {
             return $this->db->Update($obj,array('Id'=>$obj->Id),'pessoaanimal');
         }
     }
+    public function GetByAnimalId(\object\Animal $obj)
+    {
+        return $this->db->First($this->db->Select("SELECT * FROM pessoaanimal WHERE animalid = '{$obj->Id}'"));  
+    }
 }
 
 

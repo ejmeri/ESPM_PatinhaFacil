@@ -8,16 +8,14 @@ use model\pessoa\PessoaModel;
 use api\apiAnimal;
 
 class dashController extends Controller {
-    public function index(){
-        $this->layout = '_layoutdash';
-        
+    public function index()
+    {
+        $this->layout = '_layoutdash';  
         $apiAnimal = new apiAnimal();
-
-
 
         $this->dados = array(
             'estados' => $apiAnimal->GetAnimalByUF(),
-            'elmeri' => $elemri
+            'achadosperdidos' =>$apiAnimal->GetAnimalAchadosPerdidosByUfNome(),
         );
 
         $this->View();

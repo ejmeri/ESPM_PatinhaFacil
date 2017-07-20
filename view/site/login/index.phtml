@@ -4,11 +4,13 @@
 <section class="container-in">
     <div class="form-image text-center">
         <div style="padding: 0 25% 0 25%">
-            <div style="background: #e3e3e3; border-radius: 20px">
-                <img src="content/images/ejmeri-1.png"  style="padding: 5px; width: 80%; margin: 0 auto;"class="img-responsive" alt="">                                    
+            <div style="border-radius: 20px">
+                <a href="">
+                    <img src="content/images/ejmeri-1.png"  style="width: 80%; margin: 0 auto;"class="img-responsive" alt="">                                                        
+                </a>
             </div>
         </div>
-        <h3>PET.FÁCIL</h3>
+        <h3>Patinha Fácil</h3>
         <span class="">Somos uma plataforma digital que buscamos auxiliar pessoas que desejam adotar ou doar um animalzinho.</span>            
         <br>
         <br>
@@ -128,7 +130,7 @@
                 </div>
                 <div class="item-left clear">
                     <label for="user"></label>
-                    <input type="email" name="UsuarioLogin" id="user" class="form-control" value="" placeholder="E-mail" minLength=3 maxLength=255 autocomplete=off required onkeyup="showLogin(this.value)">
+                    <input type="email" name="UsuarioLogin" id="user" class="form-control" value="" placeholder="E-mail" minLength=3 maxLength=255 autocomplete=off required>
                     <span id="returnlogin" class="text-warning"></span>
                 </div>
                 <div class="item-left clear">
@@ -144,23 +146,25 @@
                 </div>
 
                 <div class="clear padding">
-                    <h5>Ao se cadastrar, eu concordo com os <a href="termos">Termos de uso</a> e a <a href="termos">Política de privicidade</a> da PET.FÁCIL, e também, em receber comunicações da PET.FÁCIL, por exemplo, mensagens via e-mail/sms de pessoas interessadas em adotar ou doar algum pet.</h5>                    
+                    <h5>Ao se cadastrar, eu concordo com os <a href="ajuda/termos" target="_blank">Termos de uso</a> do Patinha Fácil, e também, em receber comunicações da Patinha Fácil, por exemplo, mensagens via e-mail de pessoas interessadas em adotar ou doar algum pet.</h5>                    
                 </div>
-                <div class="col-lg-10 clear padding">
+                <!-- <div class="col-lg-10 clear padding">
                                        
                    <strong>Estou de acordo com os termos</strong> <input type="checkbox" class="checkbox" name="" required>
-                </div>
+                </div> -->
             </form>
-        </div>
-        <div id="result" class="form-insert">
-            <span id="txtHint"></span>
         </div>
         <div  style="display: none;" id="spin" class="text-center padding">
             <div class="loader">
             </div>
             <strong>Salvando suas informações...</strong>
         </div>
+        <div id="result" class="form-insert">
+            <span id="txtHint"></span>
+        </div>
+
         
+        <!-- <a href="https://www.facebook.com/dialog/oauth?client_id=YOUR_APP_ID&redirect_uri=YOUR_REDIRECT_URI&scope=COMMA_SEPARATED_LIST_OF_PERMISSION_NAMES">Entrar com Facebook</a> -->
 
 
         <!--<button type="button" onclick="loadshow();" id="btnspin"> Salvar</button>-->
@@ -175,4 +179,16 @@ function loadshow() {
     $('#spin').css("display", "block");
     
 }
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-102556198-1', 'auto');
+  ga('send', 'pageview');
+
 </script>

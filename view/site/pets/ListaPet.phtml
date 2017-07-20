@@ -2,11 +2,9 @@
 
 <?php if (count($view_list) > 0) { ?>
             <?php foreach ($view_list as $li => $a){ ?>
-            <form method="post" action="">
-                <input type="hidden" name="AnimalId" value=<?php echo $a['Id'];?>>
                     <div class="grid-pet">
                         <div class="img-pet">
-                            <a href="pets/adotar/<?php echo $a['Id'];?>" title="Quero adotar!">
+                            <a href="pets/adotar/<?php echo $a['Id'] .'/'. hash('md5',$a['Id']) ?>" title="Quero adotar!">
                                 <?php  echo '<img src="uploads/'.$a['Imagem'].'" alt="Animal">'; ?>
                             </a>                            
                         </div>
@@ -28,26 +26,22 @@
                             <div class="information">
                                 <!--<input type="submit" formaction="pets/petdetails" name="adotar" class="btn fa fa-5x" title="Adote!" value ="&#xf004;">                          -->
                                 <!--<input type="button" name="information" value="Mais informações" class="btn button">                                  -->
-                                <a href="pets/adotar/<?php echo $a['Id'];?>" title="Quero adotar!"><i class="fa fa-heart fa-5x" aria-hidden="true"></i></a>
+                                <a href="pets/adotar/<?php echo $a['Id'] .'/'. hash('md5',$a['Id']) ?>" title="Quero adotar!"><i class="fa fa-heart fa-5x" aria-hidden="true"></i></a>
                             </div>
                             <!--<div class="interest">
                                 <a href="#" title="Demonstrar interesse!"><i class="fa fa-envelope-o fa-5x" aria-hidden="true"></i></a>                                
                             </div>-->
                         </div>
-                    </div>            
-            </form>
-        
+                    </div>                   
     <?php 
             }
     }
     else if (count($view_random) > 0) { ?>
                 <!--<h4 class="text-center">Não encontramos resultado para a pesquisa, mas há muitos pets para serem doados.</h4>-->
                         <?php foreach ($view_random as $li => $a){ ?>
-                       
-                        <input type="hidden" name="AnimalId" value=<?php echo $a['Id'];?>>
                             <div class="grid-pet">
                                 <div class="img-pet">
-                                    <a href="pets/adotar/<?php echo $a['Id'];?>" title="Quero adotar!">
+                                    <a href="pets/adotar/<?php echo $a['Id'] .'/'. hash('md5',$a['Id']) ?>" title="Quero adotar!">
                                         <?php  echo '<img src="uploads/'.$a['Imagem'].'" alt="Animal">'; ?>
                                     </a>                               
                                 </div>
@@ -69,7 +63,7 @@
                                     <div class="information">
                                         <!--<input type="submit" formaction="pets/petdetails" name="adotar" class="btn fa fa-5x" title="Adote!" value ="&#xf004;">                          -->
                                         <!--<input type="button" name="information" value="Mais informações" class="btn button">                                  -->
-                                        <a href="pets/adotar/<?php echo $a['Id'];?>" title="Quero adotar!"><i class="fa fa-heart fa-5x" aria-hidden="true"></i></a>
+                                        <a href="pets/adotar/<?php echo $a['Id'] .'/'. hash('md5',$a['Id']) ?>" title="Quero adotar!"><i class="fa fa-heart fa-5x" aria-hidden="true"></i></a>
                                     </div>
                                     <!--<div class="interest">
                                         <a href="#" title="Demonstrar interesse!"><i class="fa fa-envelope-o fa-5x" aria-hidden="true"></i></a>                                
@@ -93,7 +87,7 @@
 
 <div class="lista clear">
 <?php  if(count($view_all) > 0) {
-            $total = ceil(count($view_all) / 10); ?>
+            $total = ceil(count($view_all) / 20); ?>
             <strong>Página <?php echo ($view_pagina + 1).'/'.$total ?></strong>
     <nav aria-label="navigation">
         <ul class="pagination">

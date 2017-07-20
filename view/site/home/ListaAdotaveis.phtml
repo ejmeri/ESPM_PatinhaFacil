@@ -1,0 +1,87 @@
+<section id="#start">
+
+<?php if (count($view_list) > 0) { ?>
+            <?php foreach ($view_list as $li => $a){ ?>
+                    <div class="grid-pet">
+                        <div class="img-pet">
+                            <a href="ajuda/paraquemdoar/<?php echo $a['Id'] ?>" title="Entrar em contato com uma pessoa!">
+                                <?php  echo '<img src="uploads/'.$a['Imagem'].'" alt="Animal">'; ?>
+                            </a>                            
+                        </div>
+                        <div class="information-pet">
+                            <div class="padding-15">
+                                <strong>Nome: </strong> <span><?php echo $a['Nome']; ?></span>                                
+                            </div>
+                            <div class="padding-15">
+                                <strong>Raça: </strong> <span><?php echo $a['Raca']; ?></span>                                
+                            </div>
+                             <div class="padding-15">
+                                <strong>Idade: </strong> <span><?php echo $a['Idade']; ?></span>                                
+                            </div>
+                            <div class="">
+                                <strong>DDD/Região:</strong> <span class="text-left"><?php echo '(' .$a['Ddd'] . ') - '. $a['Regiao']; ?></span>                                
+                            </div>
+                        </div>
+                        <div class="adopt-pet">
+                            <div class="interest">
+                                <!--<input type="submit" formaction="pets/petdetails" name="adotar" class="btn fa fa-5x" title="Adote!" value ="&#xf004;">                          -->
+                                <!--<input type="button" name="information" value="Mais informações" class="btn button">                                  -->
+                                <a href="ajuda/paraquemdoar/<?php echo $a['Id'] ?>" title="Entrar em contato com uma pessoa!"><i class="fa fa-envelope fa-5x" aria-hidden="true"></i></a>
+                            </div>
+                            <!--<div class="interest">
+                                <a href="#" title="Demonstrar interesse!"><i class="fa fa-envelope-o fa-5x" aria-hidden="true"></i></a>                                
+                            </div>-->
+                        </div>
+                    </div>
+        
+    <?php 
+            }
+
+        ?>
+<div class="lista clear">
+<?php  if(count($view_all) > 0) {
+            $total = ceil(count($view_all) / 10); ?>
+            <strong>Página <?php echo ($view_pagina + 1).'/'.$total ?></strong>
+    <nav aria-label="navigation">
+        <ul class="pagination">
+            <li class="page-item <?php echo $total > 1 && $view_pagina > 0 ? '' : 'disabled' ?>"><a class="page-link" href="javascript: topFunction();" id="linkpages" onclick="ListaPetsPagina('pets/ListaPet/estado/<?php echo $view_pagina ?>','SearchPet', 'ListPet')">Anterior</a></li>
+                <?php
+                    for ($i = 0; $i < $total; $i++) {
+                    ?>
+                    <li <?php echo $i == $view_pagina ? 'class="active"' : "" ?>>
+                        <a href="javascript: topFunction();" id="linkpages" onclick="ListaPetsPagina('pets/ListaPet/estado/<?php echo $i ?>','SearchPet', 'ListPet')"><?php echo $i+1; ?></a>
+                    </li>                   
+            <?php } ?>
+            <li class="page-item <?php echo $total > 1 ? '' : 'disabled' ?>"><a class="page-link" href="javascript: topFunction();" id="linkpages" onclick="ListaPetsPagina('pets/ListaPet/estado/<?php echo $total == 1 ? $view_pagina : $view_pagina + 1 ?>','SearchPet', 'ListPet')">Próxima</a></li>
+        </ul>
+    </nav>
+    <?php
+    } ?>
+</div>
+ <?php   }
+    else 
+    {?>
+        <div class="alert alert-info alert-dismissable text-center" style="background-color: rgba(200,200,200,0.2); border-radius: 40px">
+            <h1 style="color:black">Você não tem pets nos filtros desejados! <i class="fa fa-frown-o" aria-hidden="true"></i></i></h1> 
+            <!--<h3><a href="login/index/pets/adotar/'.$obj->Id.'" class="btn btn-purple btn-lg">Clique aqui</a> </h3>-->
+        </div>
+<?php } ?>
+
+</section>
+
+
+<script>
+ function topFunction() {
+        var body = $("body");
+        var top = body.scrollTop() // Get position of the body
+
+        if(top!=0)
+        {
+            body.animate(
+                {
+                    scrollTop:450
+                }, 
+                1000);
+        }
+    }
+</script>

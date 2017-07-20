@@ -43,6 +43,10 @@ class pessoaController extends Controller
         {
             $this->telefone();
         }
+        else if (isset($_POST['SavePreference']))
+        {
+            $this->preference();
+        }
 
         $this->Load();
         $this->View();
@@ -67,9 +71,9 @@ class pessoaController extends Controller
     {
         new Session();
 
-        $this->title .= 'Meu Perfil';
+        $this->title .= 'Meu Animais';
         
-        $this->Load();
+        $this->LoadInfoPets();
         $this->View();
     }
     public function general()
@@ -182,6 +186,22 @@ class pessoaController extends Controller
 
 
     }
+    public function preference()
+    {
+        new Session();
+        error_reporting(!E_NOTICE);
+
+        $model = new PessoaModel();        
+        $Pessoa = new Pessoa();
+
+        $Pessoa->Id = $_SESSION['PessoaId'];
+
+        $Preferencia = new \object\Preferencia('POST', 'Preferencia');
+        $Preferencia->PessoaId = $Pessoa->Id;
+        
+        $retorno = $model->SavePreference($Preferencia);
+
+    }
     private function Load()
     {
 
@@ -212,6 +232,12 @@ class pessoaController extends Controller
 
         if(!isset($Ddd->EstadoId)) $Ddd->EstadoId = 1;
 
+        $pref = $model->GetPreferenceByPessoaId($Pessoa);
+
+        $Especie = new \object\Especie();
+
+        $Especie->Id = $pref['EspecieId'];
+
         $this->dados = array(
             'dados' => $model->GetbyId($Pessoa),
             'user' => $UsuarioModel->GetByPessoaId($Usuario),
@@ -225,9 +251,60 @@ class pessoaController extends Controller
             'tipoendereco' => $modelTelefone->GetTipoEndereco(),
             'enderecos' => $modelTelefone->GetEnderecoByPessoaId($Endereco),
             'endereco' => $endereco,
-            'pets' => $modelAnimal->GetByPessoaId($Pessoa),
-            'estadospet' => $apiAnimal->GetAnimalByUF()
+            'estadospet' => $apiAnimal->GetAnimalByUF(),
+            'preference' => $pref,
+            'especie' => $modelAnimal->getEspecie(),
+            'raca' => $modelAnimal->getRacaByEspecieId($Especie),
+            'genero' => $modelAnimal->getGenero(),
+            'pelagem' => $modelAnimal->getPelagem(),
+            'porte' => $modelAnimal->getPorte(),
+            'achadosperdidos' =>$apiAnimal->GetAnimalAchadosPerdidosByUfNome()
         );
+    }
+    private function LoadInfoPets()
+    {
+        new Session();
+
+        $apiAnimal = new \api\apiAnimal();
+        $Pessoa = new Pessoa();     
+        $Pessoa->Id = $_SESSION['PessoaId'];
+
+        $model = new PessoaModel();
+        $modelAnimal = new AnimalModel();
+
+        $this->dados = array(
+            'pets' => $modelAnimal->GetByPessoaId($Pessoa),
+            'especie' => $modelAnimal->getEspecie(),
+            'genero' => $modelAnimal->getGenero(),
+            'pelagem' => $modelAnimal->getPelagem(),
+            'porte' => $modelAnimal->getPorte(),
+            'area' => $modelAnimal->GetArea(),
+            'estadospet' => $apiAnimal->GetAnimalByUF(),
+            'achadosperdidos' =>$apiAnimal->GetAnimalAchadosPerdidosByUfNome()
+        );
+    }
+    public function ListaPet()
+    {
+        // error_reporting(!E_NOTICE);
+
+        new Session();
+
+        $modelAnimal = new AnimalModel();
+        $apiPessoa = new apiPessoa();
+        $FilterPet = new \object\FilterPet('POST', 'FilterPet');
+
+        $Pessoa = new Pessoa();     
+        $Pessoa->Id = $_SESSION['PessoaId'];
+
+        $Area = new \object\Area();   
+        $Area->Id = $_POST['AreaId'];
+
+        $this->dados = array(
+            'list' => $apiPessoa->ListaPet($FilterPet, $Pessoa, $Area)
+        );
+
+  
+        $this->PartialView();
     }
     public function DDD()
     {

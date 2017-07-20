@@ -1,6 +1,6 @@
 <div class="container-in">
 
-    <form method="POST" action="pets/adotar" id="ConfirmarAdocao">
+    <form method="POST" action="pets/adotar/<?php echo $view_pet['Id']; ?>" id="ConfirmarAdocao">
         <input type="hidden" name="AnimalId" value="<?php echo $view_pet['Id']; ?>">
         <header class="header-page">
 		    <h1 class="text-center">Confirme sua adoção <i class="fa fa-handshake-o" aria-hidden="true"></i></h1>            
@@ -34,13 +34,16 @@
                     <span><?php echo $view_pet['Pelagem']; ?></span>
                 </div>
 			</div>
-
+            <div class="clear col-lg-10">
+                <h3>Breve história sobre o animal</h3>
+                    <span><?php echo $view_pet['Descricao']; ?></span>
+            </div>
             <header class="header-page clear">
                 <h1 class="text-center">Informações do atual responsável pelo PET</h1>
             </header>
 
             <?php if(!isset($_SESSION['PessoaId'])) { ?>
-                <div class="alert alert-info alert-dismissable text-center" style="background-color: rgba(200,200,200,0.2); border-radius: 40px">
+                <div class="alert alert-info alert-dismissable text-center" style="background-color: rgba(200,200,200,0.2);">
                     <h1 style="color:black">Nos ajude! <i class="fa fa-heart-o" style="color:red"></i></h1> 
                     <hr style="max-width: 50px; border: 1px solid black">
                     <h2 style="color:black"> Para continuar, cadastre-se ou faça seu login gratuitamente! </h2>
@@ -49,7 +52,7 @@
                         <br><br><span id="why">Olá, primeiramente agradecemos por você estar aqui. <br> O seu cadastro é importante para nós pelo motivo de querermos saber como o nosso trabalho está evoluíndo e com ele nós poderemos ser bem melhores <br> e também para darmos contínuidade em um projeto em que nos anima muito!</span>
                     </h4> 
                     <h3>
-                        <a href="login/index/goto/pets/adotar/<?php echo $view_pet['Id']; ?>" class="btn btn-purple btn-lg">Clique aqui</a>
+                        <a href="login/index/goto/pets/adotar/<?php echo $view_pet['Id'] .'/'. hash('md5',$a['Id']) ?>" class="btn btn-purple btn-lg">Clique aqui</a>
                     </h3>
                 </div>
             <?php } else { ?> 
@@ -89,6 +92,11 @@
                 <br><strong>Cidade: </strong><span id="Cidade"></span>
                 <br><?php echo '<strong>Estado:</strong> '.$view_endereco['Estado'].' - <strong>DDD('.$view_endereco['Ddd'].')</strong> - <strong> Região: </strong> '.$view_endereco['Regiao'] ?></p>
             </div>
+            <div class="info-people clear">
+                <label for="descricao" id="">Por que você deseja adotar este animal ?</label> <br>
+                <textarea id="descricao" maxlength=500 name="PorqueAdotar" placeholder="Exemplo: Preciso de um animalzinho na minha vida!" class="textarea" onkeyup="countChar(this, 'labelcount')" required></textarea>
+                <strong>Você ainda tem </strong><strong id="labelcount" class="text-warning">500</strong> <strong>caracteres para escrever.</strong>
+            </div>
             <div class="info-people">
                 <strong class="text-warning">Em caso de confirmação</strong>
                 <p>Será enviado um e-mail para o responsável com suas <a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Nome, e-mail e telefone.">Informações</a> e caso o pet ainda esteja disponível, vocês entrarão em contato.</p>
@@ -99,28 +107,34 @@
 
             <?php } ?>
     </form>
+
+    <div  style="display: none;" id="spin" class="text-center padding">
+        <div class="loader">
+        </div>
+        <strong>Enviado e-mail e salvando informações...</strong>
+    </div>
+
     <div id="result" class="mg clear">
         <span id="txtretorno">
             
         </span>
     </div>
 
-    <script>
-    
-        $(document).ready(function(){
+<script>
+    $(document).ready(function()
+    {
+        $('#why').hide();
+        $('[data-toggle="tooltip"]').tooltip();
+        
+        var cep = $('#cep').text();
 
-            $('#why').hide();
-            $('[data-toggle="tooltip"]').tooltip();
-            
-            var cep = $('#cep').text();
-
-            BuscarCepAdotar(cep);  
-        });
+        BuscarCepAdotar(cep);  
+    });
 
 
-        function Why() {
-            $('#why').show();
-        }
-    </script>
+    function Why() {
+        $('#why').show();
+    }
+</script>
 
 </div>

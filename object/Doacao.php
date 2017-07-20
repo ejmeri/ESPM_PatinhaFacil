@@ -2,9 +2,10 @@
 
 namespace object;
 
-    Class Adocao extends EntityBase {
-        public $PessoalAnimaId;
+    Class Doacao extends EntityBase {
+        public $PessoaAnimalId;
         public $AdotadorId;
+        public $PorqueAdotar;
     }
 
 ?>

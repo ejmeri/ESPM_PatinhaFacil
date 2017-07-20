@@ -22,12 +22,13 @@ use api\apiAutenticacao;
         {    
             error_reporting(!E_NOTICE);
 
+            if(isset($_SESSION['PessoaId'])) header('Location:'.  APP_ROOT.'/home');
             $this->layout = "_layoutlogin";
             $this->title .= "Login";
 
             $goto = $this->getParams(0);
 
-            if(isset($goto))
+            if(isset($goto) && $goto == 'goto')
                 $Page = $this->getParams(1).'/'.$this->getParams(2).'/'.$this->getParams(3);
 
             $AnimalModel = new \model\animal\AnimalModel;
@@ -35,7 +36,7 @@ use api\apiAutenticacao;
             
 
             if(isset($_POST['enter']))
-            {   
+            {
                 $apiUsuario = new apiUsuario();
                 $this->PartialResultView($apiUsuario->Enter(new Usuario('POST', 'Usuario'), $Page));
             }
@@ -63,7 +64,7 @@ use api\apiAutenticacao;
                 
                 // $retornoEmail = $EmailModel->Save($Email);
                 $retornoTelefone = $TelfoneModel->Save($Telefone);
-                $Usuario->Senha = $Hash->Hash($Usuario->Senha);
+                $Usuario->Senha = $Hash->HashPass($Usuario->Senha);
                 $retornoUsuario = $UsuarioModel->Save($Usuario);
                 $retornoAutenticacao = $apiAutenticacao->Autenticacao($Autenticacao);
                                 
@@ -132,6 +133,9 @@ use api\apiAutenticacao;
         }
         public function novo()
         {
+
+            header('Location:' . APP_ROOT . '/home');
+            
             $this->title = "Novo Cadastro";
             $this->layout = "_layoutlogoff";
 
@@ -159,14 +163,14 @@ use api\apiAutenticacao;
                 $Autenticacao->PessoaId = $Pessoa->Id;
                 
                 $retornoEmail = $EmailModel->Save($Email);
-                $Usuario->Senha = $Hash->Hash($Usuario->Senha);
+                $Usuario->Senha = $Hash->HashPass($Usuario->Senha);
                 $retornoUsuario = $UsuarioModel->Save($Usuario);
                 $apiAutenticacao->Autenticacao($Autenticacao);
                 
                 
                 if($retorno['sucess'] && $retornoEmail['sucess'] && $retornoUsuario['sucess']) {
                     $this->PartialResultView('<h2>Parabéns '.$Pessoa->Nome.', você foi cadastrado em nosso sistema!</h2>
-                        <p>Enviamos um e-mail para você confirmar a sua conta, após confirmação o seu acesso estará liberado. <br>Faça seu login <a href="login"> <b>Aqui</b> </a>!</p>');
+                        <p>Enviamos um e-mail para você confirmar a sua conta, após confirmação o seu acesso estará liberado (Verifique sua caixa de spam). <br>Faça seu login <a href="login"> <b>Aqui</b> </a>!</p>');
                 }
                 else {
                      $this->PartialResultView($retorno['feedback']." <br> ".$retornoEmail['feedback']." <br>".$retornoUsuario['feedback']);
@@ -183,7 +187,7 @@ use api\apiAutenticacao;
             else
             {
                 $api = new apiUsuario();
-                $this->PartialResultView($api->SendEmail(new Usuario('POST', 'Usuario')));
+                $this->PartialResultView($api->EsqueciASenha(new Usuario('POST', 'Usuario')));
             }
         }
         public function Validar()
@@ -205,8 +209,9 @@ use api\apiAutenticacao;
         }
         public function ValidarPassword()
         {
+            $GerarHash = new GerarHash();
             $Usuario = new Usuario();
-            $Usuario->Senha = $this->getParams(0);
+            $Usuario->Senha = $GerarHash->HashPass($this->getParams(0));
 
             $api = new apiUsuario();
             
@@ -229,10 +234,21 @@ use api\apiAutenticacao;
             }
             else
             {   
-                $apiAutenticacao->Autenticar($Autenticacao);
-                 $this->dados = array(
+                $retorno = $apiAutenticacao->Autenticar($Autenticacao);
+                
+                if($retorno == 'Error')
+                {
+                    $this->dados = array(
+                    'auth' => $retorno
+                    );
+                }
+                else 
+                {
+                    $this->dados = array(
                     'auth' => 'Novo'
                     );
+                }
+                
             }
 
 

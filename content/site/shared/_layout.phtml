@@ -23,7 +23,7 @@
     <script src="content/js/jquery.js?<?php echo NEW_FILE;?>"></script>
 	<link href="content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> -->
 </head>
 <body>
 
@@ -36,7 +36,7 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="home">Pet.fácil</a>
+                <a class="navbar-brand page-scroll" href="home">Patinha Fácil</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -65,11 +65,31 @@
                         ?>
                     </ul>
                 </li>
-                <li>
-                    <a href="pets/novo" class="page-scroll">Doar um pet</a>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Achados e perdidos</a>
+                    <ul class="dropdown-menu">
+                        <?php if (count($view_achadosperdidos) > 0) { ?>
+                            <?php foreach ($view_achadosperdidos as $li => $a){ ?>
+                                <li>
+                                    <a href="ajuda/achadoseperdidos/<?php echo $a['Sigla'] ?>">  <?php echo $a['Nome'] ?>
+                                    <span class="badge"> <?php echo $a['Quantidade'] ?></span> </a>
+                                   
+                                </li>
+                             <?php 
+                            }
+                        }
+                        else {
+                            ?>  
+                            <li>
+                                <a href="javascript:;">Ainda não temos pets nessa área</a>
+                            </li>
+                        <?php }
+                        
+                        ?>
+                    </ul>
                 </li>
                 <li>
-                    <a href="#services" class="page-scroll">Nossas opcões</a>
+                    <a href="pets/novo" class="page-scroll">Ajudar um animal</a>
                 </li>
                 <li>
                     <a href="home#portfolio" class="page-scroll">Pets disponíveis</a>
@@ -88,11 +108,12 @@
                     <li>
                         <a class="page-scroll" target="_blank" style="color:red; font-weight: bold" href="https://www.vakinha.com.br/vaquinha/ajude-a-pet-facil-870fcf77-9ea4-4381-8071-cebbc63ba436">Nos ajude</a>
                     </li>
-                    <li>
-                        <a href="pessoa" class="page-scroll">Minha conta <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
-                    </li>
-                    <li>
-                        <a href="login/Close" class="page-scroll">Sair <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">Minha conta <i class="fa fa-hand-o-down" aria-hidden="true"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="pessoa" class="page-scroll">Perfil <i class="fa fa-user-circle-o" aria-hidden="true"></i></a></li>
+                            <li><a href="login/Close" class="page-scroll">Sair <i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+                        </ul>
                     </li>
                     <!--<li class="dropdown">
                         <a href="#" class="dropdowntoggle" data-toggle="dropdown">Minha conta <i class="fa fa-hand-o-down" aria-hidden="true"></i></a>
@@ -121,8 +142,9 @@
                 </div>
             </div>
         </a>
-        <h3>Encontre aqui a felicidade para seu lar</h3>
-        <a href="#start" class="btn btn-black btn-lg">Começar</a>
+        <h3 style="color: #5aa1d8">Patinha Fácil</h3>
+        <h3 style="color: #FFF">Encontre aqui a felicidade para seu lar</h3>
+        <!-- <a href="#start" class="btn btn-black btn-lg">Começar</a> -->
         <br>
         <!--<a href="#about" class="btn btn-dark btn-lg">Começar</a>-->
     </div>
@@ -138,28 +160,27 @@
     <footer id="footer">
         <div class="container-in">
                 <div class="col-10 text-center">
-                    <h3><strong>PET.FÁCIL</strong></h3>
-                    <p>Rua Manaira, 00 - Jardim Mutinga
-                        <br>Barueri, São Paulo</p>
+                    <h3><strong>Patinha Fácil</strong></h3>
+                    <p>Barueri, São Paulo</p>
                     <ul class="list-unstyled">
                         <li><i class="fa fa-phone fa-fw"></i> (11) 90000-0000</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">name@example.com</a>
+                        <li><i class="fa fa-envelope-o fa-fw"></i> <a class="facebook" href="mailto:contato@patinhafacil.com.br">contato@patinhafacil.com.br</a>
                         </li>
                     </ul>
                     <br>
                     <ul class="list-inline">
                         <li>
-                            <a href="https://www.facebook.com/adtfacil" target="_blank" title="Visite nosso facebook"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                            <a href="https://www.facebook.com/patinhafacil" target="_blank" title="Visite nosso facebook"><i class="fa fa-facebook fa-fw fa-3x facebook"></i></a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                            <a href="https://www.vakinha.com.br/vaquinha/ajude-a-pet-facil-870fcf77-9ea4-4381-8071-cebbc63ba436" target="_blank"><i class="fa fa-money fa-fw fa-3x money"></i></a>
                         </li>
                         <li>
-                            <a href="https://www.instagram.com/pet.facil"><i class="fa fa-instagram fa-fw fa-3x"></i></a>
+                            <a href="https://www.instagram.com/patinhafacil" target="_blank"><i class="fa fa-instagram fa-fw fa-3x instagram"></i></a>
                         </li>
                     </ul>
                     <hr class="small">
-                <p class="text-muted" style="color: white">Copyright &copy; Pet Fácil <?php echo date("Y"); ?></p>
+                <p class="text-muted" style="color: blue">Copyright &copy; Patinha Fácil <?php echo date("Y"); ?></p>
                 </div>
         </div>
         <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
@@ -273,209 +294,94 @@
     $('.map').on('click', onMapClickHandler);
     </script>
 
-    
-<script  type="text/javascript">
-   $("#file6").on('change', function () {
+<!--JQUERY/JAVASCRIPT PAGE NEWPET-->
 
-        if (typeof (FileReader) != "undefined") {
-
-            var image_holder = $("#image-holder");
-            image_holder.empty();
-
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $("<img />", {
-                    "src": e.target.result,
-                    "class": "thumb-image"
-                }).appendTo(image_holder);
-
-            }
-            image_holder.show();
-            reader.readAsDataURL($(this)[0].files[0]);
-        } else {
-            alert("This browser does not support FileReader.");
-        }
-    });
-</script>
-
-                                <!--JQUERY/JAVASCRIPT PAGE PETS-->     
-    <script>
+    <script type="text/javascript">
         $(document).ready(function(){
+            var formulario =  $("#frmNovoPet");
 
-            var espid = $('#especie').val();
-            var uf = $('#UfId').val();
-
-            showPet(espid, uf);
-            
-            // $("#items-filter").hide();
-
-            $("#filters").click(function(){
-                if($("#items-filter").is(':visible')) {
-                        $("#items-filter").hide();
-                }
-                else {
-                    $("#items-filter").show();
-                }   
-            });
+            $('#frmNovoPet').validate({
+                errorClass: 'text-errors',
+                    
+                    submitHandler: function (form) 
+                    {
+                        postForm(formulario,'txtretorno', 'result', 'teste');
+                        $("#descricao").val('');
+                        $("#nome").val('');
+                        $("#peso").val('');
+                        $("#dtnascimento").val('');
+                        $('#image-holder').empty();
+                    }
+            })
         });
 
-
-        function showPet(esp, uf) {
-                postPartialView('pets/ListaPet/' + uf, 'ListPet'); 
-        }
-
-        function showRaca(especie) {
-                postPartialView('pets/ListaRaca/' + especie, 'raca');        
-        }
-        function showFilterRaca(especie) {
-                postPartialView('pets/FilterListaRaca/' + especie, 'raca');        
-        }
-            
     </script>
-                            <!-- FIM JQUERY/JAVASCRIPT PAGE PETS-->     
 
+<!--JQUERY/JAVASCRIPT PAGE NEWPET-->
+
+            <!--JQUERY/JAVASCRIPT PAGE NEWLOGIN-->
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+            var formulario =  $("#frmCadastro");
+            var cpfcnpj = $('#CPF').val();
+
+            $("#frmCadastro").validate({
+                    errorClass: 'text-errors',
+                    rules: {
+                            PessoaCpfCnpj: {
+                                digits: true
+                            },
+                            field: {
+                                required: true
+                                // minlength: 3
+                            },
+                            repassword: {
+                                equalTo: "#password"
+                            }
+                    },
+                    submitHandler: function (form) {
+                        var login = document.getElementById("txtlogin").innerText;
+                        
+                        if(login.length > 0) {
+                            $("#user").focus();
+                            return;
+                        }
+
+                        postForm(formulario,'txtHint', 'result', 'login');
+                        clearInputs();
+                    }   
+            });
+
+                function clearInputs(){
+                    $("#txtcpfcnpj").val('');
+                    $("#CNPJ").val('');
+                    $("#Rg").val('');
+                    $("#Nome").val('');
+                    $("#Apelido").val('');
+                    $("#Email").val('');
+                    $("#user").val('');
+                    $("#password").val('');
+                    $("#repassword").val('');
+                    $("#Telefone").val('');
+                }
+    });
+</script>
+        <!--FIM JQUERY/JAVASCRIPT PAGE NEWLOGIN-->
 
 <script type="text/javascript">
      
-     var formulario =  $("#frmNovoPet");
+     var formulario =  $("#ConfirmarAdocao");
 
-     $('#frmNovoPet').validate({
+     $('#ConfirmarAdocao').validate({
          errorClass: 'text-errors',
             
             submitHandler: function (form) 
             {
                 postForm(formulario,'txtretorno', 'result');
                 $("#descricao").val('');
-                $("#nome").val('');
-                $("#peso").val('');
-                $("#dtnascimento").val('');
-                $('#image-holder').empty();
             }
     });
 
 </script>
-
-                            <!--JQUERY/JAVASCRIPT PAGE NEWLOGIN-->
-
-    <script type="text/javascript">
-        $(document).ready(function(){
-
-                var formulario =  $("#frmCadastro");
-                var cpfcnpj = $('#CPF').val();
-
-                $("#frmCadastro").validate({
-                        errorClass: 'text-errors',
-                        rules: {
-                                PessoaCpfCnpj: {
-                                    digits: true
-                                },
-                                field: {
-                                    required: true
-                                    // minlength: 3
-                                },
-                                repassword: {
-                                    equalTo: "#password"
-                                }
-                        },
-                        submitHandler: function (form) {
-                            var login = document.getElementById("txtlogin").innerText;
-                            
-                            if(login.length > 0) {
-                                $("#user").focus();
-                                return;
-                            }
-
-                            postForm(formulario,'txtHint', 'result', 'login');
-                            clearInputs();
-                        }   
-                });
-
-                    function clearInputs(){
-                        $("#txtcpfcnpj").val('');
-                        $("#CNPJ").val('');
-                        $("#Rg").val('');
-                        $("#Nome").val('');
-                        $("#Apelido").val('');
-                        $("#Email").val('');
-                        $("#user").val('');
-                        $("#password").val('');
-                        $("#repassword").val('');
-                        $("#Telefone").val('');
-                    }
-        });
-    </script>
-
- <script type="text/javascript">
-    $(document).ready(function(){
-
-        $('#result').hide();
-
-        $("#Apelido").attr("placeholder", "Caso não tenha, utilize seu 1º nome.");         
-        $("#linkfisica").addClass("selected");
-        
-        $("#linkfisica").click(function(){
-
-            $("#txtcpfcnpj").val('');
-
-            swapText("label", "CPF");
-            swapText("nome", "Nome");
-            swapText("number", "RG");
-            swapText("apelido", "Apelido");
-            $("#txtcpfcnpj").attr("placeholder", "000.000.000-00");
-            $("#Apelido").attr("placeholder", "Caso não tenha, utilize seu 1º nome.");         
-            $("#linkfisica").addClass("selected");
-            $("#linkjuridica").removeClass("selected");
-
-            document.getElementById("txtCPF").innerHTML = "";
-            
-        });
-        
-        $("#linkjuridica").click(function(){
-            swapText("label", "CNPJ");
-            swapText("nome", "Razão Social");
-            swapText("number", "Inscrição Estadual");
-            swapText("apelido", "Nome Fantasia");
-
-            $("#txtcpfcnpj").val('');
-
-            $("#txtcpfcnpj").attr("placeholder", "00.000.000/0000-00");
-            $("#Apelido").attr("placeholder", "");         
-            $("#linkjuridica").addClass("selected");
-            $("#linkfisica").removeClass("selected");
-
-             document.getElementById("txtCPF").innerHTML = "";
-        });
-
-
-    });
-   </script>
-
-                                    <!--FIM JQUERY/JAVASCRIPT PAGE NEWLOGIN-->
-
-
-                                    <!--INICIO PERDI MINHA SENHA-->
-
-                         <!--FIM PERDI MINHA SENHA-->
-
-                         <!--PEOPLE-->
-<script>
-    $(document).ready(function(){
-
-        $('#carregaCep').hide();
-        
-        // openInfo('event', 'pessoa');
-        // startperfil('pessoa');
-        // startperfil('acesso', 'divedit');
-        // startperfil('email', 'divedit');
-        // startperfil('endereco', 'divedit');
-        // startperfil('telefone', 'divedit');
-
-
-        $("#EnderecoCep").focusout(function () {
-            BuscarCep();
-        });
- 
-    });
-</script>
-
-               <!--FIM PEOPLE-->

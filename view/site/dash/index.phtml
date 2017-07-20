@@ -1,6 +1,5 @@
+<?php //echo $view_elmeri ?>
 
-
-<?php echo $view_elmeri ?>
 <section class="bg-primary" id="about">
     <div class="container">
         <div class="row">
@@ -14,14 +13,18 @@
     </div>
 </section>
 <section class="bg-minimuntransp" id="pets">
-    <hr class="sizemax">
+    <!-- <hr class="sizemax"> -->
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <h2 class="section-heading text-center">Onde está o seu pet ?</h2>
+                <p class="text-center">Selecione o seu estado</p>                
                 <hr class="opalight">
                 <div class="col-md-12">
                     <div class="mid-form">
+                        <div class="text-center">
+                            <a href="pets/novo">Quero doar um pet</a>
+                        </div>
                         <ul class="list-group"> 
                             <?php if (count($view_estados) > 0) { ?>
                                 <?php foreach ($view_estados as $li => $a){ ?>
@@ -33,8 +36,52 @@
                                         </a>
                                 <?php 
                                 }
-                            }
+                             }
+                            else {
                             ?>
+                                <div class="text-center">
+                                    <h3>Ainda não temos animais nessa área</h3>
+                                </div>
+                            <?php }?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<hr class="sizemax" style="max-width: 300px">
+<section class="bg-minimuntransp" id="achadoseperdidos">
+    <!-- <hr class="sizemax"> -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="section-heading text-center">Achados e perdidos</h2>
+                <p class="text-center">Selecione o seu estado</p>
+                <hr class="opalight">
+                <div class="col-md-12">
+                    <div class="mid-form">
+                        <div class="text-center">
+                            <a href="pets/novo">Encontrei um pet</a>
+                        </div>
+                        <ul class="list-group"> 
+                            <?php if (count($view_achadosperdidos) > 0) { ?>
+                                <?php foreach ($view_achadosperdidos as $li => $a){ ?>
+                                        <a href="ajuda/achadoseperdidos/<?php echo $a['Sigla'] ?>">
+                                            <li class="list-group-item">
+                                                <?php echo $a['Nome'] ?>
+                                                <span class="badge"> <?php echo $a['Quantidade'] ?></span>
+                                            </li>
+                                        </a>
+                                <?php 
+                                }
+                            }
+                            else {
+                            ?>
+                                <div class="text-center">
+                                    <h3>Ainda não temos animais nessa área</h3>
+                                </div>
+                            <?php }?>
                         </ul>
                     </div>
                 </div>
@@ -43,11 +90,13 @@
     </div>
 </section>
 
+<hr class="sizemax">
+
 <section id="services">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Pets <i class="fa fa-heart" style="color:red;"> </i> <i class="fa fa-paw fa-1x"></i></h2>
+                <h2 class="section-heading">Serviços <i class="fa fa-heart" style="color:red;"> </i> <i class="fa fa-paw fa-1x"></i></h2>
                 <hr class="">
             </div>
         </div>
@@ -57,8 +106,8 @@
             <div class="col-lg-3 col-md-6 text-center">
                 <div class="service-box">
                     <a href="login" style="color: black;" alt="Faça seu cadastro"><i class="fa fa-4x fa-sign-in sr-icons"></i></a>
-                    <a href="login" style="color: black;"><h3>Quero participar</h3></a>
-                    <p class="text-muted">Faça seu cadastro e comece a adotar ou doar um animal.</p>
+                    <a href="login" style="color: blue;"><h3>Quero ajudar</h3></a>
+                    <p class="text-muted">Faça seu cadastro e ajude um animal.</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 text-center">
@@ -86,7 +135,7 @@
     </div>
 </section>
 
-<section class="no-padding" id="portfolio">
+<!-- <section class="no-padding" id="portfolio">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -189,7 +238,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <!--<aside class="bg-dark">
     <div class="container text-center">
@@ -199,3 +248,14 @@
         </div>
     </div>
 </aside>-->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-102556198-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
