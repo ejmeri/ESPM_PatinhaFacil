@@ -28,7 +28,7 @@ Class AnimalModel extends Model {
     }
     public function GetbyId(Animal $obj)
     {
-        return $this->db->First($this->db->Select("SELECT a.Id, a.Nome,DtNascimento,e.Nome 'Pelagem',Peso,Descricao, b.Nome 'Raca', h.Nome 'Especie', d.Nome 'Porte', f.nome 'Imagem', g.PessoaId FROM animal a join raca b on
+        return $this->db->First($this->db->Select("SELECT a.Id, a.Nome,DtNascimento,e.Nome 'Pelagem',Peso,Descricao, b.Nome 'Raca', c.Nome 'Genero', h.Nome 'Especie', d.Nome 'Porte', f.nome 'Imagem', g.PessoaId FROM animal a join raca b on
                 a.racaid = b.id join genero c on
                 a.generoid = c.id join porte d on
                 a.porteid = d.id join pelagem e on

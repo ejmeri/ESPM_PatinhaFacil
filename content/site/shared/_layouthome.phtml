@@ -11,7 +11,7 @@
     <meta name="keywords" content="<?php echo $this->keywords ?>">
     <meta name="author" content="<?php echo $this->autor ?>">
 	<link href="content/site/css/style.css" rel="stylesheet" />
-	<link href="content/site/css/master.css?ejmeri" rel="stylesheet" />
+	<link href="content/site/css/master.css?<?php echo NEW_FILE ?>" rel="stylesheet" />
 	<link href="content/site/css/petdetail.css?elmeri" rel="stylesheet" />
 	<link href="content/site/css/pets.css?elmeri" rel="stylesheet">
 	<link href="content/site/css/newlogin.css?elmeri" rel="stylesheet">
@@ -104,19 +104,54 @@
                             <li><a href="javascript:;">Quero ser parceiro</a></li>
                         </ul>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="#footer" class="page-scroll">Sobre nós</a>
-                </li>
+                </li> -->
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a class="page-scroll" target="_blank" style="color:red; font-weight: bold" href="https://www.vakinha.com.br/vaquinha/ajude-a-pet-facil-870fcf77-9ea4-4381-8071-cebbc63ba436">Nos ajude</a>
                     </li>
                     <li>
-                        <a href="pessoa" class="page-scroll">Minha conta <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+                    <div class="dropdown" id="menu_notify">
+                        <a id="dLabel" class="header-notify" role="button" data-toggle="dropdown" data-target="#" href="#">
+                            Notificações <i class="fa fa-bell" <?php if(count($view_end) == 0) { ?> style="color:red" <?php }  else { ?> style="color:black" <?php } ?> aria-hidden="true"></i>
+                        </a>
+                        <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+ 
+                            <div class="notification-heading"><h4 class="menu-title">Notificações</h4>
+                            <!-- <h4 class="menu-title pull-right">View all<i class="glyphicon glyphicon-circle-arrow-right"></i></h4> -->
+                            </div>
+                            <li class="divider"></li>
+                        <div class="notifications-wrapper">
+                             <?php if(count($view_end) == 0) { ?>
+                                <a class="content" href="pessoa#endereco">
+                                    <div class="notification-item">
+                                        <h4 class="item-title">Endereço</h4>
+                                        <p class="item-info">Olá, tudo bem? Não esqueça de atualizar seu endereço.</p>
+                                    </div>
+                                </a>
+                            <?php  }
+                            else { ?>
+                                <a href="javascript:;" class="content">
+                                    <div class="notification-item">
+                                        <h4 class="item-title">Não há notificações</h4>
+                                    </div>
+                                </a>
+                            <?php } ?>
+                        </div>
+                            <li class="divider"></li>
+                            <!-- <div class="notification-footer"><h4 class="menu-title">View all<i class="glyphicon glyphicon-circle-arrow-right"></i></h4></div> -->
+                        </ul>
+                        
+                        </div>
                     </li>
-                    <li>
-                        <a href="login/Close" class="page-scroll">Sair <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                     <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">Minha conta <i class="fa fa-hand-o-down" aria-hidden="true"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="pessoa" class="page-scroll">Perfil <i class="fa fa-user-circle-o" aria-hidden="true"></i></a></li>
+                            <li><a href="login/Close" class="page-scroll">Sair <i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+                        </ul>
                     </li>
                     <!--<li class="dropdown">
                         <a href="#" class="dropdowntoggle" data-toggle="dropdown">Minha conta <i class="fa fa-hand-o-down" aria-hidden="true"></i></a>

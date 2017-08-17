@@ -38,7 +38,7 @@ class petsController extends Controller {
         $model = new EspecieModel();
         $modelAnimal = new AnimalModel();
         $modelTelefone = new TelefoneModel();
-
+    
     
         $Estado = new Estado();
         $Estado->Sigla = $this->getParams(0);

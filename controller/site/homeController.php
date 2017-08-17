@@ -20,17 +20,22 @@ class homeController extends Controller {
 
         $apiAnimal = new \api\apiAnimal();        
         $AnimalModel = new \model\animal\AnimalModel();
+        $PessoaModel = new \model\pessoa\PessoaModel();
 
         $Autenticacao = new \object\Autenticacao();
         $AutenticacaoModel = new \model\autenticacao\AutenticacaoModel();
 
         $Autenticacao->PessoaId = $_SESSION['PessoaId'];
 
+        $PessoaAnimal = new \object\PessoaAnimal();
+
+        $PessoaAnimal->PessoaId = $_SESSION['PessoaId'];
 
         $this->dados = array(
             'lista' => $AnimalModel->GetList(),
             'estadospet' => $apiAnimal->GetAnimalByUF(),
             'achadosperdidos' =>$apiAnimal->GetAnimalAchadosPerdidosByUfNome(),
+            'end' => $PessoaModel->GetEnderecoByPessoaId($PessoaAnimal),
             'auth' => $AutenticacaoModel->GetByPessoaId($Autenticacao)
         );
 
