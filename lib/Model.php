@@ -6,10 +6,10 @@ use helper\Database;
 
 Class Model extends Database
 {
-    protected $db;
+	protected $db;
 	
-	public function __construct(){
-		
+	public function __construct()
+	{	
 		$this->db = new Database();
 	}
 }
