@@ -9,7 +9,7 @@ class Database extends Config {
 
     public function __construct(){
         try{
-            $this->con = new \PDO("pgsql:host=". self::server . ";dbname=" . self::dbname, self::user, self::pass);
+            $this->con = new \PDO("pgsql:host=". self::server . ",dbname=" . self::dbname, self::user, self::pass);
             $this->con->exec("set names " . self::charset);
             $this->con->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $ex){
