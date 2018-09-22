@@ -1,0 +1,35 @@
+
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Acre', 'AC', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Alagoas', 'AL', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Amazonas', 'AM', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Amapá', 'AP', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Bahia', 'BA', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Ceará', 'CE', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Distrito Federal', 'DF', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Espírito Santo', 'ES', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Goiás', 'GO', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Maranhão', 'MA', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Minas Gerais', 'MG', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Mato Grosso do Sul', 'MS', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Mato Grosso', 'MT', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Pará', 'PA', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Paraíba', 'PB', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Paraná', 'PR', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Pernambuco', 'PE', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Piauí', 'PI', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Rio de Janeiro', 'RJ', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Rio Grande do Norte', 'RN', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Rondônia', 'RO', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Roraima', 'RR', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Rio Grande do Sul', 'RS', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Santa Catarina', 'SC', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Sergipe', 'SE', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('São Paulo', 'SP', curdate(), curdate());
+insert into estado(nome, sigla, dtinclusao, dtatualizacao) values ('Tocantins', 'TO', curdate(), curdate());
+
+
+
+
+
+
+senha c panel: p4t1nha!@

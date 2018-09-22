@@ -183,6 +183,7 @@ use api\apiAutenticacao;
             $this->title = "Esqueci a senha";
             $this->layout = "_layoutlogin";
 
+            
             if(!isset($_POST['button'])) $this->View();
             else
             {

@@ -12,7 +12,7 @@ class HtmlEmail {
     <title>E-mail</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <base href="http://www.patinhafacil.com.br/">
+    <base href="http://www.patinhafacil.com/">
     <link href="content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="content/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="content/css/email/email.css?v=1.4" rel="stylesheet">
@@ -40,7 +40,7 @@ class HtmlEmail {
             <article class="text text-center">
                 <h4>Para liberar o seu acesso, basta clicar no link abaixo:</h4>
 
-                <a href="http://www.patinhafacil.com.br/login/autenticacao/'.$hash.'" class="text-white">
+                <a href="http://www.patinhafacil.com/login/autenticacao/'.$hash.'" class="text-white">
                     <div class="link">
                         Autenticação de acesso <i class="fa fa-paw"> </i> <i class="fa fa-unlock-alt"></i>
                     </div>
@@ -62,7 +62,7 @@ class HtmlEmail {
                     </div>
                     <div class="col-lg-4 text-center">
                         <i class="fa fa-envelope-o fa-3x sr-contact"></i>
-                        <p><a href="mailto:feedback@patinhafacil.com.br">feedback@patinhafacil.com.br</a></p>
+                        <p><a href="mailto:feedback@patinhafacil.com">feedback@patinhafacil.com</a></p>
                     </div>
                 </div>
             </div>

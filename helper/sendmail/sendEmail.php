@@ -13,7 +13,7 @@ namespace helper\sendmail;
 
             //configuração do gmail
             $mail->Port = '465'; //porta usada pelo gmail.
-            $mail->Host = 'br184.hostgator.com.br'; 
+            $mail->Host = 'br938.hostgator.com.br'; 
             $mail->IsHTML(true); 
             $mail->Mailer = 'smtp'; 
             $mail->SMTPSecure = 'ssl';
@@ -21,12 +21,12 @@ namespace helper\sendmail;
 
             //configuração do usuário do gmail
             $mail->SMTPAuth = true; 
-            $mail->Username = $tipoemail.'@patinhafacil.com.br'; // usuario gmail.
+            $mail->Username = $tipoemail.'@patinhafacil.com'; // usuario gmail.
             $mail->Password = 'p3t.f4c1l'; // senha do email. 
             $mail->SingleTo = true; 
 
             // configuração do email a ver enviado.
-            $mail->From = $tipoemail.'@patinhafacil.com.br'; 
+            $mail->From = $tipoemail.'@patinhafacil.com'; 
             $mail->FromName = "Equipe Patinha Fácil - <$mail->From>"; 
 
             if($replyto != '' || isset($replyto))

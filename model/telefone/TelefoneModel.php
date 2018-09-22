@@ -20,6 +20,7 @@ class TelefoneModel extends Model
     public function SaveEndereco(Endereco $obj)
     {
         if (empty($obj->Id)) {
+            $obj->Id = 0;
             return $this->db->Insert($obj, 'endereco');
         } else {
             return $this->db->Update($obj, array('Id'=>$obj->Id), 'endereco');

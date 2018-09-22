@@ -168,8 +168,10 @@ Class apiUsuario extends Database
         $UsuarioModel = new UsuarioModel();        
         $retornoUsuario = $UsuarioModel->GetByLogin($obj);
 
+
         if($retornoUsuario['Id'] > 0)
         {
+          
             $html = new HtmlEmail();
             $SendEmail = new sendEMail();
 
@@ -203,6 +205,7 @@ Class apiUsuario extends Database
             $message = preg_replace( array_keys( $replacements ), array_values( $replacements ), $message );
             
             $retorno = $SendEmail->Send($retornoUsuario['Login'], 'Recuperação de senha', $message);
+         
 
             if($retorno == 'ok')
             {
