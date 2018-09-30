@@ -220,8 +220,8 @@ class apiAnimal
             );
 
             $message = preg_replace( array_keys( $replacements ), array_values( $replacements ), $message );
-            
-            $retorno = $SendEmail->Send( $objPessoa['Email'], 'Pedido de adoção', $message, 'contato', $objPessoaLogada['Email'], $objPessoaLogada['Nome']);
+
+            $retorno = $SendEmail->Send($objPessoa['Email'], 'Pedido de adoção', $message, 'contato', $objPessoaLogada['Email'], $objPessoaLogada['Nome']);
 
             if($retorno == 'ok')
             {

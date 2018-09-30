@@ -15,6 +15,10 @@ class PessoaModel extends Model {
     {
         return $this->db->First($this->db->Select("SELECT * FROM pessoa WHERE id = '{$obj->Id}'"));  
     }
+    public function GetbyIntId($Id)
+    {
+        return $this->db->First($this->db->Select("SELECT * FROM pessoa WHERE id = '{$Id}'"));  
+    }
     public function GetDadosById(Pessoa $obj)
     {
         return $this->db->First($this->db->Select("SELECT a.Id, a.Nome, b.Login 'Email', c.Numero 'Telefone' FROM pessoa a join usuario b

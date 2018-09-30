@@ -34,6 +34,7 @@ class Database extends Config {
     }
     public function Insert($obj, $table){
         $retorno;
+        $obj->Id = 0;
         try {
             $obj->DtInclusao = date('Y-m-d H:i:s');
             $obj->DtAtualizacao = date('Y-m-d H:i:s');

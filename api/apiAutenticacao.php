@@ -22,7 +22,9 @@ use model\usuario\UsuarioModel;
 
             $AutenticacaoModel = new AutenticacaoModel();
             $UsuarioModel = new UsuarioModel();
+            $PessoaModel = new \model\pessoa\PessoaModel();
             $Usuario = new Usuario();
+            $Pessoa = new \object\Pessoa();
             
             $GerarHash = new GerarHash();
 
@@ -39,7 +41,7 @@ use model\usuario\UsuarioModel;
             $Usuario->PessoaId = $obj->PessoaId;
 
             $Usuario = $UsuarioModel->GetByPessoaId($Usuario);
-            
+            //$Pessoa = $PessoaModel->GetbyIntId($obj->PesssoaId);
             // print_r($Email);
 
             // $message = $html->GetHtmlAuth($Email['Nome'], $obj->Nome);
