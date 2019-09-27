@@ -4,10 +4,10 @@ namespace lib;
  
 class Config {
 
-    const server = '';
-    const user = '';
+    const server = 'localhost';
+    const user = 'root';
     const pass = '';
-    const dbname = '';
+    const dbname = 'dbpet';
 
     /**/
 
